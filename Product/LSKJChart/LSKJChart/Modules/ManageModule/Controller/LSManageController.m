@@ -9,6 +9,7 @@
 #import "LSManageController.h"
 
 #import "LSPrefixHeader.h"
+#import "LSDataPickerView.h"
 
 
 @interface LSManageController ()
@@ -29,6 +30,15 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationItem.title = @"患者管理";
     self.view.backgroundColor = [UIColor colorFromHexString:@"F0F8FF"];
+    
+    
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    LSDataPickerView *p = [[NSBundle mainBundle] loadNibNamed:@"LSDataPickerView" owner:nil options:nil][0];
+    [p setPickerWithArray:@[@"11", @"12", @"13"] title:@"11"];
+    [p show];
 }
 
 @end

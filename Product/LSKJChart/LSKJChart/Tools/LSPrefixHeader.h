@@ -9,6 +9,9 @@
 #ifndef LSPrefixHeader_h
 #define LSPrefixHeader_h
 
+//宏
+#define BASEURL @"http:www.baidu.com"
+
 //第三方
 
 //网络
