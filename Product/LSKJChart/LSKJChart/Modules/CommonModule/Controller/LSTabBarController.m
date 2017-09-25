@@ -8,8 +8,6 @@
 
 #import "LSTabBarController.h"
 
-#import "LSPrefixHeader.h"
-
 #import "LSWorkController.h"
 #import "LSMessageController.h"
 #import "LSManageController.h"

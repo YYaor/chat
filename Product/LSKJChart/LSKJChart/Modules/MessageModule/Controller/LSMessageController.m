@@ -8,8 +8,6 @@
 
 #import "LSMessageController.h"
 
-#import "LSPrefixHeader.h"
-
 @interface LSMessageController ()
 
 @end

@@ -8,7 +8,6 @@
 
 #import "LSWorkController.h"
 #import "LSLoginController.h"
-#import "LSPrefixHeader.h"
 
 @interface LSWorkController ()
 

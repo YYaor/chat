@@ -8,8 +8,6 @@
 
 #import "LSNetworkTool.h"
 
-#import "LSPrefixHeader.h"
-
 @implementation LSNetworkTool
 
 + (instancetype)sharedInstance

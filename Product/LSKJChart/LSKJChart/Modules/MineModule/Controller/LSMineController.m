@@ -8,8 +8,6 @@
 
 #import "LSMineController.h"
 
-#import "LSPrefixHeader.h"
-
 @interface LSMineController ()
 
 @end
