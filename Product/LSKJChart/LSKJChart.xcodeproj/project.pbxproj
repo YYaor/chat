@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0FB200BE1F78CEFC005BC289 /* YYShopMainTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200BD1F78B4BD005BC289 /* YYShopMainTypeView.m */; };
+		0FB200CF1F78F087005BC289 /* LSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200CE1F78F087005BC289 /* LSUtil.m */; };
+		0FB200D71F78F130005BC289 /* BlocMBProgressHUD.m in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200D21F78F11B005BC289 /* BlocMBProgressHUD.m */; };
+		0FB200D81F78F130005BC289 /* UIView+BlocHUD.m in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200D41F78F11B005BC289 /* UIView+BlocHUD.m */; };
+		0FB200D91F78F130005BC289 /* UIViewController+HUD.m in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200D61F78F11B005BC289 /* UIViewController+HUD.m */; };
+		0FB200DA1F78F296005BC289 /* BlocMBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200D21F78F11B005BC289 /* BlocMBProgressHUD.m */; };
+		0FB200DB1F78F296005BC289 /* UIView+BlocHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200D41F78F11B005BC289 /* UIView+BlocHUD.m */; };
+		0FB200DC1F78F296005BC289 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200D61F78F11B005BC289 /* UIViewController+HUD.m */; };
 		DF87A1D51F781B7700EF0461 /* LSKJChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */; };
 		DF87A1E01F781B7700EF0461 /* LSKJChartUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1DF1F781B7700EF0461 /* LSKJChartUITests.m */; };
 		DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A6331F7820A700EF0461 /* AppDelegate.m */; };
@@ -119,6 +126,18 @@
 /* Begin PBXFileReference section */
 		0FB200BC1F78B4BD005BC289 /* YYShopMainTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYShopMainTypeView.h; sourceTree = "<group>"; };
 		0FB200BD1F78B4BD005BC289 /* YYShopMainTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYShopMainTypeView.m; sourceTree = "<group>"; };
+		0FB200C81F78EF75005BC289 /* NSString+Mark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Mark.h"; sourceTree = "<group>"; };
+		0FB200C91F78EF75005BC289 /* NSString+Mark.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Mark.m"; sourceTree = "<group>"; };
+		0FB200CA1F78EF75005BC289 /* NSString+YY.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+YY.h"; sourceTree = "<group>"; };
+		0FB200CB1F78EF75005BC289 /* NSString+YY.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+YY.m"; sourceTree = "<group>"; };
+		0FB200CD1F78F087005BC289 /* LSUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSUtil.h; sourceTree = "<group>"; };
+		0FB200CE1F78F087005BC289 /* LSUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSUtil.m; sourceTree = "<group>"; };
+		0FB200D11F78F11B005BC289 /* BlocMBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlocMBProgressHUD.h; sourceTree = "<group>"; };
+		0FB200D21F78F11B005BC289 /* BlocMBProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocMBProgressHUD.m; sourceTree = "<group>"; };
+		0FB200D31F78F11B005BC289 /* UIView+BlocHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+BlocHUD.h"; sourceTree = "<group>"; };
+		0FB200D41F78F11B005BC289 /* UIView+BlocHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+BlocHUD.m"; sourceTree = "<group>"; };
+		0FB200D51F78F11B005BC289 /* UIViewController+HUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HUD.h"; sourceTree = "<group>"; };
+		0FB200D61F78F11B005BC289 /* UIViewController+HUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HUD.m"; sourceTree = "<group>"; };
 		DF87A1B71F781B7700EF0461 /* LSKJChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSKJChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D01F781B7700EF0461 /* LSKJChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LSKJChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSKJChartTests.m; sourceTree = "<group>"; };
@@ -335,6 +354,47 @@
 			path = YYMainTypeView;
 			sourceTree = "<group>";
 		};
+		0FB200C61F78EF75005BC289 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0FB200C71F78EF75005BC289 /* NSString */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		0FB200C71F78EF75005BC289 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				0FB200C81F78EF75005BC289 /* NSString+Mark.h */,
+				0FB200C91F78EF75005BC289 /* NSString+Mark.m */,
+				0FB200CA1F78EF75005BC289 /* NSString+YY.h */,
+				0FB200CB1F78EF75005BC289 /* NSString+YY.m */,
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
+		0FB200CC1F78F07D005BC289 /* LSUtil */ = {
+			isa = PBXGroup;
+			children = (
+				0FB200CD1F78F087005BC289 /* LSUtil.h */,
+				0FB200CE1F78F087005BC289 /* LSUtil.m */,
+			);
+			path = LSUtil;
+			sourceTree = "<group>";
+		};
+		0FB200D01F78F11B005BC289 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				0FB200D11F78F11B005BC289 /* BlocMBProgressHUD.h */,
+				0FB200D21F78F11B005BC289 /* BlocMBProgressHUD.m */,
+				0FB200D31F78F11B005BC289 /* UIView+BlocHUD.h */,
+				0FB200D41F78F11B005BC289 /* UIView+BlocHUD.m */,
+				0FB200D51F78F11B005BC289 /* UIViewController+HUD.h */,
+				0FB200D61F78F11B005BC289 /* UIViewController+HUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		DF87A1AE1F781B7700EF0461 = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +418,7 @@
 		DF87A1B91F781B7700EF0461 /* LSKJChart */ = {
 			isa = PBXGroup;
 			children = (
+				0FB200C61F78EF75005BC289 /* Category */,
 				DF87A6281F7820A700EF0461 /* Modules */,
 				DF87A6311F7820A700EF0461 /* Resources */,
 				DF87A63D1F7820A700EF0461 /* Tools */,
@@ -450,6 +511,8 @@
 		DF87A63D1F7820A700EF0461 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				0FB200D01F78F11B005BC289 /* MBProgressHUD */,
+				0FB200CC1F78F07D005BC289 /* LSUtil */,
 				0FB200BB1F78B4BD005BC289 /* YYMainTypeView */,
 				DF87A6461F78217100EF0461 /* LSPrefixHeader.h */,
 				DF87A7871F782DE000EF0461 /* IQKeyboardManager */,
@@ -1030,6 +1093,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FB200D71F78F130005BC289 /* BlocMBProgressHUD.m in Resources */,
+				0FB200D81F78F130005BC289 /* UIView+BlocHUD.m in Resources */,
+				0FB200D91F78F130005BC289 /* UIViewController+HUD.m in Resources */,
 				DF87A6421F7820A700EF0461 /* Info.plist in Resources */,
 				DF87A6D41F7827E200EF0461 /* SVProgressHUD.bundle in Resources */,
 				DF87A7DD1F7835A500EF0461 /* LSWorkController.xib in Resources */,
@@ -1067,6 +1133,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FB200DA1F78F296005BC289 /* BlocMBProgressHUD.m in Sources */,
+				0FB200DB1F78F296005BC289 /* UIView+BlocHUD.m in Sources */,
+				0FB200DC1F78F296005BC289 /* UIViewController+HUD.m in Sources */,
 				0FB200BE1F78CEFC005BC289 /* YYShopMainTypeView.m in Sources */,
 				DF87A7B71F782DE000EF0461 /* IQTitleBarButtonItem.m in Sources */,
 				DF87A7B21F782DE000EF0461 /* IQKeyboardManager.m in Sources */,
@@ -1123,6 +1192,7 @@
 				DF87A6AF1F7827E200EF0461 /* AFURLRequestSerialization.m in Sources */,
 				DF87A6D21F7827E200EF0461 /* SVIndefiniteAnimatedView.m in Sources */,
 				DF87A7B81F782DE000EF0461 /* IQToolbar.m in Sources */,
+				0FB200CF1F78F087005BC289 /* LSUtil.m in Sources */,
 				DF87A7831F782D1300EF0461 /* RKDropdownAlert.m in Sources */,
 				DF87A77A1F782D1300EF0461 /* MJRefreshGifHeader.m in Sources */,
 				DF87A6F01F782A8E00EF0461 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
