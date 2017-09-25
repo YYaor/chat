@@ -1287,7 +1287,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREFIX_HEADER = /Users/liuboyu/Documents/Chat/Product/LSKJChart/LSKJChart/Tools/LSPrefixHeader.h;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LSKJChart/Tools/LSPrefixHeader.h";
 				INFOPLIST_FILE = LSKJChart/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1309,7 +1309,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREFIX_HEADER = /Users/liuboyu/Documents/Chat/Product/LSKJChart/LSKJChart/Tools/LSPrefixHeader.h;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LSKJChart/Tools/LSPrefixHeader.h";
 				INFOPLIST_FILE = LSKJChart/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
