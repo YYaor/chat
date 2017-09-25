@@ -15,6 +15,8 @@
 		0FB200DA1F78F296005BC289 /* BlocMBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200D21F78F11B005BC289 /* BlocMBProgressHUD.m */; };
 		0FB200DB1F78F296005BC289 /* UIView+BlocHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200D41F78F11B005BC289 /* UIView+BlocHUD.m */; };
 		0FB200DC1F78F296005BC289 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200D61F78F11B005BC289 /* UIViewController+HUD.m */; };
+		0FB200E01F78F463005BC289 /* LSRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200DE1F78F463005BC289 /* LSRegisterController.m */; };
+		0FB200E11F78F463005BC289 /* LSRegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200DF1F78F463005BC289 /* LSRegisterController.xib */; };
 		DF87A1D51F781B7700EF0461 /* LSKJChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */; };
 		DF87A1E01F781B7700EF0461 /* LSKJChartUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1DF1F781B7700EF0461 /* LSKJChartUITests.m */; };
 		DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A6331F7820A700EF0461 /* AppDelegate.m */; };
@@ -138,6 +140,9 @@
 		0FB200D41F78F11B005BC289 /* UIView+BlocHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+BlocHUD.m"; sourceTree = "<group>"; };
 		0FB200D51F78F11B005BC289 /* UIViewController+HUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HUD.h"; sourceTree = "<group>"; };
 		0FB200D61F78F11B005BC289 /* UIViewController+HUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HUD.m"; sourceTree = "<group>"; };
+		0FB200DD1F78F463005BC289 /* LSRegisterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSRegisterController.h; sourceTree = "<group>"; };
+		0FB200DE1F78F463005BC289 /* LSRegisterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSRegisterController.m; sourceTree = "<group>"; };
+		0FB200DF1F78F463005BC289 /* LSRegisterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSRegisterController.xib; sourceTree = "<group>"; };
 		DF87A1B71F781B7700EF0461 /* LSKJChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSKJChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D01F781B7700EF0461 /* LSKJChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LSKJChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSKJChartTests.m; sourceTree = "<group>"; };
@@ -831,6 +836,9 @@
 				DF87A7BF1F782F0700EF0461 /* LSLoginController.h */,
 				DF87A7C01F782F0700EF0461 /* LSLoginController.m */,
 				DF87A7C11F782F0700EF0461 /* LSLoginController.xib */,
+				0FB200DD1F78F463005BC289 /* LSRegisterController.h */,
+				0FB200DE1F78F463005BC289 /* LSRegisterController.m */,
+				0FB200DF1F78F463005BC289 /* LSRegisterController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1109,6 +1117,7 @@
 				DF87A7BA1F782DE000EF0461 /* IQKeyboardManager.bundle in Resources */,
 				DF87A7C31F782F0700EF0461 /* LSLoginController.xib in Resources */,
 				DF87A6401F7820A700EF0461 /* LaunchScreen.storyboard in Resources */,
+				0FB200E11F78F463005BC289 /* LSRegisterController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1206,6 +1215,7 @@
 				DF87A6AC1F7827E200EF0461 /* AFHTTPSessionManager.m in Sources */,
 				DF87A7811F782D1300EF0461 /* UIScrollView+MJRefresh.m in Sources */,
 				DF87A6F11F782A8E00EF0461 /* UIButton+AFNetworking.m in Sources */,
+				0FB200E01F78F463005BC289 /* LSRegisterController.m in Sources */,
 				DF87A7711F782D1300EF0461 /* MJRefreshComponent.m in Sources */,
 				DF87A7761F782D1300EF0461 /* MJRefreshAutoStateFooter.m in Sources */,
 				DF87A6F41F782A8E00EF0461 /* UIRefreshControl+AFNetworking.m in Sources */,

@@ -7,8 +7,11 @@
 //
 
 #import "LSLoginController.h"
+#import "LSRegisterController.h"
+
 #import "YYShopMainTypeView.h"
 #import "NSString+Mark.h"
+
 @interface LSLoginController ()<UITextFieldDelegate,YYShopMainTypeViewDelegate>
 
 @property (nonatomic,strong) UITextField *phoneTextFiled;
@@ -185,7 +188,8 @@
 }
 
 -(void)registButtonClick{
-    
+    LSRegisterController *registerController = [[LSRegisterController alloc]init];
+    [self.navigationController pushViewController:registerController animated:YES];
 }
 
 #pragma mark - setter && getter
