@@ -7,7 +7,7 @@
 //
 
 #import "LSWorkController.h"
-
+#import "LSLoginController.h"
 #import "LSPrefixHeader.h"
 
 @interface LSWorkController ()
@@ -28,6 +28,21 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationItem.title = @"工作台";
     self.view.backgroundColor = [UIColor colorFromHexString:@"FFB6C1"];
+    
+    UIButton *loignButton = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
+    loignButton.backgroundColor = [UIColor redColor];
+    [self.view addSubview:loignButton];
+    [loignButton addTarget:self action:@selector(loginButtonClick) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)loginButtonClick{
+    LSLoginController *loginVC = [[LSLoginController alloc]init];
+    loginVC.hidesBottomBarWhenPushed = YES;
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+    [self presentViewController:nav animated:YES completion:^{
+        
+    }];
+
 }
 
 
