@@ -28,18 +28,18 @@
 
 - (void)initForView
 {
-    [UINavigationBar appearance].backgroundColor = [UIColor colorFromHexString:@"B3EE3A"];
-    [UINavigationBar appearance].barTintColor = [UIColor colorFromHexString:@"B3EE3A"];
+    [UINavigationBar appearance].backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+    [UINavigationBar appearance].barTintColor = [UIColor colorFromHexString:LSGREENCOLOR];
     [UINavigationBar appearance].tintColor = [UIColor colorFromHexString:@"FFFFFF"];
     // hide title of back button
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
     
-    [UITabBar appearance].tintColor = [UIColor colorFromHexString:@"B3EE3A"];
+    [UITabBar appearance].barTintColor = [UIColor whiteColor];
+    [UITabBar appearance].translucent = NO;
     
-    NSArray *title = @[@"工作台", @"消息", @"患者管理", @"我的"];
-    NSArray *defaultImage = @[@"", @"", @"", @""];
-    NSArray *selectedImage = @[@"", @"", @"", @""];
+    NSArray *defaultImage = @[@"b_workstation", @"b_news", @"b_patientmanagement", @"b_mine"];
+    NSArray *selectedImage = @[@"b_workstation_h", @"b_news_h", @"b_patientmanagement_h", @"b_mine_h"];
     
     self.viewControllers = @[
                              [[UINavigationController alloc] initWithRootViewController:[[LSWorkController alloc] initWithNibName:@"LSWorkController" bundle:nil]],
@@ -51,13 +51,12 @@
     for (NSInteger i=0; i<self.viewControllers.count; i++)
     {
         UINavigationController *nav = self.viewControllers[i];
-        nav.tabBarItem.title = title[i];
-//        self.tabBarItem.image = [[UIImage imageNamed:defaultImage[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//        self.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        nav.tabBarItem.image = [UIImage imageNamed:defaultImage[i]];
+        nav.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        nav.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     }
     
     self.selectedIndex = 0;
-    
 }
 
 @end

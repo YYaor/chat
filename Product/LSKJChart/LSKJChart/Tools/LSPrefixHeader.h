@@ -10,7 +10,9 @@
 #define LSPrefixHeader_h
 
 //宏
-#define BASEURL @"http:www.baidu.com"
+#define LSBASEURL @"http:www.baidu.com"
+
+#define LSGREENCOLOR @"3ED0B4"
 
 //第三方
 
