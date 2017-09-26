@@ -7,6 +7,7 @@
 //
 
 #import "LSRegisterController.h"
+#import "NSString+Mark.h"
 
 @interface LSRegisterController ()
 
@@ -33,6 +34,8 @@
 @property (nonatomic,strong) UIView *codeLine;
 
 @property (nonatomic,strong) UIView *confPswLine;
+
+@property (nonatomic,strong) UILabel *phoneNoticeLabel;
 
 @end
 
@@ -100,6 +103,11 @@
         make.left.right.equalTo(self.phoneTextField);
         make.height.mas_equalTo(1);
         make.top.equalTo(self.phoneTextField.mas_bottom).offset(2);
+    }];
+    
+    [self.phoneNoticeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.phoneLine);
+        make.top.equalTo(self.phoneLine.mas_bottom).offset(2);
     }];
     
     [self.codeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -173,11 +181,20 @@
 }
 
 -(void)phoneClearButtonClick{
-    
+    self.phoneTextField.text = nil;
 }
 
 -(void)sendCodeButtonClick{
+    if (self.phoneTextField.text == nil || self.phoneTextField.text.length == 0) {
+        [LSUtil showAlter:self.view withText:@"请输入手机号码" withOffset:-20];
+        return;
+    }
     
+    if (![NSString isMobile:self.phoneTextField.text]) {
+        self.phoneLine.backgroundColor = [UIColor redColor];
+        self.phoneNoticeLabel.text = @"手机号码格式不正确";
+        return;
+    }
 }
 
 -(void)nextButtonClick{
@@ -302,6 +319,15 @@
         _pswLine.backgroundColor = [UIColor grayColor];
     }
     return _pswLine;
+}
+
+-(UILabel *)phoneNoticeLabel{
+    if (!_phoneNoticeLabel) {
+        _phoneNoticeLabel = [[UILabel alloc]init];
+        _phoneNoticeLabel.text = @"手机号码有误";
+        _phoneNoticeLabel.hidden = YES;
+    }
+    return _phoneNoticeLabel;
 }
 
 @end

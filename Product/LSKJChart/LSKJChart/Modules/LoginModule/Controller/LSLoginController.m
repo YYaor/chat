@@ -92,6 +92,11 @@
         make.top.equalTo(self.phoneTextFiled.mas_bottom).offset(2);
     }];
     
+    [self.phoneNoticeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.phoneLine);
+        make.top.equalTo(self.phoneLine.mas_bottom).offset(2);
+    }];
+    
     [self.pswTextFiled mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.phoneLine.mas_bottom).offset(50);
         make.left.right.equalTo(self.phoneTextFiled);
@@ -167,7 +172,7 @@
     
     if (![NSString isMobile:self.phoneTextFiled.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
-        self.phoneNoticeLabel.text = @"手机号码格式不正确";
+        self.phoneNoticeLabel.text = @"手机号码有误";
         return;
     }
 }
@@ -181,7 +186,7 @@
     
     if (![NSString isMobile:self.phoneTextFiled.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
-        self.phoneNoticeLabel.text = @"手机号码格式不正确";
+        self.phoneNoticeLabel.text = @"手机号码有误";
         return;
     }
 
