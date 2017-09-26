@@ -19,6 +19,8 @@
 		0FB200E11F78F463005BC289 /* LSRegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200DF1F78F463005BC289 /* LSRegisterController.xib */; };
 		0FB200E51F79E771005BC289 /* LSAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200E31F79E771005BC289 /* LSAuthenticationController.m */; };
 		0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */; };
+		0FB200EC1F7A5294005BC289 /* LSMineListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200EB1F7A5294005BC289 /* LSMineListCell.m */; };
+		0FB200EF1F7A5639005BC289 /* LSMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200EE1F7A5639005BC289 /* LSMineHeaderView.m */; };
 		DF87A1D51F781B7700EF0461 /* LSKJChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */; };
 		DF87A1E01F781B7700EF0461 /* LSKJChartUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1DF1F781B7700EF0461 /* LSKJChartUITests.m */; };
 		DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A6331F7820A700EF0461 /* AppDelegate.m */; };
@@ -148,6 +150,10 @@
 		0FB200E21F79E771005BC289 /* LSAuthenticationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSAuthenticationController.h; sourceTree = "<group>"; };
 		0FB200E31F79E771005BC289 /* LSAuthenticationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSAuthenticationController.m; sourceTree = "<group>"; };
 		0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSAuthenticationController.xib; sourceTree = "<group>"; };
+		0FB200EA1F7A5294005BC289 /* LSMineListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineListCell.h; sourceTree = "<group>"; };
+		0FB200EB1F7A5294005BC289 /* LSMineListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineListCell.m; sourceTree = "<group>"; };
+		0FB200ED1F7A5639005BC289 /* LSMineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineHeaderView.h; sourceTree = "<group>"; };
+		0FB200EE1F7A5639005BC289 /* LSMineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineHeaderView.m; sourceTree = "<group>"; };
 		DF87A1B71F781B7700EF0461 /* LSKJChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSKJChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D01F781B7700EF0461 /* LSKJChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LSKJChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSKJChartTests.m; sourceTree = "<group>"; };
@@ -403,6 +409,22 @@
 				0FB200D61F78F11B005BC289 /* UIViewController+HUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		0FB200E81F7A527D005BC289 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0FB200E91F7A527D005BC289 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0FB200EA1F7A5294005BC289 /* LSMineListCell.h */,
+				0FB200EB1F7A5294005BC289 /* LSMineListCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		DF87A1AE1F781B7700EF0461 = {
@@ -936,9 +958,9 @@
 		DF87A7D11F78358300EF0461 /* MineModule */ = {
 			isa = PBXGroup;
 			children = (
+				0FB200E81F7A527D005BC289 /* Model */,
+				0FB200E91F7A527D005BC289 /* View */,
 				DF87A7D21F78358300EF0461 /* Controller */,
-				DF87A7D31F78358300EF0461 /* Model */,
-				DF87A7D41F78358300EF0461 /* View */,
 			);
 			path = MineModule;
 			sourceTree = "<group>";
@@ -949,22 +971,10 @@
 				DF87A7DE1F7835DD00EF0461 /* LSMineController.h */,
 				DF87A7DF1F7835DD00EF0461 /* LSMineController.m */,
 				DF87A7E01F7835DD00EF0461 /* LSMineController.xib */,
+				0FB200ED1F7A5639005BC289 /* LSMineHeaderView.h */,
+				0FB200EE1F7A5639005BC289 /* LSMineHeaderView.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		DF87A7D31F78358300EF0461 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		DF87A7D41F78358300EF0461 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		DF87A7D51F78358300EF0461 /* WorkModule */ = {
@@ -1215,11 +1225,13 @@
 				DF87A7831F782D1300EF0461 /* RKDropdownAlert.m in Sources */,
 				DF87A77A1F782D1300EF0461 /* MJRefreshGifHeader.m in Sources */,
 				DF87A6F01F782A8E00EF0461 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				0FB200EF1F7A5639005BC289 /* LSMineHeaderView.m in Sources */,
 				DF87A7AF1F782DE000EF0461 /* IQUIView+Hierarchy.m in Sources */,
 				DF87A7AC1F782DE000EF0461 /* IQNSArray+Sort.m in Sources */,
 				DF87A6B01F7827E200EF0461 /* AFURLResponseSerialization.m in Sources */,
 				DF87A7B31F782DE000EF0461 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				DF87A7701F782D1300EF0461 /* MJRefreshBackFooter.m in Sources */,
+				0FB200EC1F7A5294005BC289 /* LSMineListCell.m in Sources */,
 				DF87A7AE1F782DE000EF0461 /* IQUITextFieldView+Additions.m in Sources */,
 				DF87A6ED1F782A8E00EF0461 /* AFAutoPurgingImageCache.m in Sources */,
 				DF87A6AC1F7827E200EF0461 /* AFHTTPSessionManager.m in Sources */,
