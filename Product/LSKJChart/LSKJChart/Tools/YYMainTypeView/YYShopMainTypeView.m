@@ -35,7 +35,7 @@
         selectView.frame = CGRectMake(0, frame.size.height-5, frame.size.width/itemCount, 3);
         [self addSubview:selectView];
         CALayer *greenLayer = [[CALayer alloc] init];
-        greenLayer.backgroundColor = [UIColor colorFromHexString:@"333333"].CGColor;
+        greenLayer.backgroundColor = [UIColor colorFromHexString:@"ffffff"].CGColor;
         greenLayer.cornerRadius = selectView.frame.size.height/2;
         greenLayer.frame = CGRectMake(0, 0, selectView.frame.size.width, 2);
         [selectView.layer addSublayer:greenLayer];
@@ -43,8 +43,8 @@
         for (NSInteger i=0; i<filters.count; i++) {
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(frame.size.width/filters.count*i, 3, frame.size.width/filters.count, frame.size.height-3)];
             [button setTitle:[filters objectAtIndex:i] forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor colorFromHexString:@"333333"] forState:UIControlStateSelected];
-            [button setTitleColor:[UIColor colorWithWhite:0x99/255.0 alpha:1] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor colorFromHexString:@"ffffff"] forState:UIControlStateSelected];
+            [button setTitleColor:[UIColor colorFromHexString:@"ffffff"] forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:15];
             if (i == 0) {
                 button.selected = YES;

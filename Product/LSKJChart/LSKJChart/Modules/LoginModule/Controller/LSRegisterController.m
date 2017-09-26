@@ -7,6 +7,7 @@
 //
 
 #import "LSRegisterController.h"
+#import "LSAuthenticationController.h"
 #import "NSString+Mark.h"
 
 @interface LSRegisterController ()
@@ -51,11 +52,11 @@
 
 -(void)initNavView{
     UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
-    navView.backgroundColor = [UIColor grayColor];
+    navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
     [self.view addSubview:navView];
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"down-back"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [navView addSubview:backButton];
     
@@ -86,6 +87,7 @@
     [self.view addSubview:self.codeLine];
     [self.view addSubview:self.pswLine];
     [self.view addSubview:self.confPswLine];
+    [self.view addSubview:self.phoneNoticeLabel];
     
     [self.phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(30);
@@ -171,6 +173,14 @@
 
 #pragma mark - clickEvents
 
+-(void)phoneTextChangged:(UITextField *)sender{
+    if (sender.text.length>0) {
+        self.phoneClearButton.hidden = NO;
+    }else{
+        self.phoneClearButton.hidden = YES;
+    }
+}
+
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -181,6 +191,7 @@
 }
 
 -(void)phoneClearButtonClick{
+    self.phoneClearButton.hidden = YES;
     self.phoneTextField.text = nil;
 }
 
@@ -198,6 +209,11 @@
 }
 
 -(void)nextButtonClick{
+    LSAuthenticationController *authenticationController = [[LSAuthenticationController alloc]init];
+    [self.navigationController pushViewController:authenticationController animated:YES];
+}
+
+-(void)agreementButtonClick{
     
 }
 
@@ -208,6 +224,10 @@
         _phoneTextField = [[UITextField alloc]init];
         _phoneTextField.keyboardType = UIKeyboardTypeNumberPad;
         _phoneTextField.placeholder = @"请输入手机号";
+        _phoneTextField.font = [UIFont systemFontOfSize:14];
+        _phoneTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        [_phoneTextField addTarget:self action:@selector(phoneTextChangged:) forControlEvents:UIControlEventEditingChanged];
+
     }
     return _phoneTextField;
 }
@@ -217,6 +237,9 @@
         _pswTextField = [[UITextField alloc]init];
         _pswTextField.keyboardType = UIKeyboardTypeNumberPad;
         _pswTextField.placeholder =@"请设置登录密码";
+        _pswTextField.font = [UIFont systemFontOfSize:14];
+        _pswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        
     }
     return _pswTextField;
 }
@@ -226,6 +249,8 @@
         _codeTextField = [[UITextField alloc]init];
         _codeTextField.keyboardType = UIKeyboardTypeNumberPad;
         _codeTextField.placeholder =@"输入验证码";
+        _codeTextField.font = [UIFont systemFontOfSize:14];
+        _codeTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
     }
     return _codeTextField;
 }
@@ -235,6 +260,8 @@
         _confPswTextField = [[UITextField alloc]init];
         _confPswTextField.keyboardType = UIKeyboardTypeNumberPad;
         _confPswTextField.placeholder =@"再次输入登录密码";
+        _confPswTextField.font = [UIFont systemFontOfSize:14];
+        _confPswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
     }
     return _confPswTextField;
 }
@@ -242,8 +269,9 @@
 -(UIButton *)phoneClearButton{
     if (!_phoneClearButton) {
         _phoneClearButton = [[UIButton alloc]init];
-        _phoneClearButton.backgroundColor = [UIColor blackColor];
         [_phoneClearButton addTarget:self action:@selector(phoneClearButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [_phoneClearButton setImage:[UIImage imageNamed:@"del"] forState:UIControlStateNormal];
+        _phoneClearButton.hidden = YES;
     }
     return _phoneClearButton;
 }
@@ -253,12 +281,12 @@
         _sendCodeButton = [[UIButton alloc]init];
         [_sendCodeButton addTarget:self action:@selector(sendCodeButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [_sendCodeButton setTitle:@"发送验证码" forState:UIControlStateNormal];
-        [_sendCodeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_sendCodeButton setTitleColor:[UIColor colorFromHexString:@"8b8b8b"] forState:UIControlStateNormal];
         _sendCodeButton.layer.masksToBounds = YES;
         _sendCodeButton.layer.cornerRadius = 10;
         _sendCodeButton.layer.borderWidth = 1;
-        _sendCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
-        _sendCodeButton.hidden = YES;
+        _sendCodeButton.layer.borderColor = [UIColor colorFromHexString:@"e0e0e0"].CGColor;
+        _sendCodeButton.titleLabel.font = [UIFont systemFontOfSize:13];
     }
     return _sendCodeButton;
 }
@@ -267,10 +295,11 @@
     if (!_nextButton) {
         _nextButton = [[UIButton alloc]init];
         [_nextButton addTarget:self action:@selector(nextButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        _nextButton.backgroundColor = [UIColor grayColor];
+        _nextButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
         [_nextButton setTitle:@"下一步" forState:UIControlStateNormal];
         _nextButton.layer.masksToBounds = YES;
         _nextButton.layer.cornerRadius = 20;
+        _nextButton.titleLabel.font = [UIFont systemFontOfSize:14];
     }
     return _nextButton;
 }
@@ -278,12 +307,13 @@
 -(UIButton *)agreementButton{
     if (!_agreementButton) {
         _agreementButton = [[UIButton alloc]init];
-        [_agreementButton addTarget:self action:@selector(nextButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [_sendCodeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        _agreementButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_agreementButton addTarget:self action:@selector(agreementButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [_agreementButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         NSString *string = @"点击注册即同意《佑格医生用户协议》";
         NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
-        [attString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(string.length-10, 10)];
-        [attString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, string.length-10)];
+        [attString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromHexString:LSGREENCOLOR] range:NSMakeRange(string.length-10, 10)];
+        [attString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromHexString:@"8b8b8b"] range:NSMakeRange(0, string.length-10)];
         [_agreementButton setAttributedTitle:attString forState:UIControlStateNormal];
     }
     return _agreementButton;
@@ -292,7 +322,7 @@
 -(UIView *)phoneLine{
     if (!_phoneLine) {
         _phoneLine = [[UIView alloc]init];
-        _phoneLine.backgroundColor = [UIColor grayColor];
+        _phoneLine.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
     }
     return _phoneLine;
 }
@@ -300,7 +330,7 @@
 -(UIView *)codeLine{
     if (!_codeLine) {
         _codeLine = [[UIView alloc]init];
-        _codeLine.backgroundColor = [UIColor grayColor];
+        _codeLine.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
     }
     return _codeLine;
 }
@@ -308,7 +338,7 @@
 -(UIView *)confPswLine{
     if (!_confPswLine) {
         _confPswLine = [[UIView alloc]init];
-        _confPswLine.backgroundColor = [UIColor grayColor];
+        _confPswLine.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
     }
     return _confPswLine;
 }
@@ -316,7 +346,7 @@
 -(UIView *)pswLine{
     if (!_pswLine) {
         _pswLine = [[UIView alloc]init];
-        _pswLine.backgroundColor = [UIColor grayColor];
+        _pswLine.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
     }
     return _pswLine;
 }
@@ -326,6 +356,8 @@
         _phoneNoticeLabel = [[UILabel alloc]init];
         _phoneNoticeLabel.text = @"手机号码有误";
         _phoneNoticeLabel.hidden = YES;
+        _phoneNoticeLabel.font = [UIFont systemFontOfSize:13];
+        _phoneNoticeLabel.textColor = [UIColor redColor];
     }
     return _phoneNoticeLabel;
 }

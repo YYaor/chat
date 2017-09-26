@@ -17,6 +17,8 @@
 		0FB200DC1F78F296005BC289 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200D61F78F11B005BC289 /* UIViewController+HUD.m */; };
 		0FB200E01F78F463005BC289 /* LSRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200DE1F78F463005BC289 /* LSRegisterController.m */; };
 		0FB200E11F78F463005BC289 /* LSRegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200DF1F78F463005BC289 /* LSRegisterController.xib */; };
+		0FB200E51F79E771005BC289 /* LSAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200E31F79E771005BC289 /* LSAuthenticationController.m */; };
+		0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */; };
 		DF87A1D51F781B7700EF0461 /* LSKJChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */; };
 		DF87A1E01F781B7700EF0461 /* LSKJChartUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1DF1F781B7700EF0461 /* LSKJChartUITests.m */; };
 		DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A6331F7820A700EF0461 /* AppDelegate.m */; };
@@ -143,6 +145,9 @@
 		0FB200DD1F78F463005BC289 /* LSRegisterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSRegisterController.h; sourceTree = "<group>"; };
 		0FB200DE1F78F463005BC289 /* LSRegisterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSRegisterController.m; sourceTree = "<group>"; };
 		0FB200DF1F78F463005BC289 /* LSRegisterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSRegisterController.xib; sourceTree = "<group>"; };
+		0FB200E21F79E771005BC289 /* LSAuthenticationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSAuthenticationController.h; sourceTree = "<group>"; };
+		0FB200E31F79E771005BC289 /* LSAuthenticationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSAuthenticationController.m; sourceTree = "<group>"; };
+		0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSAuthenticationController.xib; sourceTree = "<group>"; };
 		DF87A1B71F781B7700EF0461 /* LSKJChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSKJChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D01F781B7700EF0461 /* LSKJChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LSKJChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSKJChartTests.m; sourceTree = "<group>"; };
@@ -839,6 +844,9 @@
 				0FB200DD1F78F463005BC289 /* LSRegisterController.h */,
 				0FB200DE1F78F463005BC289 /* LSRegisterController.m */,
 				0FB200DF1F78F463005BC289 /* LSRegisterController.xib */,
+				0FB200E21F79E771005BC289 /* LSAuthenticationController.h */,
+				0FB200E31F79E771005BC289 /* LSAuthenticationController.m */,
+				0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1111,6 +1119,7 @@
 				DF87A63F1F7820A700EF0461 /* Assets.xcassets in Resources */,
 				DF87A6B31F7827E200EF0461 /* Info.plist in Resources */,
 				DF87A7E21F7835DD00EF0461 /* LSMineController.xib in Resources */,
+				0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */,
 				DF87A8261F78DB4100EF0461 /* LSDataPickerView.xib in Resources */,
 				DF87A7EC1F78361D00EF0461 /* LSManageController.xib in Resources */,
 				DF87A7E71F7835FE00EF0461 /* LSMessageController.xib in Resources */,
@@ -1179,6 +1188,7 @@
 				DF87A6B41F7827E200EF0461 /* MASCompositeConstraint.m in Sources */,
 				DF87A7731F782D1300EF0461 /* MJRefreshHeader.m in Sources */,
 				DF87A6EF1F782A8E00EF0461 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				0FB200E51F79E771005BC289 /* LSAuthenticationController.m in Sources */,
 				DF87A76F1F782D1300EF0461 /* MJRefreshAutoFooter.m in Sources */,
 				DF87A7721F782D1300EF0461 /* MJRefreshFooter.m in Sources */,
 				DF87A6B21F7827E200EF0461 /* Colours.m in Sources */,

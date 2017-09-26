@@ -41,6 +41,9 @@
 @end
 
 @implementation LSLoginController
+{
+    BOOL isFirst;
+}
 
 - (void)viewDidLoad
 {
@@ -49,12 +52,14 @@
     [self initNavView];
     [self initForView];
     [self initTouchEvents];
+    
+    isFirst = YES;
 
 }
 
 -(void)initNavView{
     UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
-    navView.backgroundColor = [UIColor colorFromHexString:@"555555"];
+    navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
     [self.view addSubview:navView];
 
     [self.view addSubview:self.typeView];
@@ -153,13 +158,88 @@
     }
 }
 
+#pragma mark - TextDelegate
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (textField == self.phoneTextFiled) {
+        self.phoneNoticeLabel.text = nil;
+        self.phoneLine.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        self.pswLine.backgroundColor = [UIColor colorFromHexString:@"dedede"];
+    }
+    if (textField == self.pswTextFiled) {
+        self.pswLine.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        self.phoneLine.backgroundColor = [UIColor colorFromHexString:@"dedede"];
+
+        self.pswNoticeLabel.text = nil;
+    }
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField == self.phoneTextFiled) {
+        self.phoneLine.backgroundColor = [UIColor colorFromHexString:@"dedede"];
+    }
+    if (textField == self.pswTextFiled) {
+        self.pswLine.backgroundColor = [UIColor colorFromHexString:@"dedede"];
+    }
+}
+
+- (void)buttonTitleTime:(UIButton *)button withTime:(NSString *)time
+{
+    __block int timeout=[time intValue]-1; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                if (isFirst) {
+                    [button setTitle:@"获取验证码" forState:UIControlStateNormal];
+                }else{
+                    [button setTitle:@"重新获取" forState:UIControlStateNormal];
+                }
+                button.titleLabel.font = [UIFont systemFontOfSize:15];
+                
+                
+                button.enabled = YES;
+                button.alpha = 1;
+                isFirst = NO;
+            });
+        }else{
+            int seconds = timeout % 60;
+            NSString *strTime = [NSString stringWithFormat:@"%d", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [button setTitle:[NSString stringWithFormat:@"%@s",strTime] forState:UIControlStateDisabled];
+                button.titleLabel.font = [UIFont systemFontOfSize:13];
+                button.enabled = NO;
+                button.alpha = 0.4;
+                
+            });
+            timeout--;
+            
+        }
+    });
+    dispatch_resume(_timer);
+}
+
 #pragma mark - click events
+
+-(void)phoneTextChangged:(UITextField *)sender{
+    if (sender.text.length>0) {
+        self.phoneClearButton.hidden = NO;
+    }else{
+        self.phoneClearButton.hidden = YES;
+    }
+}
 //键盘滑落
 -(void)keyboardHide{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 
 -(void)phoneClearButtonClick{
+    self.phoneClearButton.hidden = YES;
     self.phoneTextFiled.text = nil;
 }
 
@@ -214,6 +294,9 @@
         _phoneTextFiled.keyboardType = UIKeyboardTypeNumberPad;
         _phoneTextFiled.delegate = self;
         _phoneTextFiled.placeholder = @"请输入手机号";
+        _phoneTextFiled.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        _phoneTextFiled.font = [UIFont systemFontOfSize:14];
+        [_phoneTextFiled addTarget:self action:@selector(phoneTextChangged:) forControlEvents:UIControlEventEditingChanged];
     }
     return _phoneTextFiled;
 }
@@ -224,6 +307,8 @@
         _pswTextFiled.keyboardType = UIKeyboardTypeNumberPad;
         _pswTextFiled.placeholder =@"请输入密码";
         _pswTextFiled.delegate = self;
+        _pswTextFiled.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        _pswTextFiled.font = [UIFont systemFontOfSize:14];
 
     }
     return _pswTextFiled;
@@ -232,8 +317,9 @@
 -(UIButton *)phoneClearButton{
     if (!_phoneClearButton) {
         _phoneClearButton = [[UIButton alloc]init];
-        _phoneClearButton.backgroundColor = [UIColor blackColor];
         [_phoneClearButton addTarget:self action:@selector(phoneClearButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [_phoneClearButton setImage:[UIImage imageNamed:@"del"] forState:UIControlStateNormal];
+        _phoneClearButton.hidden = YES;
     }
     return _phoneClearButton;
 }
@@ -243,12 +329,13 @@
         _sendCodeButton = [[UIButton alloc]init];
         [_sendCodeButton addTarget:self action:@selector(sendCodeButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [_sendCodeButton setTitle:@"发送验证码" forState:UIControlStateNormal];
-        [_sendCodeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_sendCodeButton setTitleColor:[UIColor colorFromHexString:@"8b8b8b"] forState:UIControlStateNormal];
         _sendCodeButton.layer.masksToBounds = YES;
         _sendCodeButton.layer.cornerRadius = 10;
         _sendCodeButton.layer.borderWidth = 1;
-        _sendCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
+        _sendCodeButton.layer.borderColor = [UIColor colorFromHexString:@"e0e0e0"].CGColor;
         _sendCodeButton.hidden = YES;
+        _sendCodeButton.titleLabel.font = [UIFont systemFontOfSize:14];
     }
     return _sendCodeButton;
 }
@@ -265,10 +352,11 @@
     if (!_loginButton) {
         _loginButton = [[UIButton alloc]init];
         [_loginButton addTarget:self action:@selector(loginButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        _loginButton.backgroundColor = [UIColor grayColor];
+        _loginButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
         [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
         _loginButton.layer.masksToBounds = YES;
         _loginButton.layer.cornerRadius = 20;
+        _loginButton.titleLabel.font = [UIFont systemFontOfSize:14];
     }
     return _loginButton;
 }
@@ -294,10 +382,11 @@
 -(UILabel *)registLabel{
     if (!_registLabel) {
         _registLabel = [[UILabel alloc]init];
-        _registLabel.textColor = [UIColor grayColor];
+        _registLabel.textColor = [UIColor colorFromHexString:@"8b8b8b"];
+        _registLabel.font = [UIFont systemFontOfSize:13];
         NSString *string = @"还没有账号？点击注册";
         NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
-        [attString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(string.length-4, 4)];
+        [attString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromHexString:LSGREENCOLOR] range:NSMakeRange(string.length-4, 4)];
         _registLabel.attributedText = attString;
     }
     return _registLabel;
@@ -306,7 +395,7 @@
 -(UIView *)phoneLine{
     if (!_phoneLine) {
         _phoneLine = [[UIView alloc]init];
-        _phoneLine.backgroundColor = [UIColor grayColor];
+        _phoneLine.backgroundColor = [UIColor colorFromHexString:@"dedede"];
     }
     return _phoneLine;
 }
@@ -314,7 +403,7 @@
 -(UIView *)pswLine{
     if (!_pswLine) {
         _pswLine = [[UIView alloc]init];
-        _pswLine.backgroundColor = [UIColor grayColor];
+        _pswLine.backgroundColor = [UIColor colorFromHexString:@"dedede"];
     }
     return _pswLine;
 }
