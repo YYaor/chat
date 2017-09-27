@@ -8,8 +8,9 @@
 
 #import "LSManageController.h"
 
-#import "LSDataPickerView.h"
+#import "LSLoginController.h"
 
+#import "LSDataPickerView.h"
 
 @interface LSManageController ()
 
@@ -30,6 +31,20 @@
     self.navigationItem.title = @"患者管理";
     self.view.backgroundColor = [UIColor colorFromHexString:@"F0F8FF"];
     
+    UIButton *loignButton = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
+    loignButton.backgroundColor = [UIColor redColor];
+    [self.view addSubview:loignButton];
+    [loignButton addTarget:self action:@selector(loginButtonClick) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)loginButtonClick
+{
+    LSLoginController *loginVC = [[LSLoginController alloc]init];
+    loginVC.hidesBottomBarWhenPushed = YES;
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+    [self presentViewController:nav animated:YES completion:^{
+        
+    }];
     
 }
 
