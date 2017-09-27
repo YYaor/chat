@@ -31,6 +31,8 @@
     [UINavigationBar appearance].backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
     [UINavigationBar appearance].barTintColor = [UIColor colorFromHexString:LSGREENCOLOR];
     [UINavigationBar appearance].tintColor = [UIColor colorFromHexString:@"FFFFFF"];
+    [UINavigationBar appearance].translucent = NO;
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     // hide title of back button
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];

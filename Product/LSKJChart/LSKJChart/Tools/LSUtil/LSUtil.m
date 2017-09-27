@@ -14,6 +14,7 @@
     if(view == nil){
         return;
     }
+//    BlocMBProgressHUD *HUD = [BlocMBProgressHUD showHUDAddedTo:view animated:YES];
     BlocMBProgressHUD *HUD = [BlocMBProgressHUD showHUDAddedTo:view animated:YES];
     HUD.color = nil;
     HUD.mode = MBProgressHUDModeText;
