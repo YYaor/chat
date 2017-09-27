@@ -8,6 +8,7 @@
 
 #import "LSMineController.h"
 #import "LSMineUserSettingController.h"
+#import "LSMineSettingController.h"
 
 #import "LSMineHeaderView.h"
 #import "LSMineListCell.h"
@@ -108,6 +109,12 @@
         if (indexPath.row == 0) {
             LSMineUserSettingController *userSettingController = [[LSMineUserSettingController alloc]init];
             [self.navigationController pushViewController:userSettingController animated:YES];
+        }
+    }
+    if (indexPath.section == 1) {
+        if (indexPath.row == 2) {
+            LSMineSettingController *settingController =  [[LSMineSettingController alloc]init];
+            [self.navigationController pushViewController:settingController animated:YES];
         }
     }
 }

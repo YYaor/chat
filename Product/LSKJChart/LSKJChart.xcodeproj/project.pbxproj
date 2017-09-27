@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F6E10861F7B799600C2477B /* LSMineNewPswController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E10841F7B799600C2477B /* LSMineNewPswController.m */; };
+		0F6E10871F7B799600C2477B /* LSMineNewPswController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F6E10851F7B799600C2477B /* LSMineNewPswController.xib */; };
+		0F6E108B1F7B79A800C2477B /* LSMineSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E10891F7B79A800C2477B /* LSMineSettingController.m */; };
+		0F6E108C1F7B79A800C2477B /* LSMineSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F6E108A1F7B79A800C2477B /* LSMineSettingController.xib */; };
+		0F6E10901F7B79B800C2477B /* LSMineCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E108E1F7B79B800C2477B /* LSMineCardController.m */; };
+		0F6E10911F7B79B800C2477B /* LSMineCardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F6E108F1F7B79B800C2477B /* LSMineCardController.xib */; };
+		0F6E10941F7B7A8500C2477B /* LSMineSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E10931F7B7A8500C2477B /* LSMineSettingCell.m */; };
 		0F8314721F7B3BE3008A9E22 /* LSMineUserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8314701F7B3BE3008A9E22 /* LSMineUserSettingController.m */; };
 		0F8314731F7B3BE3008A9E22 /* LSMineUserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8314711F7B3BE3008A9E22 /* LSMineUserSettingController.xib */; };
 		0F8314761F7B3C82008A9E22 /* LSMineUserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8314751F7B3C82008A9E22 /* LSMineUserSettingCell.m */; };
@@ -244,6 +251,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F6E10831F7B799600C2477B /* LSMineNewPswController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineNewPswController.h; sourceTree = "<group>"; };
+		0F6E10841F7B799600C2477B /* LSMineNewPswController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineNewPswController.m; sourceTree = "<group>"; };
+		0F6E10851F7B799600C2477B /* LSMineNewPswController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSMineNewPswController.xib; sourceTree = "<group>"; };
+		0F6E10881F7B79A800C2477B /* LSMineSettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineSettingController.h; sourceTree = "<group>"; };
+		0F6E10891F7B79A800C2477B /* LSMineSettingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineSettingController.m; sourceTree = "<group>"; };
+		0F6E108A1F7B79A800C2477B /* LSMineSettingController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSMineSettingController.xib; sourceTree = "<group>"; };
+		0F6E108D1F7B79B800C2477B /* LSMineCardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineCardController.h; sourceTree = "<group>"; };
+		0F6E108E1F7B79B800C2477B /* LSMineCardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineCardController.m; sourceTree = "<group>"; };
+		0F6E108F1F7B79B800C2477B /* LSMineCardController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSMineCardController.xib; sourceTree = "<group>"; };
+		0F6E10921F7B7A8500C2477B /* LSMineSettingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineSettingCell.h; sourceTree = "<group>"; };
+		0F6E10931F7B7A8500C2477B /* LSMineSettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineSettingCell.m; sourceTree = "<group>"; };
 		0F83146F1F7B3BE3008A9E22 /* LSMineUserSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineUserSettingController.h; sourceTree = "<group>"; };
 		0F8314701F7B3BE3008A9E22 /* LSMineUserSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineUserSettingController.m; sourceTree = "<group>"; };
 		0F8314711F7B3BE3008A9E22 /* LSMineUserSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMineUserSettingController.xib; sourceTree = "<group>"; };
@@ -272,8 +290,6 @@
 		0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSAuthenticationController.xib; sourceTree = "<group>"; };
 		0FB200EA1F7A5294005BC289 /* LSMineListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineListCell.h; sourceTree = "<group>"; };
 		0FB200EB1F7A5294005BC289 /* LSMineListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineListCell.m; sourceTree = "<group>"; };
-		0FB200ED1F7A5639005BC289 /* LSMineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LSMineHeaderView.h; path = ../Controller/LSMineHeaderView.h; sourceTree = "<group>"; };
-		0FB200EE1F7A5639005BC289 /* LSMineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LSMineHeaderView.m; path = ../Controller/LSMineHeaderView.m; sourceTree = "<group>"; };
 		DF87A1B71F781B7700EF0461 /* LSKJChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSKJChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D01F781B7700EF0461 /* LSKJChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LSKJChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSKJChartTests.m; sourceTree = "<group>"; };
@@ -763,10 +779,10 @@
 				DFF010B01F7AB4FA00527CFA /* LSMineHeaderView.m */,
 				0FB200EA1F7A5294005BC289 /* LSMineListCell.h */,
 				0FB200EB1F7A5294005BC289 /* LSMineListCell.m */,
-				0FB200ED1F7A5639005BC289 /* LSMineHeaderView.h */,
-				0FB200EE1F7A5639005BC289 /* LSMineHeaderView.m */,
 				0F8314741F7B3C82008A9E22 /* LSMineUserSettingCell.h */,
 				0F8314751F7B3C82008A9E22 /* LSMineUserSettingCell.m */,
+				0F6E10921F7B7A8500C2477B /* LSMineSettingCell.h */,
+				0F6E10931F7B7A8500C2477B /* LSMineSettingCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -891,7 +907,6 @@
 			isa = PBXGroup;
 			children = (
 				0F83147A1F7B40BC008A9E22 /* YYModel */,
-				0FB200D01F78F11B005BC289 /* MBProgressHUD */,
 				DFF015A41F7AC25F00527CFA /* MBProgressHUD */,
 				DFF015AB1F7AC25F00527CFA /* MJRefresh */,
 				DFF013FC1F7AC07300527CFA /* Easemob */,
@@ -1211,6 +1226,15 @@
 				0F83146F1F7B3BE3008A9E22 /* LSMineUserSettingController.h */,
 				0F8314701F7B3BE3008A9E22 /* LSMineUserSettingController.m */,
 				0F8314711F7B3BE3008A9E22 /* LSMineUserSettingController.xib */,
+				0F6E10831F7B799600C2477B /* LSMineNewPswController.h */,
+				0F6E10841F7B799600C2477B /* LSMineNewPswController.m */,
+				0F6E10851F7B799600C2477B /* LSMineNewPswController.xib */,
+				0F6E10881F7B79A800C2477B /* LSMineSettingController.h */,
+				0F6E10891F7B79A800C2477B /* LSMineSettingController.m */,
+				0F6E108A1F7B79A800C2477B /* LSMineSettingController.xib */,
+				0F6E108D1F7B79B800C2477B /* LSMineCardController.h */,
+				0F6E108E1F7B79B800C2477B /* LSMineCardController.m */,
+				0F6E108F1F7B79B800C2477B /* LSMineCardController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1959,11 +1983,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FB200D71F78F130005BC289 /* BlocMBProgressHUD.m in Resources */,
-				0FB200D81F78F130005BC289 /* UIView+BlocHUD.m in Resources */,
-				0FB200D91F78F130005BC289 /* UIViewController+HUD.m in Resources */,
 				0F8314731F7B3BE3008A9E22 /* LSMineUserSettingController.xib in Resources */,
 				DFF015A31F7AC15700527CFA /* EaseUIResource.bundle in Resources */,
+				0F6E108C1F7B79A800C2477B /* LSMineSettingController.xib in Resources */,
 				DFF015751F7AC15700527CFA /* MWPhotoBrowser.bundle in Resources */,
 				DF87A6421F7820A700EF0461 /* Info.plist in Resources */,
 				DF87A7DD1F7835A500EF0461 /* LSWorkController.xib in Resources */,
@@ -1971,12 +1993,14 @@
 				DF87A63F1F7820A700EF0461 /* Assets.xcassets in Resources */,
 				DF87A6B31F7827E200EF0461 /* Info.plist in Resources */,
 				DF87A7E21F7835DD00EF0461 /* LSMineController.xib in Resources */,
+				0F6E10911F7B79B800C2477B /* LSMineCardController.xib in Resources */,
 				0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */,
 				DF87A8261F78DB4100EF0461 /* LSDataPickerView.xib in Resources */,
 				DF87A7EC1F78361D00EF0461 /* LSManageController.xib in Resources */,
 				DF87A7E71F7835FE00EF0461 /* LSMessageController.xib in Resources */,
 				DF87A7BA1F782DE000EF0461 /* IQKeyboardManager.bundle in Resources */,
 				DF87A7C31F782F0700EF0461 /* LSLoginController.xib in Resources */,
+				0F6E10871F7B799600C2477B /* LSMineNewPswController.xib in Resources */,
 				DF87A6401F7820A700EF0461 /* LaunchScreen.storyboard in Resources */,
 				DFF0152D1F7AC15700527CFA /* EaseUI.podspec in Resources */,
 				0FB200E11F78F463005BC289 /* LSRegisterController.xib in Resources */,
@@ -2025,12 +2049,14 @@
 				DF87A7B21F782DE000EF0461 /* IQKeyboardManager.m in Sources */,
 				DF87A6F31F782A8E00EF0461 /* UIProgressView+AFNetworking.m in Sources */,
 				DF87A7AD1F782DE000EF0461 /* IQUIScrollView+Additions.m in Sources */,
+				0F6E10861F7B799600C2477B /* LSMineNewPswController.m in Sources */,
 				DFF015341F7AC15700527CFA /* EMCDDeviceManagerBase.m in Sources */,
 				DFF0157E1F7AC15700527CFA /* UIViewController+HUD.m in Sources */,
 				DFF015741F7AC15700527CFA /* PSTGridLayoutSection.m in Sources */,
 				DF87A6F21F782A8E00EF0461 /* UIImageView+AFNetworking.m in Sources */,
 				0F8314811F7B40BC008A9E22 /* YYClassInfo.m in Sources */,
 				DFF0156A1F7AC15700527CFA /* PSTCollectionViewCell.m in Sources */,
+				0F6E10941F7B7A8500C2477B /* LSMineSettingCell.m in Sources */,
 				DF87A6BC1F7827E200EF0461 /* View+MASAdditions.m in Sources */,
 				DF87A6B11F7827E200EF0461 /* AFURLSessionManager.m in Sources */,
 				DFF015E91F7AC25F00527CFA /* MJRefreshNormalHeader.m in Sources */,
@@ -2053,10 +2079,12 @@
 				DF87A6431F7820A700EF0461 /* main.m in Sources */,
 				DF87A6AD1F7827E200EF0461 /* AFNetworkReachabilityManager.m in Sources */,
 				DF87A7C21F782F0700EF0461 /* LSLoginController.m in Sources */,
+				0F6E108B1F7B79A800C2477B /* LSMineSettingController.m in Sources */,
 				DFF0157C1F7AC15700527CFA /* NSString+Valid.m in Sources */,
 				DF87A7DC1F7835A500EF0461 /* LSWorkController.m in Sources */,
 				DF87A7C71F782F7C00EF0461 /* LSTabBarController.m in Sources */,
 				DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */,
+				0F6E10901F7B79B800C2477B /* LSMineCardController.m in Sources */,
 				DFF015691F7AC15700527CFA /* PSTCollectionView.m in Sources */,
 				DFF015871F7AC15700527CFA /* EaseConversationListViewController.m in Sources */,
 				DFF015561F7AC15700527CFA /* MWZoomingScrollView.m in Sources */,
