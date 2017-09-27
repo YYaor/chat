@@ -7,6 +7,8 @@
 //
 
 #import "LSMineController.h"
+#import "LSMineUserSettingController.h"
+
 #import "LSMineHeaderView.h"
 #import "LSMineListCell.h"
 @interface LSMineController ()<UITableViewDelegate,UITableViewDataSource>
@@ -102,7 +104,12 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            LSMineUserSettingController *userSettingController = [[LSMineUserSettingController alloc]init];
+            [self.navigationController pushViewController:userSettingController animated:YES];
+        }
+    }
 }
 
 -(UITableView *)dataTableView{

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F8314721F7B3BE3008A9E22 /* LSMineUserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8314701F7B3BE3008A9E22 /* LSMineUserSettingController.m */; };
+		0F8314731F7B3BE3008A9E22 /* LSMineUserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8314711F7B3BE3008A9E22 /* LSMineUserSettingController.xib */; };
+		0F8314761F7B3C82008A9E22 /* LSMineUserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8314751F7B3C82008A9E22 /* LSMineUserSettingCell.m */; };
+		0F8314791F7B3F55008A9E22 /* LSUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8314781F7B3F55008A9E22 /* LSUserModel.m */; };
+		0F8314801F7B40BC008A9E22 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F83147C1F7B40BC008A9E22 /* NSObject+YYModel.m */; };
+		0F8314811F7B40BC008A9E22 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F83147E1F7B40BC008A9E22 /* YYClassInfo.m */; };
 		0FB200BE1F78CEFC005BC289 /* YYShopMainTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200BD1F78B4BD005BC289 /* YYShopMainTypeView.m */; };
 		0FB200CF1F78F087005BC289 /* LSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200CE1F78F087005BC289 /* LSUtil.m */; };
 		0FB200D71F78F130005BC289 /* BlocMBProgressHUD.m in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200D21F78F11B005BC289 /* BlocMBProgressHUD.m */; };
@@ -130,6 +136,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F83146F1F7B3BE3008A9E22 /* LSMineUserSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineUserSettingController.h; sourceTree = "<group>"; };
+		0F8314701F7B3BE3008A9E22 /* LSMineUserSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineUserSettingController.m; sourceTree = "<group>"; };
+		0F8314711F7B3BE3008A9E22 /* LSMineUserSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMineUserSettingController.xib; sourceTree = "<group>"; };
+		0F8314741F7B3C82008A9E22 /* LSMineUserSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineUserSettingCell.h; sourceTree = "<group>"; };
+		0F8314751F7B3C82008A9E22 /* LSMineUserSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineUserSettingCell.m; sourceTree = "<group>"; };
+		0F8314771F7B3F55008A9E22 /* LSUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSUserModel.h; sourceTree = "<group>"; };
+		0F8314781F7B3F55008A9E22 /* LSUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSUserModel.m; sourceTree = "<group>"; };
+		0F83147B1F7B40BC008A9E22 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
+		0F83147C1F7B40BC008A9E22 /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
+		0F83147D1F7B40BC008A9E22 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
+		0F83147E1F7B40BC008A9E22 /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
+		0F83147F1F7B40BC008A9E22 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
 		0FB200BC1F78B4BD005BC289 /* YYShopMainTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYShopMainTypeView.h; sourceTree = "<group>"; };
 		0FB200BD1F78B4BD005BC289 /* YYShopMainTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYShopMainTypeView.m; sourceTree = "<group>"; };
 		0FB200C81F78EF75005BC289 /* NSString+Mark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Mark.h"; sourceTree = "<group>"; };
@@ -152,8 +170,8 @@
 		0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSAuthenticationController.xib; sourceTree = "<group>"; };
 		0FB200EA1F7A5294005BC289 /* LSMineListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineListCell.h; sourceTree = "<group>"; };
 		0FB200EB1F7A5294005BC289 /* LSMineListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineListCell.m; sourceTree = "<group>"; };
-		0FB200ED1F7A5639005BC289 /* LSMineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineHeaderView.h; sourceTree = "<group>"; };
-		0FB200EE1F7A5639005BC289 /* LSMineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineHeaderView.m; sourceTree = "<group>"; };
+		0FB200ED1F7A5639005BC289 /* LSMineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LSMineHeaderView.h; path = ../Controller/LSMineHeaderView.h; sourceTree = "<group>"; };
+		0FB200EE1F7A5639005BC289 /* LSMineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LSMineHeaderView.m; path = ../Controller/LSMineHeaderView.m; sourceTree = "<group>"; };
 		DF87A1B71F781B7700EF0461 /* LSKJChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSKJChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D01F781B7700EF0461 /* LSKJChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LSKJChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSKJChartTests.m; sourceTree = "<group>"; };
@@ -361,6 +379,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F83147A1F7B40BC008A9E22 /* YYModel */ = {
+			isa = PBXGroup;
+			children = (
+				0F83147B1F7B40BC008A9E22 /* NSObject+YYModel.h */,
+				0F83147C1F7B40BC008A9E22 /* NSObject+YYModel.m */,
+				0F83147D1F7B40BC008A9E22 /* YYClassInfo.h */,
+				0F83147E1F7B40BC008A9E22 /* YYClassInfo.m */,
+				0F83147F1F7B40BC008A9E22 /* YYModel.h */,
+			);
+			path = YYModel;
+			sourceTree = "<group>";
+		};
 		0FB200BB1F78B4BD005BC289 /* YYMainTypeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +444,8 @@
 		0FB200E81F7A527D005BC289 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0F8314771F7B3F55008A9E22 /* LSUserModel.h */,
+				0F8314781F7B3F55008A9E22 /* LSUserModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -423,6 +455,10 @@
 			children = (
 				0FB200EA1F7A5294005BC289 /* LSMineListCell.h */,
 				0FB200EB1F7A5294005BC289 /* LSMineListCell.m */,
+				0FB200ED1F7A5639005BC289 /* LSMineHeaderView.h */,
+				0FB200EE1F7A5639005BC289 /* LSMineHeaderView.m */,
+				0F8314741F7B3C82008A9E22 /* LSMineUserSettingCell.h */,
+				0F8314751F7B3C82008A9E22 /* LSMineUserSettingCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -543,6 +579,7 @@
 		DF87A63D1F7820A700EF0461 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				0F83147A1F7B40BC008A9E22 /* YYModel */,
 				0FB200D01F78F11B005BC289 /* MBProgressHUD */,
 				0FB200CC1F78F07D005BC289 /* LSUtil */,
 				0FB200BB1F78B4BD005BC289 /* YYMainTypeView */,
@@ -971,8 +1008,9 @@
 				DF87A7DE1F7835DD00EF0461 /* LSMineController.h */,
 				DF87A7DF1F7835DD00EF0461 /* LSMineController.m */,
 				DF87A7E01F7835DD00EF0461 /* LSMineController.xib */,
-				0FB200ED1F7A5639005BC289 /* LSMineHeaderView.h */,
-				0FB200EE1F7A5639005BC289 /* LSMineHeaderView.m */,
+				0F83146F1F7B3BE3008A9E22 /* LSMineUserSettingController.h */,
+				0F8314701F7B3BE3008A9E22 /* LSMineUserSettingController.m */,
+				0F8314711F7B3BE3008A9E22 /* LSMineUserSettingController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1122,6 +1160,7 @@
 				0FB200D71F78F130005BC289 /* BlocMBProgressHUD.m in Resources */,
 				0FB200D81F78F130005BC289 /* UIView+BlocHUD.m in Resources */,
 				0FB200D91F78F130005BC289 /* UIViewController+HUD.m in Resources */,
+				0F8314731F7B3BE3008A9E22 /* LSMineUserSettingController.xib in Resources */,
 				DF87A6421F7820A700EF0461 /* Info.plist in Resources */,
 				DF87A6D41F7827E200EF0461 /* SVProgressHUD.bundle in Resources */,
 				DF87A7DD1F7835A500EF0461 /* LSWorkController.xib in Resources */,
@@ -1166,11 +1205,14 @@
 				0FB200DC1F78F296005BC289 /* UIViewController+HUD.m in Sources */,
 				0FB200BE1F78CEFC005BC289 /* YYShopMainTypeView.m in Sources */,
 				DF87A7B71F782DE000EF0461 /* IQTitleBarButtonItem.m in Sources */,
+				0F8314721F7B3BE3008A9E22 /* LSMineUserSettingController.m in Sources */,
+				0F8314801F7B40BC008A9E22 /* NSObject+YYModel.m in Sources */,
 				DF87A7B21F782DE000EF0461 /* IQKeyboardManager.m in Sources */,
 				DF87A6F31F782A8E00EF0461 /* UIProgressView+AFNetworking.m in Sources */,
 				DF87A7AD1F782DE000EF0461 /* IQUIScrollView+Additions.m in Sources */,
 				DF87A77F1F782D1300EF0461 /* NSBundle+MJRefresh.m in Sources */,
 				DF87A6F21F782A8E00EF0461 /* UIImageView+AFNetworking.m in Sources */,
+				0F8314811F7B40BC008A9E22 /* YYClassInfo.m in Sources */,
 				DF87A6BC1F7827E200EF0461 /* View+MASAdditions.m in Sources */,
 				DF87A7801F782D1300EF0461 /* UIScrollView+MJExtension.m in Sources */,
 				DF87A6B11F7827E200EF0461 /* AFURLSessionManager.m in Sources */,
@@ -1215,6 +1257,7 @@
 				DF87A8191F78BC0700EF0461 /* LSNetworkTool.m in Sources */,
 				DF87A77B1F782D1300EF0461 /* MJRefreshNormalHeader.m in Sources */,
 				DF87A7B91F782DE000EF0461 /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				0F8314761F7B3C82008A9E22 /* LSMineUserSettingCell.m in Sources */,
 				DF87A7B11F782DE000EF0461 /* IQUIWindow+Hierarchy.m in Sources */,
 				DF87A7821F782D1300EF0461 /* UIView+MJExtension.m in Sources */,
 				DF87A6BA1F7827E200EF0461 /* NSArray+MASAdditions.m in Sources */,
@@ -1222,6 +1265,7 @@
 				DF87A6D21F7827E200EF0461 /* SVIndefiniteAnimatedView.m in Sources */,
 				DF87A7B81F782DE000EF0461 /* IQToolbar.m in Sources */,
 				0FB200CF1F78F087005BC289 /* LSUtil.m in Sources */,
+				0F8314791F7B3F55008A9E22 /* LSUserModel.m in Sources */,
 				DF87A7831F782D1300EF0461 /* RKDropdownAlert.m in Sources */,
 				DF87A77A1F782D1300EF0461 /* MJRefreshGifHeader.m in Sources */,
 				DF87A6F01F782A8E00EF0461 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

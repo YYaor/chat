@@ -36,5 +36,7 @@
 #import "BlocMBProgressHUD.h"
 //通用工具类
 #import "LSUtil.h"
+//model解析
+#import "YYModel.h"
 
 #endif /* LSPrefixHeader_h */
