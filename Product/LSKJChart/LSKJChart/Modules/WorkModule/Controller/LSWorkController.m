@@ -8,9 +8,17 @@
 
 #import "LSWorkController.h"
 
+//top
 #import "LSWorkUnreplyController.h"
 #import "LSWorkAppointController.h"
+#import "LSWorkTailController.h"
 #import "LSWorkAdviceController.h"
+
+//center
+#import "LSWorkOutcallController.h"
+
+//bottom
+
 
 @interface LSWorkController ()
 
@@ -104,13 +112,17 @@
     else if (btn.tag == 10002)
     {
         //医嘱跟踪
-        LSWorkAdviceController *vc = [[LSWorkAdviceController alloc] initWithNibName:@"LSWorkAdviceController" bundle:nil];
+        
+        LSWorkTailController *vc = [[LSWorkTailController alloc] initWithNibName:@"LSWorkTailController" bundle:nil];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (btn.tag == 10003)
     {
         //患者请求
+        LSWorkAdviceController *vc = [[LSWorkAdviceController alloc] initWithNibName:@"LSWorkAdviceController" bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -119,6 +131,9 @@
     if (btn.tag == 20000)
     {
         //出诊记录
+        LSWorkOutcallController *vc = [[LSWorkOutcallController alloc] initWithNibName:@"LSWorkOutcallController" bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (btn.tag == 20001)
     {

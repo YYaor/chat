@@ -27,6 +27,37 @@
 		0FB200E51F79E771005BC289 /* LSAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200E31F79E771005BC289 /* LSAuthenticationController.m */; };
 		0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */; };
 		0FB200EC1F7A5294005BC289 /* LSMineListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200EB1F7A5294005BC289 /* LSMineListCell.m */; };
+		DF5A09341F7D413500CF5410 /* LSWorkAdviceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09321F7D413500CF5410 /* LSWorkAdviceDetailController.m */; };
+		DF5A09351F7D413500CF5410 /* LSWorkAdviceDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09331F7D413500CF5410 /* LSWorkAdviceDetailController.xib */; };
+		DF5A09391F7D473D00CF5410 /* LSWorkTailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09371F7D473D00CF5410 /* LSWorkTailController.m */; };
+		DF5A093A1F7D473D00CF5410 /* LSWorkTailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09381F7D473D00CF5410 /* LSWorkTailController.xib */; };
+		DF5A093E1F7D48A800CF5410 /* LSWorkTailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A093C1F7D48A800CF5410 /* LSWorkTailCell.m */; };
+		DF5A093F1F7D48A800CF5410 /* LSWorkTailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A093D1F7D48A800CF5410 /* LSWorkTailCell.xib */; };
+		DF5A09431F7D502F00CF5410 /* LSWorkTailDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09411F7D502F00CF5410 /* LSWorkTailDetailController.m */; };
+		DF5A09441F7D502F00CF5410 /* LSWorkTailDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09421F7D502F00CF5410 /* LSWorkTailDetailController.xib */; };
+		DF5A09481F7D50E300CF5410 /* LSWorkTailDetailUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09461F7D50E300CF5410 /* LSWorkTailDetailUserCell.m */; };
+		DF5A09491F7D50E300CF5410 /* LSWorkTailDetailUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09471F7D50E300CF5410 /* LSWorkTailDetailUserCell.xib */; };
+		DF5A094D1F7D526E00CF5410 /* LSWorkTailDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A094B1F7D526E00CF5410 /* LSWorkTailDetailCell.m */; };
+		DF5A094E1F7D526E00CF5410 /* LSWorkTailDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A094C1F7D526E00CF5410 /* LSWorkTailDetailCell.xib */; };
+		DF5A09711F7D5EAF00CF5410 /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09501F7D5EAF00CF5410 /* FSCalendar+Deprecated.m */; };
+		DF5A09721F7D5EAF00CF5410 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09521F7D5EAF00CF5410 /* FSCalendar.m */; };
+		DF5A09731F7D5EAF00CF5410 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09541F7D5EAF00CF5410 /* FSCalendarAppearance.m */; };
+		DF5A09741F7D5EAF00CF5410 /* FSCalendarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09561F7D5EAF00CF5410 /* FSCalendarCalculator.m */; };
+		DF5A09751F7D5EAF00CF5410 /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09581F7D5EAF00CF5410 /* FSCalendarCell.m */; };
+		DF5A09761F7D5EAF00CF5410 /* FSCalendarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A095A1F7D5EAF00CF5410 /* FSCalendarCollectionView.m */; };
+		DF5A09771F7D5EAF00CF5410 /* FSCalendarCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A095C1F7D5EAF00CF5410 /* FSCalendarCollectionViewLayout.m */; };
+		DF5A09781F7D5EAF00CF5410 /* FSCalendarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A095E1F7D5EAF00CF5410 /* FSCalendarConstants.m */; };
+		DF5A09791F7D5EAF00CF5410 /* FSCalendarDelegationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09601F7D5EAF00CF5410 /* FSCalendarDelegationFactory.m */; };
+		DF5A097A1F7D5EAF00CF5410 /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09621F7D5EAF00CF5410 /* FSCalendarDelegationProxy.m */; };
+		DF5A097B1F7D5EAF00CF5410 /* FSCalendarExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09651F7D5EAF00CF5410 /* FSCalendarExtensions.m */; };
+		DF5A097C1F7D5EAF00CF5410 /* FSCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09671F7D5EAF00CF5410 /* FSCalendarHeaderView.m */; };
+		DF5A097D1F7D5EAF00CF5410 /* FSCalendarScopeHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09691F7D5EAF00CF5410 /* FSCalendarScopeHandle.m */; };
+		DF5A097E1F7D5EAF00CF5410 /* FSCalendarStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A096B1F7D5EAF00CF5410 /* FSCalendarStickyHeader.m */; };
+		DF5A097F1F7D5EAF00CF5410 /* FSCalendarTransitionCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A096D1F7D5EAF00CF5410 /* FSCalendarTransitionCoordinator.m */; };
+		DF5A09801F7D5EAF00CF5410 /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A096F1F7D5EAF00CF5410 /* FSCalendarWeekdayView.m */; };
+		DF5A09811F7D5EAF00CF5410 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09701F7D5EAF00CF5410 /* Info.plist */; };
+		DF5A09851F7D604C00CF5410 /* LSWorkOutcallController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */; };
+		DF5A09861F7D604C00CF5410 /* LSWorkOutcallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */; };
 		DF87A1D51F781B7700EF0461 /* LSKJChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */; };
 		DF87A1E01F781B7700EF0461 /* LSKJChartUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1DF1F781B7700EF0461 /* LSKJChartUITests.m */; };
 		DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A6331F7820A700EF0461 /* AppDelegate.m */; };
@@ -302,6 +333,60 @@
 		0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSAuthenticationController.xib; sourceTree = "<group>"; };
 		0FB200EA1F7A5294005BC289 /* LSMineListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineListCell.h; sourceTree = "<group>"; };
 		0FB200EB1F7A5294005BC289 /* LSMineListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineListCell.m; sourceTree = "<group>"; };
+		DF5A09311F7D413500CF5410 /* LSWorkAdviceDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkAdviceDetailController.h; sourceTree = "<group>"; };
+		DF5A09321F7D413500CF5410 /* LSWorkAdviceDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkAdviceDetailController.m; sourceTree = "<group>"; };
+		DF5A09331F7D413500CF5410 /* LSWorkAdviceDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkAdviceDetailController.xib; sourceTree = "<group>"; };
+		DF5A09361F7D473D00CF5410 /* LSWorkTailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkTailController.h; sourceTree = "<group>"; };
+		DF5A09371F7D473D00CF5410 /* LSWorkTailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkTailController.m; sourceTree = "<group>"; };
+		DF5A09381F7D473D00CF5410 /* LSWorkTailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkTailController.xib; sourceTree = "<group>"; };
+		DF5A093B1F7D48A800CF5410 /* LSWorkTailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkTailCell.h; sourceTree = "<group>"; };
+		DF5A093C1F7D48A800CF5410 /* LSWorkTailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkTailCell.m; sourceTree = "<group>"; };
+		DF5A093D1F7D48A800CF5410 /* LSWorkTailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkTailCell.xib; sourceTree = "<group>"; };
+		DF5A09401F7D502F00CF5410 /* LSWorkTailDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkTailDetailController.h; sourceTree = "<group>"; };
+		DF5A09411F7D502F00CF5410 /* LSWorkTailDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkTailDetailController.m; sourceTree = "<group>"; };
+		DF5A09421F7D502F00CF5410 /* LSWorkTailDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkTailDetailController.xib; sourceTree = "<group>"; };
+		DF5A09451F7D50E300CF5410 /* LSWorkTailDetailUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkTailDetailUserCell.h; sourceTree = "<group>"; };
+		DF5A09461F7D50E300CF5410 /* LSWorkTailDetailUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkTailDetailUserCell.m; sourceTree = "<group>"; };
+		DF5A09471F7D50E300CF5410 /* LSWorkTailDetailUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkTailDetailUserCell.xib; sourceTree = "<group>"; };
+		DF5A094A1F7D526E00CF5410 /* LSWorkTailDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkTailDetailCell.h; sourceTree = "<group>"; };
+		DF5A094B1F7D526E00CF5410 /* LSWorkTailDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkTailDetailCell.m; sourceTree = "<group>"; };
+		DF5A094C1F7D526E00CF5410 /* LSWorkTailDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkTailDetailCell.xib; sourceTree = "<group>"; };
+		DF5A09501F7D5EAF00CF5410 /* FSCalendar+Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSCalendar+Deprecated.m"; sourceTree = "<group>"; };
+		DF5A09511F7D5EAF00CF5410 /* FSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
+		DF5A09521F7D5EAF00CF5410 /* FSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
+		DF5A09531F7D5EAF00CF5410 /* FSCalendarAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarAppearance.h; sourceTree = "<group>"; };
+		DF5A09541F7D5EAF00CF5410 /* FSCalendarAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarAppearance.m; sourceTree = "<group>"; };
+		DF5A09551F7D5EAF00CF5410 /* FSCalendarCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCalculator.h; sourceTree = "<group>"; };
+		DF5A09561F7D5EAF00CF5410 /* FSCalendarCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCalculator.m; sourceTree = "<group>"; };
+		DF5A09571F7D5EAF00CF5410 /* FSCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCell.h; sourceTree = "<group>"; };
+		DF5A09581F7D5EAF00CF5410 /* FSCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCell.m; sourceTree = "<group>"; };
+		DF5A09591F7D5EAF00CF5410 /* FSCalendarCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCollectionView.h; sourceTree = "<group>"; };
+		DF5A095A1F7D5EAF00CF5410 /* FSCalendarCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCollectionView.m; sourceTree = "<group>"; };
+		DF5A095B1F7D5EAF00CF5410 /* FSCalendarCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCollectionViewLayout.h; sourceTree = "<group>"; };
+		DF5A095C1F7D5EAF00CF5410 /* FSCalendarCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCollectionViewLayout.m; sourceTree = "<group>"; };
+		DF5A095D1F7D5EAF00CF5410 /* FSCalendarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarConstants.h; sourceTree = "<group>"; };
+		DF5A095E1F7D5EAF00CF5410 /* FSCalendarConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarConstants.m; sourceTree = "<group>"; };
+		DF5A095F1F7D5EAF00CF5410 /* FSCalendarDelegationFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarDelegationFactory.h; sourceTree = "<group>"; };
+		DF5A09601F7D5EAF00CF5410 /* FSCalendarDelegationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarDelegationFactory.m; sourceTree = "<group>"; };
+		DF5A09611F7D5EAF00CF5410 /* FSCalendarDelegationProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarDelegationProxy.h; sourceTree = "<group>"; };
+		DF5A09621F7D5EAF00CF5410 /* FSCalendarDelegationProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarDelegationProxy.m; sourceTree = "<group>"; };
+		DF5A09631F7D5EAF00CF5410 /* FSCalendarDynamicHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarDynamicHeader.h; sourceTree = "<group>"; };
+		DF5A09641F7D5EAF00CF5410 /* FSCalendarExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarExtensions.h; sourceTree = "<group>"; };
+		DF5A09651F7D5EAF00CF5410 /* FSCalendarExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarExtensions.m; sourceTree = "<group>"; };
+		DF5A09661F7D5EAF00CF5410 /* FSCalendarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarHeaderView.h; sourceTree = "<group>"; };
+		DF5A09671F7D5EAF00CF5410 /* FSCalendarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarHeaderView.m; sourceTree = "<group>"; };
+		DF5A09681F7D5EAF00CF5410 /* FSCalendarScopeHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarScopeHandle.h; sourceTree = "<group>"; };
+		DF5A09691F7D5EAF00CF5410 /* FSCalendarScopeHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarScopeHandle.m; sourceTree = "<group>"; };
+		DF5A096A1F7D5EAF00CF5410 /* FSCalendarStickyHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarStickyHeader.h; sourceTree = "<group>"; };
+		DF5A096B1F7D5EAF00CF5410 /* FSCalendarStickyHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarStickyHeader.m; sourceTree = "<group>"; };
+		DF5A096C1F7D5EAF00CF5410 /* FSCalendarTransitionCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarTransitionCoordinator.h; sourceTree = "<group>"; };
+		DF5A096D1F7D5EAF00CF5410 /* FSCalendarTransitionCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarTransitionCoordinator.m; sourceTree = "<group>"; };
+		DF5A096E1F7D5EAF00CF5410 /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarWeekdayView.h; sourceTree = "<group>"; };
+		DF5A096F1F7D5EAF00CF5410 /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarWeekdayView.m; sourceTree = "<group>"; };
+		DF5A09701F7D5EAF00CF5410 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF5A09821F7D604C00CF5410 /* LSWorkOutcallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkOutcallController.h; sourceTree = "<group>"; };
+		DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkOutcallController.m; sourceTree = "<group>"; };
+		DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkOutcallController.xib; sourceTree = "<group>"; };
 		DF87A1B71F781B7700EF0461 /* LSKJChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSKJChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D01F781B7700EF0461 /* LSKJChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LSKJChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSKJChartTests.m; sourceTree = "<group>"; };
@@ -817,6 +902,46 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		DF5A094F1F7D5EAF00CF5410 /* FSCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				DF5A09501F7D5EAF00CF5410 /* FSCalendar+Deprecated.m */,
+				DF5A09511F7D5EAF00CF5410 /* FSCalendar.h */,
+				DF5A09521F7D5EAF00CF5410 /* FSCalendar.m */,
+				DF5A09531F7D5EAF00CF5410 /* FSCalendarAppearance.h */,
+				DF5A09541F7D5EAF00CF5410 /* FSCalendarAppearance.m */,
+				DF5A09551F7D5EAF00CF5410 /* FSCalendarCalculator.h */,
+				DF5A09561F7D5EAF00CF5410 /* FSCalendarCalculator.m */,
+				DF5A09571F7D5EAF00CF5410 /* FSCalendarCell.h */,
+				DF5A09581F7D5EAF00CF5410 /* FSCalendarCell.m */,
+				DF5A09591F7D5EAF00CF5410 /* FSCalendarCollectionView.h */,
+				DF5A095A1F7D5EAF00CF5410 /* FSCalendarCollectionView.m */,
+				DF5A095B1F7D5EAF00CF5410 /* FSCalendarCollectionViewLayout.h */,
+				DF5A095C1F7D5EAF00CF5410 /* FSCalendarCollectionViewLayout.m */,
+				DF5A095D1F7D5EAF00CF5410 /* FSCalendarConstants.h */,
+				DF5A095E1F7D5EAF00CF5410 /* FSCalendarConstants.m */,
+				DF5A095F1F7D5EAF00CF5410 /* FSCalendarDelegationFactory.h */,
+				DF5A09601F7D5EAF00CF5410 /* FSCalendarDelegationFactory.m */,
+				DF5A09611F7D5EAF00CF5410 /* FSCalendarDelegationProxy.h */,
+				DF5A09621F7D5EAF00CF5410 /* FSCalendarDelegationProxy.m */,
+				DF5A09631F7D5EAF00CF5410 /* FSCalendarDynamicHeader.h */,
+				DF5A09641F7D5EAF00CF5410 /* FSCalendarExtensions.h */,
+				DF5A09651F7D5EAF00CF5410 /* FSCalendarExtensions.m */,
+				DF5A09661F7D5EAF00CF5410 /* FSCalendarHeaderView.h */,
+				DF5A09671F7D5EAF00CF5410 /* FSCalendarHeaderView.m */,
+				DF5A09681F7D5EAF00CF5410 /* FSCalendarScopeHandle.h */,
+				DF5A09691F7D5EAF00CF5410 /* FSCalendarScopeHandle.m */,
+				DF5A096A1F7D5EAF00CF5410 /* FSCalendarStickyHeader.h */,
+				DF5A096B1F7D5EAF00CF5410 /* FSCalendarStickyHeader.m */,
+				DF5A096C1F7D5EAF00CF5410 /* FSCalendarTransitionCoordinator.h */,
+				DF5A096D1F7D5EAF00CF5410 /* FSCalendarTransitionCoordinator.m */,
+				DF5A096E1F7D5EAF00CF5410 /* FSCalendarWeekdayView.h */,
+				DF5A096F1F7D5EAF00CF5410 /* FSCalendarWeekdayView.m */,
+				DF5A09701F7D5EAF00CF5410 /* Info.plist */,
+			);
+			path = FSCalendar;
+			sourceTree = "<group>";
+		};
 		DF87A1AE1F781B7700EF0461 = {
 			isa = PBXGroup;
 			children = (
@@ -935,6 +1060,7 @@
 		DF87A63D1F7820A700EF0461 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				DF5A094F1F7D5EAF00CF5410 /* FSCalendar */,
 				0F83147A1F7B40BC008A9E22 /* YYModel */,
 				DFF015A41F7AC25F00527CFA /* MBProgressHUD */,
 				DFF015AB1F7AC25F00527CFA /* MJRefresh */,
@@ -1919,6 +2045,9 @@
 		DFFD8EC41F7C235800FF0ECD /* Center */ = {
 			isa = PBXGroup;
 			children = (
+				DF5A09821F7D604C00CF5410 /* LSWorkOutcallController.h */,
+				DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */,
+				DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -1932,9 +2061,18 @@
 				DFFD8ED31F7C23C300FF0ECD /* LSWorkAppointController.h */,
 				DFFD8ED41F7C23C300FF0ECD /* LSWorkAppointController.m */,
 				DFFD8ED51F7C23C300FF0ECD /* LSWorkAppointController.xib */,
+				DF5A09361F7D473D00CF5410 /* LSWorkTailController.h */,
+				DF5A09371F7D473D00CF5410 /* LSWorkTailController.m */,
+				DF5A09381F7D473D00CF5410 /* LSWorkTailController.xib */,
+				DF5A09401F7D502F00CF5410 /* LSWorkTailDetailController.h */,
+				DF5A09411F7D502F00CF5410 /* LSWorkTailDetailController.m */,
+				DF5A09421F7D502F00CF5410 /* LSWorkTailDetailController.xib */,
 				DFFD8EDD1F7C377B00FF0ECD /* LSWorkAdviceController.h */,
 				DFFD8EDE1F7C377B00FF0ECD /* LSWorkAdviceController.m */,
 				DFFD8EDF1F7C377B00FF0ECD /* LSWorkAdviceController.xib */,
+				DF5A09311F7D413500CF5410 /* LSWorkAdviceDetailController.h */,
+				DF5A09321F7D413500CF5410 /* LSWorkAdviceDetailController.m */,
+				DF5A09331F7D413500CF5410 /* LSWorkAdviceDetailController.xib */,
 			);
 			path = Top;
 			sourceTree = "<group>";
@@ -1962,6 +2100,15 @@
 				DFFD8ED81F7C25AD00FF0ECD /* LSWorkAppointCell.h */,
 				DFFD8ED91F7C25AD00FF0ECD /* LSWorkAppointCell.m */,
 				DFFD8EDA1F7C25AD00FF0ECD /* LSWorkAppointCell.xib */,
+				DF5A093B1F7D48A800CF5410 /* LSWorkTailCell.h */,
+				DF5A093C1F7D48A800CF5410 /* LSWorkTailCell.m */,
+				DF5A093D1F7D48A800CF5410 /* LSWorkTailCell.xib */,
+				DF5A09451F7D50E300CF5410 /* LSWorkTailDetailUserCell.h */,
+				DF5A09461F7D50E300CF5410 /* LSWorkTailDetailUserCell.m */,
+				DF5A09471F7D50E300CF5410 /* LSWorkTailDetailUserCell.xib */,
+				DF5A094A1F7D526E00CF5410 /* LSWorkTailDetailCell.h */,
+				DF5A094B1F7D526E00CF5410 /* LSWorkTailDetailCell.m */,
+				DF5A094C1F7D526E00CF5410 /* LSWorkTailDetailCell.xib */,
 				DFFD8EE21F7C37E500FF0ECD /* LSWorkAdviceCell.h */,
 				DFFD8EE31F7C37E500FF0ECD /* LSWorkAdviceCell.m */,
 				DFFD8EE41F7C37E500FF0ECD /* LSWorkAdviceCell.xib */,
@@ -2083,14 +2230,21 @@
 				0F6E108C1F7B79A800C2477B /* LSMineSettingController.xib in Resources */,
 				DFF015751F7AC15700527CFA /* MWPhotoBrowser.bundle in Resources */,
 				DF87A6421F7820A700EF0461 /* Info.plist in Resources */,
+				DF5A093F1F7D48A800CF5410 /* LSWorkTailCell.xib in Resources */,
 				DF87A7DD1F7835A500EF0461 /* LSWorkController.xib in Resources */,
+				DF5A093A1F7D473D00CF5410 /* LSWorkTailController.xib in Resources */,
 				DFFD8ED21F7C236100FF0ECD /* LSWorkUnreplyCell.xib in Resources */,
 				DFF015EB1F7AC25F00527CFA /* MJRefresh.bundle in Resources */,
+				DF5A09811F7D5EAF00CF5410 /* Info.plist in Resources */,
 				DF87A63F1F7820A700EF0461 /* Assets.xcassets in Resources */,
+				DF5A09491F7D50E300CF5410 /* LSWorkTailDetailUserCell.xib in Resources */,
 				DF87A6B31F7827E200EF0461 /* Info.plist in Resources */,
 				DF87A7E21F7835DD00EF0461 /* LSMineController.xib in Resources */,
 				DFFD8EE61F7C37E500FF0ECD /* LSWorkAdviceCell.xib in Resources */,
 				DFFD8ECA1F7C235800FF0ECD /* LSWorkUnreplyController.xib in Resources */,
+				DF5A09861F7D604C00CF5410 /* LSWorkOutcallController.xib in Resources */,
+				DF5A09441F7D502F00CF5410 /* LSWorkTailDetailController.xib in Resources */,
+				DF5A094E1F7D526E00CF5410 /* LSWorkTailDetailCell.xib in Resources */,
 				0F6E10911F7B79B800C2477B /* LSMineCardController.xib in Resources */,
 				0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */,
 				DF87A8261F78DB4100EF0461 /* LSDataPickerView.xib in Resources */,
@@ -2102,6 +2256,7 @@
 				DF87A6401F7820A700EF0461 /* LaunchScreen.storyboard in Resources */,
 				DFFD8EE11F7C377B00FF0ECD /* LSWorkAdviceController.xib in Resources */,
 				DFFD8ED71F7C23C300FF0ECD /* LSWorkAppointController.xib in Resources */,
+				DF5A09351F7D413500CF5410 /* LSWorkAdviceDetailController.xib in Resources */,
 				DFF0152D1F7AC15700527CFA /* EaseUI.podspec in Resources */,
 				DFFD8EDC1F7C25AD00FF0ECD /* LSWorkAppointCell.xib in Resources */,
 				0FB200E11F78F463005BC289 /* LSRegisterController.xib in Resources */,
@@ -2130,6 +2285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFF015991F7AC15700527CFA /* EaseBubbleView.m in Sources */,
+				DF5A09761F7D5EAF00CF5410 /* FSCalendarCollectionView.m in Sources */,
 				DFF0154F1F7AC15700527CFA /* MWCaptionView.m in Sources */,
 				DFF015501F7AC15700527CFA /* MWGridCell.m in Sources */,
 				DFF015901F7AC15700527CFA /* EaseMessageCell.m in Sources */,
@@ -2143,15 +2299,19 @@
 				DFF015EA1F7AC25F00527CFA /* MJRefreshStateHeader.m in Sources */,
 				DFF015331F7AC15700527CFA /* EMCDDeviceManager+Remind.m in Sources */,
 				0FB200BE1F78CEFC005BC289 /* YYShopMainTypeView.m in Sources */,
+				DF5A09751F7D5EAF00CF5410 /* FSCalendarCell.m in Sources */,
+				DF5A097A1F7D5EAF00CF5410 /* FSCalendarDelegationProxy.m in Sources */,
 				DFFD8EDB1F7C25AD00FF0ECD /* LSWorkAppointCell.m in Sources */,
 				DFF015A21F7AC15700527CFA /* EaseConversationCell.m in Sources */,
 				DF87A7B71F782DE000EF0461 /* IQTitleBarButtonItem.m in Sources */,
 				0F8314721F7B3BE3008A9E22 /* LSMineUserSettingController.m in Sources */,
 				0F8314801F7B40BC008A9E22 /* NSObject+YYModel.m in Sources */,
 				DF87A7B21F782DE000EF0461 /* IQKeyboardManager.m in Sources */,
+				DF5A094D1F7D526E00CF5410 /* LSWorkTailDetailCell.m in Sources */,
 				DF87A6F31F782A8E00EF0461 /* UIProgressView+AFNetworking.m in Sources */,
 				DF87A7AD1F782DE000EF0461 /* IQUIScrollView+Additions.m in Sources */,
 				0F6E10861F7B799600C2477B /* LSMineNewPswController.m in Sources */,
+				DF5A097D1F7D5EAF00CF5410 /* FSCalendarScopeHandle.m in Sources */,
 				DFF015341F7AC15700527CFA /* EMCDDeviceManagerBase.m in Sources */,
 				DFF0157E1F7AC15700527CFA /* UIViewController+HUD.m in Sources */,
 				DFF015741F7AC15700527CFA /* PSTGridLayoutSection.m in Sources */,
@@ -2173,6 +2333,7 @@
 				DFF015371F7AC15700527CFA /* EMVoiceConverter.mm in Sources */,
 				DF87A7B41F782DE000EF0461 /* IQTextView.m in Sources */,
 				DFF015521F7AC15700527CFA /* MWPhoto.m in Sources */,
+				DF5A09721F7D5EAF00CF5410 /* FSCalendar.m in Sources */,
 				DFF015881F7AC15700527CFA /* EaseLocationViewController.m in Sources */,
 				DFF015EF1F7AC25F00527CFA /* UIScrollView+MJRefresh.m in Sources */,
 				DFF015351F7AC15700527CFA /* amrFileCodec.mm in Sources */,
@@ -2194,6 +2355,7 @@
 				DFFD8EE51F7C37E500FF0ECD /* LSWorkAdviceCell.m in Sources */,
 				DFF015641F7AC15700527CFA /* UIImage+EMWebP.m in Sources */,
 				DFF015661F7AC15700527CFA /* UIImageView+EMWebCache.m in Sources */,
+				DF5A097C1F7D5EAF00CF5410 /* FSCalendarHeaderView.m in Sources */,
 				DFF0156D1F7AC15700527CFA /* PSTCollectionViewFlowLayout.m in Sources */,
 				DF87A6F51F782A8E00EF0461 /* UIWebView+AFNetworking.m in Sources */,
 				DF87A6BD1F7827E200EF0461 /* ViewController+MASAdditions.m in Sources */,
@@ -2209,6 +2371,8 @@
 				DFF0156C1F7AC15700527CFA /* PSTCollectionViewData.m in Sources */,
 				DF87A6B41F7827E200EF0461 /* MASCompositeConstraint.m in Sources */,
 				DFF0157F1F7AC15700527CFA /* EaseChineseToPinyin.m in Sources */,
+				DF5A09711F7D5EAF00CF5410 /* FSCalendar+Deprecated.m in Sources */,
+				DF5A097B1F7D5EAF00CF5410 /* FSCalendarExtensions.m in Sources */,
 				DFF0157D1F7AC15700527CFA /* UIViewController+DismissKeyboard.m in Sources */,
 				DF87A6EF1F782A8E00EF0461 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				DFF015951F7AC15700527CFA /* EaseBubbleView+Location.m in Sources */,
@@ -2228,12 +2392,14 @@
 				DF87A6B51F7827E200EF0461 /* MASConstraint.m in Sources */,
 				DF87A6BB1F7827E200EF0461 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				DFF015581F7AC15700527CFA /* EMSDImageCache.m in Sources */,
+				DF5A09431F7D502F00CF5410 /* LSWorkTailDetailController.m in Sources */,
 				DF87A7B01F782DE000EF0461 /* IQUIViewController+Additions.m in Sources */,
 				DFF015911F7AC15700527CFA /* EaseMessageTimeCell.m in Sources */,
 				DFF015931F7AC15700527CFA /* EaseBubbleView+Gif.m in Sources */,
 				DF87A6B71F7827E200EF0461 /* MASLayoutConstraint.m in Sources */,
 				DFF015DF1F7AC25F00527CFA /* MJRefreshComponent.m in Sources */,
 				DF87A8191F78BC0700EF0461 /* LSNetworkTool.m in Sources */,
+				DF5A09801F7D5EAF00CF5410 /* FSCalendarWeekdayView.m in Sources */,
 				DFF015731F7AC15700527CFA /* PSTGridLayoutRow.m in Sources */,
 				DF87A7B91F782DE000EF0461 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				0F8314761F7B3C82008A9E22 /* LSMineUserSettingCell.m in Sources */,
@@ -2247,12 +2413,15 @@
 				DFF015941F7AC15700527CFA /* EaseBubbleView+Image.m in Sources */,
 				DF87A6BA1F7827E200EF0461 /* NSArray+MASAdditions.m in Sources */,
 				DFF015621F7AC15700527CFA /* UIImage+EMGIF.m in Sources */,
+				DF5A09391F7D473D00CF5410 /* LSWorkTailController.m in Sources */,
+				DF5A093E1F7D48A800CF5410 /* LSWorkTailCell.m in Sources */,
 				DFF015EE1F7AC25F00527CFA /* UIScrollView+MJExtension.m in Sources */,
 				DF87A6AF1F7827E200EF0461 /* AFURLRequestSerialization.m in Sources */,
 				DFF0159C1F7AC15700527CFA /* EaseImageView.m in Sources */,
 				DFF0158B1F7AC15700527CFA /* EaseUsersListViewController.m in Sources */,
 				DFF0159B1F7AC15700527CFA /* EaseChatToolbarItem.m in Sources */,
 				DF87A7B81F782DE000EF0461 /* IQToolbar.m in Sources */,
+				DF5A097F1F7D5EAF00CF5410 /* FSCalendarTransitionCoordinator.m in Sources */,
 				0FB200CF1F78F087005BC289 /* LSUtil.m in Sources */,
 				0F8314791F7B3F55008A9E22 /* LSUserModel.m in Sources */,
 				DFF015711F7AC15700527CFA /* PSTGridLayoutInfo.m in Sources */,
@@ -2261,14 +2430,19 @@
 				DF87A7831F782D1300EF0461 /* RKDropdownAlert.m in Sources */,
 				DFF0155B1F7AC15700527CFA /* EMSDWebImageDownloader.m in Sources */,
 				DFF0158E1F7AC15700527CFA /* EaseBaseMessageCell.m in Sources */,
+				DF5A09731F7D5EAF00CF5410 /* FSCalendarAppearance.m in Sources */,
 				DF87A6F01F782A8E00EF0461 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				DFF010B11F7AB4FA00527CFA /* LSMineHeaderView.m in Sources */,
+				DF5A097E1F7D5EAF00CF5410 /* FSCalendarStickyHeader.m in Sources */,
+				DF5A09341F7D413500CF5410 /* LSWorkAdviceDetailController.m in Sources */,
 				DFFD8EE01F7C377B00FF0ECD /* LSWorkAdviceController.m in Sources */,
 				DFF015E21F7AC25F00527CFA /* MJRefreshAutoGifFooter.m in Sources */,
 				DF87A7AF1F782DE000EF0461 /* IQUIView+Hierarchy.m in Sources */,
+				DF5A09481F7D50E300CF5410 /* LSWorkTailDetailUserCell.m in Sources */,
 				DFFD8EC91F7C235800FF0ECD /* LSWorkUnreplyController.m in Sources */,
 				DFF0158D1F7AC15700527CFA /* EaseUserCell.m in Sources */,
 				DFF0159D1F7AC15700527CFA /* EaseTextView.m in Sources */,
+				DF5A09791F7D5EAF00CF5410 /* FSCalendarDelegationFactory.m in Sources */,
 				DFF015301F7AC15700527CFA /* EMCDDeviceManager+Media.m in Sources */,
 				DF87A7AC1F782DE000EF0461 /* IQNSArray+Sort.m in Sources */,
 				DFF015651F7AC15700527CFA /* UIImageView+EMHighlightedWebCache.m in Sources */,
@@ -2292,19 +2466,23 @@
 				DF87A6AC1F7827E200EF0461 /* AFHTTPSessionManager.m in Sources */,
 				DFF0155D1F7AC15700527CFA /* EMSDWebImageManager.m in Sources */,
 				DFF0159A1F7AC15700527CFA /* EaseChatToolbar.m in Sources */,
+				DF5A09851F7D604C00CF5410 /* LSWorkOutcallController.m in Sources */,
 				DFF015841F7AC15700527CFA /* EaseEmotionEscape.m in Sources */,
+				DF5A09741F7D5EAF00CF5410 /* FSCalendarCalculator.m in Sources */,
 				DFF015601F7AC15700527CFA /* NSData+EMImageContentType.m in Sources */,
 				DFF015761F7AC15700527CFA /* EaseSDKHelper.m in Sources */,
 				DFF015611F7AC15700527CFA /* UIButton+EMWebCache.m in Sources */,
 				DF87A6F11F782A8E00EF0461 /* UIButton+AFNetworking.m in Sources */,
 				DFF015811F7AC15700527CFA /* EaseMessageReadManager.m in Sources */,
 				DFF0155A1F7AC15700527CFA /* EMSDWebImageDecoder.m in Sources */,
+				DF5A09771F7D5EAF00CF5410 /* FSCalendarCollectionViewLayout.m in Sources */,
 				DFF015DD1F7AC25F00527CFA /* MJRefreshAutoFooter.m in Sources */,
 				DFF0158F1F7AC15700527CFA /* EaseCustomMessageCell.m in Sources */,
 				DFF0156F1F7AC15700527CFA /* PSTCollectionViewLayout.m in Sources */,
 				DFF015791F7AC15700527CFA /* EaseUserModel.m in Sources */,
 				0FB200E01F78F463005BC289 /* LSRegisterController.m in Sources */,
 				DFF015921F7AC15700527CFA /* EaseBubbleView+File.m in Sources */,
+				DF5A09781F7D5EAF00CF5410 /* FSCalendarConstants.m in Sources */,
 				DF87A6F41F782A8E00EF0461 /* UIRefreshControl+AFNetworking.m in Sources */,
 				DF87A7E11F7835DD00EF0461 /* LSMineController.m in Sources */,
 				DFF015321F7AC15700527CFA /* EMCDDeviceManager+ProximitySensor.m in Sources */,

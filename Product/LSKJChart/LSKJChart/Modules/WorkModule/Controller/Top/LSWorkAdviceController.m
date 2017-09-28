@@ -8,6 +8,8 @@
 
 #import "LSWorkAdviceController.h"
 
+#import "LSWorkAdviceDetailController.h"
+
 #import "LSWorkAdviceCell.h"
 
 static NSString *cellId = @"LSWorkAdviceCell";
@@ -41,6 +43,9 @@ static NSString *cellId = @"LSWorkAdviceCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    LSWorkAdviceDetailController *vc = [[LSWorkAdviceDetailController alloc] initWithNibName:@"LSWorkAdviceDetailController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
