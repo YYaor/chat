@@ -8,6 +8,9 @@
 
 #import "LSWorkController.h"
 
+#import "LSWorkUnreplyController.h"
+#import "LSWorkAppointController.h"
+#import "LSWorkAdviceController.h"
 
 @interface LSWorkController ()
 
@@ -87,14 +90,23 @@
     if (btn.tag == 10000)
     {
         //待回复
+        LSWorkUnreplyController *vc = [[LSWorkUnreplyController alloc] initWithNibName:@"LSWorkUnreplyController" bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (btn.tag == 10001)
     {
         //预约提醒
+        LSWorkAppointController *vc = [[LSWorkAppointController alloc] initWithNibName:@"LSWorkAppointController" bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (btn.tag == 10002)
     {
         //医嘱跟踪
+        LSWorkAdviceController *vc = [[LSWorkAdviceController alloc] initWithNibName:@"LSWorkAdviceController" bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (btn.tag == 10003)
     {

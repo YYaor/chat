@@ -217,6 +217,18 @@
 		DFF015F31F7AC8F300527CFA /* UIView+LSLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF015F21F7AC8F300527CFA /* UIView+LSLayer.m */; };
 		DFF015F91F7B41CD00527CFA /* HyphenateLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF015F81F7B41CD00527CFA /* HyphenateLite.framework */; };
 		DFF015FB1F7B456500527CFA /* HyphenateLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DFF015F81F7B41CD00527CFA /* HyphenateLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DFFD8EC91F7C235800FF0ECD /* LSWorkUnreplyController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFD8EC71F7C235800FF0ECD /* LSWorkUnreplyController.m */; };
+		DFFD8ECA1F7C235800FF0ECD /* LSWorkUnreplyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFFD8EC81F7C235800FF0ECD /* LSWorkUnreplyController.xib */; };
+		DFFD8ED11F7C236100FF0ECD /* LSWorkUnreplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFD8ECF1F7C236100FF0ECD /* LSWorkUnreplyCell.m */; };
+		DFFD8ED21F7C236100FF0ECD /* LSWorkUnreplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFFD8ED01F7C236100FF0ECD /* LSWorkUnreplyCell.xib */; };
+		DFFD8ED61F7C23C300FF0ECD /* LSWorkAppointController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFD8ED41F7C23C300FF0ECD /* LSWorkAppointController.m */; };
+		DFFD8ED71F7C23C300FF0ECD /* LSWorkAppointController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFFD8ED51F7C23C300FF0ECD /* LSWorkAppointController.xib */; };
+		DFFD8EDB1F7C25AD00FF0ECD /* LSWorkAppointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFD8ED91F7C25AD00FF0ECD /* LSWorkAppointCell.m */; };
+		DFFD8EDC1F7C25AD00FF0ECD /* LSWorkAppointCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFFD8EDA1F7C25AD00FF0ECD /* LSWorkAppointCell.xib */; };
+		DFFD8EE01F7C377B00FF0ECD /* LSWorkAdviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFD8EDE1F7C377B00FF0ECD /* LSWorkAdviceController.m */; };
+		DFFD8EE11F7C377B00FF0ECD /* LSWorkAdviceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFFD8EDF1F7C377B00FF0ECD /* LSWorkAdviceController.xib */; };
+		DFFD8EE51F7C37E500FF0ECD /* LSWorkAdviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFD8EE31F7C37E500FF0ECD /* LSWorkAdviceCell.m */; };
+		DFFD8EE61F7C37E500FF0ECD /* LSWorkAdviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFFD8EE41F7C37E500FF0ECD /* LSWorkAdviceCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -684,6 +696,24 @@
 		DFF015F11F7AC8F300527CFA /* UIView+LSLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LSLayer.h"; sourceTree = "<group>"; };
 		DFF015F21F7AC8F300527CFA /* UIView+LSLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LSLayer.m"; sourceTree = "<group>"; };
 		DFF015F81F7B41CD00527CFA /* HyphenateLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HyphenateLite.framework; sourceTree = "<group>"; };
+		DFFD8EC61F7C235800FF0ECD /* LSWorkUnreplyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkUnreplyController.h; sourceTree = "<group>"; };
+		DFFD8EC71F7C235800FF0ECD /* LSWorkUnreplyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkUnreplyController.m; sourceTree = "<group>"; };
+		DFFD8EC81F7C235800FF0ECD /* LSWorkUnreplyController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkUnreplyController.xib; sourceTree = "<group>"; };
+		DFFD8ECE1F7C236100FF0ECD /* LSWorkUnreplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkUnreplyCell.h; sourceTree = "<group>"; };
+		DFFD8ECF1F7C236100FF0ECD /* LSWorkUnreplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkUnreplyCell.m; sourceTree = "<group>"; };
+		DFFD8ED01F7C236100FF0ECD /* LSWorkUnreplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkUnreplyCell.xib; sourceTree = "<group>"; };
+		DFFD8ED31F7C23C300FF0ECD /* LSWorkAppointController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkAppointController.h; sourceTree = "<group>"; };
+		DFFD8ED41F7C23C300FF0ECD /* LSWorkAppointController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkAppointController.m; sourceTree = "<group>"; };
+		DFFD8ED51F7C23C300FF0ECD /* LSWorkAppointController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkAppointController.xib; sourceTree = "<group>"; };
+		DFFD8ED81F7C25AD00FF0ECD /* LSWorkAppointCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkAppointCell.h; sourceTree = "<group>"; };
+		DFFD8ED91F7C25AD00FF0ECD /* LSWorkAppointCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkAppointCell.m; sourceTree = "<group>"; };
+		DFFD8EDA1F7C25AD00FF0ECD /* LSWorkAppointCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkAppointCell.xib; sourceTree = "<group>"; };
+		DFFD8EDD1F7C377B00FF0ECD /* LSWorkAdviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkAdviceController.h; sourceTree = "<group>"; };
+		DFFD8EDE1F7C377B00FF0ECD /* LSWorkAdviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkAdviceController.m; sourceTree = "<group>"; };
+		DFFD8EDF1F7C377B00FF0ECD /* LSWorkAdviceController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkAdviceController.xib; sourceTree = "<group>"; };
+		DFFD8EE21F7C37E500FF0ECD /* LSWorkAdviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkAdviceCell.h; sourceTree = "<group>"; };
+		DFFD8EE31F7C37E500FF0ECD /* LSWorkAdviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkAdviceCell.m; sourceTree = "<group>"; };
+		DFFD8EE41F7C37E500FF0ECD /* LSWorkAdviceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkAdviceCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -790,7 +820,6 @@
 		DF87A1AE1F781B7700EF0461 = {
 			isa = PBXGroup;
 			children = (
-				DFF015F71F7B41CD00527CFA /* HyphenateSDK */,
 				DF87A1B91F781B7700EF0461 /* LSKJChart */,
 				DF87A1D31F781B7700EF0461 /* LSKJChartTests */,
 				DF87A1DE1F781B7700EF0461 /* LSKJChartUITests */,
@@ -1255,6 +1284,9 @@
 				DF87A7D91F7835A500EF0461 /* LSWorkController.h */,
 				DF87A7DA1F7835A500EF0461 /* LSWorkController.m */,
 				DF87A7DB1F7835A500EF0461 /* LSWorkController.xib */,
+				DFFD8EC31F7C235800FF0ECD /* Bottom */,
+				DFFD8EC41F7C235800FF0ECD /* Center */,
+				DFFD8EC51F7C235800FF0ECD /* Top */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1269,6 +1301,9 @@
 		DF87A7D81F78358300EF0461 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DFFD8ECB1F7C236100FF0ECD /* Bottom */,
+				DFFD8ECC1F7C236100FF0ECD /* Center */,
+				DFFD8ECD1F7C236100FF0ECD /* Top */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1276,6 +1311,7 @@
 		DFF013FC1F7AC07300527CFA /* Easemob */ = {
 			isa = PBXGroup;
 			children = (
+				DFF015F71F7B41CD00527CFA /* HyphenateSDK */,
 				DFF014041F7AC15700527CFA /* EaseUI */,
 			);
 			path = Easemob;
@@ -1870,8 +1906,67 @@
 			children = (
 				DFF015F81F7B41CD00527CFA /* HyphenateLite.framework */,
 			);
-			name = HyphenateSDK;
-			path = LSKJChart/Tools/Easemob/HyphenateSDK;
+			path = HyphenateSDK;
+			sourceTree = "<group>";
+		};
+		DFFD8EC31F7C235800FF0ECD /* Bottom */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Bottom;
+			sourceTree = "<group>";
+		};
+		DFFD8EC41F7C235800FF0ECD /* Center */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Center;
+			sourceTree = "<group>";
+		};
+		DFFD8EC51F7C235800FF0ECD /* Top */ = {
+			isa = PBXGroup;
+			children = (
+				DFFD8EC61F7C235800FF0ECD /* LSWorkUnreplyController.h */,
+				DFFD8EC71F7C235800FF0ECD /* LSWorkUnreplyController.m */,
+				DFFD8EC81F7C235800FF0ECD /* LSWorkUnreplyController.xib */,
+				DFFD8ED31F7C23C300FF0ECD /* LSWorkAppointController.h */,
+				DFFD8ED41F7C23C300FF0ECD /* LSWorkAppointController.m */,
+				DFFD8ED51F7C23C300FF0ECD /* LSWorkAppointController.xib */,
+				DFFD8EDD1F7C377B00FF0ECD /* LSWorkAdviceController.h */,
+				DFFD8EDE1F7C377B00FF0ECD /* LSWorkAdviceController.m */,
+				DFFD8EDF1F7C377B00FF0ECD /* LSWorkAdviceController.xib */,
+			);
+			path = Top;
+			sourceTree = "<group>";
+		};
+		DFFD8ECB1F7C236100FF0ECD /* Bottom */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Bottom;
+			sourceTree = "<group>";
+		};
+		DFFD8ECC1F7C236100FF0ECD /* Center */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Center;
+			sourceTree = "<group>";
+		};
+		DFFD8ECD1F7C236100FF0ECD /* Top */ = {
+			isa = PBXGroup;
+			children = (
+				DFFD8ECE1F7C236100FF0ECD /* LSWorkUnreplyCell.h */,
+				DFFD8ECF1F7C236100FF0ECD /* LSWorkUnreplyCell.m */,
+				DFFD8ED01F7C236100FF0ECD /* LSWorkUnreplyCell.xib */,
+				DFFD8ED81F7C25AD00FF0ECD /* LSWorkAppointCell.h */,
+				DFFD8ED91F7C25AD00FF0ECD /* LSWorkAppointCell.m */,
+				DFFD8EDA1F7C25AD00FF0ECD /* LSWorkAppointCell.xib */,
+				DFFD8EE21F7C37E500FF0ECD /* LSWorkAdviceCell.h */,
+				DFFD8EE31F7C37E500FF0ECD /* LSWorkAdviceCell.m */,
+				DFFD8EE41F7C37E500FF0ECD /* LSWorkAdviceCell.xib */,
+			);
+			path = Top;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1989,10 +2084,13 @@
 				DFF015751F7AC15700527CFA /* MWPhotoBrowser.bundle in Resources */,
 				DF87A6421F7820A700EF0461 /* Info.plist in Resources */,
 				DF87A7DD1F7835A500EF0461 /* LSWorkController.xib in Resources */,
+				DFFD8ED21F7C236100FF0ECD /* LSWorkUnreplyCell.xib in Resources */,
 				DFF015EB1F7AC25F00527CFA /* MJRefresh.bundle in Resources */,
 				DF87A63F1F7820A700EF0461 /* Assets.xcassets in Resources */,
 				DF87A6B31F7827E200EF0461 /* Info.plist in Resources */,
 				DF87A7E21F7835DD00EF0461 /* LSMineController.xib in Resources */,
+				DFFD8EE61F7C37E500FF0ECD /* LSWorkAdviceCell.xib in Resources */,
+				DFFD8ECA1F7C235800FF0ECD /* LSWorkUnreplyController.xib in Resources */,
 				0F6E10911F7B79B800C2477B /* LSMineCardController.xib in Resources */,
 				0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */,
 				DF87A8261F78DB4100EF0461 /* LSDataPickerView.xib in Resources */,
@@ -2002,7 +2100,10 @@
 				DF87A7C31F782F0700EF0461 /* LSLoginController.xib in Resources */,
 				0F6E10871F7B799600C2477B /* LSMineNewPswController.xib in Resources */,
 				DF87A6401F7820A700EF0461 /* LaunchScreen.storyboard in Resources */,
+				DFFD8EE11F7C377B00FF0ECD /* LSWorkAdviceController.xib in Resources */,
+				DFFD8ED71F7C23C300FF0ECD /* LSWorkAppointController.xib in Resources */,
 				DFF0152D1F7AC15700527CFA /* EaseUI.podspec in Resources */,
+				DFFD8EDC1F7C25AD00FF0ECD /* LSWorkAppointCell.xib in Resources */,
 				0FB200E11F78F463005BC289 /* LSRegisterController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2042,6 +2143,7 @@
 				DFF015EA1F7AC25F00527CFA /* MJRefreshStateHeader.m in Sources */,
 				DFF015331F7AC15700527CFA /* EMCDDeviceManager+Remind.m in Sources */,
 				0FB200BE1F78CEFC005BC289 /* YYShopMainTypeView.m in Sources */,
+				DFFD8EDB1F7C25AD00FF0ECD /* LSWorkAppointCell.m in Sources */,
 				DFF015A21F7AC15700527CFA /* EaseConversationCell.m in Sources */,
 				DF87A7B71F782DE000EF0461 /* IQTitleBarButtonItem.m in Sources */,
 				0F8314721F7B3BE3008A9E22 /* LSMineUserSettingController.m in Sources */,
@@ -2089,6 +2191,7 @@
 				DFF015871F7AC15700527CFA /* EaseConversationListViewController.m in Sources */,
 				DFF015561F7AC15700527CFA /* MWZoomingScrollView.m in Sources */,
 				DFF015EC1F7AC25F00527CFA /* MJRefreshConst.m in Sources */,
+				DFFD8EE51F7C37E500FF0ECD /* LSWorkAdviceCell.m in Sources */,
 				DFF015641F7AC15700527CFA /* UIImage+EMWebP.m in Sources */,
 				DFF015661F7AC15700527CFA /* UIImageView+EMWebCache.m in Sources */,
 				DFF0156D1F7AC15700527CFA /* PSTCollectionViewFlowLayout.m in Sources */,
@@ -2139,6 +2242,7 @@
 				DFF015DE1F7AC25F00527CFA /* MJRefreshBackFooter.m in Sources */,
 				DFF015DC1F7AC25F00527CFA /* UIViewController+HUD.m in Sources */,
 				DFF015551F7AC15700527CFA /* MWTapDetectingView.m in Sources */,
+				DFFD8ED61F7C23C300FF0ECD /* LSWorkAppointController.m in Sources */,
 				DFF015801F7AC15700527CFA /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				DFF015941F7AC15700527CFA /* EaseBubbleView+Image.m in Sources */,
 				DF87A6BA1F7827E200EF0461 /* NSArray+MASAdditions.m in Sources */,
@@ -2159,8 +2263,10 @@
 				DFF0158E1F7AC15700527CFA /* EaseBaseMessageCell.m in Sources */,
 				DF87A6F01F782A8E00EF0461 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				DFF010B11F7AB4FA00527CFA /* LSMineHeaderView.m in Sources */,
+				DFFD8EE01F7C377B00FF0ECD /* LSWorkAdviceController.m in Sources */,
 				DFF015E21F7AC25F00527CFA /* MJRefreshAutoGifFooter.m in Sources */,
 				DF87A7AF1F782DE000EF0461 /* IQUIView+Hierarchy.m in Sources */,
+				DFFD8EC91F7C235800FF0ECD /* LSWorkUnreplyController.m in Sources */,
 				DFF0158D1F7AC15700527CFA /* EaseUserCell.m in Sources */,
 				DFF0159D1F7AC15700527CFA /* EaseTextView.m in Sources */,
 				DFF015301F7AC15700527CFA /* EMCDDeviceManager+Media.m in Sources */,
@@ -2173,6 +2279,7 @@
 				DFF0159E1F7AC15700527CFA /* EaseFaceView.m in Sources */,
 				0FB200EC1F7A5294005BC289 /* LSMineListCell.m in Sources */,
 				DFF015981F7AC15700527CFA /* EaseBubbleView+Voice.m in Sources */,
+				DFFD8ED11F7C236100FF0ECD /* LSWorkUnreplyCell.m in Sources */,
 				DFF015E11F7AC25F00527CFA /* MJRefreshHeader.m in Sources */,
 				DF87A7AE1F782DE000EF0461 /* IQUITextFieldView+Additions.m in Sources */,
 				DFF015ED1F7AC25F00527CFA /* NSBundle+MJRefresh.m in Sources */,
