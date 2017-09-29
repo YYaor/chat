@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initNavView];
+//    [self initNavView];
     [self initForView];
     [self getCacheSize];
 }
@@ -41,35 +41,38 @@
     });
 }
 
--(void)initNavView{
-    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
-    navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
-    [self.view addSubview:navView];
-    
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    [navView addSubview:backButton];
-    
-    
-    UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.font = [UIFont systemFontOfSize:18];
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.text = @"设置";
-    titleLabel.backgroundColor = [UIColor clearColor];
-    [navView addSubview:titleLabel];
-    
-    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(navView);
-        make.centerY.equalTo(navView).offset(8);
-    }];
-}
+//-(void)initNavView{
+//    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
+//    navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+//    [self.view addSubview:navView];
+//    
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 44, 44)];
+//    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//    [navView addSubview:backButton];
+//    
+//    
+//    UILabel *titleLabel = [[UILabel alloc]init];
+//    titleLabel.font = [UIFont systemFontOfSize:18];
+//    titleLabel.textColor = [UIColor whiteColor];
+//    titleLabel.text = @"设置";
+//    titleLabel.backgroundColor = [UIColor clearColor];
+//    [navView addSubview:titleLabel];
+//    
+//    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(navView);
+//        make.centerY.equalTo(navView).offset(8);
+//    }];
+//}
 
 -(void)initForView{
+    
+    self.navigationItem.title = @"设置";
+    
     [self.view addSubview:self.dataTableView];
     [self.dataTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view);
-        make.top.equalTo(self.view).offset(64);
+        make.left.right.top.bottom.equalTo(self.view);
+//        make.top.equalTo(self.view).offset(64);
     }];
 }
 
@@ -115,14 +118,9 @@
 }
 
 
--(void)back{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+//-(void)back{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 -(UITableView *)dataTableView{
     if (!_dataTableView) {
@@ -141,16 +139,5 @@
     }
     return _imageCache;
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

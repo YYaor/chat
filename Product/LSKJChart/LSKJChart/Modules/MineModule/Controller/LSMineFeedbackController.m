@@ -22,43 +22,47 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initNavView];
+//    [self initNavView];
     [self initForView];
 }
 
 
--(void)initNavView{
-    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
-    navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
-    [self.view addSubview:navView];
-    
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    [navView addSubview:backButton];
-    
-    
-    UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.font = [UIFont systemFontOfSize:18];
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.text = @"意见反馈";
-    titleLabel.backgroundColor = [UIColor clearColor];
-    [navView addSubview:titleLabel];
-    
-    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(navView);
-        make.centerY.equalTo(navView).offset(8);
-    }];
-}
+//-(void)initNavView{
+//    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
+//    navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+//    [self.view addSubview:navView];
+//    
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 44, 44)];
+//    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//    [navView addSubview:backButton];
+//    
+//    
+//    UILabel *titleLabel = [[UILabel alloc]init];
+//    titleLabel.font = [UIFont systemFontOfSize:18];
+//    titleLabel.textColor = [UIColor whiteColor];
+//    titleLabel.text = @"意见反馈";
+//    titleLabel.backgroundColor = [UIColor clearColor];
+//    [navView addSubview:titleLabel];
+//    
+//    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(navView);
+//        make.centerY.equalTo(navView).offset(8);
+//    }];
+//}
 
 -(void)initForView{
+    
+    self.navigationItem.title = @"意见反馈";
+    
     [self.view addSubview:self.infoTextView];
     [self.view addSubview:self.phoneTextView];
     [self.view addSubview:self.sureButton];
     
     [self.infoTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(12);
-        make.top.equalTo(self.view).offset(12+64);
+//        make.top.equalTo(self.view).offset(12+64);
+        make.top.equalTo(self.view).offset(12);
         make.right.equalTo(self.view).offset(-12);
         make.height.mas_equalTo(200);
     }];
@@ -78,9 +82,9 @@
     }];
 }
 
--(void)back{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//-(void)back{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 -(void)sureButtonClick{
     
@@ -126,11 +130,5 @@
     }
     return _sureButton;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 @end

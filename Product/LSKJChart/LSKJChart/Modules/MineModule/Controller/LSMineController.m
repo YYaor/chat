@@ -13,7 +13,7 @@
 
 #import "LSMineHeaderView.h"
 #import "LSMineListCell.h"
-@interface LSMineController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LSMineController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate>
 
 @property (nonatomic,strong)UITableView *dataTableView;
 
@@ -26,7 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
     [self initForView];
 }
 
@@ -40,12 +39,25 @@
 
 - (void)initForView
 {
+    self.navigationController.delegate = self;
+    
     [self setStatusBarBackgroundColor:[UIColor colorFromHexString:LSGREENCOLOR]];
     [self.view addSubview:self.dataTableView];
     [self.dataTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
     }];
 }
+
+#pragma mark - UINavigationControllerDelegate
+// 将要显示控制器
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    // 判断要显示的控制器是否是自己
+    BOOL isShowMine = [viewController isKindOfClass:[self class]];
+    
+    [self.navigationController setNavigationBarHidden:isShowMine animated:YES];
+}
+
+#pragma mark UITableView
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;

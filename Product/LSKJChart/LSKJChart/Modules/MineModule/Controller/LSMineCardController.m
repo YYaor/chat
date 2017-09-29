@@ -35,46 +35,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initNavView];
+//    [self initNavView];
     [self initForView];
 }
 
--(void)initNavView{
-    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
-    navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
-    [self.view addSubview:navView];
-    
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    [navView addSubview:backButton];
-    
-    
-    UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.font = [UIFont systemFontOfSize:18];
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.text = @"我的名片";
-    titleLabel.backgroundColor = [UIColor clearColor];
-    [navView addSubview:titleLabel];
-    
-    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(navView);
-        make.centerY.equalTo(navView).offset(8);
-    }];
-    
-    UIButton *shareButton = [[UIButton alloc] init];
-    [shareButton addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [shareButton setTitle:@"分享" forState:UIControlStateNormal];
-    shareButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    [navView addSubview:shareButton];
-    [shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view).offset(-12);
-        make.size.mas_equalTo(CGSizeMake(44, 44));
-        make.top.equalTo(self.view).offset(20);
-    }];
-}
+//-(void)initNavView{
+//    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
+//    navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+//    [self.view addSubview:navView];
+//    
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 44, 44)];
+//    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//    [navView addSubview:backButton];
+//    
+//    
+//    UILabel *titleLabel = [[UILabel alloc]init];
+//    titleLabel.font = [UIFont systemFontOfSize:18];
+//    titleLabel.textColor = [UIColor whiteColor];
+//    titleLabel.text = @"我的名片";
+//    titleLabel.backgroundColor = [UIColor clearColor];
+//    [navView addSubview:titleLabel];
+//    
+//    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(navView);
+//        make.centerY.equalTo(navView).offset(8);
+//    }];
+//    
+//    UIButton *shareButton = [[UIButton alloc] init];
+//    [shareButton addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
+//    [shareButton setTitle:@"分享" forState:UIControlStateNormal];
+//    shareButton.titleLabel.font = [UIFont systemFontOfSize:14];
+//    [navView addSubview:shareButton];
+//    [shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(self.view).offset(-12);
+//        make.size.mas_equalTo(CGSizeMake(44, 44));
+//        make.top.equalTo(self.view).offset(20);
+//    }];
+//}
 
 -(void)initForView{
+    
+    self.navigationItem.title = @"我的名片";
+    
+    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(shareButtonClick)];
+    self.navigationController.navigationItem.rightBarButtonItem = shareItem;
     
     [self.view addSubview:self.contentView];
     [self.contentView addSubview:self.headImageView];
@@ -87,7 +92,8 @@
     [self.contentView addSubview:self.qRLabel];
     
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(64+20);
+//        make.top.equalTo(self.view).offset(64+20);
+        make.top.equalTo(self.view).offset(20);
         make.left.equalTo(self.view).offset(24);
         make.right.equalTo(self.view).offset(-24);
         make.height.mas_equalTo(350);
