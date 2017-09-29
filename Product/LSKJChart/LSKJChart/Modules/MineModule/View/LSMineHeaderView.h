@@ -10,6 +10,8 @@
 
 @interface LSMineHeaderView : UIView
 
+@property (nonatomic,weak) id controller;
+
 -(void)updateWithImageURL:(NSString *)imageURL name:(NSString *)name room:(NSString *)room career:(NSString *)career;
 
 @end

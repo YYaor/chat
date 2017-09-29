@@ -8,6 +8,7 @@
 //
 
 #import "LSMineHeaderView.h"
+#import "LSMineUserSettingController.h"
 
 @interface LSMineHeaderView()
 
@@ -56,6 +57,11 @@
     self.infoLabel.text = [NSString stringWithFormat:@"%@  %@",room,career];
 }
 
+-(void)headClick{
+    LSMineUserSettingController *userSettingController = [[LSMineUserSettingController alloc]init];
+    [[self.controller navigationController] pushViewController:userSettingController animated:YES];
+}
+
 -(UIImageView *)headImageView{
     if (!_headImageView) {
         _headImageView = [[UIImageView alloc]init];
@@ -64,6 +70,8 @@
         _headImageView.layer.borderColor = [UIColor whiteColor].CGColor;
         _headImageView.backgroundColor = [UIColor redColor];
         _headImageView.layer.borderWidth = 1;
+        _headImageView.userInteractionEnabled = YES;
+        [_headImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headClick)]];
     }
     return _headImageView;
 }

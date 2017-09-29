@@ -7,6 +7,7 @@
 //
 
 #import "LSMineSettingController.h"
+#import "LSMineNewPswController.h"
 #import "LSMineSettingCell.h"
 
 @interface LSMineSettingController ()<UITableViewDelegate,UITableViewDataSource>
@@ -102,6 +103,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        LSMineNewPswController *newPswController = [[LSMineNewPswController alloc]init];
+        [self.navigationController pushViewController:newPswController animated:YES];
+    }
     if (indexPath.row == 2) {
         [self.imageCache removeAllImages];
         [self getCacheSize];

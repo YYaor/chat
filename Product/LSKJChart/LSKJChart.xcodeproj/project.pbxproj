@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F48A3201F7CF63000E05C64 /* LSMineFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F48A31E1F7CF63000E05C64 /* LSMineFeedbackController.m */; };
+		0F48A3211F7CF63000E05C64 /* LSMineFeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F48A31F1F7CF63000E05C64 /* LSMineFeedbackController.xib */; };
 		0F6E10861F7B799600C2477B /* LSMineNewPswController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E10841F7B799600C2477B /* LSMineNewPswController.m */; };
 		0F6E10871F7B799600C2477B /* LSMineNewPswController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F6E10851F7B799600C2477B /* LSMineNewPswController.xib */; };
 		0F6E108B1F7B79A800C2477B /* LSMineSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E10891F7B79A800C2477B /* LSMineSettingController.m */; };
@@ -58,6 +60,7 @@
 		DF5A09811F7D5EAF00CF5410 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09701F7D5EAF00CF5410 /* Info.plist */; };
 		DF5A09851F7D604C00CF5410 /* LSWorkOutcallController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */; };
 		DF5A09861F7D604C00CF5410 /* LSWorkOutcallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */; };
+		0FB863731F7DEDBB004077A6 /* YYPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB863721F7DEDBB004077A6 /* YYPlaceholderTextView.m */; };
 		DF87A1D51F781B7700EF0461 /* LSKJChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */; };
 		DF87A1E01F781B7700EF0461 /* LSKJChartUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1DF1F781B7700EF0461 /* LSKJChartUITests.m */; };
 		DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A6331F7820A700EF0461 /* AppDelegate.m */; };
@@ -294,6 +297,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F48A31D1F7CF63000E05C64 /* LSMineFeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineFeedbackController.h; sourceTree = "<group>"; };
+		0F48A31E1F7CF63000E05C64 /* LSMineFeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineFeedbackController.m; sourceTree = "<group>"; };
+		0F48A31F1F7CF63000E05C64 /* LSMineFeedbackController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMineFeedbackController.xib; sourceTree = "<group>"; };
 		0F6E10831F7B799600C2477B /* LSMineNewPswController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineNewPswController.h; sourceTree = "<group>"; };
 		0F6E10841F7B799600C2477B /* LSMineNewPswController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineNewPswController.m; sourceTree = "<group>"; };
 		0F6E10851F7B799600C2477B /* LSMineNewPswController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSMineNewPswController.xib; sourceTree = "<group>"; };
@@ -387,6 +393,8 @@
 		DF5A09821F7D604C00CF5410 /* LSWorkOutcallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkOutcallController.h; sourceTree = "<group>"; };
 		DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkOutcallController.m; sourceTree = "<group>"; };
 		DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkOutcallController.xib; sourceTree = "<group>"; };
+		0FB863711F7DEDBB004077A6 /* YYPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYPlaceholderTextView.h; sourceTree = "<group>"; };
+		0FB863721F7DEDBB004077A6 /* YYPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYPlaceholderTextView.m; sourceTree = "<group>"; };
 		DF87A1B71F781B7700EF0461 /* LSKJChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSKJChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D01F781B7700EF0461 /* LSKJChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LSKJChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSKJChartTests.m; sourceTree = "<group>"; };
@@ -940,6 +948,13 @@
 				DF5A09701F7D5EAF00CF5410 /* Info.plist */,
 			);
 			path = FSCalendar;
+		0FB863701F7DEDBB004077A6 /* YYPlaceholderTextView */ = {
+			isa = PBXGroup;
+			children = (
+				0FB863711F7DEDBB004077A6 /* YYPlaceholderTextView.h */,
+				0FB863721F7DEDBB004077A6 /* YYPlaceholderTextView.m */,
+			);
+			path = YYPlaceholderTextView;
 			sourceTree = "<group>";
 		};
 		DF87A1AE1F781B7700EF0461 = {
@@ -1061,6 +1076,7 @@
 			isa = PBXGroup;
 			children = (
 				DF5A094F1F7D5EAF00CF5410 /* FSCalendar */,
+				0FB863701F7DEDBB004077A6 /* YYPlaceholderTextView */,
 				0F83147A1F7B40BC008A9E22 /* YYModel */,
 				DFF015A41F7AC25F00527CFA /* MBProgressHUD */,
 				DFF015AB1F7AC25F00527CFA /* MJRefresh */,
@@ -1390,6 +1406,9 @@
 				0F6E108D1F7B79B800C2477B /* LSMineCardController.h */,
 				0F6E108E1F7B79B800C2477B /* LSMineCardController.m */,
 				0F6E108F1F7B79B800C2477B /* LSMineCardController.xib */,
+				0F48A31D1F7CF63000E05C64 /* LSMineFeedbackController.h */,
+				0F48A31E1F7CF63000E05C64 /* LSMineFeedbackController.m */,
+				0F48A31F1F7CF63000E05C64 /* LSMineFeedbackController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2227,6 +2246,7 @@
 			files = (
 				0F8314731F7B3BE3008A9E22 /* LSMineUserSettingController.xib in Resources */,
 				DFF015A31F7AC15700527CFA /* EaseUIResource.bundle in Resources */,
+				0F48A3211F7CF63000E05C64 /* LSMineFeedbackController.xib in Resources */,
 				0F6E108C1F7B79A800C2477B /* LSMineSettingController.xib in Resources */,
 				DFF015751F7AC15700527CFA /* MWPhotoBrowser.bundle in Resources */,
 				DF87A6421F7820A700EF0461 /* Info.plist in Resources */,
@@ -2295,6 +2315,7 @@
 				DFF015DA1F7AC25F00527CFA /* BlocMBProgressHUD.m in Sources */,
 				DFF015971F7AC15700527CFA /* EaseBubbleView+Video.m in Sources */,
 				DFF015891F7AC15700527CFA /* EaseMessageViewController.m in Sources */,
+				0FB863731F7DEDBB004077A6 /* YYPlaceholderTextView.m in Sources */,
 				DFF0156B1F7AC15700527CFA /* PSTCollectionViewController.m in Sources */,
 				DFF015EA1F7AC25F00527CFA /* MJRefreshStateHeader.m in Sources */,
 				DFF015331F7AC15700527CFA /* EMCDDeviceManager+Remind.m in Sources */,
@@ -2455,6 +2476,7 @@
 				DFF015981F7AC15700527CFA /* EaseBubbleView+Voice.m in Sources */,
 				DFFD8ED11F7C236100FF0ECD /* LSWorkUnreplyCell.m in Sources */,
 				DFF015E11F7AC25F00527CFA /* MJRefreshHeader.m in Sources */,
+				0F48A3201F7CF63000E05C64 /* LSMineFeedbackController.m in Sources */,
 				DF87A7AE1F782DE000EF0461 /* IQUITextFieldView+Additions.m in Sources */,
 				DFF015ED1F7AC25F00527CFA /* NSBundle+MJRefresh.m in Sources */,
 				DFF015631F7AC15700527CFA /* UIImage+EMMultiFormat.m in Sources */,

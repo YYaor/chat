@@ -7,8 +7,9 @@
 //
 
 #import "LSMineController.h"
-#import "LSMineUserSettingController.h"
 #import "LSMineSettingController.h"
+#import "LSMineFeedbackController.h"
+#import "LSMineCardController.h"
 
 #import "LSMineHeaderView.h"
 #import "LSMineListCell.h"
@@ -107,11 +108,19 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            LSMineUserSettingController *userSettingController = [[LSMineUserSettingController alloc]init];
-            [self.navigationController pushViewController:userSettingController animated:YES];
+            LSMineCardController *cardController = [[LSMineCardController alloc]init];
+            cardController.user = [[LSUserModel alloc]init];
+            [self.navigationController pushViewController:cardController animated:YES];
         }
     }
     if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            
+        }
+        if (indexPath.row == 1) {
+            LSMineFeedbackController *feedbackController = [[LSMineFeedbackController alloc]init];
+            [self.navigationController pushViewController:feedbackController animated:YES];
+        }
         if (indexPath.row == 2) {
             LSMineSettingController *settingController =  [[LSMineSettingController alloc]init];
             [self.navigationController pushViewController:settingController animated:YES];
@@ -135,6 +144,7 @@
     if (!_headerView) {
         _headerView = [[LSMineHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 180)];
         _headerView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        _headerView.controller = self;
     }
     return _headerView;
 }

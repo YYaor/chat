@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LSUserModel.h"
 
 @interface LSMineCardController : UIViewController
+
+@property(nonatomic,strong)LSUserModel *user;
 
 @end
