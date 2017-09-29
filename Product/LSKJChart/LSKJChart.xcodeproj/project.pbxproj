@@ -29,6 +29,7 @@
 		0FB200E51F79E771005BC289 /* LSAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200E31F79E771005BC289 /* LSAuthenticationController.m */; };
 		0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */; };
 		0FB200EC1F7A5294005BC289 /* LSMineListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200EB1F7A5294005BC289 /* LSMineListCell.m */; };
+		0FB69CF61F7E3A5000AC31CA /* YYPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB69CF51F7E3A0F00AC31CA /* YYPlaceholderTextView.m */; };
 		DF5A09341F7D413500CF5410 /* LSWorkAdviceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09321F7D413500CF5410 /* LSWorkAdviceDetailController.m */; };
 		DF5A09351F7D413500CF5410 /* LSWorkAdviceDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09331F7D413500CF5410 /* LSWorkAdviceDetailController.xib */; };
 		DF5A09391F7D473D00CF5410 /* LSWorkTailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09371F7D473D00CF5410 /* LSWorkTailController.m */; };
@@ -60,7 +61,6 @@
 		DF5A09811F7D5EAF00CF5410 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09701F7D5EAF00CF5410 /* Info.plist */; };
 		DF5A09851F7D604C00CF5410 /* LSWorkOutcallController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */; };
 		DF5A09861F7D604C00CF5410 /* LSWorkOutcallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */; };
-		0FB863731F7DEDBB004077A6 /* YYPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB863721F7DEDBB004077A6 /* YYPlaceholderTextView.m */; };
 		DF87A1D51F781B7700EF0461 /* LSKJChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */; };
 		DF87A1E01F781B7700EF0461 /* LSKJChartUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1DF1F781B7700EF0461 /* LSKJChartUITests.m */; };
 		DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A6331F7820A700EF0461 /* AppDelegate.m */; };
@@ -339,6 +339,8 @@
 		0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSAuthenticationController.xib; sourceTree = "<group>"; };
 		0FB200EA1F7A5294005BC289 /* LSMineListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineListCell.h; sourceTree = "<group>"; };
 		0FB200EB1F7A5294005BC289 /* LSMineListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineListCell.m; sourceTree = "<group>"; };
+		0FB69CF41F7E3A0F00AC31CA /* YYPlaceholderTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYPlaceholderTextView.h; sourceTree = "<group>"; };
+		0FB69CF51F7E3A0F00AC31CA /* YYPlaceholderTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYPlaceholderTextView.m; sourceTree = "<group>"; };
 		DF5A09311F7D413500CF5410 /* LSWorkAdviceDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkAdviceDetailController.h; sourceTree = "<group>"; };
 		DF5A09321F7D413500CF5410 /* LSWorkAdviceDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkAdviceDetailController.m; sourceTree = "<group>"; };
 		DF5A09331F7D413500CF5410 /* LSWorkAdviceDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkAdviceDetailController.xib; sourceTree = "<group>"; };
@@ -393,8 +395,6 @@
 		DF5A09821F7D604C00CF5410 /* LSWorkOutcallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkOutcallController.h; sourceTree = "<group>"; };
 		DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkOutcallController.m; sourceTree = "<group>"; };
 		DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkOutcallController.xib; sourceTree = "<group>"; };
-		0FB863711F7DEDBB004077A6 /* YYPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYPlaceholderTextView.h; sourceTree = "<group>"; };
-		0FB863721F7DEDBB004077A6 /* YYPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYPlaceholderTextView.m; sourceTree = "<group>"; };
 		DF87A1B71F781B7700EF0461 /* LSKJChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSKJChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D01F781B7700EF0461 /* LSKJChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LSKJChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSKJChartTests.m; sourceTree = "<group>"; };
@@ -910,6 +910,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0FB69CF21F7E39F900AC31CA /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		0FB69CF31F7E3A0F00AC31CA /* YYPlaceholderTextView */ = {
+			isa = PBXGroup;
+			children = (
+				0FB69CF41F7E3A0F00AC31CA /* YYPlaceholderTextView.h */,
+				0FB69CF51F7E3A0F00AC31CA /* YYPlaceholderTextView.m */,
+			);
+			path = YYPlaceholderTextView;
+			sourceTree = "<group>";
+		};
 		DF5A094F1F7D5EAF00CF5410 /* FSCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -948,13 +964,6 @@
 				DF5A09701F7D5EAF00CF5410 /* Info.plist */,
 			);
 			path = FSCalendar;
-		0FB863701F7DEDBB004077A6 /* YYPlaceholderTextView */ = {
-			isa = PBXGroup;
-			children = (
-				0FB863711F7DEDBB004077A6 /* YYPlaceholderTextView.h */,
-				0FB863721F7DEDBB004077A6 /* YYPlaceholderTextView.m */,
-			);
-			path = YYPlaceholderTextView;
 			sourceTree = "<group>";
 		};
 		DF87A1AE1F781B7700EF0461 = {
@@ -964,6 +973,7 @@
 				DF87A1D31F781B7700EF0461 /* LSKJChartTests */,
 				DF87A1DE1F781B7700EF0461 /* LSKJChartUITests */,
 				DF87A1B81F781B7700EF0461 /* Products */,
+				0FB69CF21F7E39F900AC31CA /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1075,8 +1085,8 @@
 		DF87A63D1F7820A700EF0461 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				0FB69CF31F7E3A0F00AC31CA /* YYPlaceholderTextView */,
 				DF5A094F1F7D5EAF00CF5410 /* FSCalendar */,
-				0FB863701F7DEDBB004077A6 /* YYPlaceholderTextView */,
 				0F83147A1F7B40BC008A9E22 /* YYModel */,
 				DFF015A41F7AC25F00527CFA /* MBProgressHUD */,
 				DFF015AB1F7AC25F00527CFA /* MJRefresh */,
@@ -2304,6 +2314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FB69CF61F7E3A5000AC31CA /* YYPlaceholderTextView.m in Sources */,
 				DFF015991F7AC15700527CFA /* EaseBubbleView.m in Sources */,
 				DF5A09761F7D5EAF00CF5410 /* FSCalendarCollectionView.m in Sources */,
 				DFF0154F1F7AC15700527CFA /* MWCaptionView.m in Sources */,
@@ -2315,7 +2326,6 @@
 				DFF015DA1F7AC25F00527CFA /* BlocMBProgressHUD.m in Sources */,
 				DFF015971F7AC15700527CFA /* EaseBubbleView+Video.m in Sources */,
 				DFF015891F7AC15700527CFA /* EaseMessageViewController.m in Sources */,
-				0FB863731F7DEDBB004077A6 /* YYPlaceholderTextView.m in Sources */,
 				DFF0156B1F7AC15700527CFA /* PSTCollectionViewController.m in Sources */,
 				DFF015EA1F7AC25F00527CFA /* MJRefreshStateHeader.m in Sources */,
 				DFF015331F7AC15700527CFA /* EMCDDeviceManager+Remind.m in Sources */,
