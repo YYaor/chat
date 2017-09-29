@@ -110,6 +110,7 @@
         if (indexPath.row == 0) {
             LSMineCardController *cardController = [[LSMineCardController alloc]init];
             cardController.user = [[LSUserModel alloc]init];
+            cardController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:cardController animated:YES];
         }
     }
@@ -119,10 +120,13 @@
         }
         if (indexPath.row == 1) {
             LSMineFeedbackController *feedbackController = [[LSMineFeedbackController alloc]init];
+            feedbackController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:feedbackController animated:YES];
         }
         if (indexPath.row == 2) {
             LSMineSettingController *settingController =  [[LSMineSettingController alloc]init];
+            settingController.hidesBottomBarWhenPushed = YES;
+
             [self.navigationController pushViewController:settingController animated:YES];
         }
     }

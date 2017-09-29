@@ -59,6 +59,7 @@
 
 -(void)headClick{
     LSMineUserSettingController *userSettingController = [[LSMineUserSettingController alloc]init];
+    userSettingController.hidesBottomBarWhenPushed = YES;
     [[self.controller navigationController] pushViewController:userSettingController animated:YES];
 }
 
