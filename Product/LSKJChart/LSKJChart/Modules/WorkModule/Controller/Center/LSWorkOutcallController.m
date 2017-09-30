@@ -85,6 +85,40 @@
     return result;
 }
 
+//- (BOOL)isToday:(NSDate *)date
+//{
+//    BOOL result = NO;
+//    
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy-MM-dd"];
+//    
+//    NSDate *nowDate = [self changDateForUTCWithDate:[NSDate date]];
+//    NSDate *compareDate = [self changDateForUTCWithDate:date];
+//    
+//    if ([[[formatter stringFromDate:nowDate] componentsSeparatedByString:@"-"][0] isEqualToString:[[formatter stringFromDate:compareDate] componentsSeparatedByString:@"-"][0]] && [[[formatter stringFromDate:nowDate] componentsSeparatedByString:@"-"][1] isEqualToString:[[formatter stringFromDate:compareDate] componentsSeparatedByString:@"-"][1]] && [[[formatter stringFromDate:nowDate] componentsSeparatedByString:@"-"][2] isEqualToString:[[formatter stringFromDate:compareDate] componentsSeparatedByString:@"-"][2]])
+//    {
+//        result = YES;
+//    }
+//    
+//    return result;
+//}
+
+//上一月按钮点击事件
+- (void)previousClicked:(id)sender {
+    
+    NSDate *currentMonth = self.calendar.currentPage;
+    NSDate *previousMonth = [self.calendar dateBySubstractingMonths:1 fromDate:currentMonth];
+    [self.calendar setCurrentPage:previousMonth animated:YES];
+}
+
+//下一月按钮点击事件
+- (void)nextClicked:(id)sender {
+    
+    NSDate *currentMonth = self.calendar.currentPage;
+    NSDate *nextMonth = [self.calendar dateByAddingMonths:1 toDate:currentMonth];
+    [self.calendar setCurrentPage:nextMonth animated:YES];
+}
+
 #pragma mark - FSCalendarDelegate
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
@@ -115,12 +149,18 @@
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
     [calendar deselectDate:date];
+//    [self calendar:calendar didDeselectDate:date atMonthPosition:monthPosition];
     
-    LSWorkOutcallListController *vc = [[LSWorkOutcallListController alloc] initWithNibName:@"LSWorkOutcallListController" bundle:nil];
-    vc.date = [self changDateForUTCWithDate:date];
-    [self.navigationController pushViewController:vc animated:YES];
+//    LSWorkOutcallListController *vc = [[LSWorkOutcallListController alloc] initWithNibName:@"LSWorkOutcallListController" bundle:nil];
+//    vc.date = [self changDateForUTCWithDate:date];
+//    [self.navigationController pushViewController:vc animated:YES];
     
 }
+
+//- (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
+//{
+//    
+//}
 
 
 - (void)calendar:(FSCalendar *)calendar willDisplayCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
@@ -149,12 +189,29 @@
         _calendar.appearance.weekdayTextColor = [UIColor colorFromHexString:LSDARKGRAYCOLOR];
         _calendar.appearance.titleDefaultColor = [UIColor blackColor];
         _calendar.appearance.todayColor = [UIColor colorFromHexString:LSGREENCOLOR];
-        _calendar.appearance.todaySelectionColor = [UIColor whiteColor];
+        _calendar.appearance.todaySelectionColor = [UIColor colorFromHexString:LSGREENCOLOR];
         _calendar.appearance.selectionColor = [UIColor clearColor];
-        _calendar.appearance.titleSelectionColor = [UIColor blackColor];
+//        _calendar.appearance.titleSelectionColor = [UIColor blackColor];
         _calendar.appearance.titlePlaceholderColor = [UIColor colorFromHexString:LSDARKGRAYCOLOR];
         _calendar.delegate = self;
         _calendar.dataSource = self;
+        
+        UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        previousButton.frame = CGRectMake(10, 13, 6.5, 13);
+        previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
+//        [previousButton setImage:[UIImage imageNamed:@"backicon"] forState:UIControlStateNormal];
+        previousButton.backgroundColor = [UIColor redColor];
+        [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [_calendar addSubview:previousButton];
+        
+        UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        nextButton.frame = CGRectMake(LSSCREENWIDTH-10, 13, 6.5, 13);
+        nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
+//        [nextButton setImage:[UIImage imageNamed:@"backicon"] forState:UIControlStateNormal];
+        nextButton.backgroundColor = [UIColor redColor];
+        nextButton.imageView.transform = CGAffineTransformMakeRotation(M_PI);
+        [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [_calendar addSubview:nextButton];
         
     }
     return _calendar;
