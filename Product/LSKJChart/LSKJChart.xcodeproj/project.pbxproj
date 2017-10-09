@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F3E622A1F8B468B00A19FF2 /* LSChoosePatientController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E62281F8B468B00A19FF2 /* LSChoosePatientController.m */; };
+		0F3E622B1F8B468B00A19FF2 /* LSChoosePatientController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F3E62291F8B468B00A19FF2 /* LSChoosePatientController.xib */; };
+		0F3E622F1F8B475E00A19FF2 /* YYSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E622E1F8B475E00A19FF2 /* YYSearchBar.m */; };
+		0F3E62321F8B482000A19FF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F3E62311F8B482000A19FF2 /* CoreGraphics.framework */; };
+		0F3E62341F8B487000A19FF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F3E62331F8B487000A19FF2 /* UIKit.framework */; };
+		0F3E62371F8B4F9500A19FF2 /* LSPatientListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E62361F8B4F9500A19FF2 /* LSPatientListCell.m */; };
+		0F3E623A1F8B51EE00A19FF2 /* LSPatientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E62391F8B51EE00A19FF2 /* LSPatientModel.m */; };
 		0F48A3201F7CF63000E05C64 /* LSMineFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F48A31E1F7CF63000E05C64 /* LSMineFeedbackController.m */; };
 		0F48A3211F7CF63000E05C64 /* LSMineFeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F48A31F1F7CF63000E05C64 /* LSMineFeedbackController.xib */; };
 		0F6E10861F7B799600C2477B /* LSMineNewPswController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E10841F7B799600C2477B /* LSMineNewPswController.m */; };
@@ -303,6 +310,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F3E62271F8B468B00A19FF2 /* LSChoosePatientController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSChoosePatientController.h; sourceTree = "<group>"; };
+		0F3E62281F8B468B00A19FF2 /* LSChoosePatientController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSChoosePatientController.m; sourceTree = "<group>"; };
+		0F3E62291F8B468B00A19FF2 /* LSChoosePatientController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSChoosePatientController.xib; sourceTree = "<group>"; };
+		0F3E622D1F8B475E00A19FF2 /* YYSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYSearchBar.h; sourceTree = "<group>"; };
+		0F3E622E1F8B475E00A19FF2 /* YYSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYSearchBar.m; sourceTree = "<group>"; };
+		0F3E62311F8B482000A19FF2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0F3E62331F8B487000A19FF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0F3E62351F8B4F9500A19FF2 /* LSPatientListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSPatientListCell.h; path = LSKJChart/Modules/ManageModule/Controller/LSPatientListCell.h; sourceTree = SOURCE_ROOT; };
+		0F3E62361F8B4F9500A19FF2 /* LSPatientListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSPatientListCell.m; path = LSKJChart/Modules/ManageModule/Controller/LSPatientListCell.m; sourceTree = SOURCE_ROOT; };
+		0F3E62381F8B51EE00A19FF2 /* LSPatientModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSPatientModel.h; path = LSKJChart/Modules/ManageModule/Controller/LSPatientModel.h; sourceTree = SOURCE_ROOT; };
+		0F3E62391F8B51EE00A19FF2 /* LSPatientModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSPatientModel.m; path = LSKJChart/Modules/ManageModule/Controller/LSPatientModel.m; sourceTree = SOURCE_ROOT; };
 		0F48A31D1F7CF63000E05C64 /* LSMineFeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineFeedbackController.h; sourceTree = "<group>"; };
 		0F48A31E1F7CF63000E05C64 /* LSMineFeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineFeedbackController.m; sourceTree = "<group>"; };
 		0F48A31F1F7CF63000E05C64 /* LSMineFeedbackController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMineFeedbackController.xib; sourceTree = "<group>"; };
@@ -829,6 +847,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F3E62341F8B487000A19FF2 /* UIKit.framework in Frameworks */,
+				0F3E62321F8B482000A19FF2 /* CoreGraphics.framework in Frameworks */,
 				DFF015F91F7B41CD00527CFA /* HyphenateLite.framework in Frameworks */,
 				DFF015381F7AC15700527CFA /* libopencore-amrnb.a in Frameworks */,
 				DFF015391F7AC15700527CFA /* libopencore-amrwb.a in Frameworks */,
@@ -852,6 +872,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F3E622C1F8B475E00A19FF2 /* YYSearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				0F3E622D1F8B475E00A19FF2 /* YYSearchBar.h */,
+				0F3E622E1F8B475E00A19FF2 /* YYSearchBar.m */,
+			);
+			path = YYSearchBar;
+			sourceTree = "<group>";
+		};
+		0F3E62301F8B482000A19FF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0F3E62331F8B487000A19FF2 /* UIKit.framework */,
+				0F3E62311F8B482000A19FF2 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0F83147A1F7B40BC008A9E22 /* YYModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -989,6 +1027,7 @@
 				DF87A1DE1F781B7700EF0461 /* LSKJChartUITests */,
 				DF87A1B81F781B7700EF0461 /* Products */,
 				0FB69CF21F7E39F900AC31CA /* Recovered References */,
+				0F3E62301F8B482000A19FF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1100,6 +1139,7 @@
 		DF87A63D1F7820A700EF0461 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				0F3E622C1F8B475E00A19FF2 /* YYSearchBar */,
 				0FB69CF31F7E3A0F00AC31CA /* YYPlaceholderTextView */,
 				DF5A094F1F7D5EAF00CF5410 /* FSCalendar */,
 				0F83147A1F7B40BC008A9E22 /* YYModel */,
@@ -1351,6 +1391,9 @@
 				DF87A7E81F78361D00EF0461 /* LSManageController.h */,
 				DF87A7E91F78361D00EF0461 /* LSManageController.m */,
 				DF87A7EA1F78361D00EF0461 /* LSManageController.xib */,
+				0F3E62271F8B468B00A19FF2 /* LSChoosePatientController.h */,
+				0F3E62281F8B468B00A19FF2 /* LSChoosePatientController.m */,
+				0F3E62291F8B468B00A19FF2 /* LSChoosePatientController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1358,6 +1401,8 @@
 		DF87A7CB1F78358300EF0461 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0F3E62381F8B51EE00A19FF2 /* LSPatientModel.h */,
+				0F3E62391F8B51EE00A19FF2 /* LSPatientModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1365,6 +1410,8 @@
 		DF87A7CC1F78358300EF0461 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0F3E62351F8B4F9500A19FF2 /* LSPatientListCell.h */,
+				0F3E62361F8B4F9500A19FF2 /* LSPatientListCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2309,6 +2356,7 @@
 				DF87A7E71F7835FE00EF0461 /* LSMessageController.xib in Resources */,
 				DF87A7BA1F782DE000EF0461 /* IQKeyboardManager.bundle in Resources */,
 				DF87A7C31F782F0700EF0461 /* LSLoginController.xib in Resources */,
+				0F3E622B1F8B468B00A19FF2 /* LSChoosePatientController.xib in Resources */,
 				0F6E10871F7B799600C2477B /* LSMineNewPswController.xib in Resources */,
 				DF87A6401F7820A700EF0461 /* LaunchScreen.storyboard in Resources */,
 				DFFD8EE11F7C377B00FF0ECD /* LSWorkAdviceController.xib in Resources */,
@@ -2351,6 +2399,7 @@
 				DFF015E81F7AC25F00527CFA /* MJRefreshGifHeader.m in Sources */,
 				DFF0157B1F7AC15700527CFA /* NSDateFormatter+Category.m in Sources */,
 				DFF015DA1F7AC25F00527CFA /* BlocMBProgressHUD.m in Sources */,
+				0F3E623A1F8B51EE00A19FF2 /* LSPatientModel.m in Sources */,
 				DFF015971F7AC15700527CFA /* EaseBubbleView+Video.m in Sources */,
 				DFF015891F7AC15700527CFA /* EaseMessageViewController.m in Sources */,
 				DFF0156B1F7AC15700527CFA /* PSTCollectionViewController.m in Sources */,
@@ -2456,6 +2505,7 @@
 				DF87A7B01F782DE000EF0461 /* IQUIViewController+Additions.m in Sources */,
 				DFF015911F7AC15700527CFA /* EaseMessageTimeCell.m in Sources */,
 				DFF015931F7AC15700527CFA /* EaseBubbleView+Gif.m in Sources */,
+				0F3E622F1F8B475E00A19FF2 /* YYSearchBar.m in Sources */,
 				DF87A6B71F7827E200EF0461 /* MASLayoutConstraint.m in Sources */,
 				DFF015DF1F7AC25F00527CFA /* MJRefreshComponent.m in Sources */,
 				DF87A8191F78BC0700EF0461 /* LSNetworkTool.m in Sources */,
@@ -2510,6 +2560,7 @@
 				DFF0155E1F7AC15700527CFA /* EMSDWebImagePrefetcher.m in Sources */,
 				DF87A6B01F7827E200EF0461 /* AFURLResponseSerialization.m in Sources */,
 				DF87A7B31F782DE000EF0461 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				0F3E622A1F8B468B00A19FF2 /* LSChoosePatientController.m in Sources */,
 				DFF015861F7AC15700527CFA /* FixFopen.m in Sources */,
 				DFF0159E1F7AC15700527CFA /* EaseFaceView.m in Sources */,
 				0FB200EC1F7A5294005BC289 /* LSMineListCell.m in Sources */,
@@ -2541,6 +2592,7 @@
 				DFF015DD1F7AC25F00527CFA /* MJRefreshAutoFooter.m in Sources */,
 				DFF0158F1F7AC15700527CFA /* EaseCustomMessageCell.m in Sources */,
 				DFF0156F1F7AC15700527CFA /* PSTCollectionViewLayout.m in Sources */,
+				0F3E62371F8B4F9500A19FF2 /* LSPatientListCell.m in Sources */,
 				DFF015791F7AC15700527CFA /* EaseUserModel.m in Sources */,
 				0FB200E01F78F463005BC289 /* LSRegisterController.m in Sources */,
 				DFF015921F7AC15700527CFA /* EaseBubbleView+File.m in Sources */,
