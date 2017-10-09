@@ -61,6 +61,10 @@
 		DF5A09811F7D5EAF00CF5410 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09701F7D5EAF00CF5410 /* Info.plist */; };
 		DF5A09851F7D604C00CF5410 /* LSWorkOutcallController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */; };
 		DF5A09861F7D604C00CF5410 /* LSWorkOutcallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */; };
+		DF81C2461F84C43700D4D851 /* LSWorkOutcallListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF81C2441F84C43700D4D851 /* LSWorkOutcallListCell.m */; };
+		DF81C2471F84C43700D4D851 /* LSWorkOutcallListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF81C2451F84C43700D4D851 /* LSWorkOutcallListCell.xib */; };
+		DF81C24B1F8A0D9E00D4D851 /* LSWorkOutcallAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF81C2491F8A0D9E00D4D851 /* LSWorkOutcallAddController.m */; };
+		DF81C24C1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF81C24A1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib */; };
 		DF87A1D51F781B7700EF0461 /* LSKJChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */; };
 		DF87A1E01F781B7700EF0461 /* LSKJChartUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A1DF1F781B7700EF0461 /* LSKJChartUITests.m */; };
 		DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A6331F7820A700EF0461 /* AppDelegate.m */; };
@@ -125,6 +129,8 @@
 		DF87A8191F78BC0700EF0461 /* LSNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A8181F78BC0700EF0461 /* LSNetworkTool.m */; };
 		DF87A8221F78C92E00EF0461 /* LSDataPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A8211F78C92E00EF0461 /* LSDataPickerView.m */; };
 		DF87A8261F78DB4100EF0461 /* LSDataPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF87A8251F78DB4100EF0461 /* LSDataPickerView.xib */; };
+		DF87ABF71F83EBD60080AACA /* LSWorkOutcallListController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87ABF51F83EBD60080AACA /* LSWorkOutcallListController.m */; };
+		DF87ABF81F83EBD70080AACA /* LSWorkOutcallListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF87ABF61F83EBD60080AACA /* LSWorkOutcallListController.xib */; };
 		DFF010B11F7AB4FA00527CFA /* LSMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF010B01F7AB4FA00527CFA /* LSMineHeaderView.m */; };
 		DFF0152C1F7AC15700527CFA /* EaseUI.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF014071F7AC15700527CFA /* EaseUI.m */; };
 		DFF0152D1F7AC15700527CFA /* EaseUI.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DFF014081F7AC15700527CFA /* EaseUI.podspec */; };
@@ -395,6 +401,12 @@
 		DF5A09821F7D604C00CF5410 /* LSWorkOutcallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkOutcallController.h; sourceTree = "<group>"; };
 		DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkOutcallController.m; sourceTree = "<group>"; };
 		DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkOutcallController.xib; sourceTree = "<group>"; };
+		DF81C2431F84C43700D4D851 /* LSWorkOutcallListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkOutcallListCell.h; sourceTree = "<group>"; };
+		DF81C2441F84C43700D4D851 /* LSWorkOutcallListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkOutcallListCell.m; sourceTree = "<group>"; };
+		DF81C2451F84C43700D4D851 /* LSWorkOutcallListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkOutcallListCell.xib; sourceTree = "<group>"; };
+		DF81C2481F8A0D9E00D4D851 /* LSWorkOutcallAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkOutcallAddController.h; sourceTree = "<group>"; };
+		DF81C2491F8A0D9E00D4D851 /* LSWorkOutcallAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkOutcallAddController.m; sourceTree = "<group>"; };
+		DF81C24A1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkOutcallAddController.xib; sourceTree = "<group>"; };
 		DF87A1B71F781B7700EF0461 /* LSKJChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSKJChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D01F781B7700EF0461 /* LSKJChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LSKJChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A1D41F781B7700EF0461 /* LSKJChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSKJChartTests.m; sourceTree = "<group>"; };
@@ -525,6 +537,9 @@
 		DF87A8201F78C92E00EF0461 /* LSDataPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDataPickerView.h; sourceTree = "<group>"; };
 		DF87A8211F78C92E00EF0461 /* LSDataPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDataPickerView.m; sourceTree = "<group>"; };
 		DF87A8251F78DB4100EF0461 /* LSDataPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSDataPickerView.xib; sourceTree = "<group>"; };
+		DF87ABF41F83EBD60080AACA /* LSWorkOutcallListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkOutcallListController.h; sourceTree = "<group>"; };
+		DF87ABF51F83EBD60080AACA /* LSWorkOutcallListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkOutcallListController.m; sourceTree = "<group>"; };
+		DF87ABF61F83EBD60080AACA /* LSWorkOutcallListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkOutcallListController.xib; sourceTree = "<group>"; };
 		DFF010AF1F7AB4FA00527CFA /* LSMineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineHeaderView.h; sourceTree = "<group>"; };
 		DFF010B01F7AB4FA00527CFA /* LSMineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineHeaderView.m; sourceTree = "<group>"; };
 		DFF014051F7AC15700527CFA /* EaseUI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseUI-Prefix.pch"; sourceTree = "<group>"; };
@@ -2077,6 +2092,12 @@
 				DF5A09821F7D604C00CF5410 /* LSWorkOutcallController.h */,
 				DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */,
 				DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */,
+				DF87ABF41F83EBD60080AACA /* LSWorkOutcallListController.h */,
+				DF87ABF51F83EBD60080AACA /* LSWorkOutcallListController.m */,
+				DF87ABF61F83EBD60080AACA /* LSWorkOutcallListController.xib */,
+				DF81C2481F8A0D9E00D4D851 /* LSWorkOutcallAddController.h */,
+				DF81C2491F8A0D9E00D4D851 /* LSWorkOutcallAddController.m */,
+				DF81C24A1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -2116,6 +2137,9 @@
 		DFFD8ECC1F7C236100FF0ECD /* Center */ = {
 			isa = PBXGroup;
 			children = (
+				DF81C2431F84C43700D4D851 /* LSWorkOutcallListCell.h */,
+				DF81C2441F84C43700D4D851 /* LSWorkOutcallListCell.m */,
+				DF81C2451F84C43700D4D851 /* LSWorkOutcallListCell.xib */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -2264,8 +2288,10 @@
 				DF87A7DD1F7835A500EF0461 /* LSWorkController.xib in Resources */,
 				DF5A093A1F7D473D00CF5410 /* LSWorkTailController.xib in Resources */,
 				DFFD8ED21F7C236100FF0ECD /* LSWorkUnreplyCell.xib in Resources */,
+				DF81C2471F84C43700D4D851 /* LSWorkOutcallListCell.xib in Resources */,
 				DFF015EB1F7AC25F00527CFA /* MJRefresh.bundle in Resources */,
 				DF5A09811F7D5EAF00CF5410 /* Info.plist in Resources */,
+				DF87ABF81F83EBD70080AACA /* LSWorkOutcallListController.xib in Resources */,
 				DF87A63F1F7820A700EF0461 /* Assets.xcassets in Resources */,
 				DF5A09491F7D50E300CF5410 /* LSWorkTailDetailUserCell.xib in Resources */,
 				DF87A6B31F7827E200EF0461 /* Info.plist in Resources */,
@@ -2275,6 +2301,7 @@
 				DF5A09861F7D604C00CF5410 /* LSWorkOutcallController.xib in Resources */,
 				DF5A09441F7D502F00CF5410 /* LSWorkTailDetailController.xib in Resources */,
 				DF5A094E1F7D526E00CF5410 /* LSWorkTailDetailCell.xib in Resources */,
+				DF81C24C1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib in Resources */,
 				0F6E10911F7B79B800C2477B /* LSMineCardController.xib in Resources */,
 				0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */,
 				DF87A8261F78DB4100EF0461 /* LSDataPickerView.xib in Resources */,
@@ -2343,6 +2370,7 @@
 				DF87A7AD1F782DE000EF0461 /* IQUIScrollView+Additions.m in Sources */,
 				0F6E10861F7B799600C2477B /* LSMineNewPswController.m in Sources */,
 				DF5A097D1F7D5EAF00CF5410 /* FSCalendarScopeHandle.m in Sources */,
+				DF81C24B1F8A0D9E00D4D851 /* LSWorkOutcallAddController.m in Sources */,
 				DFF015341F7AC15700527CFA /* EMCDDeviceManagerBase.m in Sources */,
 				DFF0157E1F7AC15700527CFA /* UIViewController+HUD.m in Sources */,
 				DFF015741F7AC15700527CFA /* PSTGridLayoutSection.m in Sources */,
@@ -2398,6 +2426,7 @@
 				DFF015781F7AC15700527CFA /* EaseMessageModel.m in Sources */,
 				DFF015E31F7AC25F00527CFA /* MJRefreshAutoNormalFooter.m in Sources */,
 				DF87A8221F78C92E00EF0461 /* LSDataPickerView.m in Sources */,
+				DF87ABF71F83EBD60080AACA /* LSWorkOutcallListController.m in Sources */,
 				DFF015361F7AC15700527CFA /* wav.mm in Sources */,
 				DFF0156C1F7AC15700527CFA /* PSTCollectionViewData.m in Sources */,
 				DF87A6B41F7827E200EF0461 /* MASCompositeConstraint.m in Sources */,
@@ -2461,6 +2490,7 @@
 				DF87A7831F782D1300EF0461 /* RKDropdownAlert.m in Sources */,
 				DFF0155B1F7AC15700527CFA /* EMSDWebImageDownloader.m in Sources */,
 				DFF0158E1F7AC15700527CFA /* EaseBaseMessageCell.m in Sources */,
+				DF81C2461F84C43700D4D851 /* LSWorkOutcallListCell.m in Sources */,
 				DF5A09731F7D5EAF00CF5410 /* FSCalendarAppearance.m in Sources */,
 				DF87A6F01F782A8E00EF0461 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				DFF010B11F7AB4FA00527CFA /* LSMineHeaderView.m in Sources */,

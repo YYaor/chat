@@ -8,9 +8,12 @@
 
 #import "LSWorkOutcallController.h"
 
+#import "LSWorkOutcallListController.h"
+
 @interface LSWorkOutcallController () <FSCalendarDelegate, FSCalendarDataSource>
 
 @property (nonatomic, strong) FSCalendar *calendar;
+@property (nonatomic, strong) NSMutableArray *dataArr;
 
 @end
 
@@ -27,10 +30,107 @@
 {
     self.navigationItem.title = @"出诊记录";
     
+    self.dataArr = [NSMutableArray array];
+    
     [self.view addSubview:self.calendar];
 }
 
+- (NSDate *)changDateForUTCWithDate:(NSDate *)date
+{
+    //设置源日期时区
+    NSTimeZone *sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];//或GMT
+    //设置转换后的目标日期时区
+    NSTimeZone *destinationTimeZone = [NSTimeZone localTimeZone];
+    //得到源日期与世界标准时间的偏移量
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:date];
+    //目标日期与本地时区的偏移量
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:date];
+    //得到时间偏移量的差值
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    //转为现在时间
+    NSDate *destinationDateNow = [[NSDate alloc] initWithTimeInterval:interval sinceDate:date];
+    
+    return destinationDateNow;
+}
+
+- (NSComparisonResult)isBiggerThanToday:(NSDate *)date
+{
+    //转为现在时间
+    NSDate *nowDate = [self changDateForUTCWithDate:[NSDate date]];
+    NSDate *compareDate = [self changDateForUTCWithDate:date];
+
+    NSComparisonResult result = [compareDate compare:nowDate];
+    
+    return result;
+}
+
+- (BOOL)isCurrentMonth:(NSDate *)date
+{
+    BOOL result = YES;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM"];
+    
+    NSDate *nowDate = [self changDateForUTCWithDate:[NSDate date]];
+    NSDate *compareDate = [self changDateForUTCWithDate:date];
+    
+    NSInteger nowMonth = [[[formatter stringFromDate:nowDate] componentsSeparatedByString:@"-"][1] integerValue];
+    NSInteger compareMonth = [[[formatter stringFromDate:compareDate] componentsSeparatedByString:@"-"][1] integerValue];
+    
+    if (nowMonth != compareMonth)
+    {
+        result = NO;
+    }
+    
+    return result;
+}
+
 #pragma mark - FSCalendarDelegate
+
+- (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
+{
+    FSCalendarCell *cell = [calendar cellForDate:date atMonthPosition:monthPosition];
+    
+    if ([cell.titleLabel.textColor isEqual:[UIColor colorFromHexString:LSDARKGRAYCOLOR]])
+    {
+        return NO;
+    }
+    
+    return YES;
+    
+//    if ([self isBiggerThanToday:date] > 0)
+//    {
+//        return NO;
+//    }
+//    else if ([self isCurrentMonth:date])
+//    {
+//        return YES;
+//    }
+//    else
+//    {
+//        return NO;
+//    }
+}
+
+- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
+{
+    [calendar deselectDate:date];
+    
+    LSWorkOutcallListController *vc = [[LSWorkOutcallListController alloc] initWithNibName:@"LSWorkOutcallListController" bundle:nil];
+    vc.date = [self changDateForUTCWithDate:date];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+
+- (void)calendar:(FSCalendar *)calendar willDisplayCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
+{
+    if ([self isBiggerThanToday:date] > 0)
+    {
+        cell.titleLabel.textColor = [UIColor colorFromHexString:LSDARKGRAYCOLOR];
+    }
+
+}
 
 #pragma mark - FSCalendarDataSource
 
@@ -47,9 +147,12 @@
         _calendar.appearance.headerMinimumDissolvedAlpha = 0;
         _calendar.appearance.headerTitleColor = [UIColor blackColor];
         _calendar.appearance.weekdayTextColor = [UIColor colorFromHexString:LSDARKGRAYCOLOR];
+        _calendar.appearance.titleDefaultColor = [UIColor blackColor];
         _calendar.appearance.todayColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        _calendar.appearance.todaySelectionColor = [UIColor whiteColor];
         _calendar.appearance.selectionColor = [UIColor clearColor];
         _calendar.appearance.titleSelectionColor = [UIColor blackColor];
+        _calendar.appearance.titlePlaceholderColor = [UIColor colorFromHexString:LSDARKGRAYCOLOR];
         _calendar.delegate = self;
         _calendar.dataSource = self;
         
