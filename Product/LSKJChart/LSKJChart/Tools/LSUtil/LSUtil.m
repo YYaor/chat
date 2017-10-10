@@ -7,7 +7,6 @@
 //
 
 #import "LSUtil.h"
-#import "LSPatientModel.h"
 
 @implementation LSUtil
 
@@ -46,7 +45,7 @@
             if (addressBookDict[firstLetterString])
             {
                 
-                [addressBookDict[firstLetterString] setValue:model.name forKey:[NSString stringWithFormat:@"%@,%@",model.sex,model.age]];
+                [addressBookDict[firstLetterString] setValue:model.name forKey:model.name];
             }
             //没有出现过该首字母，则在字典中新增一组key-value
             else
@@ -55,7 +54,7 @@
                 //A：{158：李四，122：张三}
                 NSMutableDictionary * dicPerson = [[NSMutableDictionary alloc] init];
                 
-                [dicPerson setValue:model.name forKey:[NSString stringWithFormat:@"%@,%@",model.sex,model.age]];
+                [dicPerson setValue:model.name forKey:model.name];
 
                 
                 [addressBookDict setValue:dicPerson forKey:firstLetterString];
@@ -79,22 +78,16 @@
                 NSString *tell = dataKey[j];
                 NSString *name = [dataDic objectForKey:tell];
                 NSMutableDictionary *dicPer = [[NSMutableDictionary alloc] init];
-//                [dicPer setValue:tell forKey:@"tel"];
-                NSArray *infoArr = [tell componentsSeparatedByString:@","];
-                
-                [dicPer setValue:[infoArr firstObject] forKey:@"sex"];
-                [dicPer setValue:[infoArr lastObject] forKey:@"age"];
                 [dicPer setValue:name forKey:@"name"];
                 
-                LSPatientModel *model = [LSPatientModel yy_modelWithDictionary:dicPer];
                 if (OKaddressBookDict[mainkey]) {
                     
-                    [OKaddressBookDict[mainkey] addObject:model];
+                    [OKaddressBookDict[mainkey] addObject:dicPer];
                     
                 }else{
                     NSMutableArray *oKarrGroupNames = [[NSMutableArray alloc]init];
                     
-                    [oKarrGroupNames addObject:model];
+                    [oKarrGroupNames addObject:dicPer];
                     
                     [OKaddressBookDict setValue:oKarrGroupNames forKey:mainkey];
                     

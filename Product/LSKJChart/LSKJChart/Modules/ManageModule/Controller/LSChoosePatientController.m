@@ -20,11 +20,12 @@
 @property (nonatomic,strong)NSMutableArray *sectionArray;
 
 @property (nonatomic,strong)NSMutableDictionary *dataDic;
-
+//搜索数组
 @property (nonatomic,strong)NSMutableArray *searchArray;
-
+//服务器返回数组
 @property (nonatomic,strong)NSMutableArray *dataArray;
-
+//整理后的数组
+@property (nonatomic,strong)NSMutableArray *orderArray;
 @end
 
 @implementation LSChoosePatientController
@@ -69,16 +70,29 @@
     model3.sex = @"男";
 //    model3.age = @"15";
     
-   NSArray *modelArray = [NSArray arrayWithObjects:model1,model2,model3, nil];
+    LSPatientModel *model4 = [[LSPatientModel alloc]init];
+    model4.name = @"李四四";
+    model4.sex = @"女";
+    model4.age = @"134";
     
-    [LSUtil getOrderPatientList:modelArray patientListDictBlock:^(NSDictionary<NSString *,NSMutableDictionary *> *addressBookDict, NSArray *nameKeys) {
+    [self.dataArray addObjectsFromArray: [NSArray arrayWithObjects:model1,model2,model3,model4, nil]];
+    
+    [LSUtil getOrderPatientList:self.dataArray patientListDictBlock:^(NSDictionary<NSString *,NSMutableDictionary *> *addressBookDict, NSArray *nameKeys) {
         //得到排序后的数组
         [self.sectionArray addObjectsFromArray:nameKeys];
         self.dataDic = [[NSMutableDictionary alloc]initWithDictionary:addressBookDict];
         
-        //存起来方便搜索用
-        for (int i = 0; i < addressBookDict.allKeys.count; i ++) {
-           [self.dataArray addObjectsFromArray: [self.dataDic objectForKey:addressBookDict.allKeys[i]]];
+        for (int i = 0; i < nameKeys.count; i++) {
+          NSArray *nameArray = [self.dataDic objectForKey:nameKeys[i]];
+            NSMutableArray *rowArray = [[NSMutableArray alloc]init]; // 每个字母里面包含的数组
+            NSArray *selectArray = [NSArray array];
+            for (int j = 0; j < nameArray.count ; j++) {
+                NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"name == %@", [nameArray[j] objectForKey:@"name"]];
+                selectArray = [self.dataArray filteredArrayUsingPredicate:filterPredicate];
+                [rowArray addObjectsFromArray:selectArray];
+            }
+            [self.orderArray addObject:rowArray];
+
         }
         [self.dataTableView reloadData];
     }];
@@ -102,8 +116,7 @@
     if (self.searchBar.text.length > 0) {
         return self.searchArray.count;
     }else{
-        NSArray *dataArray = [self.dataDic objectForKey:self.sectionArray[section]];
-        return dataArray.count;
+        return [self.orderArray[section] count];
     }
 }
 
@@ -115,7 +128,7 @@
     if (self.searchBar.text.length > 0) {
         cell.model = self.searchArray[indexPath.row];
     }else{
-        NSArray *dataArray = [self.dataDic objectForKey:self.sectionArray[indexPath.section]];
+        NSArray *dataArray = self.orderArray[indexPath.section];
         cell.model = dataArray[indexPath.row];
     }
     
@@ -158,7 +171,7 @@
     if (self.searchBar.text.length > 0) {
         model = self.searchArray[indexPath.row];
     }else{
-        NSArray *dataArray = [self.dataDic objectForKey:self.sectionArray[indexPath.section]];
+        NSArray *dataArray = self.orderArray[indexPath.section];
         model = dataArray[indexPath.row];
     }
     model.isChoosed = !model.isChoosed;
@@ -206,6 +219,13 @@
         _sectionArray = [[NSMutableArray alloc] init];
     }
     return _sectionArray;
+}
+
+-(NSMutableArray *)orderArray{
+    if (!_orderArray) {
+        _orderArray = [[NSMutableArray alloc] init];
+    }
+    return _orderArray;
 }
 
 -(NSMutableArray *)searchArray{

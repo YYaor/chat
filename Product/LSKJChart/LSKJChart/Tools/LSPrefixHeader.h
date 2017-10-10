@@ -49,5 +49,8 @@
 #import "YYModel.h"
 //日历
 #import "FSCalendar.h"
+//环信
+#import <HyphenateLite/HyphenateLite.h>
+#import "EaseUI.h"
 
 #endif /* LSPrefixHeader_h */
