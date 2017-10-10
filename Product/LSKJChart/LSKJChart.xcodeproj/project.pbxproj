@@ -22,6 +22,13 @@
 		0F3E62811F8C716A00A19FF2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F3E62801F8C716A00A19FF2 /* CoreVideo.framework */; };
 		0F3E62831F8C717400A19FF2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F3E62821F8C717400A19FF2 /* QuartzCore.framework */; };
 		0F3E62EF1F8C756200A19FF2 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F3E62D91F8C756200A19FF2 /* libzbar.a */; };
+		0F3E63211F8C788600A19FF2 /* UIImage+ImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E63141F8C788600A19FF2 /* UIImage+ImageSize.m */; };
+		0F3E63221F8C788600A19FF2 /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0F3E63151F8C788600A19FF2 /* SGQRCode.bundle */; };
+		0F3E63231F8C788600A19FF2 /* SGQRCodeAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E63181F8C788600A19FF2 /* SGQRCodeAlbumManager.m */; };
+		0F3E63241F8C788600A19FF2 /* SGQRCodeGenerateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E631A1F8C788600A19FF2 /* SGQRCodeGenerateManager.m */; };
+		0F3E63251F8C788600A19FF2 /* SGQRCodeHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E631C1F8C788600A19FF2 /* SGQRCodeHelperTool.m */; };
+		0F3E63261F8C788600A19FF2 /* SGQRCodeScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E631E1F8C788600A19FF2 /* SGQRCodeScanManager.m */; };
+		0F3E63271F8C788600A19FF2 /* SGQRCodeScanningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E63201F8C788600A19FF2 /* SGQRCodeScanningView.m */; };
 		0F48A3201F7CF63000E05C64 /* LSMineFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F48A31E1F7CF63000E05C64 /* LSMineFeedbackController.m */; };
 		0F48A3211F7CF63000E05C64 /* LSMineFeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F48A31F1F7CF63000E05C64 /* LSMineFeedbackController.xib */; };
 		0F6E10861F7B799600C2477B /* LSMineNewPswController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E10841F7B799600C2477B /* LSMineNewPswController.m */; };
@@ -357,6 +364,20 @@
 		0F3E62EC1F8C756200A19FF2 /* ZBarReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarReaderViewController.h; sourceTree = "<group>"; };
 		0F3E62ED1F8C756200A19FF2 /* ZBarSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarSDK.h; sourceTree = "<group>"; };
 		0F3E62EE1F8C756200A19FF2 /* ZBarSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarSymbol.h; sourceTree = "<group>"; };
+		0F3E63131F8C788600A19FF2 /* UIImage+ImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageSize.h"; sourceTree = "<group>"; };
+		0F3E63141F8C788600A19FF2 /* UIImage+ImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageSize.m"; sourceTree = "<group>"; };
+		0F3E63151F8C788600A19FF2 /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
+		0F3E63161F8C788600A19FF2 /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
+		0F3E63171F8C788600A19FF2 /* SGQRCodeAlbumManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeAlbumManager.h; sourceTree = "<group>"; };
+		0F3E63181F8C788600A19FF2 /* SGQRCodeAlbumManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeAlbumManager.m; sourceTree = "<group>"; };
+		0F3E63191F8C788600A19FF2 /* SGQRCodeGenerateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeGenerateManager.h; sourceTree = "<group>"; };
+		0F3E631A1F8C788600A19FF2 /* SGQRCodeGenerateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeGenerateManager.m; sourceTree = "<group>"; };
+		0F3E631B1F8C788600A19FF2 /* SGQRCodeHelperTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeHelperTool.h; sourceTree = "<group>"; };
+		0F3E631C1F8C788600A19FF2 /* SGQRCodeHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeHelperTool.m; sourceTree = "<group>"; };
+		0F3E631D1F8C788600A19FF2 /* SGQRCodeScanManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanManager.h; sourceTree = "<group>"; };
+		0F3E631E1F8C788600A19FF2 /* SGQRCodeScanManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanManager.m; sourceTree = "<group>"; };
+		0F3E631F1F8C788600A19FF2 /* SGQRCodeScanningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanningView.h; sourceTree = "<group>"; };
+		0F3E63201F8C788600A19FF2 /* SGQRCodeScanningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanningView.m; sourceTree = "<group>"; };
 		0F48A31D1F7CF63000E05C64 /* LSMineFeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineFeedbackController.h; sourceTree = "<group>"; };
 		0F48A31E1F7CF63000E05C64 /* LSMineFeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineFeedbackController.m; sourceTree = "<group>"; };
 		0F48A31F1F7CF63000E05C64 /* LSMineFeedbackController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMineFeedbackController.xib; sourceTree = "<group>"; };
@@ -977,6 +998,35 @@
 			path = zbar;
 			sourceTree = "<group>";
 		};
+		0F3E63111F8C788600A19FF2 /* SGQRCode */ = {
+			isa = PBXGroup;
+			children = (
+				0F3E63121F8C788600A19FF2 /* Category */,
+				0F3E63151F8C788600A19FF2 /* SGQRCode.bundle */,
+				0F3E63161F8C788600A19FF2 /* SGQRCode.h */,
+				0F3E63171F8C788600A19FF2 /* SGQRCodeAlbumManager.h */,
+				0F3E63181F8C788600A19FF2 /* SGQRCodeAlbumManager.m */,
+				0F3E63191F8C788600A19FF2 /* SGQRCodeGenerateManager.h */,
+				0F3E631A1F8C788600A19FF2 /* SGQRCodeGenerateManager.m */,
+				0F3E631B1F8C788600A19FF2 /* SGQRCodeHelperTool.h */,
+				0F3E631C1F8C788600A19FF2 /* SGQRCodeHelperTool.m */,
+				0F3E631D1F8C788600A19FF2 /* SGQRCodeScanManager.h */,
+				0F3E631E1F8C788600A19FF2 /* SGQRCodeScanManager.m */,
+				0F3E631F1F8C788600A19FF2 /* SGQRCodeScanningView.h */,
+				0F3E63201F8C788600A19FF2 /* SGQRCodeScanningView.m */,
+			);
+			path = SGQRCode;
+			sourceTree = "<group>";
+		};
+		0F3E63121F8C788600A19FF2 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0F3E63131F8C788600A19FF2 /* UIImage+ImageSize.h */,
+				0F3E63141F8C788600A19FF2 /* UIImage+ImageSize.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		0F83147A1F7B40BC008A9E22 /* YYModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1226,6 +1276,7 @@
 		DF87A63D1F7820A700EF0461 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				0F3E63111F8C788600A19FF2 /* SGQRCode */,
 				0F3E62D81F8C756200A19FF2 /* ZBarSDK */,
 				0F3E622C1F8B475E00A19FF2 /* YYSearchBar */,
 				0FB69CF31F7E3A0F00AC31CA /* YYPlaceholderTextView */,
@@ -2448,6 +2499,7 @@
 				0F6E10871F7B799600C2477B /* LSMineNewPswController.xib in Resources */,
 				DF87A6401F7820A700EF0461 /* LaunchScreen.storyboard in Resources */,
 				DFFD8EE11F7C377B00FF0ECD /* LSWorkAdviceController.xib in Resources */,
+				0F3E63221F8C788600A19FF2 /* SGQRCode.bundle in Resources */,
 				DFFD8ED71F7C23C300FF0ECD /* LSWorkAppointController.xib in Resources */,
 				DF5A09351F7D413500CF5410 /* LSWorkAdviceDetailController.xib in Resources */,
 				DFF0152D1F7AC15700527CFA /* EaseUI.podspec in Resources */,
@@ -2481,6 +2533,7 @@
 				DFF015991F7AC15700527CFA /* EaseBubbleView.m in Sources */,
 				DF5A09761F7D5EAF00CF5410 /* FSCalendarCollectionView.m in Sources */,
 				DFF0154F1F7AC15700527CFA /* MWCaptionView.m in Sources */,
+				0F3E63271F8C788600A19FF2 /* SGQRCodeScanningView.m in Sources */,
 				DFF015501F7AC15700527CFA /* MWGridCell.m in Sources */,
 				DFF015901F7AC15700527CFA /* EaseMessageCell.m in Sources */,
 				DFF015851F7AC15700527CFA /* EaseEmotionManager.m in Sources */,
@@ -2501,6 +2554,7 @@
 				DF87A7B71F782DE000EF0461 /* IQTitleBarButtonItem.m in Sources */,
 				0F8314721F7B3BE3008A9E22 /* LSMineUserSettingController.m in Sources */,
 				0F8314801F7B40BC008A9E22 /* NSObject+YYModel.m in Sources */,
+				0F3E63211F8C788600A19FF2 /* UIImage+ImageSize.m in Sources */,
 				DF87A7B21F782DE000EF0461 /* IQKeyboardManager.m in Sources */,
 				DF5A094D1F7D526E00CF5410 /* LSWorkTailDetailCell.m in Sources */,
 				DF87A6F31F782A8E00EF0461 /* UIProgressView+AFNetworking.m in Sources */,
@@ -2543,6 +2597,7 @@
 				DF87A7DC1F7835A500EF0461 /* LSWorkController.m in Sources */,
 				DF87A7C71F782F7C00EF0461 /* LSTabBarController.m in Sources */,
 				DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */,
+				0F3E63251F8C788600A19FF2 /* SGQRCodeHelperTool.m in Sources */,
 				0F6E10901F7B79B800C2477B /* LSMineCardController.m in Sources */,
 				DFF015691F7AC15700527CFA /* PSTCollectionView.m in Sources */,
 				DFF015871F7AC15700527CFA /* EaseConversationListViewController.m in Sources */,
@@ -2555,9 +2610,11 @@
 				DFF0156D1F7AC15700527CFA /* PSTCollectionViewFlowLayout.m in Sources */,
 				DF87A6F51F782A8E00EF0461 /* UIWebView+AFNetworking.m in Sources */,
 				DF87A6BD1F7827E200EF0461 /* ViewController+MASAdditions.m in Sources */,
+				0F3E63261F8C788600A19FF2 /* SGQRCodeScanManager.m in Sources */,
 				DFF015E61F7AC25F00527CFA /* MJRefreshBackNormalFooter.m in Sources */,
 				DF87A6B81F7827E200EF0461 /* MASViewAttribute.m in Sources */,
 				DFF015571F7AC15700527CFA /* DACircularProgressView.m in Sources */,
+				0F3E63241F8C788600A19FF2 /* SGQRCodeGenerateManager.m in Sources */,
 				DFF015541F7AC15700527CFA /* MWTapDetectingImageView.m in Sources */,
 				DF87A7EB1F78361D00EF0461 /* LSManageController.m in Sources */,
 				DFF015781F7AC15700527CFA /* EaseMessageModel.m in Sources */,
@@ -2570,6 +2627,7 @@
 				DFF0157F1F7AC15700527CFA /* EaseChineseToPinyin.m in Sources */,
 				DF5A09711F7D5EAF00CF5410 /* FSCalendar+Deprecated.m in Sources */,
 				DF5A097B1F7D5EAF00CF5410 /* FSCalendarExtensions.m in Sources */,
+				0F3E63231F8C788600A19FF2 /* SGQRCodeAlbumManager.m in Sources */,
 				DFF0157D1F7AC15700527CFA /* UIViewController+DismissKeyboard.m in Sources */,
 				DF87A6EF1F782A8E00EF0461 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				DFF015951F7AC15700527CFA /* EaseBubbleView+Location.m in Sources */,

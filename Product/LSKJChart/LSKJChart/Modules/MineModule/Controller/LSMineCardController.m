@@ -7,7 +7,7 @@
 //
 
 #import "LSMineCardController.h"
-//#import "FireflyQRCodeGenerator.h"
+#import "SGQRCode.h"
 @interface LSMineCardController ()
 
 @property (nonatomic,strong)UIView *contentView;
@@ -151,7 +151,7 @@
         make.height.mas_equalTo(CGRectGetMaxY(self.qRLabel.frame)+40);
     }];
     
-//    self.qRimageView.image = [FireflyQRCodeGenerator qrImageForString:@"www.baidu.com" imageSize:self.qRimageView.frame.size.width];
+    self.qRimageView.image = [SGQRCodeGenerateManager generateWithDefaultQRCodeData:@"www.baidu.com" imageViewWidth:self.qRimageView.frame.size.width];
 }
 
 
