@@ -7,6 +7,7 @@
 //
 
 #import "LSUtil.h"
+#import "LSPatientModel.h"
 
 @implementation LSUtil
 
