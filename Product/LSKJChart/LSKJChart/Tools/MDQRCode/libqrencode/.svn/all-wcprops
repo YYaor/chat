@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode
+END
+QRCodeGenerator.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/QRCodeGenerator.m
+END
+bitstream.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/bitstream.h
+END
+split.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/split.h
+END
+qrencode.c
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/qrencode.c
+END
+mask.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/mask.h
+END
+qrspec.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/qrspec.h
+END
+qrinput.c
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/qrinput.c
+END
+qrencode.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/qrencode.h
+END
+qrinput.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/qrinput.h
+END
+rscode.c
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/rscode.c
+END
+rscode.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/rscode.h
+END
+QRCodeGenerator.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/QRCodeGenerator.h
+END
+bitstream.c
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/bitstream.c
+END
+split.c
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/split.c
+END
+mask.c
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/mask.c
+END
+qrspec.c
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/tailong/!svn/ver/1066/TLPlugin/iOS/TLBPluginExample/TLBPlugin/Vendors/libqrencode/qrspec.c
+END

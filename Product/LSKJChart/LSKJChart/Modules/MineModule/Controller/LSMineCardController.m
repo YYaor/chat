@@ -7,7 +7,7 @@
 //
 
 #import "LSMineCardController.h"
-
+//#import "FireflyQRCodeGenerator.h"
 @interface LSMineCardController ()
 
 @property (nonatomic,strong)UIView *contentView;
@@ -26,6 +26,8 @@
 
 @property (nonatomic,strong)UILabel *infoLabel;
 
+@property (nonatomic,strong)UILabel *infoLabel1;
+
 @property (nonatomic,strong)UILabel *qRLabel;
 
 @end
@@ -35,51 +37,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self initNavView];
     [self initForView];
 }
-
-//-(void)initNavView{
-//    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
-//    navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
-//    [self.view addSubview:navView];
-//    
-//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 44, 44)];
-//    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-//    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-//    [navView addSubview:backButton];
-//    
-//    
-//    UILabel *titleLabel = [[UILabel alloc]init];
-//    titleLabel.font = [UIFont systemFontOfSize:18];
-//    titleLabel.textColor = [UIColor whiteColor];
-//    titleLabel.text = @"我的名片";
-//    titleLabel.backgroundColor = [UIColor clearColor];
-//    [navView addSubview:titleLabel];
-//    
-//    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(navView);
-//        make.centerY.equalTo(navView).offset(8);
-//    }];
-//    
-//    UIButton *shareButton = [[UIButton alloc] init];
-//    [shareButton addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
-//    [shareButton setTitle:@"分享" forState:UIControlStateNormal];
-//    shareButton.titleLabel.font = [UIFont systemFontOfSize:14];
-//    [navView addSubview:shareButton];
-//    [shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.equalTo(self.view).offset(-12);
-//        make.size.mas_equalTo(CGSizeMake(44, 44));
-//        make.top.equalTo(self.view).offset(20);
-//    }];
-//}
 
 -(void)initForView{
     
     self.navigationItem.title = @"我的名片";
     
     UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(shareButtonClick)];
-    self.navigationController.navigationItem.rightBarButtonItem = shareItem;
+    self.navigationItem.rightBarButtonItem = shareItem;
     
     [self.view addSubview:self.contentView];
     [self.contentView addSubview:self.headImageView];
@@ -88,6 +54,7 @@
     [self.contentView addSubview:self.hospitalLabel];
     [self.contentView addSubview:self.goodatLabel];
     [self.contentView addSubview:self.infoLabel];
+    [self.contentView addSubview:self.infoLabel1];
     [self.contentView addSubview:self.qRimageView];
     [self.contentView addSubview:self.qRLabel];
     
@@ -136,8 +103,14 @@
         make.top.equalTo(self.hospitalLabel.mas_bottom).offset(12);
     }];
     
-    [self.infoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.infoLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(line.mas_left);
+        make.right.equalTo(line.mas_right);
+        make.top.equalTo(self.goodatLabel.mas_bottom).offset(12);
+    }];
+    
+    [self.infoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(line.mas_left).offset(74);
         make.right.equalTo(line.mas_right);
         make.top.equalTo(self.goodatLabel.mas_bottom).offset(12);
     }];
@@ -169,13 +142,18 @@
     [goodatAttString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromHexString:@"bfbfbf"] range:NSMakeRange(0, 9)];
     self.goodatLabel.attributedText = goodatAttString;
     
-    NSString *infoString = @"个人简介   上海金瑞医院";
-    NSMutableAttributedString *infoAttString = [[NSMutableAttributedString alloc]initWithString:infoString];
-    [infoAttString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromHexString:@"bfbfbf"] range:NSMakeRange(0, 4)];
-    self.infoLabel.attributedText = infoAttString;
+    NSString *infoString = @"个人简介上海金瑞医院个人简介上海金瑞医院个人简介上海金瑞医院个人简介上海金瑞医院个人简介上海金瑞医院";
+
+    self.infoLabel.text = infoString;
     
+    [self.view layoutIfNeeded];
+    [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(CGRectGetMaxY(self.qRLabel.frame)+40);
+    }];
     
+//    self.qRimageView.image = [FireflyQRCodeGenerator qrImageForString:@"www.baidu.com" imageSize:self.qRimageView.frame.size.width];
 }
+
 
 -(void)shareButtonClick{
     
@@ -257,8 +235,19 @@
         _infoLabel = [[UILabel alloc]init];
         _infoLabel.font = [UIFont systemFontOfSize:15];
         _infoLabel.textColor = [UIColor blackColor];
+        _infoLabel.numberOfLines = 0;
     }
     return _infoLabel;
+}
+
+-(UILabel *)infoLabel1{
+    if (!_infoLabel1) {
+        _infoLabel1 = [[UILabel alloc]init];
+        _infoLabel1.font = [UIFont systemFontOfSize:15];
+        _infoLabel1.textColor = [UIColor colorFromHexString:@"bfbfbf"];
+        _infoLabel1.text = @"个人简介";
+    }
+    return _infoLabel1;
 }
 
 -(UILabel *)qRLabel{
