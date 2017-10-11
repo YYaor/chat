@@ -50,6 +50,7 @@ static NSString *cellId = @"LSWorkOutcallListCell";
 - (void)rightItemClick
 {
     LSWorkOutcallAddController *vc = [[LSWorkOutcallAddController alloc] initWithNibName:@"LSWorkOutcallAddController" bundle:nil];
+    vc.date = self.date;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

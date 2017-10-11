@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2YG-PS-s6n">
-                        <rect key="frame" x="20" y="20" width="280" height="99.5"/>
+                        <rect key="frame" x="20" y="20" width="280" height="99"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ruu-4S-ica">
                                 <rect key="frame" x="20" y="20" width="60" height="60"/>
@@ -47,7 +47,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_g" translatesAutoresizingMaskIntoConstraints="NO" id="aHg-Qz-0gx">
-                                <rect key="frame" x="260" y="39" width="12" height="20"/>
+                                <rect key="frame" x="260" y="40" width="12" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="P5g-OG-J6Q"/>
                                     <constraint firstAttribute="width" constant="12" id="VEk-8v-ii8"/>

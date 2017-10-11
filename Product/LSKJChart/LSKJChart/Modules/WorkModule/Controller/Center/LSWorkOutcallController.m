@@ -149,19 +149,12 @@
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
     [calendar deselectDate:date];
-//    [self calendar:calendar didDeselectDate:date atMonthPosition:monthPosition];
     
-//    LSWorkOutcallListController *vc = [[LSWorkOutcallListController alloc] initWithNibName:@"LSWorkOutcallListController" bundle:nil];
-//    vc.date = [self changDateForUTCWithDate:date];
-//    [self.navigationController pushViewController:vc animated:YES];
+    LSWorkOutcallListController *vc = [[LSWorkOutcallListController alloc] initWithNibName:@"LSWorkOutcallListController" bundle:nil];
+    vc.date = [self changDateForUTCWithDate:date];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
-
-//- (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
-//{
-//    
-//}
-
 
 - (void)calendar:(FSCalendar *)calendar willDisplayCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
@@ -197,18 +190,16 @@
         _calendar.dataSource = self;
         
         UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        previousButton.frame = CGRectMake(10, 13, 6.5, 13);
+        previousButton.frame = CGRectMake(10, 0, _calendar.rowHeight, _calendar.rowHeight);
         previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
-//        [previousButton setImage:[UIImage imageNamed:@"backicon"] forState:UIControlStateNormal];
-        previousButton.backgroundColor = [UIColor redColor];
+        [previousButton setImage:[UIImage imageNamed:@"left"] forState:UIControlStateNormal];
         [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
         [_calendar addSubview:previousButton];
         
         UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        nextButton.frame = CGRectMake(LSSCREENWIDTH-10, 13, 6.5, 13);
+        nextButton.frame = CGRectMake(LSSCREENWIDTH-10-_calendar.rowHeight, 0, _calendar.rowHeight, _calendar.rowHeight);
         nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
-//        [nextButton setImage:[UIImage imageNamed:@"backicon"] forState:UIControlStateNormal];
-        nextButton.backgroundColor = [UIColor redColor];
+        [nextButton setImage:[UIImage imageNamed:@"left"] forState:UIControlStateNormal];
         nextButton.imageView.transform = CGAffineTransformMakeRotation(M_PI);
         [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
         [_calendar addSubview:nextButton];

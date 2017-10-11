@@ -10,4 +10,6 @@
 
 @interface LSWorkOutcallAddController : UIViewController
 
+@property (nonatomic, strong) NSDate *date;
+
 @end
