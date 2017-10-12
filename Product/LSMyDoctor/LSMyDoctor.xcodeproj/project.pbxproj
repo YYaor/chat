@@ -59,6 +59,10 @@
 		DF0AFED51F8FA13E00B19151 /* LSBeginChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF0AFECE1F8FA13E00B19151 /* LSBeginChatController.xib */; };
 		DF0AFED61F8FA13E00B19151 /* LSManageMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */; };
 		DF0AFED71F8FA13E00B19151 /* LSManageMateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF0AFED11F8FA13E00B19151 /* LSManageMateController.xib */; };
+		DF2738161F8FC6E300154B6A /* LSWorkArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2738141F8FC6E300154B6A /* LSWorkArticleController.m */; };
+		DF2738171F8FC6E300154B6A /* LSWorkArticleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF2738151F8FC6E300154B6A /* LSWorkArticleController.xib */; };
+		DF27381B1F8FCF1100154B6A /* LSWorkArticleAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2738191F8FCF1100154B6A /* LSWorkArticleAddController.m */; };
+		DF27381C1F8FCF1100154B6A /* LSWorkArticleAddController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF27381A1F8FCF1100154B6A /* LSWorkArticleAddController.xib */; };
 		DF5A09341F7D413500CF5410 /* LSWorkAdviceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09321F7D413500CF5410 /* LSWorkAdviceDetailController.m */; };
 		DF5A09351F7D413500CF5410 /* LSWorkAdviceDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09331F7D413500CF5410 /* LSWorkAdviceDetailController.xib */; };
 		DF5A09391F7D473D00CF5410 /* LSWorkTailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09371F7D473D00CF5410 /* LSWorkTailController.m */; };
@@ -421,6 +425,12 @@
 		DF0AFECF1F8FA13E00B19151 /* LSManageMateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSManageMateController.h; sourceTree = "<group>"; };
 		DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSManageMateController.m; sourceTree = "<group>"; };
 		DF0AFED11F8FA13E00B19151 /* LSManageMateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSManageMateController.xib; sourceTree = "<group>"; };
+		DF2738131F8FC6E300154B6A /* LSWorkArticleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkArticleController.h; sourceTree = "<group>"; };
+		DF2738141F8FC6E300154B6A /* LSWorkArticleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkArticleController.m; sourceTree = "<group>"; };
+		DF2738151F8FC6E300154B6A /* LSWorkArticleController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkArticleController.xib; sourceTree = "<group>"; };
+		DF2738181F8FCF1100154B6A /* LSWorkArticleAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkArticleAddController.h; sourceTree = "<group>"; };
+		DF2738191F8FCF1100154B6A /* LSWorkArticleAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkArticleAddController.m; sourceTree = "<group>"; };
+		DF27381A1F8FCF1100154B6A /* LSWorkArticleAddController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkArticleAddController.xib; sourceTree = "<group>"; };
 		DF5A09311F7D413500CF5410 /* LSWorkAdviceDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkAdviceDetailController.h; sourceTree = "<group>"; };
 		DF5A09321F7D413500CF5410 /* LSWorkAdviceDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkAdviceDetailController.m; sourceTree = "<group>"; };
 		DF5A09331F7D413500CF5410 /* LSWorkAdviceDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkAdviceDetailController.xib; sourceTree = "<group>"; };
@@ -2242,6 +2252,12 @@
 				DF81C2481F8A0D9E00D4D851 /* LSWorkOutcallAddController.h */,
 				DF81C2491F8A0D9E00D4D851 /* LSWorkOutcallAddController.m */,
 				DF81C24A1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib */,
+				DF2738131F8FC6E300154B6A /* LSWorkArticleController.h */,
+				DF2738141F8FC6E300154B6A /* LSWorkArticleController.m */,
+				DF2738151F8FC6E300154B6A /* LSWorkArticleController.xib */,
+				DF2738181F8FCF1100154B6A /* LSWorkArticleAddController.h */,
+				DF2738191F8FCF1100154B6A /* LSWorkArticleAddController.m */,
+				DF27381A1F8FCF1100154B6A /* LSWorkArticleAddController.xib */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -2412,9 +2428,11 @@
 				0F3E622B1F8B468B00A19FF2 /* LSChoosePatientController.xib in Resources */,
 				DF0AFED71F8FA13E00B19151 /* LSManageMateController.xib in Resources */,
 				0F6E10871F7B799600C2477B /* LSMineNewPswController.xib in Resources */,
+				DF2738171F8FC6E300154B6A /* LSWorkArticleController.xib in Resources */,
 				DF87A6401F7820A700EF0461 /* LaunchScreen.storyboard in Resources */,
 				DFFD8EE11F7C377B00FF0ECD /* LSWorkAdviceController.xib in Resources */,
 				0F3E63221F8C788600A19FF2 /* SGQRCode.bundle in Resources */,
+				DF27381C1F8FCF1100154B6A /* LSWorkArticleAddController.xib in Resources */,
 				DFFD8ED71F7C23C300FF0ECD /* LSWorkAppointController.xib in Resources */,
 				DF5A09351F7D413500CF5410 /* LSWorkAdviceDetailController.xib in Resources */,
 				DFF0152D1F7AC15700527CFA /* EaseUI.podspec in Resources */,
@@ -2527,6 +2545,7 @@
 				DFF015E31F7AC25F00527CFA /* MJRefreshAutoNormalFooter.m in Sources */,
 				DF87A8221F78C92E00EF0461 /* LSDataPickerView.m in Sources */,
 				DF87ABF71F83EBD60080AACA /* LSWorkOutcallListController.m in Sources */,
+				DF27381B1F8FCF1100154B6A /* LSWorkArticleAddController.m in Sources */,
 				DFF015361F7AC15700527CFA /* wav.mm in Sources */,
 				DFF0156C1F7AC15700527CFA /* PSTCollectionViewData.m in Sources */,
 				DF87A6B41F7827E200EF0461 /* MASCompositeConstraint.m in Sources */,
@@ -2596,6 +2615,7 @@
 				DFD5C70D1F8167A300045E39 /* FSCalendarCell.m in Sources */,
 				DFF0158E1F7AC15700527CFA /* EaseBaseMessageCell.m in Sources */,
 				DF81C2461F84C43700D4D851 /* LSWorkOutcallListCell.m in Sources */,
+				DF2738161F8FC6E300154B6A /* LSWorkArticleController.m in Sources */,
 				DF87A6F01F782A8E00EF0461 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				DFF010B11F7AB4FA00527CFA /* LSMineHeaderView.m in Sources */,
 				DF5A09341F7D413500CF5410 /* LSWorkAdviceDetailController.m in Sources */,
