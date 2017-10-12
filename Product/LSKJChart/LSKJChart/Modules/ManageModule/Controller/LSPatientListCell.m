@@ -18,6 +18,10 @@
 
 @property (nonatomic,strong)UILabel *infoLabel;
 
+@property (nonatomic,strong)UILabel *goodLabel;
+
+@property (nonatomic,strong)UIImageView *moreImageView;
+
 @end
 
 @implementation LSPatientListCell
@@ -37,6 +41,8 @@
     [self.contentView addSubview:self.headImageView];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.infoLabel];
+    [self.contentView addSubview:self.goodLabel];
+    [self.contentView addSubview:self.moreImageView];
     
     [self.chooseButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(14);
@@ -60,6 +66,18 @@
         make.top.equalTo(self.nameLabel.mas_bottom).offset(5);
     }];
     
+    [self.goodLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.nameLabel.mas_left);
+        make.top.equalTo(self.infoLabel.mas_bottom).offset(5);
+        make.right.equalTo(self.contentView).offset(-30);
+    }];
+    
+    [self.moreImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(12, 19));
+        make.centerY.equalTo(self.contentView);
+        make.right.equalTo(self.contentView).offset(-14);
+    }];
+    
     UIView *bottomLine = [[UIView alloc]init];
     bottomLine.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
     [self.contentView addSubview:bottomLine];
@@ -75,6 +93,14 @@
     self.nameLabel.text = model.name;
     self.infoLabel.text = [NSString stringWithFormat:@"%@   %@",model.sex,model.age];
     self.chooseButton.selected = model.isChoosed;
+    if (model.goodAt) {
+        self.goodLabel.text = model.goodAt;
+        self.moreImageView.hidden = NO;
+        self.chooseButton.hidden = YES;
+        [self.headImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView).offset(14);
+        }];
+    }
 }
 
 
@@ -90,6 +116,15 @@
         _headImageView.layer.cornerRadius = 30;
     }
     return _headImageView;
+}
+
+-(UIImageView *)moreImageView{
+    if (!_moreImageView) {
+        _moreImageView = [[UIImageView alloc]init];
+        _moreImageView.image = [UIImage imageNamed:@"back_g"];
+        _moreImageView.hidden = YES;
+    }
+    return _moreImageView;
 }
 
 -(UILabel *)nameLabel{
@@ -108,6 +143,16 @@
         _infoLabel.font = [UIFont systemFontOfSize:15];
     }
     return _infoLabel;
+}
+
+-(UILabel *)goodLabel{
+    if (!_goodLabel) {
+        _goodLabel = [[UILabel alloc]init];
+        _goodLabel.textColor = [UIColor colorFromHexString:@"bfbfbf"];
+        _goodLabel.font = [UIFont systemFontOfSize:15];
+        _goodLabel.numberOfLines = 1;
+    }
+    return _goodLabel;
 }
 
 -(UIButton *)chooseButton{

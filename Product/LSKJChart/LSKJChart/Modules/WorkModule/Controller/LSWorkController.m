@@ -18,7 +18,7 @@
 #import "LSWorkOutcallController.h"
 
 //bottom
-
+#import "LSManageMateController.h"
 
 @interface LSWorkController ()
 
@@ -166,6 +166,9 @@
     else if (btn.tag == 30002)
     {
         //同行管理
+        LSManageMateController *vc = [[LSManageMateController alloc]initWithNibName:@"LSManageMateController" bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

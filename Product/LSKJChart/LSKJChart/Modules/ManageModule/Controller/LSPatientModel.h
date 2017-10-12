@@ -16,6 +16,8 @@
 
 @property (nonatomic,strong)NSString *age;
 
+@property (nonatomic,strong)NSString *goodAt;
+
 @property (nonatomic,assign)BOOL isChoosed;
 
 @end
