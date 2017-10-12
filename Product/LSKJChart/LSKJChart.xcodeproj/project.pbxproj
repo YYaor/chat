@@ -44,12 +44,6 @@
 		0F8314791F7B3F55008A9E22 /* LSUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8314781F7B3F55008A9E22 /* LSUserModel.m */; };
 		0F8314801F7B40BC008A9E22 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F83147C1F7B40BC008A9E22 /* NSObject+YYModel.m */; };
 		0F8314811F7B40BC008A9E22 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F83147E1F7B40BC008A9E22 /* YYClassInfo.m */; };
-		0F8CC2F81F8F040300EB9D65 /* LSManageMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8CC2F61F8F040300EB9D65 /* LSManageMateController.m */; };
-		0F8CC2F91F8F040300EB9D65 /* LSManageMateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8CC2F71F8F040300EB9D65 /* LSManageMateController.xib */; };
-		0F8CC2FD1F8F3D3F00EB9D65 /* LSAddMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8CC2FB1F8F3D3F00EB9D65 /* LSAddMateController.m */; };
-		0F8CC2FE1F8F3D3F00EB9D65 /* LSAddMateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8CC2FC1F8F3D3F00EB9D65 /* LSAddMateController.xib */; };
-		0F8CC3021F8F3FB200EB9D65 /* LSBeginChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8CC3001F8F3FB200EB9D65 /* LSBeginChatController.m */; };
-		0F8CC3031F8F3FB200EB9D65 /* LSBeginChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8CC3011F8F3FB200EB9D65 /* LSBeginChatController.xib */; };
 		0F8CC3061F8F441B00EB9D65 /* LSAddDocCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8CC3051F8F441B00EB9D65 /* LSAddDocCollectionCell.m */; };
 		0FB200BE1F78CEFC005BC289 /* YYShopMainTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200BD1F78B4BD005BC289 /* YYShopMainTypeView.m */; };
 		0FB200CF1F78F087005BC289 /* LSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200CE1F78F087005BC289 /* LSUtil.m */; };
@@ -59,6 +53,12 @@
 		0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */; };
 		0FB200EC1F7A5294005BC289 /* LSMineListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200EB1F7A5294005BC289 /* LSMineListCell.m */; };
 		0FB69CF61F7E3A5000AC31CA /* YYPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB69CF51F7E3A0F00AC31CA /* YYPlaceholderTextView.m */; };
+		DF0AFED21F8FA13E00B19151 /* LSAddMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */; };
+		DF0AFED31F8FA13E00B19151 /* LSAddMateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF0AFECB1F8FA13E00B19151 /* LSAddMateController.xib */; };
+		DF0AFED41F8FA13E00B19151 /* LSBeginChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFECD1F8FA13E00B19151 /* LSBeginChatController.m */; };
+		DF0AFED51F8FA13E00B19151 /* LSBeginChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF0AFECE1F8FA13E00B19151 /* LSBeginChatController.xib */; };
+		DF0AFED61F8FA13E00B19151 /* LSManageMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */; };
+		DF0AFED71F8FA13E00B19151 /* LSManageMateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF0AFED11F8FA13E00B19151 /* LSManageMateController.xib */; };
 		DF5A09341F7D413500CF5410 /* LSWorkAdviceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09321F7D413500CF5410 /* LSWorkAdviceDetailController.m */; };
 		DF5A09351F7D413500CF5410 /* LSWorkAdviceDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09331F7D413500CF5410 /* LSWorkAdviceDetailController.xib */; };
 		DF5A09391F7D473D00CF5410 /* LSWorkTailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09371F7D473D00CF5410 /* LSWorkTailController.m */; };
@@ -411,15 +411,6 @@
 		0F83147D1F7B40BC008A9E22 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
 		0F83147E1F7B40BC008A9E22 /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
 		0F83147F1F7B40BC008A9E22 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
-		0F8CC2F51F8F040300EB9D65 /* LSManageMateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSManageMateController.h; sourceTree = "<group>"; };
-		0F8CC2F61F8F040300EB9D65 /* LSManageMateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSManageMateController.m; sourceTree = "<group>"; };
-		0F8CC2F71F8F040300EB9D65 /* LSManageMateController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSManageMateController.xib; sourceTree = "<group>"; };
-		0F8CC2FA1F8F3D3F00EB9D65 /* LSAddMateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSAddMateController.h; sourceTree = "<group>"; };
-		0F8CC2FB1F8F3D3F00EB9D65 /* LSAddMateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSAddMateController.m; sourceTree = "<group>"; };
-		0F8CC2FC1F8F3D3F00EB9D65 /* LSAddMateController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSAddMateController.xib; sourceTree = "<group>"; };
-		0F8CC2FF1F8F3FB200EB9D65 /* LSBeginChatController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSBeginChatController.h; sourceTree = "<group>"; };
-		0F8CC3001F8F3FB200EB9D65 /* LSBeginChatController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSBeginChatController.m; sourceTree = "<group>"; };
-		0F8CC3011F8F3FB200EB9D65 /* LSBeginChatController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSBeginChatController.xib; sourceTree = "<group>"; };
 		0F8CC3041F8F441B00EB9D65 /* LSAddDocCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSAddDocCollectionCell.h; sourceTree = "<group>"; };
 		0F8CC3051F8F441B00EB9D65 /* LSAddDocCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSAddDocCollectionCell.m; sourceTree = "<group>"; };
 		0FB200BC1F78B4BD005BC289 /* YYShopMainTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYShopMainTypeView.h; sourceTree = "<group>"; };
@@ -440,6 +431,15 @@
 		0FB200EB1F7A5294005BC289 /* LSMineListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineListCell.m; sourceTree = "<group>"; };
 		0FB69CF41F7E3A0F00AC31CA /* YYPlaceholderTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYPlaceholderTextView.h; sourceTree = "<group>"; };
 		0FB69CF51F7E3A0F00AC31CA /* YYPlaceholderTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYPlaceholderTextView.m; sourceTree = "<group>"; };
+		DF0AFEC91F8FA13E00B19151 /* LSAddMateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSAddMateController.h; sourceTree = "<group>"; };
+		DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAddMateController.m; sourceTree = "<group>"; };
+		DF0AFECB1F8FA13E00B19151 /* LSAddMateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSAddMateController.xib; sourceTree = "<group>"; };
+		DF0AFECC1F8FA13E00B19151 /* LSBeginChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSBeginChatController.h; sourceTree = "<group>"; };
+		DF0AFECD1F8FA13E00B19151 /* LSBeginChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSBeginChatController.m; sourceTree = "<group>"; };
+		DF0AFECE1F8FA13E00B19151 /* LSBeginChatController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSBeginChatController.xib; sourceTree = "<group>"; };
+		DF0AFECF1F8FA13E00B19151 /* LSManageMateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSManageMateController.h; sourceTree = "<group>"; };
+		DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSManageMateController.m; sourceTree = "<group>"; };
+		DF0AFED11F8FA13E00B19151 /* LSManageMateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSManageMateController.xib; sourceTree = "<group>"; };
 		DF5A09311F7D413500CF5410 /* LSWorkAdviceDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkAdviceDetailController.h; sourceTree = "<group>"; };
 		DF5A09321F7D413500CF5410 /* LSWorkAdviceDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkAdviceDetailController.m; sourceTree = "<group>"; };
 		DF5A09331F7D413500CF5410 /* LSWorkAdviceDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkAdviceDetailController.xib; sourceTree = "<group>"; };
@@ -1615,15 +1615,6 @@
 		DF87A7D61F78358300EF0461 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0F8CC2FF1F8F3FB200EB9D65 /* LSBeginChatController.h */,
-				0F8CC3001F8F3FB200EB9D65 /* LSBeginChatController.m */,
-				0F8CC3011F8F3FB200EB9D65 /* LSBeginChatController.xib */,
-				0F8CC2FA1F8F3D3F00EB9D65 /* LSAddMateController.h */,
-				0F8CC2FB1F8F3D3F00EB9D65 /* LSAddMateController.m */,
-				0F8CC2FC1F8F3D3F00EB9D65 /* LSAddMateController.xib */,
-				0F8CC2F51F8F040300EB9D65 /* LSManageMateController.h */,
-				0F8CC2F61F8F040300EB9D65 /* LSManageMateController.m */,
-				0F8CC2F71F8F040300EB9D65 /* LSManageMateController.xib */,
 				DF87A7D91F7835A500EF0461 /* LSWorkController.h */,
 				DF87A7DA1F7835A500EF0461 /* LSWorkController.m */,
 				DF87A7DB1F7835A500EF0461 /* LSWorkController.xib */,
@@ -2295,6 +2286,15 @@
 		DFFD8EC31F7C235800FF0ECD /* Bottom */ = {
 			isa = PBXGroup;
 			children = (
+				DF0AFEC91F8FA13E00B19151 /* LSAddMateController.h */,
+				DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */,
+				DF0AFECB1F8FA13E00B19151 /* LSAddMateController.xib */,
+				DF0AFECC1F8FA13E00B19151 /* LSBeginChatController.h */,
+				DF0AFECD1F8FA13E00B19151 /* LSBeginChatController.m */,
+				DF0AFECE1F8FA13E00B19151 /* LSBeginChatController.xib */,
+				DF0AFECF1F8FA13E00B19151 /* LSManageMateController.h */,
+				DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */,
+				DF0AFED11F8FA13E00B19151 /* LSManageMateController.xib */,
 			);
 			path = Bottom;
 			sourceTree = "<group>";
@@ -2501,7 +2501,9 @@
 				DF87A6421F7820A700EF0461 /* Info.plist in Resources */,
 				DF5A093F1F7D48A800CF5410 /* LSWorkTailCell.xib in Resources */,
 				DF87A7DD1F7835A500EF0461 /* LSWorkController.xib in Resources */,
+				DF0AFED51F8FA13E00B19151 /* LSBeginChatController.xib in Resources */,
 				DF5A093A1F7D473D00CF5410 /* LSWorkTailController.xib in Resources */,
+				DF0AFED31F8FA13E00B19151 /* LSAddMateController.xib in Resources */,
 				DFFD8ED21F7C236100FF0ECD /* LSWorkUnreplyCell.xib in Resources */,
 				DF81C2471F84C43700D4D851 /* LSWorkOutcallListCell.xib in Resources */,
 				DFF015EB1F7AC25F00527CFA /* MJRefresh.bundle in Resources */,
@@ -2509,7 +2511,6 @@
 				DFD5C7191F8167A300045E39 /* Info.plist in Resources */,
 				DF87A63F1F7820A700EF0461 /* Assets.xcassets in Resources */,
 				DF5A09491F7D50E300CF5410 /* LSWorkTailDetailUserCell.xib in Resources */,
-				0F8CC2F91F8F040300EB9D65 /* LSManageMateController.xib in Resources */,
 				DF87A6B31F7827E200EF0461 /* Info.plist in Resources */,
 				DF87A7E21F7835DD00EF0461 /* LSMineController.xib in Resources */,
 				DFFD8EE61F7C37E500FF0ECD /* LSWorkAdviceCell.xib in Resources */,
@@ -2519,7 +2520,6 @@
 				DF5A094E1F7D526E00CF5410 /* LSWorkTailDetailCell.xib in Resources */,
 				DF81C24C1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib in Resources */,
 				0F6E10911F7B79B800C2477B /* LSMineCardController.xib in Resources */,
-				0F8CC3031F8F3FB200EB9D65 /* LSBeginChatController.xib in Resources */,
 				0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */,
 				DF87A8261F78DB4100EF0461 /* LSDataPickerView.xib in Resources */,
 				DF87A7EC1F78361D00EF0461 /* LSManageController.xib in Resources */,
@@ -2527,11 +2527,11 @@
 				DF87A7BA1F782DE000EF0461 /* IQKeyboardManager.bundle in Resources */,
 				DF87A7C31F782F0700EF0461 /* LSLoginController.xib in Resources */,
 				0F3E622B1F8B468B00A19FF2 /* LSChoosePatientController.xib in Resources */,
+				DF0AFED71F8FA13E00B19151 /* LSManageMateController.xib in Resources */,
 				0F6E10871F7B799600C2477B /* LSMineNewPswController.xib in Resources */,
 				DF87A6401F7820A700EF0461 /* LaunchScreen.storyboard in Resources */,
 				DFFD8EE11F7C377B00FF0ECD /* LSWorkAdviceController.xib in Resources */,
 				0F3E63221F8C788600A19FF2 /* SGQRCode.bundle in Resources */,
-				0F8CC2FE1F8F3D3F00EB9D65 /* LSAddMateController.xib in Resources */,
 				DFFD8ED71F7C23C300FF0ECD /* LSWorkAppointController.xib in Resources */,
 				DF5A09351F7D413500CF5410 /* LSWorkAdviceDetailController.xib in Resources */,
 				DFF0152D1F7AC15700527CFA /* EaseUI.podspec in Resources */,
@@ -2615,8 +2615,8 @@
 				DFF015681F7AC15700527CFA /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				DFD5C7171F8167A300045E39 /* FSCalendarTransitionCoordinator.m in Sources */,
 				DFF015371F7AC15700527CFA /* EMVoiceConverter.mm in Sources */,
+				DF0AFED21F8FA13E00B19151 /* LSAddMateController.m in Sources */,
 				DF87A7B41F782DE000EF0461 /* IQTextView.m in Sources */,
-				0F8CC2FD1F8F3D3F00EB9D65 /* LSAddMateController.m in Sources */,
 				DFF015521F7AC15700527CFA /* MWPhoto.m in Sources */,
 				DFF015881F7AC15700527CFA /* EaseLocationViewController.m in Sources */,
 				DFF015EF1F7AC25F00527CFA /* UIScrollView+MJRefresh.m in Sources */,
@@ -2639,8 +2639,8 @@
 				DFF015561F7AC15700527CFA /* MWZoomingScrollView.m in Sources */,
 				DFF015EC1F7AC25F00527CFA /* MJRefreshConst.m in Sources */,
 				DFD5C70E1F8167A300045E39 /* FSCalendarCollectionView.m in Sources */,
+				DF0AFED41F8FA13E00B19151 /* LSBeginChatController.m in Sources */,
 				DFFD8EE51F7C37E500FF0ECD /* LSWorkAdviceCell.m in Sources */,
-				0F8CC3021F8F3FB200EB9D65 /* LSBeginChatController.m in Sources */,
 				DFD5C70B1F8167A300045E39 /* FSCalendarAppearance.m in Sources */,
 				DFF015641F7AC15700527CFA /* UIImage+EMWebP.m in Sources */,
 				DFF015661F7AC15700527CFA /* UIImageView+EMWebCache.m in Sources */,
@@ -2723,6 +2723,7 @@
 				DF87A7831F782D1300EF0461 /* RKDropdownAlert.m in Sources */,
 				DFF0155B1F7AC15700527CFA /* EMSDWebImageDownloader.m in Sources */,
 				DFD5C7141F8167A300045E39 /* FSCalendarHeaderView.m in Sources */,
+				DF0AFED61F8FA13E00B19151 /* LSManageMateController.m in Sources */,
 				DFD5C70D1F8167A300045E39 /* FSCalendarCell.m in Sources */,
 				DFF0158E1F7AC15700527CFA /* EaseBaseMessageCell.m in Sources */,
 				DF81C2461F84C43700D4D851 /* LSWorkOutcallListCell.m in Sources */,
@@ -2738,7 +2739,6 @@
 				DFF0159D1F7AC15700527CFA /* EaseTextView.m in Sources */,
 				DFF015301F7AC15700527CFA /* EMCDDeviceManager+Media.m in Sources */,
 				DF87A7AC1F782DE000EF0461 /* IQNSArray+Sort.m in Sources */,
-				0F8CC2F81F8F040300EB9D65 /* LSManageMateController.m in Sources */,
 				DFF015651F7AC15700527CFA /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				DFF0155E1F7AC15700527CFA /* EMSDWebImagePrefetcher.m in Sources */,
 				DFD5C70F1F8167A300045E39 /* FSCalendarCollectionViewLayout.m in Sources */,
