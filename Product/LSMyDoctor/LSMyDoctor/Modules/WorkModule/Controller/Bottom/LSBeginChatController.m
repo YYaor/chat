@@ -7,6 +7,9 @@
 //
 
 #import "LSBeginChatController.h"
+#import "LSChoosePatientController.h"
+#import "LSChooseMateController.h"
+
 #import "LSPatientModel.h"
 #import "LSAddDocCollectionCell.h"
 @interface LSBeginChatController ()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -46,11 +49,13 @@
     self.navigationItem.title = @"发起讨论";
     
     [self initForView];
-    [self loadData];
+//    [self loadData];
 }
 
 -(void)initForView{
     UIView *chooseMateView = [self getChooseMateView];
+    chooseMateView.userInteractionEnabled = YES;
+    [chooseMateView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosePatientView)]];
     [self.view addSubview:chooseMateView];
     
     [chooseMateView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -273,11 +278,22 @@
 }
 
 -(void)addButtonClick{
+    LSChooseMateController *vc = [[LSChooseMateController alloc]initWithNibName:@"LSChooseMateController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
     
+    vc.chooseBlock = ^(NSArray *modelArray) {
+        [self.dataArray addObjectsFromArray:modelArray];
+        [self.dataCollectionView reloadData];
+    };
 }
 
 -(void)nextButtonClick{
     //开始讨论
+}
+
+-(void)choosePatientView{
+    LSChoosePatientController *choosePatientController = [[LSChoosePatientController  alloc]initWithNibName:@"LSChoosePatientController" bundle:nil];
+    [self.navigationController pushViewController:choosePatientController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -90,11 +90,19 @@
 }
 
 -(void)setModel:(LSPatientModel *)model{
+    _model = model;
     self.nameLabel.text = model.name;
     self.infoLabel.text = [NSString stringWithFormat:@"%@   %@",model.sex,model.age];
     self.chooseButton.selected = model.isChoosed;
     if (model.goodAt) {
         self.goodLabel.text = model.goodAt;
+        
+    }
+}
+
+-(void)sethideChoosed:(BOOL)hideChoosed{
+    _hideChoosed = hideChoosed;
+    if (hideChoosed) {
         self.moreImageView.hidden = NO;
         self.chooseButton.hidden = YES;
         [self.headImageView mas_updateConstraints:^(MASConstraintMaker *make) {

@@ -13,4 +13,6 @@
 
 @property (nonatomic,strong)LSPatientModel *model;
 
+@property (nonatomic,assign)BOOL hideChoosed;
+
 @end

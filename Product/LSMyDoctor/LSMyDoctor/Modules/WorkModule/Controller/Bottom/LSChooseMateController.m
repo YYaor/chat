@@ -6,25 +6,27 @@
 //  Copyright © 2017年 赵炯丞. All rights reserved.
 //
 
-#import "LSAddMateController.h"
+#import "LSChooseMateController.h"
 #import "YYSearchBar.h"
 #import "LSPatientListCell.h"
 #import "LSPatientModel.h"
-@interface LSAddMateController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
-
-@property (nonatomic,strong)YYSearchBar *searchBar;
+@interface LSChooseMateController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
 @property (nonatomic,strong)UITableView *dataTableView;
 //服务器返回数组
 @property (nonatomic,strong)NSMutableArray *dataArray;
+//选择的对象
+@property (nonatomic,strong)NSMutableArray *chooseArray;
 
 @end
 
-@implementation LSAddMateController
+@implementation LSChooseMateController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"添加同行";
+    UIBarButtonItem *scanItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(sureClick)];
+    self.navigationItem.rightBarButtonItem = scanItem;
     
     [self initForView];
     [self loadData];
@@ -79,7 +81,6 @@
         cell = [[LSPatientListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LSPatientListCell"];
     }
     cell.model = self.dataArray[indexPath.row];
-    cell.hideChoosed = YES;
     
     return cell;
 }
@@ -89,31 +90,35 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    LSPatientModel *chooseModel = self.dataArray[indexPath.row];
+    for (LSPatientModel *model in self.dataArray) {
+        if (chooseModel != model) {
+            model.isChoosed = NO;
+        }
+    }
+    chooseModel.isChoosed = !chooseModel.isChoosed;
+    [self.dataTableView reloadData];
 }
 
--(void)keyboardDown{
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self keyboardDown];
-}
-
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+-(void)sureClick{
+    for (LSPatientModel *model in self.dataArray) {
+        if (model.isChoosed) {
+            [self.chooseArray addObject:model];
+        }
+    }
+    if (self.chooseBlock) {
+        self.chooseBlock(self.chooseArray);
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
--(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    
-}
-
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    
-}
-
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    
+-(NSMutableArray *)chooseArray{
+    if (!_chooseArray) {
+        _chooseArray = [[NSMutableArray alloc] init];
+    }
+    return _chooseArray;
 }
 
 -(NSMutableArray *)dataArray{
@@ -130,21 +135,8 @@
         _dataTableView.delegate = self;
         _dataTableView.dataSource = self;
         _dataTableView.backgroundColor = [UIColor whiteColor];
-        _dataTableView.tableHeaderView = self.searchBar;
     }
     return _dataTableView;
-}
-
--(YYSearchBar *)searchBar{
-    if (!_searchBar) {
-        _searchBar = [[YYSearchBar alloc]initWithSearchTab];
-        _searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 52);
-        _searchBar.delegate = self;
-        _searchBar.layer.masksToBounds = YES;
-        _searchBar.layer.cornerRadius = 4;
-        _searchBar.placeString = @"搜索同行";
-    }
-    return _searchBar;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -153,13 +145,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

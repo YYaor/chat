@@ -171,7 +171,7 @@
     }
     NSArray *dataArray = self.orderArray[indexPath.section];
     cell.model = dataArray[indexPath.row];
-    
+    cell.hideChoosed = YES;
     return cell;
 }
 

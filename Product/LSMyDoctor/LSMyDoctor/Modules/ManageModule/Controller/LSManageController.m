@@ -9,7 +9,6 @@
 #import "LSManageController.h"
 #import "LSLoginController.h"
 #import "LSDataPickerView.h"
-#import "LSChoosePatientController.h"
 
 @interface LSManageController ()
 
@@ -38,8 +37,6 @@
 
 - (void)loginButtonClick
 {
-    LSChoosePatientController *choosePatientController = [[LSChoosePatientController  alloc]init];
-    [self.navigationController pushViewController:choosePatientController animated:YES];
 //    LSLoginController *loginVC = [[LSLoginController alloc]init];
 //    loginVC.hidesBottomBarWhenPushed = YES;
 //    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];

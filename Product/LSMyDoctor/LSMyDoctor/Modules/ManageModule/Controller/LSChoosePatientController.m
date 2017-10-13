@@ -26,6 +26,8 @@
 @property (nonatomic,strong)NSMutableArray *dataArray;
 //整理后的数组
 @property (nonatomic,strong)NSMutableArray *orderArray;
+//选择的对象
+@property (nonatomic,strong)NSMutableArray *chooseArray;
 @end
 
 @implementation LSChoosePatientController
@@ -99,7 +101,17 @@
 }
 
 -(void)sureClick{
-    
+    for (LSPatientModel *model in self.dataArray) {
+        if (model.isChoosed) {
+            [self.chooseArray addObject:model];
+        }
+    }
+    if (self.chooseBlock) {
+        self.chooseBlock(self.chooseArray);
+    }
+
+    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 #pragma mark - tableViewDelegate
@@ -167,15 +179,27 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LSPatientModel *model = nil;
+    LSPatientModel *chooseModel = nil;
     if (self.searchBar.text.length > 0) {
-        model = self.searchArray[indexPath.row];
+        chooseModel = self.searchArray[indexPath.row];
+        for (LSPatientModel *model in self.searchArray) {
+            if (model != chooseModel) {
+                model.isChoosed = NO;
+            }
+        }
+
     }else{
         NSArray *dataArray = self.orderArray[indexPath.section];
-        model = dataArray[indexPath.row];
+        chooseModel = dataArray[indexPath.row];
+        for (LSPatientModel *model in self.dataArray) {
+            if (model != chooseModel) {
+                model.isChoosed = NO;
+            }
+        }
     }
-    model.isChoosed = !model.isChoosed;
+    chooseModel.isChoosed = !chooseModel.isChoosed;
     [self.dataTableView reloadData];
+    
 }
 
 #pragma mark - searchBarDelegate
@@ -219,6 +243,13 @@
         _sectionArray = [[NSMutableArray alloc] init];
     }
     return _sectionArray;
+}
+
+-(NSMutableArray *)chooseArray{
+    if (!_chooseArray) {
+        _chooseArray = [[NSMutableArray alloc] init];
+    }
+    return _chooseArray;
 }
 
 -(NSMutableArray *)orderArray{

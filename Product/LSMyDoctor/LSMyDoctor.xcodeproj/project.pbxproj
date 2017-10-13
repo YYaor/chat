@@ -31,6 +31,8 @@
 		0F3E63271F8C788600A19FF2 /* SGQRCodeScanningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E63201F8C788600A19FF2 /* SGQRCodeScanningView.m */; };
 		0F48A3201F7CF63000E05C64 /* LSMineFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F48A31E1F7CF63000E05C64 /* LSMineFeedbackController.m */; };
 		0F48A3211F7CF63000E05C64 /* LSMineFeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F48A31F1F7CF63000E05C64 /* LSMineFeedbackController.xib */; };
+		0F6B7CD21F906224004EEF27 /* LSChooseMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6B7CD01F906224004EEF27 /* LSChooseMateController.m */; };
+		0F6B7CD31F906224004EEF27 /* LSChooseMateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F6B7CD11F906224004EEF27 /* LSChooseMateController.xib */; };
 		0F6E10861F7B799600C2477B /* LSMineNewPswController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E10841F7B799600C2477B /* LSMineNewPswController.m */; };
 		0F6E10871F7B799600C2477B /* LSMineNewPswController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F6E10851F7B799600C2477B /* LSMineNewPswController.xib */; };
 		0F6E108B1F7B79A800C2477B /* LSMineSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E10891F7B79A800C2477B /* LSMineSettingController.m */; };
@@ -373,6 +375,9 @@
 		0F48A31D1F7CF63000E05C64 /* LSMineFeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineFeedbackController.h; sourceTree = "<group>"; };
 		0F48A31E1F7CF63000E05C64 /* LSMineFeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineFeedbackController.m; sourceTree = "<group>"; };
 		0F48A31F1F7CF63000E05C64 /* LSMineFeedbackController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMineFeedbackController.xib; sourceTree = "<group>"; };
+		0F6B7CCF1F906224004EEF27 /* LSChooseMateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSChooseMateController.h; sourceTree = "<group>"; };
+		0F6B7CD01F906224004EEF27 /* LSChooseMateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSChooseMateController.m; sourceTree = "<group>"; };
+		0F6B7CD11F906224004EEF27 /* LSChooseMateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSChooseMateController.xib; sourceTree = "<group>"; };
 		0F6E10831F7B799600C2477B /* LSMineNewPswController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSMineNewPswController.h; sourceTree = "<group>"; };
 		0F6E10841F7B799600C2477B /* LSMineNewPswController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineNewPswController.m; sourceTree = "<group>"; };
 		0F6E10851F7B799600C2477B /* LSMineNewPswController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LSMineNewPswController.xib; sourceTree = "<group>"; };
@@ -2236,6 +2241,9 @@
 				DF0AFECF1F8FA13E00B19151 /* LSManageMateController.h */,
 				DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */,
 				DF0AFED11F8FA13E00B19151 /* LSManageMateController.xib */,
+				0F6B7CCF1F906224004EEF27 /* LSChooseMateController.h */,
+				0F6B7CD01F906224004EEF27 /* LSChooseMateController.m */,
+				0F6B7CD11F906224004EEF27 /* LSChooseMateController.xib */,
 			);
 			path = Bottom;
 			sourceTree = "<group>";
@@ -2420,6 +2428,7 @@
 				DF81C24C1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib in Resources */,
 				0F6E10911F7B79B800C2477B /* LSMineCardController.xib in Resources */,
 				0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */,
+				0F6B7CD31F906224004EEF27 /* LSChooseMateController.xib in Resources */,
 				DF87A8261F78DB4100EF0461 /* LSDataPickerView.xib in Resources */,
 				DF87A7EC1F78361D00EF0461 /* LSManageController.xib in Resources */,
 				DF87A7E71F7835FE00EF0461 /* LSMessageController.xib in Resources */,
@@ -2658,6 +2667,7 @@
 				DFF015601F7AC15700527CFA /* NSData+EMImageContentType.m in Sources */,
 				DFF015761F7AC15700527CFA /* EaseSDKHelper.m in Sources */,
 				DFF015611F7AC15700527CFA /* UIButton+EMWebCache.m in Sources */,
+				0F6B7CD21F906224004EEF27 /* LSChooseMateController.m in Sources */,
 				DF87A6F11F782A8E00EF0461 /* UIButton+AFNetworking.m in Sources */,
 				DFF015811F7AC15700527CFA /* EaseMessageReadManager.m in Sources */,
 				DFF0155A1F7AC15700527CFA /* EMSDWebImageDecoder.m in Sources */,
