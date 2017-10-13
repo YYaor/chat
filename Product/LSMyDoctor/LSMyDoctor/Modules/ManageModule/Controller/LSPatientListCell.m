@@ -100,7 +100,7 @@
     }
 }
 
--(void)sethideChoosed:(BOOL)hideChoosed{
+-(void)setHideChoosed:(BOOL)hideChoosed{
     _hideChoosed = hideChoosed;
     if (hideChoosed) {
         self.moreImageView.hidden = NO;
