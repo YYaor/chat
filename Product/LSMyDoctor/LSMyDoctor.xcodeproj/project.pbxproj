@@ -78,7 +78,6 @@
 		4A0CE6C41F945BDF00F7C187 /* MDPeerDoctorHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0CE6BD1F945BDF00F7C187 /* MDPeerDoctorHeadCell.xib */; };
 		4A0CE6C51F945BDF00F7C187 /* MDPeerinstructCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6BF1F945BDF00F7C187 /* MDPeerinstructCell.m */; };
 		4A0CE6C61F945BDF00F7C187 /* MDPeerinstructCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0CE6C01F945BDF00F7C187 /* MDPeerinstructCell.xib */; };
-		4A0CE6C81F94613800F7C187 /* LSManageMateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0CE6C71F94613800F7C187 /* LSManageMateController.xib */; };
 		DF0AFED21F8FA13E00B19151 /* LSAddMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */; };
 		DF0AFED41F8FA13E00B19151 /* LSBeginChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFECD1F8FA13E00B19151 /* LSBeginChatController.m */; };
 		DF0AFED61F8FA13E00B19151 /* LSManageMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */; };
@@ -90,6 +89,7 @@
 		DF2738341F9139FA00154B6A /* LSWorkUsefulController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF2738321F9139FA00154B6A /* LSWorkUsefulController.xib */; };
 		DF2738381F913A5500154B6A /* LSWorkUsefulAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2738361F913A5500154B6A /* LSWorkUsefulAddController.m */; };
 		DF2738391F913A5500154B6A /* LSWorkUsefulAddController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF2738371F913A5500154B6A /* LSWorkUsefulAddController.xib */; };
+		DF335A1C1F954CB9009D026E /* PWTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF335A1B1F954CB9009D026E /* PWTagsView.m */; };
 		DF5A09341F7D413500CF5410 /* LSWorkAdviceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09321F7D413500CF5410 /* LSWorkAdviceDetailController.m */; };
 		DF5A09351F7D413500CF5410 /* LSWorkAdviceDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09331F7D413500CF5410 /* LSWorkAdviceDetailController.xib */; };
 		DF5A09391F7D473D00CF5410 /* LSWorkTailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09371F7D473D00CF5410 /* LSWorkTailController.m */; };
@@ -189,7 +189,6 @@
 		DFD5C7171F8167A300045E39 /* FSCalendarTransitionCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C7051F8167A300045E39 /* FSCalendarTransitionCoordinator.m */; };
 		DFD5C7181F8167A300045E39 /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C7071F8167A300045E39 /* FSCalendarWeekdayView.m */; };
 		DFD5C7191F8167A300045E39 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFD5C7081F8167A300045E39 /* Info.plist */; };
-		DFD714E01F94496200DCB7CD /* LSWorkUsefulCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD714DF1F94496200DCB7CD /* LSWorkUsefulCell.m */; };
 		DFF010B11F7AB4FA00527CFA /* LSMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF010B01F7AB4FA00527CFA /* LSMineHeaderView.m */; };
 		DFF0152C1F7AC15700527CFA /* EaseUI.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF014071F7AC15700527CFA /* EaseUI.m */; };
 		DFF0152D1F7AC15700527CFA /* EaseUI.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DFF014081F7AC15700527CFA /* EaseUI.podspec */; };
@@ -494,7 +493,6 @@
 		4A0CE6BE1F945BDF00F7C187 /* MDPeerinstructCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDPeerinstructCell.h; sourceTree = "<group>"; };
 		4A0CE6BF1F945BDF00F7C187 /* MDPeerinstructCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDPeerinstructCell.m; sourceTree = "<group>"; };
 		4A0CE6C01F945BDF00F7C187 /* MDPeerinstructCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDPeerinstructCell.xib; sourceTree = "<group>"; };
-		4A0CE6C71F94613800F7C187 /* LSManageMateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSManageMateController.xib; sourceTree = "<group>"; };
 		DF0AFEC91F8FA13E00B19151 /* LSAddMateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSAddMateController.h; sourceTree = "<group>"; };
 		DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAddMateController.m; sourceTree = "<group>"; };
 		DF0AFECC1F8FA13E00B19151 /* LSBeginChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSBeginChatController.h; sourceTree = "<group>"; };
@@ -513,6 +511,8 @@
 		DF2738351F913A5500154B6A /* LSWorkUsefulAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkUsefulAddController.h; sourceTree = "<group>"; };
 		DF2738361F913A5500154B6A /* LSWorkUsefulAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkUsefulAddController.m; sourceTree = "<group>"; };
 		DF2738371F913A5500154B6A /* LSWorkUsefulAddController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkUsefulAddController.xib; sourceTree = "<group>"; };
+		DF335A1A1F954CB9009D026E /* PWTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWTagsView.h; sourceTree = "<group>"; };
+		DF335A1B1F954CB9009D026E /* PWTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWTagsView.m; sourceTree = "<group>"; };
 		DF5A09311F7D413500CF5410 /* LSWorkAdviceDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkAdviceDetailController.h; sourceTree = "<group>"; };
 		DF5A09321F7D413500CF5410 /* LSWorkAdviceDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkAdviceDetailController.m; sourceTree = "<group>"; };
 		DF5A09331F7D413500CF5410 /* LSWorkAdviceDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkAdviceDetailController.xib; sourceTree = "<group>"; };
@@ -700,8 +700,6 @@
 		DFD5C7061F8167A300045E39 /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarWeekdayView.h; sourceTree = "<group>"; };
 		DFD5C7071F8167A300045E39 /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarWeekdayView.m; sourceTree = "<group>"; };
 		DFD5C7081F8167A300045E39 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DFD714DE1F94496200DCB7CD /* LSWorkUsefulCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkUsefulCell.h; sourceTree = "<group>"; };
-		DFD714DF1F94496200DCB7CD /* LSWorkUsefulCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkUsefulCell.m; sourceTree = "<group>"; };
 		DFF010AF1F7AB4FA00527CFA /* LSMineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineHeaderView.h; sourceTree = "<group>"; };
 		DFF010B01F7AB4FA00527CFA /* LSMineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineHeaderView.m; sourceTree = "<group>"; };
 		DFF014051F7AC15700527CFA /* EaseUI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseUI-Prefix.pch"; sourceTree = "<group>"; };
@@ -1240,6 +1238,15 @@
 			path = Bottom;
 			sourceTree = "<group>";
 		};
+		DF335A191F954CB9009D026E /* PWTagsView */ = {
+			isa = PBXGroup;
+			children = (
+				DF335A1A1F954CB9009D026E /* PWTagsView.h */,
+				DF335A1B1F954CB9009D026E /* PWTagsView.m */,
+			);
+			path = PWTagsView;
+			sourceTree = "<group>";
+		};
 		DF87A1AE1F781B7700EF0461 = {
 			isa = PBXGroup;
 			children = (
@@ -1337,6 +1344,10 @@
 		DF87A63D1F7820A700EF0461 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				DF87A6461F78217100EF0461 /* LSPrefixHeader.h */,
+				4A0CE6B21F90A13300F7C187 /* MDHeader.h */,
+				4A0CE6B31F90A17F00F7C187 /* MDHttpUrl.h */,
+				DF335A191F954CB9009D026E /* PWTagsView */,
 				4A0CE67D1F9094F500F7C187 /* SDWebImage */,
 				DFD5C6E71F8167A300045E39 /* FSCalendar */,
 				0F3E63111F8C788600A19FF2 /* SGQRCode */,
@@ -1355,9 +1366,6 @@
 				DF87A6D81F782A8E00EF0461 /* UIKit+AFNetworking */,
 				DF87A6551F7827E200EF0461 /* Colours */,
 				DF87A6581F7827E200EF0461 /* Masonry */,
-				DF87A6461F78217100EF0461 /* LSPrefixHeader.h */,
-				4A0CE6B21F90A13300F7C187 /* MDHeader.h */,
-				4A0CE6B31F90A17F00F7C187 /* MDHttpUrl.h */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -2374,7 +2382,6 @@
 			children = (
 				DF0AFECF1F8FA13E00B19151 /* LSManageMateController.h */,
 				DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */,
-				4A0CE6C71F94613800F7C187 /* LSManageMateController.xib */,
 				4A0CE6B41F945B9700F7C187 /* MDPeerDetailVC.h */,
 				4A0CE6B51F945B9700F7C187 /* MDPeerDetailVC.m */,
 				DF0AFEC91F8FA13E00B19151 /* LSAddMateController.h */,
@@ -2448,8 +2455,6 @@
 				DF81C2431F84C43700D4D851 /* LSWorkOutcallListCell.h */,
 				DF81C2441F84C43700D4D851 /* LSWorkOutcallListCell.m */,
 				DF81C2451F84C43700D4D851 /* LSWorkOutcallListCell.xib */,
-				DFD714DE1F94496200DCB7CD /* LSWorkUsefulCell.h */,
-				DFD714DF1F94496200DCB7CD /* LSWorkUsefulCell.m */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -2513,7 +2518,7 @@
 					DF87A1B61F781B7700EF0461 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 9F5M55YYN4;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -2587,7 +2592,6 @@
 				DF5A09351F7D413500CF5410 /* LSWorkAdviceDetailController.xib in Resources */,
 				DFF0152D1F7AC15700527CFA /* EaseUI.podspec in Resources */,
 				DFFD8EDC1F7C25AD00FF0ECD /* LSWorkAppointCell.xib in Resources */,
-				4A0CE6C81F94613800F7C187 /* LSManageMateController.xib in Resources */,
 				0FB200E11F78F463005BC289 /* LSRegisterController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2612,6 +2616,7 @@
 				DFF015DA1F7AC25F00527CFA /* BlocMBProgressHUD.m in Sources */,
 				0F3E623A1F8B51EE00A19FF2 /* LSPatientModel.m in Sources */,
 				DFF015971F7AC15700527CFA /* EaseBubbleView+Video.m in Sources */,
+				DF335A1C1F954CB9009D026E /* PWTagsView.m in Sources */,
 				DFF015891F7AC15700527CFA /* EaseMessageViewController.m in Sources */,
 				DFF0156B1F7AC15700527CFA /* PSTCollectionViewController.m in Sources */,
 				DFF015EA1F7AC25F00527CFA /* MJRefreshStateHeader.m in Sources */,
@@ -2665,7 +2670,6 @@
 				DFF0152F1F7AC15700527CFA /* EMAudioRecorderUtil.m in Sources */,
 				4A0CE6A71F9094F500F7C187 /* SDWebImagePrefetcher.m in Sources */,
 				DF87A6431F7820A700EF0461 /* main.m in Sources */,
-				DFD714E01F94496200DCB7CD /* LSWorkUsefulCell.m in Sources */,
 				DF87A6AD1F7827E200EF0461 /* AFNetworkReachabilityManager.m in Sources */,
 				DFD5C7091F8167A300045E39 /* FSCalendar+Deprecated.m in Sources */,
 				DF87A7C21F782F0700EF0461 /* LSLoginController.m in Sources */,
@@ -2969,7 +2973,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9F5M55YYN4;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2998,8 +3002,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pengge.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f0f0247a-08c8-43d8-b0f3-9643c707cefb";
-				PROVISIONING_PROFILE_SPECIFIER = MyDoctor_Dev_Wqj;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -3008,7 +3012,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9F5M55YYN4;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3032,8 +3036,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pengge.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f0f0247a-08c8-43d8-b0f3-9643c707cefb";
-				PROVISIONING_PROFILE_SPECIFIER = MyDoctor_Dev_Wqj;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

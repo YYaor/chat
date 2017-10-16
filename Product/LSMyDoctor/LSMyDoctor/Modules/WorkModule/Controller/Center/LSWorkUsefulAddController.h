@@ -10,4 +10,6 @@
 
 @interface LSWorkUsefulAddController : UIViewController
 
+@property (nonatomic, copy) NSString *text;
+
 @end

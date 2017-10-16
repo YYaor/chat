@@ -44,6 +44,7 @@
     [self.contentView addSubview:self.goodLabel];
     [self.contentView addSubview:self.moreImageView];
     
+    self.chooseButton.userInteractionEnabled = NO;
     [self.chooseButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(14);
         make.centerY.equalTo(self.contentView);

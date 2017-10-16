@@ -9,10 +9,9 @@
 #import "LSManageMateController.h"
 #import "LSAddMateController.h"
 #import "LSBeginChatController.h"
-
 #import "LSPatientModel.h"
 #import "LSPatientListCell.h"
-
+#import "MDPeerDetailVC.h"
 
 @interface LSManageMateController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -73,7 +72,8 @@
     
     self.navigationItem.title = @"同行管理";
     
-    
+    UIBarButtonItem *rightBarBtnItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(rightBtnClick)];
+    self.navigationItem.rightBarButtonItem = rightBarBtnItem;
     
     [self initForView];
     [self loadData];
@@ -83,20 +83,25 @@
 {
     self.moreView.hidden = YES;
 }
+#pragma mark -- 右上角更多按钮点击
+- (void)rightBtnClick
+{
+    self.moreView.hidden = !self.moreView.hidden;
+}
 
 #pragma mark -- 发起讨论按钮点击
 -(void)chatButtonClick{
     //发起讨论
     self.moreView.hidden = YES;
-    LSBeginChatController *vc = [[LSBeginChatController alloc]initWithNibName:@"LSBeginChatController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
+    LSBeginChatController *beginChatVC = [[LSBeginChatController alloc] init];
+    [self.navigationController pushViewController:beginChatVC animated:YES];
 }
 #pragma mark -- 添加同行按钮点击
 -(void)addButtonClick{
     //添加同行
     self.moreView.hidden = YES;
-    LSAddMateController *vc = [[LSAddMateController alloc]initWithNibName:@"LSAddMateController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
+    LSAddMateController *addMateVC = [[LSAddMateController alloc] init];
+    [self.navigationController pushViewController:addMateVC animated:YES];
 }
 
 -(void)initForView{
@@ -237,12 +242,16 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"点击某一行，查看医生详情资料");
+    MDPeerDetailVC* peerDetailVC = [[MDPeerDetailVC alloc] init];
+    
+    [self.navigationController pushViewController:peerDetailVC animated:YES];
 }
 
 
 #pragma mark -- 会诊讨论组定义
 -(UIView *)getMoreGroupView{
     UIView *moreGroupView = [[UIView alloc]init];
+    moreGroupView.backgroundColor = [UIColor whiteColor];
     
     UIImageView *groupImageView = [[UIImageView alloc]init];
     groupImageView.image = [UIImage imageNamed:@"people_blue"];
@@ -257,7 +266,7 @@
     UILabel *title = [UILabel new];
     title.font = [UIFont systemFontOfSize:14];
     title.text = @"会诊讨论组";
-    title.textColor = [UIColor colorFromHexString:@"333333"];
+    title.textColor = Style_Color_Content_Black;
     [moreGroupView addSubview:title];
     
     [title mas_makeConstraints:^(MASConstraintMaker *make) {

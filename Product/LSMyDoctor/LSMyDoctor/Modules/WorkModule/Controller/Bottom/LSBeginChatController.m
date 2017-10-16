@@ -47,21 +47,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"发起讨论";
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self initForView];
 //    [self loadData];
 }
 
--(void)initForView{
+- (void)initForView{
+    //选择讨论对象
     UIView *chooseMateView = [self getChooseMateView];
     chooseMateView.userInteractionEnabled = YES;
     [chooseMateView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosePatientView)]];
     [self.view addSubview:chooseMateView];
-    
     [chooseMateView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
         make.height.mas_equalTo(40);
     }];
+    
     
     UILabel *title = [UILabel new];
     title.font = [UIFont systemFontOfSize:14];
@@ -140,9 +142,9 @@
     
     [self.dataCollectionView reloadData];
 }
-
-
+#pragma mark -- 选择讨论对象
 -(UIView *)getChooseMateView{
+    
     UIView *chooseMateView = [[UIView alloc]init];
     
     UILabel *title = [UILabel new];
@@ -177,7 +179,7 @@
     
     return chooseMateView;
 }
-
+#pragma mark -- 添加邀请同行
 -(UIView *)addView{
     UIView *addView = [UIView new];
     UIButton *addbutton = [[UIButton alloc]init];
@@ -277,23 +279,27 @@
     
 }
 
+#pragma mark -- 添加按钮点击
 -(void)addButtonClick{
-    LSChooseMateController *vc = [[LSChooseMateController alloc]initWithNibName:@"LSChooseMateController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    vc.chooseBlock = ^(NSArray *modelArray) {
+    LSChooseMateController *chooseMateVC = [[LSChooseMateController alloc] init];
+    chooseMateVC.chooseBlock = ^(NSArray *modelArray) {
         [self.dataArray addObjectsFromArray:modelArray];
         [self.dataCollectionView reloadData];
     };
+    [self.navigationController pushViewController:chooseMateVC animated:YES];
 }
-
--(void)nextButtonClick{
+#pragma mark -- 开始讨论按钮点击
+-(void)nextButtonClick
+{
     //开始讨论
+    NSLog(@"开始讨论按钮点击");
 }
-
+#pragma mark -- 选择讨论对象按钮点击
 -(void)choosePatientView{
-    LSChoosePatientController *choosePatientController = [[LSChoosePatientController  alloc]initWithNibName:@"LSChoosePatientController" bundle:nil];
-    [self.navigationController pushViewController:choosePatientController animated:YES];
+    
+    LSChoosePatientController *choosePatientVC = [[LSChoosePatientController  alloc]init];
+    
+    [self.navigationController pushViewController:choosePatientVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

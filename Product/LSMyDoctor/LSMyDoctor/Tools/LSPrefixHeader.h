@@ -47,7 +47,8 @@
 #import "EaseUI.h"
 //UITextView
 #import "YYPlaceholderTextView.h"
-
+//标签
+#import "PWTagsView.h"
 
 
 #endif

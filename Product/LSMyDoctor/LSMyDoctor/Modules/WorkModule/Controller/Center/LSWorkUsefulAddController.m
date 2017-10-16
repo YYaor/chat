@@ -10,6 +10,9 @@
 
 @interface LSWorkUsefulAddController ()
 
+@property (weak, nonatomic) IBOutlet YYPlaceholderTextView *textView;
+
+
 @end
 
 @implementation LSWorkUsefulAddController
@@ -29,6 +32,9 @@
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
     self.navigationItem.rightBarButtonItem = rightItem;
+    
+    self.textView.text = self.text;
+    self.textView.placeholder = @"请输入常用语";
 }
 
 - (void)rightItemClick
