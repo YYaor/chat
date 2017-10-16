@@ -17,6 +17,7 @@
 //center
 #import "LSWorkOutcallController.h"
 #import "LSWorkArticleController.h"
+#import "LSWorkUsefulController.h"
 
 //bottom
 #import "LSManageMateController.h"
@@ -139,9 +140,9 @@
     else if (btn.tag == 20001)
     {
         //文章管理
-        LSWorkArticleController *vc = [[LSWorkArticleController alloc] initWithNibName:@"LSWorkArticleController" bundle:nil];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+//        LSWorkArticleController *vc = [[LSWorkArticleController alloc] initWithNibName:@"LSWorkArticleController" bundle:nil];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (btn.tag == 20002)
     {
@@ -150,6 +151,9 @@
     else if (btn.tag == 20003)
     {
         //常用语管理
+        LSWorkUsefulController *vc = [[LSWorkUsefulController alloc] initWithNibName:@"LSWorkUsefulController" bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (btn.tag == 20004)
     {
@@ -170,7 +174,7 @@
     else if (btn.tag == 30002)
     {
         //同行管理
-        LSManageMateController *vc = [[LSManageMateController alloc]initWithNibName:@"LSManageMateController" bundle:nil];
+        LSManageMateController *vc = [[LSManageMateController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="191" id="KGk-i7-Jjw" customClass="MDPeerDoctorHeadCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="189"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TRn-om-uoQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="190.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headImg_public" translatesAutoresizingMaskIntoConstraints="NO" id="Eo3-Bo-Y24">
+                                <rect key="frame" x="125" y="10" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Eo3-Bo-Y24" secondAttribute="height" multiplier="1:1" id="NOW-0d-lCA"/>
+                                    <constraint firstAttribute="width" constant="70" id="bBt-gE-Dpx"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="doctorNameLab" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Zz-AI-9tP">
+                                <rect key="frame" x="98" y="95" width="124" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="儿科      主任医师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNJ-n9-PA0">
+                                <rect key="frame" x="94.5" y="124" width="131" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海瑞金医院" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CcE-5e-5r2">
+                                <rect key="frame" x="108" y="153" width="104" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Eo3-Bo-Y24" firstAttribute="centerX" secondItem="TRn-om-uoQ" secondAttribute="centerX" id="B7t-vr-lYY"/>
+                            <constraint firstItem="CcE-5e-5r2" firstAttribute="top" secondItem="kNJ-n9-PA0" secondAttribute="bottom" constant="8" id="LJr-Xz-Oto"/>
+                            <constraint firstAttribute="height" constant="190" id="PDt-dh-bsX"/>
+                            <constraint firstItem="kNJ-n9-PA0" firstAttribute="top" secondItem="4Zz-AI-9tP" secondAttribute="bottom" constant="8" id="YS2-wK-HXq"/>
+                            <constraint firstItem="Eo3-Bo-Y24" firstAttribute="top" secondItem="TRn-om-uoQ" secondAttribute="top" constant="10" id="a2W-Ue-bGH"/>
+                            <constraint firstItem="4Zz-AI-9tP" firstAttribute="centerX" secondItem="Eo3-Bo-Y24" secondAttribute="centerX" id="aIv-99-da1"/>
+                            <constraint firstItem="kNJ-n9-PA0" firstAttribute="centerX" secondItem="4Zz-AI-9tP" secondAttribute="centerX" id="h9W-Pv-ysZ"/>
+                            <constraint firstItem="4Zz-AI-9tP" firstAttribute="top" secondItem="Eo3-Bo-Y24" secondAttribute="bottom" constant="15" id="iGo-QT-8Gc"/>
+                            <constraint firstItem="CcE-5e-5r2" firstAttribute="centerX" secondItem="kNJ-n9-PA0" secondAttribute="centerX" id="opD-uY-EX4"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="TRn-om-uoQ" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="INY-ET-Ber"/>
+                    <constraint firstItem="TRn-om-uoQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="SO6-eS-kLa"/>
+                    <constraint firstItem="TRn-om-uoQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SbA-Lq-s1H"/>
+                    <constraint firstItem="TRn-om-uoQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="nQr-Pr-G4b"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="headImgView" destination="Eo3-Bo-Y24" id="CQO-dA-Bhd"/>
+                <outlet property="hospitalNameLab" destination="CcE-5e-5r2" id="zgU-fG-jUg"/>
+                <outlet property="nameLab" destination="4Zz-AI-9tP" id="WXY-4a-uga"/>
+                <outlet property="projectLab" destination="kNJ-n9-PA0" id="oqh-wh-HEW"/>
+            </connections>
+            <point key="canvasLocation" x="-275" y="-78.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="headImg_public" width="106" height="106"/>
+    </resources>
+</document>

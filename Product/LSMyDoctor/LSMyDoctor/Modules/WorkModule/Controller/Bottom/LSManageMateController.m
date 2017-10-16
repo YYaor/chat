@@ -34,36 +34,73 @@
 
 @implementation LSManageMateController
 
+-(NSMutableArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray = [[NSMutableArray alloc] init];
+    }
+    return _dataArray;
+}
+
+-(NSMutableArray *)sectionArray{
+    if (!_sectionArray) {
+        _sectionArray = [[NSMutableArray alloc] init];
+    }
+    return _sectionArray;
+}
+
+-(NSMutableArray *)orderArray{
+    if (!_orderArray) {
+        _orderArray = [[NSMutableArray alloc] init];
+    }
+    return _orderArray;
+}
+
+-(UITableView *)dataTableView{
+    if (!_dataTableView) {
+        _dataTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _dataTableView.delegate = self;
+        _dataTableView.dataSource = self;
+        _dataTableView.backgroundColor = [UIColor whiteColor];
+        _dataTableView.sectionIndexBackgroundColor = [UIColor clearColor];
+        _dataTableView.sectionIndexColor = BaseColor;
+    }
+    return _dataTableView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"同行管理";
     
-    UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(moreClick)];
-    self.navigationItem.rightBarButtonItem = moreItem;
+    
     
     [self initForView];
     [self loadData];
 }
 
--(void)moreClick{
-    self.moreView.hidden = !self.moreView.hidden;
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.moreView.hidden = YES;
 }
 
+#pragma mark -- 发起讨论按钮点击
 -(void)chatButtonClick{
     //发起讨论
+    self.moreView.hidden = YES;
     LSBeginChatController *vc = [[LSBeginChatController alloc]initWithNibName:@"LSBeginChatController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+#pragma mark -- 添加同行按钮点击
 -(void)addButtonClick{
     //添加同行
+    self.moreView.hidden = YES;
     LSAddMateController *vc = [[LSAddMateController alloc]initWithNibName:@"LSAddMateController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)initForView{
-    
+    //会诊讨论组
     UIView *groupView = [self getMoreGroupView];
     [self.view addSubview:groupView];
     [groupView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -71,24 +108,22 @@
         make.height.mas_equalTo(45);
     }];
     
+    //列表
     [self.view addSubview:self.dataTableView];
     [self.dataTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
         make.top.equalTo(self.view).offset(45);
     }];
     
+    //更多按钮
     self.moreView = [[UIView alloc]init];
     self.moreView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.moreView];
     self.moreView.hidden = YES;
     self.moreView.userInteractionEnabled = YES;
-    
-    [self.moreView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreViewClick)] ];
-    
     [self.moreView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
     }];
-    
     UIView *buttonView= [self getMoreView];
     [self.moreView addSubview:buttonView];
     [buttonView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -96,12 +131,8 @@
         make.right.equalTo(self.moreView).offset(-14);
         make.size.mas_equalTo(CGSizeMake(100, 100));
     }];
+    
 }
-
--(void)moreViewClick{
-    self.moreView.hidden = YES;
-}
-
 -(void)loadData{
     LSPatientModel *model1 = [[LSPatientModel alloc]init];
     model1.name = @"张三";
@@ -153,28 +184,29 @@
     }];
 }
 
-#pragma mark - tableViewDelegate
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+#pragma mark - UITableViewDelegate / UITableViewDataSource
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return self.sectionArray.count;
-
 }
-
+//section右侧index数组
+-(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    return self.sectionArray;
+}
+//点击右侧索引表项时调用 索引与section的对应关系
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
+    return index;
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.orderArray[section] count];
 }
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LSPatientListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LSPatientListCell"];
-    if (!cell) {
-        cell = [[LSPatientListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LSPatientListCell"];
-    }
-    NSArray *dataArray = self.orderArray[indexPath.section];
-    cell.model = dataArray[indexPath.row];
-    cell.hideChoosed = YES;
-    return cell;
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 40;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 100;
+}
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
@@ -191,50 +223,24 @@
     return headView;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-}
-
--(NSMutableArray *)dataArray{
-    if (!_dataArray) {
-        _dataArray = [[NSMutableArray alloc] init];
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    LSPatientListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LSPatientListCell"];
+    if (!cell) {
+        cell = [[LSPatientListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LSPatientListCell"];
     }
-    return _dataArray;
+    NSArray *dataArray = self.orderArray[indexPath.section];
+    cell.model = dataArray[indexPath.row];
+    cell.hideChoosed = YES;
+    return cell;
 }
 
--(NSMutableArray *)sectionArray{
-    if (!_sectionArray) {
-        _sectionArray = [[NSMutableArray alloc] init];
-    }
-    return _sectionArray;
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"点击某一行，查看医生详情资料");
 }
 
--(NSMutableArray *)orderArray{
-    if (!_orderArray) {
-        _orderArray = [[NSMutableArray alloc] init];
-    }
-    return _orderArray;
-}
 
--(UITableView *)dataTableView{
-    if (!_dataTableView) {
-        _dataTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _dataTableView.delegate = self;
-        _dataTableView.dataSource = self;
-        _dataTableView.backgroundColor = [UIColor whiteColor];
-    }
-    return _dataTableView;
-}
-
+#pragma mark -- 会诊讨论组定义
 -(UIView *)getMoreGroupView{
     UIView *moreGroupView = [[UIView alloc]init];
     
@@ -289,9 +295,17 @@
         make.height.mas_equalTo(1);
     }];
     
+    [moreGroupView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreGroupViewClick)] ];
+    
     return moreGroupView;
 }
 
+#pragma mark -- 会诊讨论组按钮点击
+- (void)moreGroupViewClick
+{
+    NSLog(@"会诊讨论组按钮点击");
+}
+#pragma mark -- 右上角更多按钮展现View
 -(UIView *)getMoreView{
     UIView *moreView = [UIView new];
     
@@ -329,6 +343,7 @@
         make.left.right.equalTo(moreView);
         make.height.mas_equalTo(1);
     }];
+    
     
     return moreView;
 }

@@ -9,31 +9,17 @@
 #ifndef LSPrefixHeader_h
 #define LSPrefixHeader_h
 
-//宏
-#define LSBASEURL @"http:www.baidu.com"
+#ifdef __OBJC__
 
-#define LSSCREENWIDTH [UIScreen mainScreen].bounds.size.width
-#define LSSCREENHEIGHT [UIScreen mainScreen].bounds.size.height
-
-// View 坐标(x,y)和宽高(width,height)
-#define LSX(v)       (v).frame.origin.x
-#define LSY(v)       (v).frame.origin.y
-#define LSWIDTH(v)   (v).frame.size.width
-#define LSHEIGHT(v)  (v).frame.size.height
-
-#define LSGREENCOLOR @"3ED0B4"//绿色
-#define LSPURPLECOLOR @"7B77E5"//紫色
-#define LSPINKCOLOR @"ED97C1"//粉色
-#define LSYELLOWCOLOR @"F7BA27"//黄色
-#define LSBLUECOLOR @"31D2DF"//蓝色
-#define LSTIPCOLOR @"FE7F51"//提醒
-#define LSDARKGRAYCOLOR @"9E9E9E"//深灰 字体
-#define LSLIGHTGRAYCOLOR @"EFEFEF"//浅灰 分割线
-#define LSSKYCOLOR @"F0FBFF"//天空蓝
+//宏文件
+#import "MDHeader.h"
+//Url文件
+#import "MDHttpUrl.h"
+//工具类
+#import "NSString+md5String.h"
 
 
-//第三方
-
+#pragma mark --- 第三方
 //网络
 #import "AFNetworking.h"
 //网络图片
@@ -61,5 +47,9 @@
 #import "EaseUI.h"
 //UITextView
 #import "YYPlaceholderTextView.h"
+
+
+
+#endif
 
 #endif /* LSPrefixHeader_h */
