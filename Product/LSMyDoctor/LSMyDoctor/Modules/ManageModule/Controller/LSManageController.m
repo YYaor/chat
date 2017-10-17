@@ -44,6 +44,10 @@
 //        
 //    }];
     
+        EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
+                                              initWithConversationChatter:@"zjc" conversationType:0];
+        
+        [self.navigationController pushViewController:chatController animated:YES];
     
 }
 
