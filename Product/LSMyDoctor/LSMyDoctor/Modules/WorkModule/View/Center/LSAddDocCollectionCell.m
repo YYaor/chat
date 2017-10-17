@@ -66,7 +66,7 @@
 -(UIButton *)closeButton{
     if (!_closeButton) {
         _closeButton = [[UIButton alloc]init];
-        [_closeButton setImage:[UIImage imageNamed:@"del_cross"] forState:UIControlStateNormal];
+        [_closeButton setImage:[UIImage imageNamed:@"del_xRed_Public"] forState:UIControlStateNormal];
         [_closeButton addTarget:self action:@selector(closeButtonClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _closeButton;

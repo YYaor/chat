@@ -221,7 +221,7 @@
 
 -(UIImageView *)newImageView{
     UIImageView *imageView = [[UIImageView alloc]init];
-    imageView.image = [UIImage imageNamed:@"back_blue"];
+    imageView.image = [UIImage imageNamed:@"right_Green_Public"];
     [self.view addSubview:imageView];
     return imageView;
 }

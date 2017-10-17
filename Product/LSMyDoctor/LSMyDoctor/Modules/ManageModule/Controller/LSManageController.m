@@ -44,11 +44,10 @@
 //        
 //    }];
     
-        EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
-                                              initWithConversationChatter:@"zjc" conversationType:0];
-        
-        [self.navigationController pushViewController:chatController animated:YES];
+    EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
+                                                 initWithConversationChatter:@"zjc" conversationType:0];
     
+    [self.navigationController pushViewController:chatController animated:YES];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

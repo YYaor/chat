@@ -21,9 +21,9 @@
     // Override point for customization after application launch.
     
     //注册环信会话
-//    EMOptions *options = [EMOptions optionsWithAppkey:@"1186170929115740#youge"];
-//    options.apnsCertName = @"PengGe_Doctor_p12";
-//    [[EMClient sharedClient] initializeSDKWithOptions:options];
+    //    EMOptions *options = [EMOptions optionsWithAppkey:@"1186170929115740#youge"];
+    //    options.apnsCertName = @"PengGe_Doctor_p12";
+    //    [[EMClient sharedClient] initializeSDKWithOptions:options];
     
     LSTabBarController *tabController = [[LSTabBarController alloc] init];
     self.window.rootViewController = tabController;
@@ -34,7 +34,7 @@
     EMOptions *options = [EMOptions optionsWithAppkey:@"1186170929115740#youge"];
     options.apnsCertName = @"MyDoctor_Dev_Apns";
     [[EMClient sharedClient] initializeSDKWithOptions:options];
-
+    
     [[EaseSDKHelper shareHelper] hyphenateApplication:application
                         didFinishLaunchingWithOptions:launchOptions
                                                appkey:@"1186170929115740#youge"

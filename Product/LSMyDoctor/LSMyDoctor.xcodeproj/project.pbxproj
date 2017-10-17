@@ -78,6 +78,10 @@
 		4A0CE6C41F945BDF00F7C187 /* MDPeerDoctorHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0CE6BD1F945BDF00F7C187 /* MDPeerDoctorHeadCell.xib */; };
 		4A0CE6C51F945BDF00F7C187 /* MDPeerinstructCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6BF1F945BDF00F7C187 /* MDPeerinstructCell.m */; };
 		4A0CE6C61F945BDF00F7C187 /* MDPeerinstructCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0CE6C01F945BDF00F7C187 /* MDPeerinstructCell.xib */; };
+		4A0CE6CB1F9594F200F7C187 /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6CA1F9594F200F7C187 /* NSString+Size.m */; };
+		4A0CE6CE1F960B8F00F7C187 /* MDConsulteDisccussVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6CD1F960B8F00F7C187 /* MDConsulteDisccussVC.m */; };
+		4A0CE6D21F960BBC00F7C187 /* MDConsultDiscussCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6D01F960BBC00F7C187 /* MDConsultDiscussCell.m */; };
+		4A0CE6D31F960BBC00F7C187 /* MDConsultDiscussCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0CE6D11F960BBC00F7C187 /* MDConsultDiscussCell.xib */; };
 		DF0AFED21F8FA13E00B19151 /* LSAddMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */; };
 		DF0AFED41F8FA13E00B19151 /* LSBeginChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFECD1F8FA13E00B19151 /* LSBeginChatController.m */; };
 		DF0AFED61F8FA13E00B19151 /* LSManageMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */; };
@@ -493,6 +497,13 @@
 		4A0CE6BE1F945BDF00F7C187 /* MDPeerinstructCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDPeerinstructCell.h; sourceTree = "<group>"; };
 		4A0CE6BF1F945BDF00F7C187 /* MDPeerinstructCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDPeerinstructCell.m; sourceTree = "<group>"; };
 		4A0CE6C01F945BDF00F7C187 /* MDPeerinstructCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDPeerinstructCell.xib; sourceTree = "<group>"; };
+		4A0CE6C91F9594F200F7C187 /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
+		4A0CE6CA1F9594F200F7C187 /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
+		4A0CE6CC1F960B8F00F7C187 /* MDConsulteDisccussVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDConsulteDisccussVC.h; sourceTree = "<group>"; };
+		4A0CE6CD1F960B8F00F7C187 /* MDConsulteDisccussVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDConsulteDisccussVC.m; sourceTree = "<group>"; };
+		4A0CE6CF1F960BBC00F7C187 /* MDConsultDiscussCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDConsultDiscussCell.h; sourceTree = "<group>"; };
+		4A0CE6D01F960BBC00F7C187 /* MDConsultDiscussCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDConsultDiscussCell.m; sourceTree = "<group>"; };
+		4A0CE6D11F960BBC00F7C187 /* MDConsultDiscussCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDConsultDiscussCell.xib; sourceTree = "<group>"; };
 		DF0AFEC91F8FA13E00B19151 /* LSAddMateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSAddMateController.h; sourceTree = "<group>"; };
 		DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAddMateController.m; sourceTree = "<group>"; };
 		DF0AFECC1F8FA13E00B19151 /* LSBeginChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSBeginChatController.h; sourceTree = "<group>"; };
@@ -1136,6 +1147,8 @@
 				0FB200C91F78EF75005BC289 /* NSString+Mark.m */,
 				0FB200CA1F78EF75005BC289 /* NSString+YY.h */,
 				0FB200CB1F78EF75005BC289 /* NSString+YY.m */,
+				4A0CE6C91F9594F200F7C187 /* NSString+Size.h */,
+				4A0CE6CA1F9594F200F7C187 /* NSString+Size.m */,
 			);
 			path = NSString;
 			sourceTree = "<group>";
@@ -1234,6 +1247,9 @@
 				4A0CE6BE1F945BDF00F7C187 /* MDPeerinstructCell.h */,
 				4A0CE6BF1F945BDF00F7C187 /* MDPeerinstructCell.m */,
 				4A0CE6C01F945BDF00F7C187 /* MDPeerinstructCell.xib */,
+				4A0CE6CF1F960BBC00F7C187 /* MDConsultDiscussCell.h */,
+				4A0CE6D01F960BBC00F7C187 /* MDConsultDiscussCell.m */,
+				4A0CE6D11F960BBC00F7C187 /* MDConsultDiscussCell.xib */,
 			);
 			path = Bottom;
 			sourceTree = "<group>";
@@ -2390,6 +2406,8 @@
 				DF0AFECD1F8FA13E00B19151 /* LSBeginChatController.m */,
 				0F6B7CCF1F906224004EEF27 /* LSChooseMateController.h */,
 				0F6B7CD01F906224004EEF27 /* LSChooseMateController.m */,
+				4A0CE6CC1F960B8F00F7C187 /* MDConsulteDisccussVC.h */,
+				4A0CE6CD1F960B8F00F7C187 /* MDConsulteDisccussVC.m */,
 			);
 			path = Bottom;
 			sourceTree = "<group>";
@@ -2545,6 +2563,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A0CE6D31F960BBC00F7C187 /* MDConsultDiscussCell.xib in Resources */,
 				0F8314731F7B3BE3008A9E22 /* LSMineUserSettingController.xib in Resources */,
 				DFF015A31F7AC15700527CFA /* EaseUIResource.bundle in Resources */,
 				0F48A3211F7CF63000E05C64 /* LSMineFeedbackController.xib in Resources */,
@@ -2643,6 +2662,7 @@
 				0F8314811F7B40BC008A9E22 /* YYClassInfo.m in Sources */,
 				DFF0156A1F7AC15700527CFA /* PSTCollectionViewCell.m in Sources */,
 				0F6E10941F7B7A8500C2477B /* LSMineSettingCell.m in Sources */,
+				4A0CE6D21F960BBC00F7C187 /* MDConsultDiscussCell.m in Sources */,
 				DF87A6BC1F7827E200EF0461 /* View+MASAdditions.m in Sources */,
 				DF87A6B11F7827E200EF0461 /* AFURLSessionManager.m in Sources */,
 				DFF015E91F7AC25F00527CFA /* MJRefreshNormalHeader.m in Sources */,
@@ -2704,6 +2724,7 @@
 				DF87A7EB1F78361D00EF0461 /* LSManageController.m in Sources */,
 				DFF015781F7AC15700527CFA /* EaseMessageModel.m in Sources */,
 				DFF015E31F7AC25F00527CFA /* MJRefreshAutoNormalFooter.m in Sources */,
+				4A0CE6CE1F960B8F00F7C187 /* MDConsulteDisccussVC.m in Sources */,
 				DF87A8221F78C92E00EF0461 /* LSDataPickerView.m in Sources */,
 				DF87ABF71F83EBD60080AACA /* LSWorkOutcallListController.m in Sources */,
 				DF27381B1F8FCF1100154B6A /* LSWorkArticleAddController.m in Sources */,
@@ -2803,6 +2824,7 @@
 				4A0CE69F1F9094F500F7C187 /* MKAnnotationView+WebCache.m in Sources */,
 				DF87A6B01F7827E200EF0461 /* AFURLResponseSerialization.m in Sources */,
 				DF87A7B31F782DE000EF0461 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				4A0CE6CB1F9594F200F7C187 /* NSString+Size.m in Sources */,
 				4A0CE6C31F945BDF00F7C187 /* MDPeerDoctorHeadCell.m in Sources */,
 				0F3E622A1F8B468B00A19FF2 /* LSChoosePatientController.m in Sources */,
 				4A0CE6B11F9096BB00F7C187 /* NSString+md5String.m in Sources */,

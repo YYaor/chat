@@ -40,6 +40,7 @@
 {
     _valueStr = valueStr;
     self.valueLab.text = valueStr;
+    self.valueLabHeight.constant = [valueStr heightWithFont:[UIFont systemFontOfSize:17.0f] constrainedToWidth:LSSCREENWIDTH - 16];
     
 }
 

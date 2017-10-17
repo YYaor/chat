@@ -38,8 +38,8 @@
         
         
     }
-    
-    
+    NSString* str;
+    self.discussValueLabHeight.constant = [str heightWithFont:[UIFont systemFontOfSize:17.0f] constrainedToWidth:LSSCREENWIDTH - 16];
     
     
     // Initialization code

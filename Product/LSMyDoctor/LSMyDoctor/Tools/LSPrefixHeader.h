@@ -17,6 +17,7 @@
 #import "MDHttpUrl.h"
 //工具类
 #import "NSString+md5String.h"
+#import "NSString+Size.h"
 
 
 #pragma mark --- 第三方

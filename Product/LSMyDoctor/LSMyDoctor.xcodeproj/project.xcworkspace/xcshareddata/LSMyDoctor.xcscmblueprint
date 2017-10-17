@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C5D0F783FF8817FABD491CDAEBF3B80FA2CDCC63",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3E55EAE12AF73F11D1A2DD94D94A70ACA88E88C1" : 9223372036854775807,
+    "C5D0F783FF8817FABD491CDAEBF3B80FA2CDCC63" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7DD1CC2E-72F1-4A5B-8CB4-0522C50295CD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3E55EAE12AF73F11D1A2DD94D94A70ACA88E88C1" : "..\/chat",
+    "C5D0F783FF8817FABD491CDAEBF3B80FA2CDCC63" : "doctor-ios2\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "LSMyDoctor",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "LSMyDoctor\/LSMyDoctor.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/YYaor\/chat.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3E55EAE12AF73F11D1A2DD94D94A70ACA88E88C1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git.369336699.com:yuedong\/doctor-ios2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C5D0F783FF8817FABD491CDAEBF3B80FA2CDCC63"
+    }
+  ]
+}

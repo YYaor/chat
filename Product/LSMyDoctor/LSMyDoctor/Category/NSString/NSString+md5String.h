@@ -19,8 +19,10 @@
 /** 根据出生日期计算年龄 */
 + ( NSString *)getAgeFromBirthday:( NSString *)birthDate;
 
-
 /** 获取会话iP */
 + (NSString*)getIpFromString:(NSString *)string;
+
+
+
 
 @end

@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATl-74-xaG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="76.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="擅长" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAq-bG-Ruh">
                                 <rect key="frame" x="10" y="10" width="37" height="25"/>
@@ -32,9 +32,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="皮肤病" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzc-H9-vFs">
-                                <rect key="frame" x="10" y="43" width="302" height="25.5"/>
+                                <rect key="frame" x="10" y="43" width="302" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="sfH-qY-kEE"/>
+                                    <constraint firstAttribute="height" constant="26" id="wtC-qn-mIt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,9 +62,9 @@
             <connections>
                 <outlet property="titleLab" destination="yAq-bG-Ruh" id="8Jh-Hb-Vkc"/>
                 <outlet property="valueLab" destination="Vzc-H9-vFs" id="xxb-eB-bNz"/>
-                <outlet property="valueLabHeight" destination="sfH-qY-kEE" id="vXz-cQ-td0"/>
+                <outlet property="valueLabHeight" destination="wtC-qn-mIt" id="udP-J4-7Vq"/>
             </connections>
-            <point key="canvasLocation" x="-63" y="-33.5"/>
+            <point key="canvasLocation" x="-333" y="-119"/>
         </tableViewCell>
     </objects>
 </document>

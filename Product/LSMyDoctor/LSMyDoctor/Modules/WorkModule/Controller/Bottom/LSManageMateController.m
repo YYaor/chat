@@ -12,6 +12,7 @@
 #import "LSPatientModel.h"
 #import "LSPatientListCell.h"
 #import "MDPeerDetailVC.h"
+#import "MDConsulteDisccussVC.h"
 
 @interface LSManageMateController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -92,14 +93,12 @@
 #pragma mark -- 发起讨论按钮点击
 -(void)chatButtonClick{
     //发起讨论
-    self.moreView.hidden = YES;
     LSBeginChatController *beginChatVC = [[LSBeginChatController alloc] init];
     [self.navigationController pushViewController:beginChatVC animated:YES];
 }
 #pragma mark -- 添加同行按钮点击
 -(void)addButtonClick{
     //添加同行
-    self.moreView.hidden = YES;
     LSAddMateController *addMateVC = [[LSAddMateController alloc] init];
     [self.navigationController pushViewController:addMateVC animated:YES];
 }
@@ -126,9 +125,11 @@
     [self.view addSubview:self.moreView];
     self.moreView.hidden = YES;
     self.moreView.userInteractionEnabled = YES;
+    [self.moreView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreViewClick)]];
     [self.moreView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
     }];
+    
     UIView *buttonView= [self getMoreView];
     [self.moreView addSubview:buttonView];
     [buttonView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -187,6 +188,12 @@
         }
         [self.dataTableView reloadData];
     }];
+}
+
+#pragma mark -- 点击moreView空白处
+- (void)moreViewClick
+{
+    self.moreView.hidden = YES;
 }
 
 #pragma mark - UITableViewDelegate / UITableViewDataSource
@@ -313,6 +320,9 @@
 - (void)moreGroupViewClick
 {
     NSLog(@"会诊讨论组按钮点击");
+    MDConsulteDisccussVC* consulteDisccussVC = [[MDConsulteDisccussVC alloc] init];
+    
+    [self.navigationController pushViewController:consulteDisccussVC animated:YES];
 }
 #pragma mark -- 右上角更多按钮展现View
 -(UIView *)getMoreView{
