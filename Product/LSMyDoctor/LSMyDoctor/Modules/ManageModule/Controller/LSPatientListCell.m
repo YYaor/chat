@@ -130,7 +130,7 @@
 -(UIImageView *)moreImageView{
     if (!_moreImageView) {
         _moreImageView = [[UIImageView alloc]init];
-        _moreImageView.image = [UIImage imageNamed:@"back_g"];
+        _moreImageView.image = [UIImage imageNamed:@"right_white_Public"];
         _moreImageView.hidden = YES;
     }
     return _moreImageView;
@@ -167,8 +167,8 @@
 -(UIButton *)chooseButton{
     if (!_chooseButton) {
         _chooseButton = [[UIButton alloc]init];
-        [_chooseButton setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateSelected];
-        [_chooseButton setImage:[UIImage imageNamed:@"select"] forState:UIControlStateNormal];
+        [_chooseButton setImage:[UIImage imageNamed:@"selectedBox_Public"] forState:UIControlStateSelected];
+        [_chooseButton setImage:[UIImage imageNamed:@"unSelectBox_Public"] forState:UIControlStateNormal];
     }
     return _chooseButton;
 }

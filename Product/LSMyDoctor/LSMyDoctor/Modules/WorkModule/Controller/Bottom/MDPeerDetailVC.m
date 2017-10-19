@@ -10,6 +10,7 @@
 #import "MDPeerDoctorHeadCell.h"
 #import "MDPeerinstructCell.h"
 #import "MDPeerDiscussCell.h"
+#import "EaseMessageViewController.h"//单人聊天室
 
 @interface MDPeerDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -24,15 +25,16 @@
     [super viewDidLoad];
     
     self.title = @"医生详情";
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     [self setUpUi];
     
 }
 #pragma mark -- 创建界面
 - (void)setUpUi
 {
+    
     //创建界面
-    detailTab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, LSSCREENWIDTH, LSSCREENHEIGHT - 60) style:UITableViewStyleGrouped];
+    detailTab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, LSSCREENWIDTH, LSSCREENHEIGHT - 60 - 60) style:UITableViewStyleGrouped];
     detailTab.delegate = self;
     detailTab.dataSource = self;
     [self.view addSubview:detailTab];
@@ -43,8 +45,9 @@
     [detailTab registerNib:[UINib nibWithNibName:@"MDPeerDiscussCell" bundle:nil] forCellReuseIdentifier:@"mDPeerDiscussCell"];
     
     
+    
     //对话 、申请加好友按钮
-    beginTalkBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, LSSCREENHEIGHT - 50, LSSCREENWIDTH - 60, 40)];
+    beginTalkBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, LSSCREENHEIGHT - 50 - 64, LSSCREENWIDTH - 60, 40)];
     [beginTalkBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [beginTalkBtn addTarget:self action:@selector(beginTalkBtnClick) forControlEvents:UIControlEventTouchUpInside];
     beginTalkBtn.layer.masksToBounds = YES;
@@ -69,9 +72,16 @@
     if (self.isFriend) {
         //已经是好友
         NSLog(@"对话");
+        EaseMessageViewController* singleCoummunicateVC = [[EaseMessageViewController alloc] initWithConversationChatter:self.doctorIdStr conversationType:EMConversationTypeChat];
+        singleCoummunicateVC.title = @"某医生";
+        [self.navigationController pushViewController:singleCoummunicateVC animated:YES];
+        
     }else{
         //不是好友
         NSLog(@"添加好友");
+        
+        
+        
     }
 }
 

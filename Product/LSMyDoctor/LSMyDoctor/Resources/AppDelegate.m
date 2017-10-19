@@ -27,6 +27,13 @@
     //    options.apnsCertName = @"PengGe_Doctor_p12";
     //    [[EMClient sharedClient] initializeSDKWithOptions:options];
     
+    
+    //设置键盘
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = YES;
+    manager.enableAutoToolbar = YES;
+    manager.shouldResignOnTouchOutside = YES;
+    
     LSTabBarController *tabController = [[LSTabBarController alloc] init];
     self.window.rootViewController = tabController;
     

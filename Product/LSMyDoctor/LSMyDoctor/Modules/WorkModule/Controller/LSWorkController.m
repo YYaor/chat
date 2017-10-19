@@ -20,6 +20,8 @@
 #import "LSWorkUsefulController.h"
 
 //bottom
+#import "MDWaitForReplyVC.h"
+#import "MDDocRequestVC.h"
 #import "LSManageMateController.h"
 
 @interface LSWorkController ()
@@ -166,10 +168,18 @@
     if (btn.tag == 30000)
     {
         //待回复同行
+        MDWaitForReplyVC* waitForReplyVC = [[MDWaitForReplyVC alloc] init];
+        waitForReplyVC.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:waitForReplyVC animated:YES];
     }
     else if (btn.tag == 30001)
     {
         //同行请求
+        MDDocRequestVC* doctorRequestVC = [[MDDocRequestVC alloc] init];
+        doctorRequestVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:doctorRequestVC animated:YES];
+        
     }
     else if (btn.tag == 30002)
     {

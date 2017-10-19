@@ -250,7 +250,8 @@
 {
     NSLog(@"点击某一行，查看医生详情资料");
     MDPeerDetailVC* peerDetailVC = [[MDPeerDetailVC alloc] init];
-    
+    peerDetailVC.isFriend = YES;
+    peerDetailVC.doctorIdStr = [NSString stringWithFormat:@"%ld_%ld",(long)indexPath.section,(long)indexPath.row];
     [self.navigationController pushViewController:peerDetailVC animated:YES];
 }
 
@@ -282,7 +283,7 @@
     }];
     
     UIImageView *moreImage = [[UIImageView alloc]init];
-    moreImage.image = [UIImage imageNamed:@"back_g"];
+    moreImage.image = [UIImage imageNamed:@"right_white_Public"];
     [moreGroupView addSubview:moreImage];
     [moreImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(12, 19));
@@ -298,7 +299,7 @@
     
     [self.groupNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(moreGroupView);
-        make.right.equalTo(moreImage.mas_left).offset(-5);
+        make.right.equalTo(moreImage.mas_left).offset(-10);
     }];
     
     UIView *line = [UIView new];

@@ -10,6 +10,8 @@
 #import "YYSearchBar.h"
 #import "LSPatientListCell.h"
 #import "LSPatientModel.h"
+#import "MDPeerDetailVC.h"
+
 @interface LSAddMateController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
 @property (nonatomic,strong)YYSearchBar *searchBar;
@@ -88,8 +90,12 @@
     return 100;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MDPeerDetailVC* peerDetailVC = [[MDPeerDetailVC alloc] init];
+    
+    
+    [self.navigationController pushViewController:peerDetailVC animated:YES];
 }
 
 -(void)keyboardDown{

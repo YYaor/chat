@@ -101,6 +101,12 @@
 		4A0CE6CE1F960B8F00F7C187 /* MDConsulteDisccussVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6CD1F960B8F00F7C187 /* MDConsulteDisccussVC.m */; };
 		4A0CE6D21F960BBC00F7C187 /* MDConsultDiscussCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6D01F960BBC00F7C187 /* MDConsultDiscussCell.m */; };
 		4A0CE6D31F960BBC00F7C187 /* MDConsultDiscussCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0CE6D11F960BBC00F7C187 /* MDConsultDiscussCell.xib */; };
+		4A0CE6DD1F9724E300F7C187 /* MDWaitForReplyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6DB1F9724E300F7C187 /* MDWaitForReplyVC.m */; };
+		4A0CE6DE1F9724E300F7C187 /* MDWaitForReplyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0CE6DC1F9724E300F7C187 /* MDWaitForReplyVC.xib */; };
+		4A0CE6E21F97256600F7C187 /* MDDocRequestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6E01F97256600F7C187 /* MDDocRequestVC.m */; };
+		4A0CE6E81F9726D900F7C187 /* MDSingleCommunicateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6E61F9726D900F7C187 /* MDSingleCommunicateVC.m */; };
+		4A0CE6F21F975BC900F7C187 /* MDSickerRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6F01F975BC900F7C187 /* MDSickerRequestCell.m */; };
+		4A0CE6F31F975BC900F7C187 /* MDSickerRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0CE6F11F975BC900F7C187 /* MDSickerRequestCell.xib */; };
 		DF0AFED21F8FA13E00B19151 /* LSAddMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */; };
 		DF0AFED41F8FA13E00B19151 /* LSBeginChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFECD1F8FA13E00B19151 /* LSBeginChatController.m */; };
 		DF0AFED61F8FA13E00B19151 /* LSManageMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */; };
@@ -557,6 +563,16 @@
 		4A0CE6CF1F960BBC00F7C187 /* MDConsultDiscussCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDConsultDiscussCell.h; sourceTree = "<group>"; };
 		4A0CE6D01F960BBC00F7C187 /* MDConsultDiscussCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDConsultDiscussCell.m; sourceTree = "<group>"; };
 		4A0CE6D11F960BBC00F7C187 /* MDConsultDiscussCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDConsultDiscussCell.xib; sourceTree = "<group>"; };
+		4A0CE6DA1F9724E300F7C187 /* MDWaitForReplyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDWaitForReplyVC.h; sourceTree = "<group>"; };
+		4A0CE6DB1F9724E300F7C187 /* MDWaitForReplyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDWaitForReplyVC.m; sourceTree = "<group>"; };
+		4A0CE6DC1F9724E300F7C187 /* MDWaitForReplyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDWaitForReplyVC.xib; sourceTree = "<group>"; };
+		4A0CE6DF1F97256600F7C187 /* MDDocRequestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDocRequestVC.h; sourceTree = "<group>"; };
+		4A0CE6E01F97256600F7C187 /* MDDocRequestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDocRequestVC.m; sourceTree = "<group>"; };
+		4A0CE6E51F9726D900F7C187 /* MDSingleCommunicateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSingleCommunicateVC.h; sourceTree = "<group>"; };
+		4A0CE6E61F9726D900F7C187 /* MDSingleCommunicateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSingleCommunicateVC.m; sourceTree = "<group>"; };
+		4A0CE6EF1F975BC900F7C187 /* MDSickerRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSickerRequestCell.h; sourceTree = "<group>"; };
+		4A0CE6F01F975BC900F7C187 /* MDSickerRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSickerRequestCell.m; sourceTree = "<group>"; };
+		4A0CE6F11F975BC900F7C187 /* MDSickerRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDSickerRequestCell.xib; sourceTree = "<group>"; };
 		DF0AFEC91F8FA13E00B19151 /* LSAddMateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSAddMateController.h; sourceTree = "<group>"; };
 		DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAddMateController.m; sourceTree = "<group>"; };
 		DF0AFECC1F8FA13E00B19151 /* LSBeginChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSBeginChatController.h; sourceTree = "<group>"; };
@@ -1385,6 +1401,9 @@
 		4A0CE6B71F945BDF00F7C187 /* Bottom */ = {
 			isa = PBXGroup;
 			children = (
+				4A0CE6EF1F975BC900F7C187 /* MDSickerRequestCell.h */,
+				4A0CE6F01F975BC900F7C187 /* MDSickerRequestCell.m */,
+				4A0CE6F11F975BC900F7C187 /* MDSickerRequestCell.xib */,
 				4A0CE6B81F945BDF00F7C187 /* MDPeerDiscussCell.h */,
 				4A0CE6B91F945BDF00F7C187 /* MDPeerDiscussCell.m */,
 				4A0CE6BA1F945BDF00F7C187 /* MDPeerDiscussCell.xib */,
@@ -1399,6 +1418,53 @@
 				4A0CE6D11F960BBC00F7C187 /* MDConsultDiscussCell.xib */,
 			);
 			path = Bottom;
+			sourceTree = "<group>";
+		};
+		4A0CE6D71F97246A00F7C187 /* MD_WaitngForReply */ = {
+			isa = PBXGroup;
+			children = (
+				4A0CE6DA1F9724E300F7C187 /* MDWaitForReplyVC.h */,
+				4A0CE6DB1F9724E300F7C187 /* MDWaitForReplyVC.m */,
+				4A0CE6DC1F9724E300F7C187 /* MDWaitForReplyVC.xib */,
+			);
+			name = MD_WaitngForReply;
+			sourceTree = "<group>";
+		};
+		4A0CE6D81F97247900F7C187 /* MD_DoctorRequest */ = {
+			isa = PBXGroup;
+			children = (
+				4A0CE6DF1F97256600F7C187 /* MDDocRequestVC.h */,
+				4A0CE6E01F97256600F7C187 /* MDDocRequestVC.m */,
+			);
+			name = MD_DoctorRequest;
+			sourceTree = "<group>";
+		};
+		4A0CE6D91F97249B00F7C187 /* MD_DoctorManage */ = {
+			isa = PBXGroup;
+			children = (
+				DF0AFECF1F8FA13E00B19151 /* LSManageMateController.h */,
+				DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */,
+				4A0CE6B41F945B9700F7C187 /* MDPeerDetailVC.h */,
+				4A0CE6B51F945B9700F7C187 /* MDPeerDetailVC.m */,
+				DF0AFEC91F8FA13E00B19151 /* LSAddMateController.h */,
+				DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */,
+				DF0AFECC1F8FA13E00B19151 /* LSBeginChatController.h */,
+				DF0AFECD1F8FA13E00B19151 /* LSBeginChatController.m */,
+				0F6B7CCF1F906224004EEF27 /* LSChooseMateController.h */,
+				0F6B7CD01F906224004EEF27 /* LSChooseMateController.m */,
+				4A0CE6CC1F960B8F00F7C187 /* MDConsulteDisccussVC.h */,
+				4A0CE6CD1F960B8F00F7C187 /* MDConsulteDisccussVC.m */,
+			);
+			name = MD_DoctorManage;
+			sourceTree = "<group>";
+		};
+		4A0CE6E41F97268A00F7C187 /* MD_Communication */ = {
+			isa = PBXGroup;
+			children = (
+				4A0CE6E51F9726D900F7C187 /* MDSingleCommunicateVC.h */,
+				4A0CE6E61F9726D900F7C187 /* MDSingleCommunicateVC.m */,
+			);
+			path = MD_Communication;
 			sourceTree = "<group>";
 		};
 		DF335A191F954CB9009D026E /* PWTagsView */ = {
@@ -2547,18 +2613,10 @@
 		DFFD8EC31F7C235800FF0ECD /* Bottom */ = {
 			isa = PBXGroup;
 			children = (
-				DF0AFECF1F8FA13E00B19151 /* LSManageMateController.h */,
-				DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */,
-				4A0CE6B41F945B9700F7C187 /* MDPeerDetailVC.h */,
-				4A0CE6B51F945B9700F7C187 /* MDPeerDetailVC.m */,
-				DF0AFEC91F8FA13E00B19151 /* LSAddMateController.h */,
-				DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */,
-				DF0AFECC1F8FA13E00B19151 /* LSBeginChatController.h */,
-				DF0AFECD1F8FA13E00B19151 /* LSBeginChatController.m */,
-				0F6B7CCF1F906224004EEF27 /* LSChooseMateController.h */,
-				0F6B7CD01F906224004EEF27 /* LSChooseMateController.m */,
-				4A0CE6CC1F960B8F00F7C187 /* MDConsulteDisccussVC.h */,
-				4A0CE6CD1F960B8F00F7C187 /* MDConsulteDisccussVC.m */,
+				4A0CE6E41F97268A00F7C187 /* MD_Communication */,
+				4A0CE6D71F97246A00F7C187 /* MD_WaitngForReply */,
+				4A0CE6D81F97247900F7C187 /* MD_DoctorRequest */,
+				4A0CE6D91F97249B00F7C187 /* MD_DoctorManage */,
 			);
 			path = Bottom;
 			sourceTree = "<group>";
@@ -2686,8 +2744,8 @@
 				TargetAttributes = {
 					DF87A1B61F781B7700EF0461 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = QEW2Q934R5;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 9F5M55YYN4;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -2753,10 +2811,12 @@
 				DF87A7BA1F782DE000EF0461 /* IQKeyboardManager.bundle in Resources */,
 				DF87A7C31F782F0700EF0461 /* LSLoginController.xib in Resources */,
 				0F3E622B1F8B468B00A19FF2 /* LSChoosePatientController.xib in Resources */,
+				4A0CE6DE1F9724E300F7C187 /* MDWaitForReplyVC.xib in Resources */,
 				0F6E10871F7B799600C2477B /* LSMineNewPswController.xib in Resources */,
 				DF2738171F8FC6E300154B6A /* LSWorkArticleController.xib in Resources */,
 				DF87A6401F7820A700EF0461 /* LaunchScreen.storyboard in Resources */,
 				DFFD8EE11F7C377B00FF0ECD /* LSWorkAdviceController.xib in Resources */,
+				4A0CE6F31F975BC900F7C187 /* MDSickerRequestCell.xib in Resources */,
 				0F3E63221F8C788600A19FF2 /* SGQRCode.bundle in Resources */,
 				DF27381C1F8FCF1100154B6A /* LSWorkArticleAddController.xib in Resources */,
 				4A0CE6C61F945BDF00F7C187 /* MDPeerinstructCell.xib in Resources */,
@@ -2834,6 +2894,7 @@
 				DF87A6EE1F782A8E00EF0461 /* AFImageDownloader.m in Sources */,
 				DFD5C7181F8167A300045E39 /* FSCalendarWeekdayView.m in Sources */,
 				DFF015681F7AC15700527CFA /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
+				4A0CE6E21F97256600F7C187 /* MDDocRequestVC.m in Sources */,
 				DFD5C7171F8167A300045E39 /* FSCalendarTransitionCoordinator.m in Sources */,
 				DFF015371F7AC15700527CFA /* EMVoiceConverter.mm in Sources */,
 				DF0AFED21F8FA13E00B19151 /* LSAddMateController.m in Sources */,
@@ -2897,6 +2958,7 @@
 				DFF0157F1F7AC15700527CFA /* EaseChineseToPinyin.m in Sources */,
 				0F3E63231F8C788600A19FF2 /* SGQRCodeAlbumManager.m in Sources */,
 				DFD5C7131F8167A300045E39 /* FSCalendarExtensions.m in Sources */,
+				4A0CE6E81F9726D900F7C187 /* MDSingleCommunicateVC.m in Sources */,
 				DFF0157D1F7AC15700527CFA /* UIViewController+DismissKeyboard.m in Sources */,
 				DF87A6EF1F782A8E00EF0461 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				DFD5C70C1F8167A300045E39 /* FSCalendarCalculator.m in Sources */,
@@ -2931,6 +2993,7 @@
 				DF87A8191F78BC0700EF0461 /* LSNetworkTool.m in Sources */,
 				DFD5C7111F8167A300045E39 /* FSCalendarDelegationFactory.m in Sources */,
 				DFF015731F7AC15700527CFA /* PSTGridLayoutRow.m in Sources */,
+				4A0CE6DD1F9724E300F7C187 /* MDWaitForReplyVC.m in Sources */,
 				DF87A7B91F782DE000EF0461 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				0F8314761F7B3C82008A9E22 /* LSMineUserSettingCell.m in Sources */,
 				DF87A7B11F782DE000EF0461 /* IQUIWindow+Hierarchy.m in Sources */,
@@ -3037,6 +3100,7 @@
 				DFF015791F7AC15700527CFA /* EaseUserModel.m in Sources */,
 				0FB200E01F78F463005BC289 /* LSRegisterController.m in Sources */,
 				4A0CE6B61F945B9700F7C187 /* MDPeerDetailVC.m in Sources */,
+				4A0CE6F21F975BC900F7C187 /* MDSickerRequestCell.m in Sources */,
 				DFF015921F7AC15700527CFA /* EaseBubbleView+File.m in Sources */,
 				DF87A6F41F782A8E00EF0461 /* UIRefreshControl+AFNetworking.m in Sources */,
 				DF87A7E11F7835DD00EF0461 /* LSMineController.m in Sources */,
@@ -3165,7 +3229,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QEW2Q934R5;
+				DEVELOPMENT_TEAM = 9F5M55YYN4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3197,8 +3261,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pengge.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "f0f0247a-08c8-43d8-b0f3-9643c707cefb";
+				PROVISIONING_PROFILE_SPECIFIER = MyDoctor_Dev_Wqj;
 			};
 			name = Debug;
 		};
@@ -3207,7 +3271,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QEW2Q934R5;
+				DEVELOPMENT_TEAM = 9F5M55YYN4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3234,8 +3298,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pengge.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "f0f0247a-08c8-43d8-b0f3-9643c707cefb";
+				PROVISIONING_PROFILE_SPECIFIER = MyDoctor_Dev_Wqj;
 			};
 			name = Release;
 		};
