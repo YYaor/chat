@@ -45,6 +45,37 @@
     // Configure the view for the selected state
 }
 
+- (void)setContentModel:(MDRequestContentModel *)contentModel
+{
+    _contentModel = contentModel;
+    /*
+    //头像
+    
+    NSString* imgUrl = [NSString stringWithFormat:@"%@%@",UGAPI_HOST,requestModel.img_url];
+    [self.userImgView sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+    //姓名
+    self.userNameLab.text = sickerModel.username;
+    NSString* sexStr = sickerModel.sex;
+    if ([sickerModel.sex isEqualToString:@"1"]) {
+        sexStr = @"男";
+    }else if ([sickerModel.sex isEqualToString:@"2"]){
+        sexStr = @"女";
+    }
+    //性别和年龄
+    self.sexAndAgeLab.text = [NSString stringWithFormat:@"%@  %@",sexStr,[NSString getAgeFromBirthday:sickerModel.birthday]];
+    
+    //用户申请内容
+    if (!sickerModel.remark || sickerModel.remark.length <= 0) {
+        self.userValueLab.text = @"请同意我的请求";
+    }else{
+        self.userValueLab.text = sickerModel.remark;
+    }
+    
+*/
+    
+    
+}
+
 
 #pragma mark -- 同意按钮点击
 - (IBAction)agreeBtnClick:(UIButton *)sender

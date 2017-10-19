@@ -72,7 +72,6 @@
 		0FF0B80B1F987A96003B4C7E /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF0B8041F987A96003B4C7E /* SVRadialGradientLayer.m */; };
 		0FF0B8111F987E78003B4C7E /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF0B80E1F987E78003B4C7E /* Toast+UIView.m */; };
 		0FF0B8121F987E78003B4C7E /* XHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF0B8101F987E78003B4C7E /* XHToast.m */; };
-		0FF0B8161F987FFB003B4C7E /* MDRequestParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF0B8151F987FFB003B4C7E /* MDRequestParameters.m */; };
 		4A0CE69F1F9094F500F7C187 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE67F1F9094F500F7C187 /* MKAnnotationView+WebCache.m */; };
 		4A0CE6A01F9094F500F7C187 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6811F9094F500F7C187 /* NSData+ImageContentType.m */; };
 		4A0CE6A11F9094F500F7C187 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6831F9094F500F7C187 /* SDImageCache.m */; };
@@ -107,6 +106,8 @@
 		4A0CE6E81F9726D900F7C187 /* MDSingleCommunicateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6E61F9726D900F7C187 /* MDSingleCommunicateVC.m */; };
 		4A0CE6F21F975BC900F7C187 /* MDSickerRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6F01F975BC900F7C187 /* MDSickerRequestCell.m */; };
 		4A0CE6F31F975BC900F7C187 /* MDSickerRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0CE6F11F975BC900F7C187 /* MDSickerRequestCell.xib */; };
+		4A0CE6FD1F989E9C00F7C187 /* MDRequestParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6FC1F989E9C00F7C187 /* MDRequestParameters.m */; };
+		4A8928291F98A1780051A868 /* MDPeerReuqestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8928281F98A1780051A868 /* MDPeerReuqestModel.m */; };
 		DF0AFED21F8FA13E00B19151 /* LSAddMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */; };
 		DF0AFED41F8FA13E00B19151 /* LSBeginChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFECD1F8FA13E00B19151 /* LSBeginChatController.m */; };
 		DF0AFED61F8FA13E00B19151 /* LSManageMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */; };
@@ -506,8 +507,6 @@
 		0FF0B80E1F987E78003B4C7E /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
 		0FF0B80F1F987E78003B4C7E /* XHToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHToast.h; sourceTree = "<group>"; };
 		0FF0B8101F987E78003B4C7E /* XHToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHToast.m; sourceTree = "<group>"; };
-		0FF0B8141F987FFB003B4C7E /* MDRequestParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRequestParameters.h; sourceTree = "<group>"; };
-		0FF0B8151F987FFB003B4C7E /* MDRequestParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRequestParameters.m; sourceTree = "<group>"; };
 		4A0CE67E1F9094F500F7C187 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		4A0CE67F1F9094F500F7C187 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		4A0CE6801F9094F500F7C187 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -573,6 +572,10 @@
 		4A0CE6EF1F975BC900F7C187 /* MDSickerRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSickerRequestCell.h; sourceTree = "<group>"; };
 		4A0CE6F01F975BC900F7C187 /* MDSickerRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSickerRequestCell.m; sourceTree = "<group>"; };
 		4A0CE6F11F975BC900F7C187 /* MDSickerRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDSickerRequestCell.xib; sourceTree = "<group>"; };
+		4A0CE6FB1F989E9C00F7C187 /* MDRequestParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRequestParameters.h; sourceTree = "<group>"; };
+		4A0CE6FC1F989E9C00F7C187 /* MDRequestParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRequestParameters.m; sourceTree = "<group>"; };
+		4A8928271F98A1780051A868 /* MDPeerReuqestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDPeerReuqestModel.h; sourceTree = "<group>"; };
+		4A8928281F98A1780051A868 /* MDPeerReuqestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDPeerReuqestModel.m; sourceTree = "<group>"; };
 		DF0AFEC91F8FA13E00B19151 /* LSAddMateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSAddMateController.h; sourceTree = "<group>"; };
 		DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAddMateController.m; sourceTree = "<group>"; };
 		DF0AFECC1F8FA13E00B19151 /* LSBeginChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSBeginChatController.h; sourceTree = "<group>"; };
@@ -1202,6 +1205,7 @@
 		0FB200C61F78EF75005BC289 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				4A0CE6F41F989C1600F7C187 /* Public */,
 				0FB200C71F78EF75005BC289 /* NSString */,
 			);
 			path = Category;
@@ -1349,15 +1353,6 @@
 			path = toast;
 			sourceTree = "<group>";
 		};
-		0FF0B8131F987FFB003B4C7E /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				0FF0B8141F987FFB003B4C7E /* MDRequestParameters.h */,
-				0FF0B8151F987FFB003B4C7E /* MDRequestParameters.m */,
-			);
-			path = DataSource;
-			sourceTree = "<group>";
-		};
 		4A0CE67D1F9094F500F7C187 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1467,6 +1462,48 @@
 			path = MD_Communication;
 			sourceTree = "<group>";
 		};
+		4A0CE6F41F989C1600F7C187 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				4A0CE6FB1F989E9C00F7C187 /* MDRequestParameters.h */,
+				4A0CE6FC1F989E9C00F7C187 /* MDRequestParameters.m */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		4A8928231F98A1340051A868 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4A8928241F98A1630051A868 /* Bottom */,
+				4A8928251F98A1630051A868 /* Center */,
+				4A8928261F98A1630051A868 /* Top */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4A8928241F98A1630051A868 /* Bottom */ = {
+			isa = PBXGroup;
+			children = (
+				4A8928271F98A1780051A868 /* MDPeerReuqestModel.h */,
+				4A8928281F98A1780051A868 /* MDPeerReuqestModel.m */,
+			);
+			path = Bottom;
+			sourceTree = "<group>";
+		};
+		4A8928251F98A1630051A868 /* Center */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Center;
+			sourceTree = "<group>";
+		};
+		4A8928261F98A1630051A868 /* Top */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Top;
+			sourceTree = "<group>";
+		};
 		DF335A191F954CB9009D026E /* PWTagsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1520,7 +1557,6 @@
 		DF87A6291F7820A700EF0461 /* CommonModule */ = {
 			isa = PBXGroup;
 			children = (
-				0FF0B8131F987FFB003B4C7E /* DataSource */,
 				DF87A62A1F7820A700EF0461 /* Controller */,
 				DF87A62B1F7820A700EF0461 /* Model */,
 				DF87A62C1F7820A700EF0461 /* View */,
@@ -1933,7 +1969,7 @@
 			isa = PBXGroup;
 			children = (
 				DF87A7D61F78358300EF0461 /* Controller */,
-				DF87A7D71F78358300EF0461 /* Model */,
+				4A8928231F98A1340051A868 /* Model */,
 				DF87A7D81F78358300EF0461 /* View */,
 			);
 			path = WorkModule;
@@ -1950,13 +1986,6 @@
 				DFFD8EC51F7C235800FF0ECD /* Top */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		DF87A7D71F78358300EF0461 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		DF87A7D81F78358300EF0461 /* View */ = {
@@ -2940,6 +2969,7 @@
 				DF87A6B81F7827E200EF0461 /* MASViewAttribute.m in Sources */,
 				DFF015571F7AC15700527CFA /* DACircularProgressView.m in Sources */,
 				0F3E63241F8C788600A19FF2 /* SGQRCodeGenerateManager.m in Sources */,
+				4A0CE6FD1F989E9C00F7C187 /* MDRequestParameters.m in Sources */,
 				DFF015541F7AC15700527CFA /* MWTapDetectingImageView.m in Sources */,
 				DF87A7EB1F78361D00EF0461 /* LSManageController.m in Sources */,
 				DFF015781F7AC15700527CFA /* EaseMessageModel.m in Sources */,
@@ -3017,7 +3047,6 @@
 				DFF0159B1F7AC15700527CFA /* EaseChatToolbarItem.m in Sources */,
 				0FF0B7F41F987801003B4C7E /* SRDownloadModel.m in Sources */,
 				DF87A7B81F782DE000EF0461 /* IQToolbar.m in Sources */,
-				0FF0B8161F987FFB003B4C7E /* MDRequestParameters.m in Sources */,
 				0FF0B7F51F987801003B4C7E /* TLAsiNetworkHandler.m in Sources */,
 				0FB200CF1F78F087005BC289 /* LSUtil.m in Sources */,
 				0F8314791F7B3F55008A9E22 /* LSUserModel.m in Sources */,
@@ -3088,6 +3117,7 @@
 				DFF015611F7AC15700527CFA /* UIButton+EMWebCache.m in Sources */,
 				4A0CE6A31F9094F500F7C187 /* SDWebImageDecoder.m in Sources */,
 				0F6B7CD21F906224004EEF27 /* LSChooseMateController.m in Sources */,
+				4A8928291F98A1780051A868 /* MDPeerReuqestModel.m in Sources */,
 				0FF0B8071F987A96003B4C7E /* SVIndefiniteAnimatedView.m in Sources */,
 				DF87A6F11F782A8E00EF0461 /* UIButton+AFNetworking.m in Sources */,
 				4A0CE6A21F9094F500F7C187 /* SDWebImageCompat.m in Sources */,

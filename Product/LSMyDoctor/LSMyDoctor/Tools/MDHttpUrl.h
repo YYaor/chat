@@ -12,7 +12,7 @@
 /**
  *   开发环境
  */
-#define API_HOST @"http://121.40.225.78:8080/youge-api/V2.0/dr"//开发环境
+//#define API_HOST @"http://121.40.225.78:8080/youge-api/V2.0/dr"//开发环境
 
 /**
  *   测试环境
@@ -28,7 +28,7 @@
 /**
  *   API_后台环境
  */
-//#define API_HOST @"http://192.168.1.15:8080/youge-api/V2.0/dr"//后台环境
+#define API_HOST @"http://39.108.12.48:8080/youge-api/V2.0/dr"//后台环境
 
 //更新appURL
 #define uploadNewAppUrl @"https://itunes.apple.com/cn/app/apple-store/id1123554194"

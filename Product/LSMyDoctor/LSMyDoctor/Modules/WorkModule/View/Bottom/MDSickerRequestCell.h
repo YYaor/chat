@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MDPeerReuqestModel.h"
 
 @protocol MDSickerRequestCellDelegate <NSObject>
 
@@ -16,6 +17,7 @@
 
 @interface MDSickerRequestCell : UITableViewCell
 
+@property (nonatomic ,strong) MDRequestContentModel* contentModel;
 
 //代理方法
 @property (strong,nonatomic) id<MDSickerRequestCellDelegate>delegate;//输入代理

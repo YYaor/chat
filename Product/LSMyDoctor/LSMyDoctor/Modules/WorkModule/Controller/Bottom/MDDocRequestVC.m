@@ -8,25 +8,18 @@
 
 #import "MDDocRequestVC.h"
 #import "MDSickerRequestCell.h"
+#import "MDPeerReuqestModel.h"
 
 @interface MDDocRequestVC ()<UITableViewDelegate,UITableViewDataSource,MDSickerRequestCellDelegate>
 {
     UITableView* requestTab;
 }
-@property (nonatomic,strong) NSMutableArray *sickerRequestArr;
+
+@property (nonatomic ,strong)MDPeerReuqestModel * requestModel;
 
 @end
 
 @implementation MDDocRequestVC
-#pragma mark -- 懒加载
-- (NSMutableArray *)sickerRequestArr{
-    
-    if (_sickerRequestArr == nil) {
-        _sickerRequestArr = [NSMutableArray array];
-        
-    }
-    return _sickerRequestArr;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,6 +27,12 @@
     
     [self setUpUi];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    //获取请求列表
+    [self getRequestData];
 }
 #pragma mark -- 创建界面
 - (void)setUpUi
@@ -51,7 +50,7 @@
 #pragma mark -- UITableViewDelegate 、 UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 10;
+    return self.requestModel.content.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -75,6 +74,8 @@
     MDSickerRequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDSickerRequestCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
+    
+    
     
     return cell;
     
@@ -122,6 +123,45 @@
     NSLog(@"同意按钮点击：%@",sickerModel.username);
 }
 */
+
+
+#pragma mark -- 获取请求列表
+- (void)getRequestData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:@(1) forKey:@"pagenum"];
+    [param setValue:@(100) forKey:@"pagesize"];
+    [param setValue:@(2) forKey:@"type"];
+    
+    NSString* url = PATH(@"%@/beRequestList");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                self.requestModel = [MDPeerReuqestModel yy_modelWithDictionary:responseObj[@"data"]];
+                
+                [requestTab reloadData];
+                
+            }else
+            {
+                [XHToast showCenterWithText:responseObj[@"message"]];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+
+}
+
 
 
 
