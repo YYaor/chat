@@ -13,6 +13,6 @@
 + (instancetype)sharedInstance;
 
 - (void)requestGetWithURL:(NSString *)url param:(id)param callBack:(void (^) (id))callBack;
-- (void)requestPostWithURL:(NSString *)url param:(id)param callBack:(void (^) (id))callBack;
+- (void)requestPostWithURL:(NSString *)url param:(id)param callBack:(void (^) (id result))callBack;
 
 @end

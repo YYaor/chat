@@ -23,7 +23,7 @@
 
 - (void)requestGetWithURL:(NSString *)url param:(id)param callBack:(void (^) (id))callBack
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", LSBASEURL, url];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", API_HOST, url];
     
     [self GET:urlStr parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
     {
@@ -35,9 +35,9 @@
     }];
 }
 
-- (void)requestPostWithURL:(NSString *)url param:(id)param callBack:(void (^) (id))callBack
+- (void)requestPostWithURL:(NSString *)url param:(id)param callBack:(void (^) (id result))callBack
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", LSBASEURL, url];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", API_HOST, url];
     
     [self POST:urlStr parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {

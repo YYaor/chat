@@ -10,6 +10,8 @@
 
 #import "LSTabBarController.h"
 
+#import "SVProgressHUD.h"
+
 @interface AppDelegate ()
 
 @end
@@ -41,6 +43,8 @@
                                          apnsCertName:@"release"
                                           otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
     [self loginIM];
+    
+    [self initAccessToken];
     
     return YES;
 }
@@ -113,6 +117,39 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)initAccessToken
+{
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    
+    NSString* headUrl = [API_HOST substringToIndex:API_HOST.length - 3];
+    NSString* tokenUrl = [NSString stringWithFormat:@"%@/home/getAccessTokenEx",headUrl];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/html", nil];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager POST:tokenUrl parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [SVProgressHUD dismiss];
+        
+        if ([responseObject[@"status"] integerValue] == 0) {
+            
+            [Defaults setValue:responseObject[@"data"] forKey:@"accessToken"];
+            NSLog(@"*******token:%@*****",responseObject[@"data"]);
+            [Defaults synchronize];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        [SVProgressHUD dismiss];
+        
+    }];
+}
+
 
 
 @end

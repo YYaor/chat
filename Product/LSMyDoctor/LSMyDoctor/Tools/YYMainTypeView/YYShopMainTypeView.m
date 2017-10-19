@@ -141,6 +141,7 @@
     } completion:^(BOOL finished) {
         
     }];
+    self.selectIndex = b.tag;
     if ([self.delegate respondsToSelector:@selector(selectTypeIndex:)]) {
         [self.delegate selectTypeIndex:b.tag];
     }

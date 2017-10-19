@@ -41,6 +41,9 @@
 @end
 
 @implementation LSRegisterController
+{
+    BOOL isFirst;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,6 +51,8 @@
     [self initNavView];
     [self initForView];
     [self initTouchEvents];
+    
+    isFirst = YES;
 }
 
 -(void)initNavView{
@@ -201,11 +206,85 @@
         return;
     }
     
-    if (![NSString isMobile:self.phoneTextField.text]) {
+    if (![self isMobile:self.phoneTextField.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
         self.phoneNoticeLabel.text = @"手机号码格式不正确";
         return;
     }
+    
+    NSString* url = PATH(@"%@/misc/code");
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    
+    [param setValue:AccessToken forKey:@"accessToken"];
+    [param setValue:self.phoneTextField.text forKey:@"phone"];
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]])
+        {
+            NSDictionary * dict = responseObj;
+            if (dict[@"status"] && [dict[@"status"] isEqualToString:@"0"]) {
+                //返回成功
+                //获取验证码成功
+                NSString* showMessage = @"验证码已发送到手机，请注意查收";
+                if (dict[@"message"]) {
+                    showMessage = dict[@"message"];
+                }
+                [XHToast showCenterWithText:showMessage];
+                
+                [self buttonTitleTime:self.sendCodeButton withTime:@"60"];
+            }else{
+                NSLog(@"返回格式输出错误");
+            }
+        }
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
+
+- (BOOL)isMobile:(NSString *)string {
+    NSString *regex = @"^((13[0-9])|(15[^4,\\D])|(18[0-9])|(14[0-9])|(17[0-9]))\\d{8}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [pred evaluateWithObject:string];
+}
+
+- (void)buttonTitleTime:(UIButton *)button withTime:(NSString *)time
+{
+    __block int timeout=[time intValue]-1; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                if (isFirst) {
+                    [button setTitle:@"获取验证码" forState:UIControlStateNormal];
+                }else{
+                    [button setTitle:@"重新获取" forState:UIControlStateNormal];
+                }
+                button.titleLabel.font = [UIFont systemFontOfSize:15];
+                
+                
+                button.enabled = YES;
+                button.alpha = 1;
+                isFirst = NO;
+            });
+        }else{
+            int seconds = timeout % 60;
+            NSString *strTime = [NSString stringWithFormat:@"%d", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [button setTitle:[NSString stringWithFormat:@"%@s",strTime] forState:UIControlStateDisabled];
+                button.titleLabel.font = [UIFont systemFontOfSize:13];
+                button.enabled = NO;
+                button.alpha = 0.4;
+                
+            });
+            timeout--;
+            
+        }
+    });
+    dispatch_resume(_timer);
 }
 
 -(void)nextButtonClick{

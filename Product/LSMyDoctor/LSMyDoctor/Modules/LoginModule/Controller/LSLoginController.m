@@ -8,7 +8,7 @@
 
 #import "LSLoginController.h"
 #import "LSRegisterController.h"
-
+#import "LSAuthenticationController.h"
 #import "YYShopMainTypeView.h"
 #import "NSString+Mark.h"
 
@@ -253,11 +253,44 @@
         return;
     }
     
-    if (![NSString isMobile:self.phoneTextFiled.text]) {
+    if (![self isMobile:self.phoneTextFiled.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
         self.phoneNoticeLabel.text = @"手机号码有误";
         return;
     }
+    
+    NSString* url = PATH(@"%@/misc/code");
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    
+    [param setValue:AccessToken forKey:@"accessToken"];
+    [param setValue:self.phoneTextFiled.text forKey:@"phone"];
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+            if ([responseObj isKindOfClass:[NSDictionary class]])
+            {
+                NSDictionary * dict = responseObj;
+                if (dict[@"status"] && [dict[@"status"] isEqualToString:@"0"]) {
+                    //返回成功
+                    //获取验证码成功
+                    NSString* showMessage = @"验证码已发送到手机，请注意查收";
+                    if (dict[@"message"]) {
+                        showMessage = dict[@"message"];
+                    }
+                    [XHToast showCenterWithText:showMessage];
+                    
+                    [self buttonTitleTime:self.sendCodeButton withTime:@"60"];
+                }else{
+                NSLog(@"返回格式输出错误");
+                }
+            }
+        } failBlock:^(NSError *error) {
+            [XHToast showCenterWithText:@"fail"];
+        }];
+}
+
+- (BOOL)isMobile:(NSString *)string {
+    NSString *regex = @"^((13[0-9])|(15[^4,\\D])|(18[0-9])|(14[0-9])|(17[0-9]))\\d{8}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [pred evaluateWithObject:string];
 }
 
 -(void)loginButtonClick{
@@ -272,6 +305,99 @@
         self.phoneNoticeLabel.text = @"手机号码有误";
         return;
     }
+    
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    
+    [param setValue:self.phoneTextFiled.text forKey:@"phone"];
+    [param setValue:AccessToken forKey:@"accessToken"];
+    
+    NSString* url = @"";
+    if (self.typeView.selectIndex == 1) {
+        //手机验证码登录
+        [param setValue:self.pswTextFiled.text forKey:@"code"];
+        url = PATH(@"%@/login/code");
+    }else{
+        //密码登录
+        [param setValue:[NSString md5String:self.pswTextFiled.text] forKey:@"passwd"];
+        url = PATH(@"%@/login/passwd");
+    }
+    
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]])
+        {
+            NSDictionary * dict = responseObj;
+            
+            if (dict[@"status"] && [dict[@"status"] isEqualToString:@"0"]&& dict[@"cookie"]) {
+                
+                [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"ug369D%@",self.phoneTextFiled.text]
+                                                  password:@"000000"
+                                                completion:^(NSString *aUsername, EMError *aError) {
+                                                    if (!aError) {
+                                                        NSLog(@"环信登录成功");
+                                                    } else {
+                                                        NSLog(@"环信登录失败");
+                                                    }
+                                                }];
+                
+                //登录成功
+                [Defaults setBool:YES forKey:@"isLogin"];
+                [Defaults setValue:dict[@"cookie"] forKey:@"cookie"];
+                [Defaults setValue:self.phoneTextFiled.text forKey:@"phoneNum"];
+                [Defaults setValue:dict[@"doctorid"] forKey:@"doctorid"];
+                if (self.typeView.selectIndex != 1) {
+                    //密码登录
+                    [Defaults setValue:self.pswTextFiled.text forKey:@"passWord"];
+                }
+                
+                
+                [Defaults synchronize];
+                
+                if (self.typeView.selectIndex== 1) {
+                    //手机验证码登录
+                    if (dict[@"firstLogin"] && [dict[@"firstLogin"] boolValue]) {
+                        //第一次登录，先去核对信息
+                        if (dict[@"checkingInfo"] && [dict[@"checkingInfo"] isKindOfClass:[NSDictionary class]]) {
+                            
+                            LSAuthenticationController* checkInfoVC = [[LSAuthenticationController alloc] init];
+//                            checkInfoVC.dict = dict[@"checkingInfo"];
+                            [self.navigationController pushViewController:checkInfoVC animated:YES];
+                        }
+                        
+                        
+                    }else{
+                        //不是第一次登录的，则直接跳转首页
+                        
+//                        MDTabbarVC* tabbarVC = [[MDTabbarVC alloc] init];
+//                        [self presentViewController:tabbarVC animated:YES completion:^{
+//                            [self.navigationController popToRootViewControllerAnimated:YES];
+//                        }];
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                    }
+                    
+                }else{
+                    //密码登录 --使用密码登录肯定不是第一次登录，所以直接跳转至首页
+//                    MDTabbarVC* tabbarVC = [[MDTabbarVC alloc] init];
+//                    [self presentViewController:tabbarVC animated:YES completion:^{
+//                        [self.navigationController popToRootViewControllerAnimated:YES];
+//                    }];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+
+                }
+            }else{
+                //当返回status不为0时
+                NSString* message = @"登录失败，请重新登录";
+                if (responseObj[@"message"]) {
+                    message = responseObj[@"message"];
+                }else if (responseObj[@"data"]){
+                    message = responseObj[@"data"];
+                }
+                [XHToast showCenterWithText:message];
+            }
+        }
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
 
 }
 

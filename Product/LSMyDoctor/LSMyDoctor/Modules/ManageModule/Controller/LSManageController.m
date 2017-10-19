@@ -37,17 +37,17 @@
 
 - (void)loginButtonClick
 {
-//    LSLoginController *loginVC = [[LSLoginController alloc]init];
-//    loginVC.hidesBottomBarWhenPushed = YES;
-//    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
-//    [self presentViewController:nav animated:YES completion:^{
-//        
-//    }];
+    LSLoginController *loginVC = [[LSLoginController alloc]init];
+    loginVC.hidesBottomBarWhenPushed = YES;
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+    [self presentViewController:nav animated:YES completion:^{
+        
+    }];
     
-    EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
-                                                 initWithConversationChatter:@"zjc" conversationType:0];
-    
-    [self.navigationController pushViewController:chatController animated:YES];
+//    EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
+//                                                 initWithConversationChatter:@"zjc" conversationType:0];
+//
+//    [self.navigationController pushViewController:chatController animated:YES];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

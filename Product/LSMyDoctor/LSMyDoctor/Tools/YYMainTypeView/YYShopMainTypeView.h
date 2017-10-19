@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, horizontalViewType) {
 
 @property (nonatomic,weak) id<YYShopMainTypeViewDelegate>delegate;
 @property (nonatomic,assign) BOOL isJingxuan;
+@property (nonatomic,assign) NSInteger selectIndex;
 //是否显示选择状态下面的横条
 -(void)hideSelectedView;
 
