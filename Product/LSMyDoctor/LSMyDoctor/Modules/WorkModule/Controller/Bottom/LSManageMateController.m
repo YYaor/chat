@@ -9,22 +9,21 @@
 #import "LSManageMateController.h"
 #import "LSAddMateController.h"
 #import "LSBeginChatController.h"
-#import "LSPatientModel.h"
 #import "LSPatientListCell.h"
 #import "MDPeerDetailVC.h"
 #import "MDConsulteDisccussVC.h"
+#import "MDDoctorListModel.h"
 
 @interface LSManageMateController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong)UITableView *dataTableView;
 
-@property (nonatomic,strong)NSMutableArray *dataArray;
+@property (nonatomic,strong)NSMutableArray *dataArray; //请求回来总的数据
 
-@property (nonatomic,strong)NSMutableArray *sectionArray;
-
-@property (nonatomic,strong)NSMutableArray *orderArray;
-
-@property (nonatomic,strong)NSMutableDictionary *dataDic;
+//排序后的出现过的拼音首字母数组
+@property(nonatomic,strong)NSMutableArray *indexArray;
+//排序好的结果数组
+@property(nonatomic,strong)NSMutableArray *letterResultArr;
 
 @property (nonatomic,strong)UILabel *groupNumLabel;
 
@@ -41,18 +40,21 @@
     return _dataArray;
 }
 
--(NSMutableArray *)sectionArray{
-    if (!_sectionArray) {
-        _sectionArray = [[NSMutableArray alloc] init];
+- (NSMutableArray *)indexArray{
+    
+    if (_indexArray == nil) {
+        _indexArray = [NSMutableArray array];
+        
     }
-    return _sectionArray;
+    return _indexArray;
 }
-
--(NSMutableArray *)orderArray{
-    if (!_orderArray) {
-        _orderArray = [[NSMutableArray alloc] init];
+- (NSMutableArray *)letterResultArr{
+    
+    if (_letterResultArr == nil) {
+        _letterResultArr = [NSMutableArray array];
+        
     }
-    return _orderArray;
+    return _letterResultArr;
 }
 
 -(UITableView *)dataTableView{
@@ -77,7 +79,6 @@
     self.navigationItem.rightBarButtonItem = rightBarBtnItem;
     
     [self initForView];
-    [self loadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -139,56 +140,6 @@
     }];
     
 }
--(void)loadData{
-    LSPatientModel *model1 = [[LSPatientModel alloc]init];
-    model1.name = @"张三";
-    model1.sex = @"男";
-    model1.age = @"10";
-    model1.goodAt = @"擅长：儿童先天性修复儿童先天性修复儿童先天性修复";
-    
-    LSPatientModel *model2 = [[LSPatientModel alloc]init];
-    model2.name = @"李四";
-    model2.sex = @"女";
-    model2.age = @"10";
-    model2.goodAt = @"擅长：儿童先天性修复儿童先天性修复儿童先天性修复";
-
-    
-    LSPatientModel *model3 = [[LSPatientModel alloc]init];
-    model3.name = @"王五";
-    model3.sex = @"男";
-    model3.goodAt = @"擅长：儿童先天性修复儿童先天性修复儿童先天性修复";
-
-    //    model3.age = @"15";
-    
-    LSPatientModel *model4 = [[LSPatientModel alloc]init];
-    model4.name = @"李四四";
-    model4.sex = @"女";
-    model4.age = @"134";
-    model4.goodAt = @"擅长：儿童先天性修复儿童先天性修复儿童先天性修复";
-
-    
-    [self.dataArray addObjectsFromArray: [NSArray arrayWithObjects:model1,model2,model3,model4, nil]];
-    
-    [LSUtil getOrderPatientList:self.dataArray patientListDictBlock:^(NSDictionary<NSString *,NSMutableDictionary *> *addressBookDict, NSArray *nameKeys) {
-        //得到排序后的数组
-        [self.sectionArray addObjectsFromArray:nameKeys];
-        self.dataDic = [[NSMutableDictionary alloc]initWithDictionary:addressBookDict];
-        
-        for (int i = 0; i < nameKeys.count; i++) {
-            NSArray *nameArray = [self.dataDic objectForKey:nameKeys[i]];
-            NSMutableArray *rowArray = [[NSMutableArray alloc]init]; // 每个字母里面包含的数组
-            NSArray *selectArray = [NSArray array];
-            for (int j = 0; j < nameArray.count ; j++) {
-                NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"name == %@", [nameArray[j] objectForKey:@"name"]];
-                selectArray = [self.dataArray filteredArrayUsingPredicate:filterPredicate];
-                [rowArray addObjectsFromArray:selectArray];
-            }
-            [self.orderArray addObject:rowArray];
-            
-        }
-        [self.dataTableView reloadData];
-    }];
-}
 
 #pragma mark -- 点击moreView空白处
 - (void)moreViewClick
@@ -199,18 +150,18 @@
 #pragma mark - UITableViewDelegate / UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.sectionArray.count;
+    return self.indexArray.count;
 }
 //section右侧index数组
 -(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
-    return self.sectionArray;
+    return self.indexArray;
 }
 //点击右侧索引表项时调用 索引与section的对应关系
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
     return index;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.orderArray[section] count];
+    return [self.letterResultArr[section] count];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 40;
@@ -219,29 +170,19 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
 }
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
-    UILabel *sectionLabel = [[UILabel alloc]init];
-    sectionLabel.font = [UIFont systemFontOfSize:15];
-    sectionLabel.textColor = [UIColor blackColor];
-    sectionLabel.text = self.sectionArray[section];
-    [headView addSubview:sectionLabel];
-    [sectionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(headView);
-        make.left.equalTo(headView).offset(14);
-    }];
-    
-    return headView;
-}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LSPatientListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LSPatientListCell"];
     if (!cell) {
         cell = [[LSPatientListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LSPatientListCell"];
     }
-    NSArray *dataArray = self.orderArray[indexPath.section];
-    cell.model = dataArray[indexPath.row];
+    NSArray *dataArray = self.letterResultArr[indexPath.section];
+    MDDoctorListModel* listModel = dataArray[indexPath.row];
+    cell.modelImgUrlStr = listModel.doctor_image;
+    cell.modelNameStr = listModel.doctor_name;
+    cell.modelValueStr = [NSString stringWithFormat:@"%@  %@  %@",listModel.doctor_title,listModel.department_name,listModel.hospital_name];
+    cell.goodAt = listModel.doctor_specialty;
+    
     cell.hideChoosed = YES;
     return cell;
 }
@@ -368,21 +309,47 @@
     return moreView;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark -- 获取我的同行列表
+- (void)getMyPeerListData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    NSString* url = PATH(@"%@/queryPeersList");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                NSArray* list = [NSArray yy_modelArrayWithClass:[MDDoctorListModel class] json:responseObj[@"data"]];
+                [self.dataArray removeAllObjects];
+                [self.dataArray addObjectsFromArray:list];
+                
+                self.indexArray = [BMChineseSort IndexWithArray:self.dataArray Key:@"doctor_name"];
+                self.letterResultArr = [BMChineseSort sortObjectArray:self.dataArray Key:@"doctor_name"];
+                
+                
+                [_dataTableView reloadData];
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
 }
 
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+
 
 @end

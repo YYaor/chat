@@ -30,4 +30,20 @@
     // Configure the view for the selected state
 }
 
+- (void)setDetailModel:(MDDoctorDetailModel *)detailModel
+{
+    _detailModel = detailModel;
+    [self.headImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UGAPI_HOST,detailModel.doctor_image]] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+    
+    self.nameLab.text = detailModel.doctor_name;
+    self.projectLab.text = [NSString stringWithFormat:@"%@   %@",detailModel.department_name,detailModel.doctor_title];
+    self.hospitalNameLab.text = detailModel.hospital_name;
+    
+}
+
+
+
+
+
+
 @end

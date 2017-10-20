@@ -50,7 +50,7 @@
                                          apnsCertName:@"release"
                                           otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
     [self loginIM];
-    
+    //获取token
     [self initAccessToken];
     
     return YES;
@@ -124,7 +124,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
+#pragma mark -- 获取token
 - (void)initAccessToken
 {
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];

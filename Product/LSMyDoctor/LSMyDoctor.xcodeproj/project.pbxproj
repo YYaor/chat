@@ -108,6 +108,9 @@
 		4A0CE6F31F975BC900F7C187 /* MDSickerRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0CE6F11F975BC900F7C187 /* MDSickerRequestCell.xib */; };
 		4A0CE6FD1F989E9C00F7C187 /* MDRequestParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6FC1F989E9C00F7C187 /* MDRequestParameters.m */; };
 		4A8928291F98A1780051A868 /* MDPeerReuqestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8928281F98A1780051A868 /* MDPeerReuqestModel.m */; };
+		4A89282C1F98B0C90051A868 /* MDDoctorListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89282B1F98B0C90051A868 /* MDDoctorListModel.m */; };
+		4A8928301F98E6970051A868 /* MDDoctorDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89282F1F98E6970051A868 /* MDDoctorDetailModel.m */; };
+		4A8928341F98ED700051A868 /* BMChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8928331F98ED700051A868 /* BMChineseSort.m */; };
 		DF0AFED21F8FA13E00B19151 /* LSAddMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */; };
 		DF0AFED41F8FA13E00B19151 /* LSBeginChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFECD1F8FA13E00B19151 /* LSBeginChatController.m */; };
 		DF0AFED61F8FA13E00B19151 /* LSManageMateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFED01F8FA13E00B19151 /* LSManageMateController.m */; };
@@ -576,6 +579,12 @@
 		4A0CE6FC1F989E9C00F7C187 /* MDRequestParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRequestParameters.m; sourceTree = "<group>"; };
 		4A8928271F98A1780051A868 /* MDPeerReuqestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDPeerReuqestModel.h; sourceTree = "<group>"; };
 		4A8928281F98A1780051A868 /* MDPeerReuqestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDPeerReuqestModel.m; sourceTree = "<group>"; };
+		4A89282A1F98B0C90051A868 /* MDDoctorListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDoctorListModel.h; sourceTree = "<group>"; };
+		4A89282B1F98B0C90051A868 /* MDDoctorListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDoctorListModel.m; sourceTree = "<group>"; };
+		4A89282E1F98E6970051A868 /* MDDoctorDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDoctorDetailModel.h; sourceTree = "<group>"; };
+		4A89282F1F98E6970051A868 /* MDDoctorDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDoctorDetailModel.m; sourceTree = "<group>"; };
+		4A8928321F98ED700051A868 /* BMChineseSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMChineseSort.h; sourceTree = "<group>"; };
+		4A8928331F98ED700051A868 /* BMChineseSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMChineseSort.m; sourceTree = "<group>"; };
 		DF0AFEC91F8FA13E00B19151 /* LSAddMateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSAddMateController.h; sourceTree = "<group>"; };
 		DF0AFECA1F8FA13E00B19151 /* LSAddMateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAddMateController.m; sourceTree = "<group>"; };
 		DF0AFECC1F8FA13E00B19151 /* LSBeginChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSBeginChatController.h; sourceTree = "<group>"; };
@@ -1486,6 +1495,10 @@
 			children = (
 				4A8928271F98A1780051A868 /* MDPeerReuqestModel.h */,
 				4A8928281F98A1780051A868 /* MDPeerReuqestModel.m */,
+				4A89282A1F98B0C90051A868 /* MDDoctorListModel.h */,
+				4A89282B1F98B0C90051A868 /* MDDoctorListModel.m */,
+				4A89282E1F98E6970051A868 /* MDDoctorDetailModel.h */,
+				4A89282F1F98E6970051A868 /* MDDoctorDetailModel.m */,
 			);
 			path = Bottom;
 			sourceTree = "<group>";
@@ -1502,6 +1515,15 @@
 			children = (
 			);
 			path = Top;
+			sourceTree = "<group>";
+		};
+		4A8928311F98ED700051A868 /* BMChineseStringSort */ = {
+			isa = PBXGroup;
+			children = (
+				4A8928321F98ED700051A868 /* BMChineseSort.h */,
+				4A8928331F98ED700051A868 /* BMChineseSort.m */,
+			);
+			path = BMChineseStringSort;
 			sourceTree = "<group>";
 		};
 		DF335A191F954CB9009D026E /* PWTagsView */ = {
@@ -1610,12 +1632,13 @@
 		DF87A63D1F7820A700EF0461 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				0FF0B80C1F987E78003B4C7E /* toast */,
-				0FF0B7F81F987A96003B4C7E /* SVProgressHUD */,
-				0FF0B7DA1F987801003B4C7E /* TLNetwork */,
 				DF87A6461F78217100EF0461 /* LSPrefixHeader.h */,
 				4A0CE6B21F90A13300F7C187 /* MDHeader.h */,
 				4A0CE6B31F90A17F00F7C187 /* MDHttpUrl.h */,
+				4A8928311F98ED700051A868 /* BMChineseStringSort */,
+				0FF0B80C1F987E78003B4C7E /* toast */,
+				0FF0B7F81F987A96003B4C7E /* SVProgressHUD */,
+				0FF0B7DA1F987801003B4C7E /* TLNetwork */,
 				DF335A191F954CB9009D026E /* PWTagsView */,
 				4A0CE67D1F9094F500F7C187 /* SDWebImage */,
 				DFD5C6E71F8167A300045E39 /* FSCalendar */,
@@ -2876,6 +2899,7 @@
 				DFD5C7121F8167A300045E39 /* FSCalendarDelegationProxy.m in Sources */,
 				DFF0157B1F7AC15700527CFA /* NSDateFormatter+Category.m in Sources */,
 				DFF015DA1F7AC25F00527CFA /* BlocMBProgressHUD.m in Sources */,
+				4A8928341F98ED700051A868 /* BMChineseSort.m in Sources */,
 				0F3E623A1F8B51EE00A19FF2 /* LSPatientModel.m in Sources */,
 				DFF015971F7AC15700527CFA /* EaseBubbleView+Video.m in Sources */,
 				0FF0B7F11F987801003B4C7E /* DSToast.m in Sources */,
@@ -3021,6 +3045,7 @@
 				DF87A6B71F7827E200EF0461 /* MASLayoutConstraint.m in Sources */,
 				DFF015DF1F7AC25F00527CFA /* MJRefreshComponent.m in Sources */,
 				DF87A8191F78BC0700EF0461 /* LSNetworkTool.m in Sources */,
+				4A89282C1F98B0C90051A868 /* MDDoctorListModel.m in Sources */,
 				DFD5C7111F8167A300045E39 /* FSCalendarDelegationFactory.m in Sources */,
 				DFF015731F7AC15700527CFA /* PSTGridLayoutRow.m in Sources */,
 				4A0CE6DD1F9724E300F7C187 /* MDWaitForReplyVC.m in Sources */,
@@ -3036,6 +3061,7 @@
 				4A0CE6AA1F9094F500F7C187 /* UIImage+MultiFormat.m in Sources */,
 				DFF015941F7AC15700527CFA /* EaseBubbleView+Image.m in Sources */,
 				DF87A6BA1F7827E200EF0461 /* NSArray+MASAdditions.m in Sources */,
+				4A8928301F98E6970051A868 /* MDDoctorDetailModel.m in Sources */,
 				DFF015621F7AC15700527CFA /* UIImage+EMGIF.m in Sources */,
 				0FF0B80B1F987A96003B4C7E /* SVRadialGradientLayer.m in Sources */,
 				DF5A09391F7D473D00CF5410 /* LSWorkTailController.m in Sources */,

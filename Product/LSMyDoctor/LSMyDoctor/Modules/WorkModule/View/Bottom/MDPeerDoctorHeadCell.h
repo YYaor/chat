@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MDDoctorDetailModel.h"
 
 @interface MDPeerDoctorHeadCell : UITableViewCell
+
+@property(nonatomic ,strong)MDDoctorDetailModel* detailModel;
 
 @end

@@ -74,8 +74,7 @@
     MDSickerRequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDSickerRequestCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
-    
-    
+    cell.contentModel = self.requestModel.content[indexPath.section];
     
     return cell;
     
@@ -83,7 +82,13 @@
 #pragma mark -- 左滑删除
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return @"移除";
+    MDRequestContentModel* contentModel = self.requestModel.content[indexPath.section];
+    if ([contentModel.remark isEqualToString:@"已通过"]) {
+        return @"移除";
+    }else{
+        return @"拒绝";
+    }
+    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,7 +96,14 @@
     
     if(editingStyle == UITableViewCellEditingStyleDelete)
     {
-        NSLog(@"删除");
+        MDRequestContentModel* contentModel = self.requestModel.content[indexPath.section];
+        if ([contentModel.remark isEqualToString:@"已通过"]) {
+            //移除按钮点击
+            [self removeTheRequestWithRequestId:contentModel.requestId];
+        }else{
+            //拒绝按钮点击
+            [self dealWithTheRequestWithResult:2 requestId:contentModel.requestId];
+        }
         
     }
     
@@ -112,18 +124,16 @@
     //    [self.navigationController pushViewController:sickerDetailVC animated:YES];
     
     
-    
 }
 
 
 #pragma mark -- 同意按钮点击
-/*
-- (void)mDSickerRequestCellDelegateAgreeBtnClickWithSickerModel:(MDServiceListModel *)sickerModel
+- (void)mDSickerRequestCellDelegateAgreeBtnClickWithSickerModel:(MDRequestContentModel *)contentModel
 {
-    NSLog(@"同意按钮点击：%@",sickerModel.username);
+    NSLog(@"同意按钮点击：%@",contentModel.requestId);
+    
+    [self dealWithTheRequestWithResult:1 requestId:contentModel.requestId];
 }
-*/
-
 
 #pragma mark -- 获取请求列表
 - (void)getRequestData
@@ -142,12 +152,14 @@
             if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
             {
                 self.requestModel = [MDPeerReuqestModel yy_modelWithDictionary:responseObj[@"data"]];
+                MDRequestContentModel* contentModel = self.requestModel.content[0];
                 
+                NSLog(@"123");
                 [requestTab reloadData];
                 
             }else
             {
-                [XHToast showCenterWithText:responseObj[@"message"]];
+                [XHToast showCenterWithText:@"获取数据失败"];
             }
             
         }else{
@@ -161,7 +173,71 @@
     }];
 
 }
+#pragma mark -- 同意或拒绝请求
+- (void)dealWithTheRequestWithResult:(NSInteger)result requestId:(NSString*)requestIdStr
+{
+    //result值：1 -- 同意     2 -- 拒绝
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:requestIdStr forKey:@"id"];
+    [param setValue:@(result) forKey:@"result"];
+    
+    NSString* url = PATH(@"%@/dealwithRequest");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                [self getRequestData];
+                
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
 
+#pragma mark -- 删除请求
+- (void)removeTheRequestWithRequestId:(NSString*)requestIdStr
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:requestIdStr forKey:@"id"];
+    
+    NSString* url = PATH(@"%@/removeRequest");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                [self getRequestData];
+                
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
 
 
 

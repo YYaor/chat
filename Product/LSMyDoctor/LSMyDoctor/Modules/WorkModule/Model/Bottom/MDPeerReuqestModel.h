@@ -26,6 +26,7 @@
 @property (nonatomic ,strong) NSString* remark;
 @property (nonatomic ,strong) NSString* result;
 @property (nonatomic ,strong) NSString* username;
+@property (nonatomic ,strong) NSString* img_url;
 
 @end
 

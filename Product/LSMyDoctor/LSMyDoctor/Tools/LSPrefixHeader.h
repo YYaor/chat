@@ -19,7 +19,7 @@
 #import "NSString+md5String.h"
 #import "NSString+Size.h"
 #import "MDRequestParameters.h"
-
+#import "BMChineseSort.h"
 
 #pragma mark --- 第三方
 //提示

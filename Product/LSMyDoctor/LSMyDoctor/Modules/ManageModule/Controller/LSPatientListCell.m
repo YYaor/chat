@@ -65,6 +65,7 @@
     [self.infoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel.mas_left);
         make.top.equalTo(self.nameLabel.mas_bottom).offset(5);
+        make.right.equalTo(self.mas_right).offset(-18);
     }];
     
     [self.goodLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -101,6 +102,41 @@
     }
 }
 
+- (void)setModelImgUrlStr:(NSString *)modelImgUrlStr
+{
+    _modelImgUrlStr = modelImgUrlStr;
+    
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UGAPI_HOST,modelImgUrlStr]] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+    
+}
+
+- (void)setModelNameStr:(NSString *)modelNameStr
+{
+    _modelNameStr = modelNameStr;
+    self.nameLabel.text = modelNameStr;
+}
+
+- (void)setModelValueStr:(NSString *)modelValueStr
+{
+    _modelValueStr = modelValueStr;
+    self.infoLabel.text = modelValueStr;
+}
+
+- (void)setIsChoosed:(BOOL)isChoosed
+{
+    _isChoosed = isChoosed;
+    self.chooseButton.selected = isChoosed;
+}
+- (void)setGoodAt:(NSString *)goodAt
+{
+    _goodAt = goodAt;
+    if (goodAt.length > 0) {
+        self.goodLabel.text = [NSString stringWithFormat:@"擅长：%@",goodAt];
+    }
+    
+}
+
+
 -(void)setHideChoosed:(BOOL)hideChoosed{
     _hideChoosed = hideChoosed;
     if (hideChoosed) {
@@ -120,7 +156,7 @@
 -(UIImageView *)headImageView{
     if (!_headImageView) {
         _headImageView = [[UIImageView alloc]init];
-        _headImageView.backgroundColor = [UIColor redColor];
+        _headImageView.image = [UIImage imageNamed:@"headImg_public"];
         _headImageView.layer.masksToBounds = YES;
         _headImageView.layer.cornerRadius = 30;
     }

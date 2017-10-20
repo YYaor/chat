@@ -10,8 +10,10 @@
 #import "MDPeerReuqestModel.h"
 
 @protocol MDSickerRequestCellDelegate <NSObject>
-
-//- (void)mDSickerRequestCellDelegateAgreeBtnClickWithSickerModel:(MDServiceListModel *)sickerModel;//输入框输入完成后方法调用
+/**
+ *  点击同意按钮代理方法
+ */
+- (void)mDSickerRequestCellDelegateAgreeBtnClickWithSickerModel:(MDRequestContentModel *)contentModel;
 
 @end
 

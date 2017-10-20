@@ -11,12 +11,15 @@
 #import "MDPeerinstructCell.h"
 #import "MDPeerDiscussCell.h"
 #import "EaseMessageViewController.h"//单人聊天室
+#import "MDDoctorDetailModel.h"
 
 @interface MDPeerDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView* detailTab;
     UIButton* beginTalkBtn;// 对话/申请加好友 按钮
 }
+@property (nonatomic , strong)MDDoctorDetailModel * detailModel;
+
 @end
 
 @implementation MDPeerDetailVC
@@ -29,6 +32,12 @@
     [self setUpUi];
     
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    //获取医生详情
+    [self getDoctorDetailRequest];
+}
+
 #pragma mark -- 创建界面
 - (void)setUpUi
 {
@@ -79,9 +88,7 @@
     }else{
         //不是好友
         NSLog(@"添加好友");
-        
-        
-        
+        [self requestForAddToFriendRequest];
     }
 }
 
@@ -150,7 +157,7 @@
         //医生个人资料
         MDPeerDoctorHeadCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDPeerDoctorHeadCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        cell.detailModel = self.detailModel;
         return cell;
     }else if(indexPath.section == 1 || indexPath.section == 2){
         //擅长和医生简介
@@ -159,11 +166,11 @@
         if (indexPath.section == 1) {
             //擅长
             cell.titleStr = @"擅长";
-            cell.valueStr = @"hadsfjakdjksajksjafklaskdj";
+            cell.valueStr = self.detailModel.doctor_specialty;
         }else{
             //医生简介
             cell.titleStr = @"医生简介";
-            cell.valueStr = @"儿科博士，主任医师，硕士研究生导师。";
+            cell.valueStr = self.detailModel.doctor_introduction;
         }
         return cell;
         
@@ -185,9 +192,82 @@
 #pragma mark  -- 获取医生详情请求
 - (void)getDoctorDetailRequest
 {
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
+    [param setValue:self.doctorIdStr forKey:@"doctorid"];
+    
+    NSString* url = PATH(@"%@/doctorInfo");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                self.detailModel = [MDDoctorDetailModel yy_modelWithDictionary:responseObj[@"data"]];
+                //变更按钮状态
+                self.isFriend = !self.detailModel.isFriend;
+                if (self.isFriend) {
+                    //如果是已经是好友，则显示对话，
+                    [beginTalkBtn setTitle:@"对话" forState:UIControlStateNormal];
+                    [beginTalkBtn setBackgroundColor:BaseColor];
+                }else{
+                    //如果不是好友，显示申请加好友
+                    [beginTalkBtn setTitle:@"申请加好友" forState:UIControlStateNormal];
+                    [beginTalkBtn setBackgroundColor:BaseColor];
+                }
+                
+                [detailTab reloadData];
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
 }
 
+#pragma mark -- 申请添加好友
+- (void)requestForAddToFriendRequest
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:self.doctorIdStr forKey:@"doctorid"];
+    
+    NSString* url = PATH(@"%@/addPeers");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                //发送请求成功
+                if (responseObj[@"data"] && responseObj[@"data"][@"message"]) {
+                    [XHToast showCenterWithText:responseObj[@"data"][@"message"]];
+                }else{
+                    [XHToast showCenterWithText:@"请求已发送成功"];
+                }
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
 
 
 @end

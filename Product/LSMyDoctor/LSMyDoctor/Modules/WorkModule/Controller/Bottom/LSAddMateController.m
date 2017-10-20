@@ -9,13 +9,12 @@
 #import "LSAddMateController.h"
 #import "YYSearchBar.h"
 #import "LSPatientListCell.h"
-#import "LSPatientModel.h"
 #import "MDPeerDetailVC.h"
+#import "MDDoctorListModel.h"
 
 @interface LSAddMateController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
 @property (nonatomic,strong)YYSearchBar *searchBar;
-
 @property (nonatomic,strong)UITableView *dataTableView;
 //服务器返回数组
 @property (nonatomic,strong)NSMutableArray *dataArray;
@@ -29,7 +28,12 @@
     self.navigationItem.title = @"添加同行";
     
     [self initForView];
-    [self loadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    //获取详
+    [self getDoctorListRequestDataWithCity:nil country:nil department:nil doctorName:nil hospital:nil];
 }
 
 -(void)initForView{
@@ -38,31 +42,6 @@
     [self.dataTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.bottom.equalTo(self.view);
     }];
-}
-
--(void)loadData{
-    LSPatientModel *model1 = [[LSPatientModel alloc]init];
-    model1.name = @"张三";
-    model1.sex = @"男";
-    model1.age = @"10";
-    model1.goodAt = @"擅长：儿童先天性修复儿童先天性修复儿童先天性修复";
-    
-    LSPatientModel *model2 = [[LSPatientModel alloc]init];
-    model2.name = @"李四";
-    model2.sex = @"女";
-    model2.age = @"10";
-    
-    LSPatientModel *model3 = [[LSPatientModel alloc]init];
-    model3.name = @"王五";
-    model3.sex = @"男";
-    //    model3.age = @"15";
-    
-    LSPatientModel *model4 = [[LSPatientModel alloc]init];
-    model4.name = @"李四四";
-    model4.sex = @"女";
-    model4.age = @"134";
-    
-    [self.dataArray addObject:model1];
 }
 
 #pragma mark - tableViewDelegate
@@ -80,7 +59,12 @@
     if (!cell) {
         cell = [[LSPatientListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LSPatientListCell"];
     }
-    cell.model = self.dataArray[indexPath.row];
+    MDDoctorListModel* listModel = self.dataArray[indexPath.row];
+    cell.modelImgUrlStr = listModel.doctor_image;
+    cell.modelNameStr = listModel.doctor_name;
+    cell.modelValueStr = [NSString stringWithFormat:@"%@  %@  %@",listModel.doctor_title,listModel.department_name,listModel.hospital_name];
+    cell.goodAt = listModel.doctor_specialty;
+    
     cell.hideChoosed = YES;
     
     return cell;
@@ -92,9 +76,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MDDoctorListModel* listModel = self.dataArray[indexPath.row];
     MDPeerDetailVC* peerDetailVC = [[MDPeerDetailVC alloc] init];
-    
-    
+    peerDetailVC.isFriend = listModel.isFriend;
+    peerDetailVC.doctorIdStr = listModel.doctor_id;
     [self.navigationController pushViewController:peerDetailVC animated:YES];
 }
 
@@ -153,19 +138,52 @@
     return _searchBar;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark -- 获取医生列表
+- (void)getDoctorListRequestDataWithCity:(NSString*)cityStr country:(NSString*)countryStr department:(NSString*)departmentStr doctorName:(NSString*)docotorNameStr hospital:(NSString*)hopitalNameStr
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:cityStr forKey:@"city"];
+    [param setValue:countryStr forKey:@"county"];
+    [param setValue:departmentStr forKey:@"department"];
+    [param setValue:docotorNameStr forKey:@"doctorName"];
+    [param setValue:hopitalNameStr forKey:@"hospital"];
+    
+    NSString* url = PATH(@"%@/doctorList");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                
+                
+                NSArray* list = [NSArray yy_modelArrayWithClass:[MDDoctorListModel class] json:responseObj[@"data"]];
+                
+                [self.dataArray removeAllObjects];
+                [self.dataArray addObjectsFromArray:list];
+                
+                [_dataTableView reloadData];
+                
+            }else
+            {
+                [XHToast showCenterWithText:responseObj[@"message"]];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+
 
 @end

@@ -29,7 +29,11 @@
     
     return peerRequestModel;
 }
-
++ (NSDictionary *)modelContainerPropertyGenericClass{
+    
+    //将applications属性的数组元素，变成对象数组
+    return @{@"content":[MDRequestContentModel class]};
+}
 //归档
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     
