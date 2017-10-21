@@ -53,6 +53,7 @@
 		0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */; };
 		0FB200EC1F7A5294005BC289 /* LSMineListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200EB1F7A5294005BC289 /* LSMineListCell.m */; };
 		0FB69CF61F7E3A5000AC31CA /* YYPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB69CF51F7E3A0F00AC31CA /* YYPlaceholderTextView.m */; };
+		0FE570181F9B4F1F004259FF /* NSString+Mark.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200C91F78EF75005BC289 /* NSString+Mark.m */; };
 		0FF0B7EF1F987801003B4C7E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0FF0B7DB1F987801003B4C7E /* LICENSE */; };
 		0FF0B7F01F987801003B4C7E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0FF0B7DC1F987801003B4C7E /* README.md */; };
 		0FF0B7F11F987801003B4C7E /* DSToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF0B7E01F987801003B4C7E /* DSToast.m */; };
@@ -2950,6 +2951,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FE570181F9B4F1F004259FF /* NSString+Mark.m in Sources */,
 				0FB69CF61F7E3A5000AC31CA /* YYPlaceholderTextView.m in Sources */,
 				4A8928371F99C82A0051A868 /* LSAddDocCollectionCell.m in Sources */,
 				DFF015991F7AC15700527CFA /* EaseBubbleView.m in Sources */,
