@@ -22,5 +22,6 @@
 @property (nonatomic ,strong)NSString* hospital_name;
 @property (nonatomic ,assign)BOOL isFriend;
 @property (nonatomic ,assign)BOOL is_focus;
+@property (nonatomic ,assign)BOOL isChoise;
 
 @end

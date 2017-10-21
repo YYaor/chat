@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7FP-4e-Mey">
@@ -69,6 +69,12 @@
                     <constraint firstItem="7FP-4e-Mey" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="sbx-ZU-4Mo"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="groupImgView" destination="ML5-c9-j4M" id="qtC-Hh-D3O"/>
+                <outlet property="groupNameLab" destination="0xV-bB-d6P" id="esR-Hq-anN"/>
+                <outlet property="timeLab" destination="FgE-3l-1bs" id="Zfd-72-GE7"/>
+                <outlet property="valueLab" destination="WP9-Ec-aH3" id="lON-LX-5X9"/>
+            </connections>
             <point key="canvasLocation" x="-131" y="-107"/>
         </tableViewCell>
     </objects>

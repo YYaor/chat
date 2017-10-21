@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="178" id="KGk-i7-Jjw" customClass="MDCheckInfoCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="178"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="177.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRa-Cq-UKb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="177.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNn-tn-g6B">
+                                <rect key="frame" x="8" y="8" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张三" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyg-xU-gTp">
+                                <rect key="frame" x="69" y="8" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医院：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3a-WW-a4r">
+                                <rect key="frame" x="8" y="39" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海东方医院" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGO-34-dOY">
+                                <rect key="frame" x="69" y="39" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科室：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9C-dB-Zwo">
+                                <rect key="frame" x="8" y="70" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="儿科" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRy-XX-kwW">
+                                <rect key="frame" x="69" y="70" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请确认以上信息是否为您本人的信息，若有误，请拨打客服电话" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD8-cs-NAH">
+                                <rect key="frame" x="8" y="101" width="304" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.57647058823529407" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93N-we-eAA">
+                                <rect key="frame" x="0.0" y="176.5" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ho5-ao-vgI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Gyg-xU-gTp" firstAttribute="leading" secondItem="rNn-tn-g6B" secondAttribute="trailing" constant="10" id="4AI-cf-aDV"/>
+                            <constraint firstAttribute="bottom" secondItem="93N-we-eAA" secondAttribute="bottom" id="4hW-Ci-8uw"/>
+                            <constraint firstAttribute="bottom" secondItem="sD8-cs-NAH" secondAttribute="bottom" constant="8" id="5cu-Kk-Agl"/>
+                            <constraint firstItem="HGO-34-dOY" firstAttribute="leading" secondItem="Gyg-xU-gTp" secondAttribute="leading" id="6en-7r-h6z"/>
+                            <constraint firstItem="sD8-cs-NAH" firstAttribute="leading" secondItem="a9C-dB-Zwo" secondAttribute="leading" id="9WI-ka-zp3"/>
+                            <constraint firstItem="rNn-tn-g6B" firstAttribute="leading" secondItem="dRa-Cq-UKb" secondAttribute="leading" constant="8" id="CrD-A1-CtN"/>
+                            <constraint firstAttribute="trailing" secondItem="sD8-cs-NAH" secondAttribute="trailing" constant="8" id="Enz-gn-IwJ"/>
+                            <constraint firstAttribute="height" constant="178" id="I4u-2q-Rum"/>
+                            <constraint firstItem="i3a-WW-a4r" firstAttribute="top" secondItem="rNn-tn-g6B" secondAttribute="bottom" constant="10" id="M7h-Bg-ay3"/>
+                            <constraint firstAttribute="trailing" secondItem="93N-we-eAA" secondAttribute="trailing" id="OEc-mu-Pod"/>
+                            <constraint firstItem="HGO-34-dOY" firstAttribute="centerY" secondItem="i3a-WW-a4r" secondAttribute="centerY" id="Rud-xa-5Rn"/>
+                            <constraint firstItem="93N-we-eAA" firstAttribute="leading" secondItem="dRa-Cq-UKb" secondAttribute="leading" id="Sdn-9k-IQY"/>
+                            <constraint firstItem="a9C-dB-Zwo" firstAttribute="top" secondItem="i3a-WW-a4r" secondAttribute="bottom" constant="10" id="V6W-Pv-k7r"/>
+                            <constraint firstItem="i3a-WW-a4r" firstAttribute="leading" secondItem="rNn-tn-g6B" secondAttribute="leading" id="W0V-IX-USw"/>
+                            <constraint firstItem="ZRy-XX-kwW" firstAttribute="centerY" secondItem="a9C-dB-Zwo" secondAttribute="centerY" id="XNT-Di-YDz"/>
+                            <constraint firstItem="ZRy-XX-kwW" firstAttribute="leading" secondItem="HGO-34-dOY" secondAttribute="leading" id="Xqe-uc-ye6"/>
+                            <constraint firstItem="a9C-dB-Zwo" firstAttribute="leading" secondItem="i3a-WW-a4r" secondAttribute="leading" id="YN8-oG-AeB"/>
+                            <constraint firstItem="Gyg-xU-gTp" firstAttribute="centerY" secondItem="rNn-tn-g6B" secondAttribute="centerY" id="bAf-Do-a76"/>
+                            <constraint firstItem="sD8-cs-NAH" firstAttribute="top" secondItem="ZRy-XX-kwW" secondAttribute="bottom" constant="10" id="cgA-r3-4fB"/>
+                            <constraint firstItem="rNn-tn-g6B" firstAttribute="top" secondItem="dRa-Cq-UKb" secondAttribute="top" constant="8" id="zbR-MU-b5j"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="5cu-Kk-Agl"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="dRa-Cq-UKb" secondAttribute="bottom" constant="-8" id="TAb-37-nsT"/>
+                    <constraint firstItem="dRa-Cq-UKb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="dC9-dO-uy9"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="dRa-Cq-UKb" secondAttribute="trailing" constant="-8" id="odC-Th-FEL"/>
+                    <constraint firstItem="dRa-Cq-UKb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="vkU-id-ArN"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="hospitalNameLab" destination="HGO-34-dOY" id="AJH-xd-qL6"/>
+                <outlet property="nameLab" destination="Gyg-xU-gTp" id="blx-dM-CUo"/>
+                <outlet property="projectLab" destination="ZRy-XX-kwW" id="x4x-ln-eus"/>
+                <outlet property="sureInfoLab" destination="sD8-cs-NAH" id="5L8-sg-aAK"/>
+            </connections>
+            <point key="canvasLocation" x="281" y="294"/>
+        </tableViewCell>
+    </objects>
+</document>

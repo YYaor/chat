@@ -56,6 +56,9 @@
 }
 
 -(void)initNavView{
+    
+    self.view.frame = [UIScreen mainScreen].bounds;
+    
     UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
     navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
     [self.view addSubview:navView];
@@ -288,7 +291,31 @@
 }
 
 -(void)nextButtonClick{
+    
+    if (self.phoneTextField.text.length <= 0)
+    {
+        [XHToast showCenterWithText:@"请输入手机号"];
+    }
+    
+    if (self.codeTextField.text.length <= 0)
+    {
+        [XHToast showCenterWithText:@"输入验证码"];
+    }
+    
+    if (self.pswTextField.text.length <= 0)
+    {
+        [XHToast showCenterWithText:@"请设置登录密码"];
+    }
+    
+    if (![self.pswTextField.text isEqualToString:self.confPswTextField.text])
+    {
+        [XHToast showCenterWithText:@"密码不相同"];
+    }
+    
     LSAuthenticationController *authenticationController = [[LSAuthenticationController alloc]init];
+    authenticationController.phoneNumStr = self.phoneTextField.text;
+    authenticationController.verNumStr = self.codeTextField.text;
+    authenticationController.pwdStr = self.pswTextField.text;
     [self.navigationController pushViewController:authenticationController animated:YES];
 }
 

@@ -80,7 +80,11 @@
     
     [self initForView];
 }
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    //获取我的同行列表
+    [self getMyPeerListData];
+}
 - (void)viewWillDisappear:(BOOL)animated
 {
     self.moreView.hidden = YES;
@@ -156,6 +160,10 @@
 -(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
     return self.indexArray;
 }
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.indexArray objectAtIndex:section];
+}
 //点击右侧索引表项时调用 索引与section的对应关系
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
     return index;
@@ -164,7 +172,7 @@
     return [self.letterResultArr[section] count];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40;
+    return 30;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -177,6 +185,7 @@
         cell = [[LSPatientListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LSPatientListCell"];
     }
     NSArray *dataArray = self.letterResultArr[indexPath.section];
+    
     MDDoctorListModel* listModel = dataArray[indexPath.row];
     cell.modelImgUrlStr = listModel.doctor_image;
     cell.modelNameStr = listModel.doctor_name;
@@ -190,9 +199,11 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"点击某一行，查看医生详情资料");
+    NSArray *dataArray = self.letterResultArr[indexPath.section];
+    MDDoctorListModel* listModel = dataArray[indexPath.row];
     MDPeerDetailVC* peerDetailVC = [[MDPeerDetailVC alloc] init];
     peerDetailVC.isFriend = YES;
-    peerDetailVC.doctorIdStr = [NSString stringWithFormat:@"%ld_%ld",(long)indexPath.section,(long)indexPath.row];
+    peerDetailVC.doctorIdStr = listModel.doctor_id;
     [self.navigationController pushViewController:peerDetailVC animated:YES];
 }
 

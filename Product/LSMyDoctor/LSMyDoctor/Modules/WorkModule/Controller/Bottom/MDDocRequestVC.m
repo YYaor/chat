@@ -114,15 +114,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //    MDServiceListModel* listModel = self.sickerRequestArr[indexPath.section];
-    //
-    //    MDSickerDetailVC* sickerDetailVC = [[MDSickerDetailVC alloc] init];
-    //
-    //    sickerDetailVC.isRequestComing = YES;
-    //    sickerDetailVC.userIdStr = listModel.user_id;
-    //    sickerDetailVC.serialnumberStr = listModel.serialnumber;
-    //    [self.navigationController pushViewController:sickerDetailVC animated:YES];
-    
     
 }
 
@@ -152,9 +143,7 @@
             if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
             {
                 self.requestModel = [MDPeerReuqestModel yy_modelWithDictionary:responseObj[@"data"]];
-                MDRequestContentModel* contentModel = self.requestModel.content[0];
                 
-                NSLog(@"123");
                 [requestTab reloadData];
                 
             }else

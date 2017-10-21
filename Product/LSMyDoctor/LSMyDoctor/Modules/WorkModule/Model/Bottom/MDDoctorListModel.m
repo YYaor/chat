@@ -27,6 +27,7 @@
     docotorListModel.hospital_name = [_hospital_name copy];
     docotorListModel.isFriend = _isFriend;
     docotorListModel.is_focus = _is_focus;
+    docotorListModel.isChoise = _isChoise;
     
     return docotorListModel;
 }

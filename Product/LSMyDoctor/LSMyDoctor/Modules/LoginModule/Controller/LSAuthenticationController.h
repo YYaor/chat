@@ -10,4 +10,8 @@
 
 @interface LSAuthenticationController : UIViewController
 
+@property (nonatomic,strong)NSString* phoneNumStr;//手机号
+@property (nonatomic,strong)NSString* verNumStr;//验证码
+@property (nonatomic,strong)NSString* pwdStr;//密码
+
 @end

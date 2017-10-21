@@ -10,6 +10,7 @@
 #import "LSRegisterController.h"
 #import "LSAuthenticationController.h"
 #import "YYShopMainTypeView.h"
+#import "MDCheckInfoVC.h"
 #import "NSString+Mark.h"
 
 @interface LSLoginController ()<UITextFieldDelegate,YYShopMainTypeViewDelegate>
@@ -300,7 +301,7 @@
         return;
     }
     
-    if (![NSString isMobile:self.phoneTextFiled.text]) {
+    if (![self isMobile:self.phoneTextFiled.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
         self.phoneNoticeLabel.text = @"手机号码有误";
         return;
@@ -359,8 +360,8 @@
                         //第一次登录，先去核对信息
                         if (dict[@"checkingInfo"] && [dict[@"checkingInfo"] isKindOfClass:[NSDictionary class]]) {
                             
-                            LSAuthenticationController* checkInfoVC = [[LSAuthenticationController alloc] init];
-//                            checkInfoVC.dict = dict[@"checkingInfo"];
+                            MDCheckInfoVC* checkInfoVC = [[MDCheckInfoVC alloc] init];
+                            checkInfoVC.dict = dict[@"checkingInfo"];
                             [self.navigationController pushViewController:checkInfoVC animated:YES];
                         }
                         
@@ -372,7 +373,10 @@
 //                        [self presentViewController:tabbarVC animated:YES completion:^{
 //                            [self.navigationController popToRootViewControllerAnimated:YES];
 //                        }];
-                        [self dismissViewControllerAnimated:YES completion:nil];
+//                        [self dismissViewControllerAnimated:YES completion:nil];
+                        
+                        AppDelegate *app = LSAPPDELEGATE;
+                        [app intoRootForMain];
                     }
                     
                 }else{
@@ -381,7 +385,10 @@
 //                    [self presentViewController:tabbarVC animated:YES completion:^{
 //                        [self.navigationController popToRootViewControllerAnimated:YES];
 //                    }];
-                    [self dismissViewControllerAnimated:YES completion:nil];
+//                    [self dismissViewControllerAnimated:YES completion:nil];
+                    
+                    AppDelegate *app = LSAPPDELEGATE;
+                    [app intoRootForMain];
 
                 }
             }else{

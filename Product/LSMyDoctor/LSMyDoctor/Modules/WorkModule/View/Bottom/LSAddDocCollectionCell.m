@@ -52,14 +52,15 @@
     }];
 }
 
--(void)setModel:(LSPatientModel *)model{
+-(void)setModel:(MDDoctorListModel *)model{
     _model = model;
-    self.nameLabel.text = model.name;
+    self.nameLabel.text = model.doctor_name;
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UGAPI_HOST,model.doctor_image]] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
 }
 
 -(void)closeButtonClick{
     if (self.clodeBlock) {
-        self.clodeBlock(self.model);
+        self.clodeBlock(_model);
     }
 }
 
@@ -77,7 +78,6 @@
         _headImageView = [[UIImageView alloc]init];
         _headImageView.layer.masksToBounds = YES;
         _headImageView.layer.cornerRadius = 30;
-        _headImageView.backgroundColor = [UIColor redColor];
     }
     return _headImageView;
 }

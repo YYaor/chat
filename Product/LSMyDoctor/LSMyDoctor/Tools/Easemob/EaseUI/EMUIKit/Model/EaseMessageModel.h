@@ -16,7 +16,7 @@
 #if ENABLE_LITE == 1
 #import <HyphenateLite/EMMessage.h>
 #else
-#import <Hyphenate/EMMessage.h>
+//#import <Hyphenate/EMMessage.h>
 #endif
 
 /** @brief 消息模型 */

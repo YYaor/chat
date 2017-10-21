@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "LSTabBarController.h"
+#import "LSLoginController.h"
 
 #import "SVProgressHUD.h"
 
@@ -34,9 +35,6 @@
     manager.enableAutoToolbar = YES;
     manager.shouldResignOnTouchOutside = YES;
     
-    LSTabBarController *tabController = [[LSTabBarController alloc] init];
-    self.window.rootViewController = tabController;
-    
     /**
      *  环信
      */
@@ -52,6 +50,8 @@
     [self loginIM];
     //获取token
     [self initAccessToken];
+    
+    [self intoRootForLogin];
     
     return YES;
 }
@@ -157,6 +157,18 @@
     }];
 }
 
+#pragma mark - 跳转
 
+- (void)intoRootForMain
+{
+    LSTabBarController *vc = [[LSTabBarController alloc] init];
+    self.window.rootViewController = vc;
+}
+
+- (void)intoRootForLogin
+{
+    LSLoginController *vc = [[LSLoginController alloc] initWithNibName:@"LSLoginController" bundle:nil];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
+}
 
 @end

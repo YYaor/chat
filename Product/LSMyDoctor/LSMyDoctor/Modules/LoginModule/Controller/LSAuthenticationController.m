@@ -8,7 +8,9 @@
 
 #import "LSAuthenticationController.h"
 
-@interface LSAuthenticationController ()
+#import "ZHPickView.h"
+
+@interface LSAuthenticationController () <ZHPickViewDelegate>
 
 @property (nonatomic,strong)UITextField *nameTextField;
 
@@ -26,15 +28,26 @@
 
 @property (nonatomic,strong)UIButton *commitButton;
 
-@property (nonatomic,strong)NSString *name;
+//@property (nonatomic,strong)NSString *name;
+//
+//@property (nonatomic,strong)NSString *city;
+//
+//@property (nonatomic,strong)NSString *area;
+//
+//@property (nonatomic,strong)NSString *hospital;
+//
+//@property (nonatomic,strong)NSString *career;
 
-@property (nonatomic,strong)NSString *city;
+@property (nonatomic, strong) NSMutableArray* cityMutlArr;//城市
+@property (nonatomic, strong) NSMutableArray* areaMutlArr;//区域
+@property (nonatomic, strong) NSMutableArray* hospitalMutlArr;//医院
+@property (nonatomic, strong) NSMutableArray* projectMutlArr;//科室
+@property (nonatomic, strong) NSMutableArray* titleMutlArr;//职称
 
-@property (nonatomic,strong)NSString *area;
+@property (nonatomic, strong) NSString *projectId;
+@property (nonatomic, strong) NSString *hospital_id;
 
-@property (nonatomic,strong)NSString *hospital;
-
-@property (nonatomic,strong)NSString *career;
+@property (nonatomic, strong) ZHPickView *pickview;
 
 @end
 
@@ -49,6 +62,15 @@
 }
 
 -(void)initNavView{
+    
+    self.cityMutlArr = [NSMutableArray array];
+    self.areaMutlArr = [NSMutableArray array];
+    self.hospitalMutlArr = [NSMutableArray array];
+    self.projectMutlArr = [NSMutableArray array];
+    self.titleMutlArr = [NSMutableArray array];
+    
+    self.view.frame = [UIScreen mainScreen].bounds;
+    
     UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
     navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
     [self.view addSubview:navView];
@@ -255,30 +277,500 @@
 
 -(void)cityButtonClick{
     
+    LSWEAKSELF;
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    NSString* url = PATH(@"%@/city");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            //成功
+            if ([responseObj[@"data"] isKindOfClass:[NSArray class]]) {
+                [weakSelf.cityMutlArr removeAllObjects];
+                NSArray* hospital_cityArr = responseObj[@"data"];
+                
+                for (NSDictionary* dict in hospital_cityArr ) {
+                    if (dict[@"hospital_city"]) {
+                        [weakSelf.cityMutlArr addObject:dict[@"hospital_city"]];
+                    }
+                    
+                }
+                
+                NSArray* cityArr = [weakSelf.cityMutlArr copy];//将mutlArr转成Arr
+                
+                if (cityArr.count == 0)
+                {
+                    [XHToast showCenterWithText:@"无数据"];
+                    return ;
+                }
+                
+                weakSelf.pickview = [[ZHPickView alloc] initPickviewWithArray:@[cityArr] isHaveNavControler:NO];
+                weakSelf.pickview.tag = 1;
+                weakSelf.pickview.delegate=self;
+                [weakSelf.pickview show];
+                
+            }else{
+                NSLog(@"返回数据有误");
+            }
+            
+        }else
+        {
+            [XHToast showCenterWithText:@"获取城市列表失败"];
+        }
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
 }
 
 -(void)areaButtonClick{
+
+    if ([self.cityButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
+    {
+        [XHToast showTopWithText:@"请先获取所在城市"];
+        return;
+    }
     
+    LSWEAKSELF;
+
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:self.cityButton.titleLabel.text forKey:@"city"];
+    
+    NSString* url = PATH(@"%@/county");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            
+            if ([responseObj[@"data"] isKindOfClass:[NSArray class]]) {
+                [weakSelf.areaMutlArr removeAllObjects];
+                NSArray* hospital_cityArr = responseObj[@"data"];
+                
+                for (NSDictionary* dict in hospital_cityArr ) {
+                    if (dict[@"hospital_county"]) {
+                        [weakSelf.areaMutlArr addObject:dict[@"hospital_county"]];
+                    }
+                    
+                }
+                
+                NSArray* areaArr = [self.areaMutlArr copy];//将mutlArr转成Arr
+                
+                if (areaArr.count == 0)
+                {
+                    [XHToast showCenterWithText:@"无数据"];
+                    return ;
+                }
+                
+                weakSelf.pickview=[[ZHPickView alloc] initPickviewWithArray:@[areaArr] isHaveNavControler:NO];
+                weakSelf.pickview.tag = 2;
+                weakSelf.pickview.delegate=self;
+                [weakSelf.pickview show];
+                
+            }else{
+                NSLog(@"返回数据有误");
+            }
+        }else
+        {
+            [XHToast showCenterWithText:@"获取区域列表失败"];
+        }
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
 }
 
+#pragma mark - youwenti
 -(void)hospitalButtonClick{
     
+    if ([self.cityButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
+    {
+        [XHToast showTopWithText:@"请先获取所在城市"];
+        return;
+    }
+    
+    if ([self.areaButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
+    {
+        [XHToast showTopWithText:@"请先获取所在区"];
+        return;
+    }
+    
+    LSWEAKSELF;
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:self.areaButton.titleLabel.text forKey:@"county"];
+    
+    NSString* url = PATH(@"%@/hospital");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            
+            if ([responseObj[@"data"] isKindOfClass:[NSArray class]]) {
+                [weakSelf.hospitalMutlArr removeAllObjects];
+                [weakSelf.hospitalMutlArr addObjectsFromArray:responseObj[@"data"]];
+                
+                NSMutableArray* hospitalNameArr = [NSMutableArray array];
+                [hospitalNameArr removeAllObjects];
+                for (NSDictionary* dict in weakSelf.hospitalMutlArr ) {
+                    if (dict[@"hospital_name"]) {
+                        [hospitalNameArr addObject:dict[@"hospital_name"]];
+                    }
+                    
+                }
+                
+                NSArray* hospitalArr = [hospitalNameArr copy];//将mutlArr转成Arr
+                
+                if (hospitalArr.count == 0)
+                {
+                    [XHToast showCenterWithText:@"无数据"];
+                    return ;
+                }
+                
+                weakSelf.pickview=[[ZHPickView alloc] initPickviewWithArray:@[hospitalArr] isHaveNavControler:NO];
+                weakSelf.pickview.tag = 3;
+                weakSelf.pickview.delegate=self;
+                [weakSelf.pickview show];
+                
+            }else{
+                NSLog(@"返回数据有误");
+            }
+            
+        }else
+        {
+            [XHToast showCenterWithText:@"获取医院列表失败"];
+        }
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
 }
 
 -(void)roomButtonClick{
     
+    if ([self.cityButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
+    {
+        [XHToast showTopWithText:@"请先获取所在城市"];
+        return;
+    }
+    
+    if ([self.areaButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
+    {
+        [XHToast showTopWithText:@"请先获取所在区"];
+        return;
+    }
+    
+    if ([self.hospitalButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
+    {
+        [XHToast showTopWithText:@"请先获取所在医院"];
+        return;
+    }
+    
+    LSWEAKSELF;
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:self.hospital_id forKey:@"hosid"];
+    
+    NSString* url = PATH(@"%@/department");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            
+            if ([responseObj[@"data"] isKindOfClass:[NSArray class]]) {
+                [weakSelf.projectMutlArr removeAllObjects];
+                [weakSelf.projectMutlArr addObjectsFromArray:responseObj[@"data"]];
+                
+                NSMutableArray* projectNameArr = [NSMutableArray array];
+                [projectNameArr removeAllObjects];
+                for (NSDictionary* dict in weakSelf.projectMutlArr ) {
+                    if (dict[@"department_name"]) {
+                        [projectNameArr addObject:dict[@"department_name"]];
+                    }
+                    
+                }
+                
+                NSArray* projectArr = [projectNameArr copy];//将mutlArr转成Arr
+                
+                if (projectArr.count == 0)
+                {
+                    [XHToast showCenterWithText:@"无数据"];
+                    return ;
+                }
+                
+                weakSelf.pickview=[[ZHPickView alloc] initPickviewWithArray:@[projectArr] isHaveNavControler:NO];
+                weakSelf.pickview.tag = 4;
+                weakSelf.pickview.delegate=self;
+                [weakSelf.pickview show];
+                
+            }else{
+                NSLog(@"返回数据有误");
+            }
+        }else
+        {
+            [XHToast showCenterWithText:@"获取科室列表失败"];
+        }
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
 }
 
 -(void)careerButtonClick{
     
+    LSWEAKSELF;
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    NSString* url = PATH(@"%@/title");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            
+            if ([responseObj[@"data"] isKindOfClass:[NSArray class]]) {
+                [weakSelf.titleMutlArr removeAllObjects];
+                NSArray* hospital_projectArr = responseObj[@"data"];
+                
+                for (NSDictionary* dict in hospital_projectArr ) {
+                    if (dict[@"title_name"]) {
+                        [weakSelf.titleMutlArr addObject:dict[@"title_name"]];
+                    }
+                    
+                }
+                
+                NSArray* titleArr = [weakSelf.titleMutlArr copy];//将mutlArr转成Arr
+                
+                if (titleArr.count == 0)
+                {
+                    [XHToast showCenterWithText:@"无数据"];
+                    return ;
+                }
+                
+                weakSelf.pickview=[[ZHPickView alloc] initPickviewWithArray:@[titleArr] isHaveNavControler:NO];
+                weakSelf.pickview.tag = 5;
+                weakSelf.pickview.delegate=self;
+                [weakSelf.pickview show];
+                
+            }else{
+                NSLog(@"返回数据有误");
+            }
+            
+        }else
+        {
+            [XHToast showCenterWithText:@"获取职称列表失败"];
+        }
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
 }
 
 -(void)commitButtonClick{
+    
+    if (self.nameTextField.text.length <= 0)
+    {
+        [XHToast showTopWithText:@"请填写您的真实姓名"];
+        return;
+    }
+    
+    if ([self.cityButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
+    {
+        [XHToast showTopWithText:@"请先获取所在城市"];
+        return;
+    }
+    
+    if ([self.areaButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
+    {
+        [XHToast showTopWithText:@"请先获取所在区"];
+        return;
+    }
+    
+    if ([self.hospitalButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
+    {
+        [XHToast showTopWithText:@"请先获取所在医院"];
+        return;
+    }
+    
+    if ([self.careerButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
+    {
+        [XHToast showTopWithText:@"请先获取所在医院"];
+        return;
+    }
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:self.phoneNumStr forKey:@"phone"];
+    [param setValue:self.verNumStr forKey:@"code"];
+    [param setValue:[NSString md5String:self.pwdStr] forKey:@"pwd"];
+    [param setValue:self.nameTextField.text forKey:@"doctorname"];
+    [param setValue:self.projectId forKey:@"dep"];
+    [param setValue:self.careerButton.titleLabel.text forKey:@"title"];
+    
+    NSString* url = PATH(@"%@/my/register");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            
+            EMError *error = [[EMClient sharedClient] registerWithUsername:self.phoneNumStr password:@"000000"];
+            
+            if (error==nil) {
+                
+                NSLog(@"注册会话成功");
+                
+                if (responseObj[@"message"]) {
+                    [XHToast showCenterWithText:responseObj[@"message"]];
+                    //注册成功后去登录
+                    
+                    [self loginData];
+                }
+            }
+        }else
+        {
+            [XHToast showCenterWithText:@"保存失败"];
+        }
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
+
+#pragma mark -- 自动登录请求
+- (void)loginData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:self.phoneNumStr forKey:@"phone"];
+    [param setValue:[NSString md5String:self.pwdStr] forKey:@"passwd"];
+    
+    NSString* url = PATH(@"%@/login/passwd");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]])
+        {
+            NSDictionary * dict = responseObj;
+            
+            if (dict[@"status"] && [dict[@"status"] isEqualToString:@"0"]&& dict[@"cookie"]) {
+                
+                
+                
+                //登录成功
+                [Defaults setBool:YES forKey:@"isLogin"];
+                [Defaults setValue:dict[@"cookie"] forKey:@"cookie"];
+                [Defaults setValue:self.phoneNumStr forKey:@"phoneNum"];
+                
+                NSString* cookie = dict[@"cookie"];
+                NSRange rang = {32,1};
+                NSString* doctorId = [cookie substringWithRange:rang];
+                
+                [Defaults setValue:doctorId forKey:@"doctorId"];
+                
+                [Defaults synchronize];
+                
+                //注册成功直接登录，并不用验证个人信息
+                
+//                MDTabbarVC* tabbarVC = [[MDTabbarVC alloc] init];
+//                [self presentViewController:tabbarVC animated:YES completion:^{
+//                    [self.navigationController popToRootViewControllerAnimated:YES];
+//                }];
+                AppDelegate *app = LSAPPDELEGATE;
+                [app intoRootForMain];
+                
+            }else{
+                //当返回status不为0时
+                if (responseObj[@"message"]) {
+                    [XHToast showCenterWithText:responseObj[@"message"]];
+                }
+            }
+        }
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+    
     
 }
 
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark ZhpickVIewDelegate 点击确定方法的回调
+-(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString
+{
+    NSLog(@"%@",resultString);
+    if (pickView.tag == 1)
+    {
+        //城市名称
+        [self.cityButton setTitle:resultString forState:UIControlStateNormal];
+        [self.cityButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        [self.areaButton setTitle:@"请选择所在区" forState:UIControlStateNormal];
+        [self.areaButton setTitleColor:[UIColor colorFromHexString:@"BFBFBF"] forState:UIControlStateNormal];
+        [self.hospitalButton setTitle:@"请选择所在医院" forState:UIControlStateNormal];
+        [self.hospitalButton setTitleColor:[UIColor colorFromHexString:@"BFBFBF"] forState:UIControlStateNormal];
+        [self.roomButton setTitle:@"请选择所在科室" forState:UIControlStateNormal];
+        [self.roomButton setTitleColor:[UIColor colorFromHexString:@"BFBFBF"] forState:UIControlStateNormal];
+    }
+    else if(pickView.tag == 2)
+    {
+        //所在区
+        [self.areaButton setTitle:resultString forState:UIControlStateNormal];
+        [self.areaButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        [self.hospitalButton setTitle:@"请选择所在医院" forState:UIControlStateNormal];
+        [self.hospitalButton setTitleColor:[UIColor colorFromHexString:@"BFBFBF"] forState:UIControlStateNormal];
+        [self.roomButton setTitle:@"请选择所在科室" forState:UIControlStateNormal];
+        [self.roomButton setTitleColor:[UIColor colorFromHexString:@"BFBFBF"] forState:UIControlStateNormal];
+    }
+    else if(pickView.tag == 3)
+    {
+        //医院
+        [self.hospitalButton setTitle:resultString forState:UIControlStateNormal];
+        [self.hospitalButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        [self.roomButton setTitle:@"请选择所在科室" forState:UIControlStateNormal];
+        [self.roomButton setTitleColor:[UIColor colorFromHexString:@"BFBFBF"] forState:UIControlStateNormal];
+        
+        for (NSDictionary* dict in self.hospitalMutlArr) {
+            if (dict[@"hospital_name"] && dict[@"hospital_name"] && [dict[@"hospital_name"] isEqualToString:self.hospitalButton.titleLabel.text]) {
+                
+                self.hospital_id = dict[@"hospital_id"];
+            }
+        }
+    }
+    else if(pickView.tag == 4)
+    {
+        //所在科室
+        [self.roomButton setTitle:resultString forState:UIControlStateNormal];
+        [self.roomButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        for (NSDictionary* dict in self.projectMutlArr) {
+            if (dict[@"department_id"] && dict[@"department_name"] && [dict[@"department_name"] isEqualToString:self.roomButton.titleLabel.text]) {
+                
+                self.projectId = dict[@"department_id"];
+            }
+        }
+        
+        NSLog(@"123");
+        
+    }
+    else if(pickView.tag == 5)
+    {
+        //职称
+        [self.careerButton setTitle:resultString forState:UIControlStateNormal];
+        [self.careerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+//
+//    [self.selectArr replaceObjectAtIndex:pickView.tag -1 withObject:resultString];
+//    [infoTab reloadData];
 }
 
 

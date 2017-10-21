@@ -9,8 +9,7 @@
 #import "LSBeginChatController.h"
 #import "LSChoosePatientController.h"
 #import "LSChooseMateController.h"
-
-#import "LSPatientModel.h"
+#import "MDDoctorListModel.h"
 #import "LSAddDocCollectionCell.h"
 @interface LSBeginChatController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -108,40 +107,6 @@
     }];
 }
 
--(void)loadData{
-    LSPatientModel *model1 = [[LSPatientModel alloc]init];
-    model1.name = @"张三";
-    model1.sex = @"男";
-    model1.age = @"10";
-    model1.goodAt = @"擅长：儿童先天性修复儿童先天性修复儿童先天性修复";
-    
-    LSPatientModel *model2 = [[LSPatientModel alloc]init];
-    model2.name = @"李四";
-    model2.sex = @"女";
-    model2.age = @"10";
-    model2.goodAt = @"擅长：儿童先天性修复儿童先天性修复儿童先天性修复";
-    
-    
-    LSPatientModel *model3 = [[LSPatientModel alloc]init];
-    model3.name = @"王五";
-    model3.sex = @"男";
-    model3.goodAt = @"擅长：儿童先天性修复儿童先天性修复儿童先天性修复";
-    //    model3.age = @"15";
-    
-    LSPatientModel *model4 = [[LSPatientModel alloc]init];
-    model4.name = @"李四四";
-    model4.sex = @"女";
-    model4.age = @"134";
-    model4.goodAt = @"擅长：儿童先天性修复儿童先天性修复儿童先天性修复";
-    
-    
-    [self.dataArray addObject:model1];
-    [self.dataArray addObject:model2];
-    [self.dataArray addObject:model3];
-    [self.dataArray addObject:model4];
-    
-    [self.dataCollectionView reloadData];
-}
 #pragma mark -- 选择讨论对象
 -(UIView *)getChooseMateView{
     
@@ -159,7 +124,7 @@
     }];
     
     UIImageView *moreImage = [[UIImageView alloc]init];
-    moreImage.image = [UIImage imageNamed:@"back_g"];
+    moreImage.image = [UIImage imageNamed:@"right_white_Public"];
     [chooseMateView addSubview:moreImage];
     [moreImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(12, 19));
@@ -217,7 +182,7 @@
             cell.model = self.dataArray[indexPath.row];
             
             __weak typeof(self) weakSelf = self;
-            cell.clodeBlock = ^(LSPatientModel *model) {
+            cell.clodeBlock = ^(MDDoctorListModel *model) {
                 [weakSelf.dataArray removeObject:model];
                 [weakSelf.dataCollectionView reloadData];
             };
@@ -293,6 +258,7 @@
 {
     //开始讨论
     NSLog(@"开始讨论按钮点击");
+    [self creatDiscussRoomData];
 }
 #pragma mark -- 选择讨论对象按钮点击
 -(void)choosePatientView{
@@ -302,20 +268,51 @@
     [self.navigationController pushViewController:choosePatientVC animated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark -- 创建讨论组并开始讨论
+- (void)creatDiscussRoomData
+{
+    
+    NSMutableArray* doctorMultArr = [NSMutableArray array];
+    [doctorMultArr removeAllObjects];
+    for (MDDoctorListModel* model in self.dataArray) {
+        [doctorMultArr addObject:model.doctor_id];
+    }
+    NSString *doctorIdsStr = [doctorMultArr componentsJoinedByString:@","];
+    
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:doctorIdsStr forKey:@"doctorids"];
+    [param setValue:@(170) forKey:@"userid"];
+    [param setValue:@"ceshib" forKey:@"username"];
+    
+    NSString* url = PATH(@"%@/createRoom");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                //TO--DO创建房间成功 ，跳转群组会话页面
+                
+                
+                
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
 

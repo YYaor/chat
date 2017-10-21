@@ -132,6 +132,7 @@
     _goodAt = goodAt;
     if (goodAt.length > 0) {
         self.goodLabel.text = [NSString stringWithFormat:@"擅长：%@",goodAt];
+        
     }
     
 }

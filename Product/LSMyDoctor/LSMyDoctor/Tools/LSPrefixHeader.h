@@ -18,8 +18,12 @@
 //工具类
 #import "NSString+md5String.h"
 #import "NSString+Size.h"
+#import "NSString+Mark.h"
 #import "MDRequestParameters.h"
 #import "BMChineseSort.h"
+#import "AlertHelper.h"
+
+#import "AppDelegate.h"
 
 #pragma mark --- 第三方
 //提示
@@ -54,6 +58,8 @@
 #import "YYPlaceholderTextView.h"
 //标签
 #import "PWTagsView.h"
+//picker
+#import "ZHPickView.h"
 
 
 #endif

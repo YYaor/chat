@@ -10,7 +10,7 @@
 #import "MDPeerDoctorHeadCell.h"
 #import "MDPeerinstructCell.h"
 #import "MDPeerDiscussCell.h"
-#import "EaseMessageViewController.h"//单人聊天室
+#import "MDSingleCommunicateVC.h"//单人聊天室
 #import "MDDoctorDetailModel.h"
 
 @interface MDPeerDetailVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -81,8 +81,9 @@
     if (self.isFriend) {
         //已经是好友
         NSLog(@"对话");
-        EaseMessageViewController* singleCoummunicateVC = [[EaseMessageViewController alloc] initWithConversationChatter:self.doctorIdStr conversationType:EMConversationTypeChat];
-        singleCoummunicateVC.title = @"某医生";
+        MDSingleCommunicateVC* singleCoummunicateVC = [[MDSingleCommunicateVC alloc] initWithConversationChatter:self.doctorIdStr conversationType:EMConversationTypeChat];
+        singleCoummunicateVC.titleNameStr = self.detailModel.doctor_name;
+        singleCoummunicateVC.singleIdStr = self.doctorIdStr;
         [self.navigationController pushViewController:singleCoummunicateVC animated:YES];
         
     }else{
@@ -205,7 +206,7 @@
             {
                 self.detailModel = [MDDoctorDetailModel yy_modelWithDictionary:responseObj[@"data"]];
                 //变更按钮状态
-                self.isFriend = !self.detailModel.isFriend;
+                self.isFriend = [self.detailModel.isFriend boolValue];
                 if (self.isFriend) {
                     //如果是已经是好友，则显示对话，
                     [beginTalkBtn setTitle:@"对话" forState:UIControlStateNormal];

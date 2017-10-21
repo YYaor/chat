@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "LSPatientModel.h"
+#import "MDDoctorListModel.h"
 
 @interface LSAddDocCollectionCell : UICollectionViewCell
 
-@property (nonatomic,strong)LSPatientModel *model;
+@property (nonatomic,strong)MDDoctorListModel *model;
 
-@property (nonatomic,copy)void (^clodeBlock)(LSPatientModel *model);
+@property (nonatomic,copy)void (^clodeBlock)(MDDoctorListModel *model);
 
 @end

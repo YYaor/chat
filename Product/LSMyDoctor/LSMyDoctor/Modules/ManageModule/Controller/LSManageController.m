@@ -8,7 +8,6 @@
 
 #import "LSManageController.h"
 #import "LSLoginController.h"
-#import "LSDataPickerView.h"
 
 @interface LSManageController ()
 
@@ -48,13 +47,6 @@
 //                                                 initWithConversationChatter:@"zjc" conversationType:0];
 //
 //    [self.navigationController pushViewController:chatController animated:YES];
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    LSDataPickerView *p = [[NSBundle mainBundle] loadNibNamed:@"LSDataPickerView" owner:nil options:nil][0];
-    [p setPickerWithArray:@[@"11", @"12", @"13"] title:@"11"];
-    [p show];
 }
 
 @end

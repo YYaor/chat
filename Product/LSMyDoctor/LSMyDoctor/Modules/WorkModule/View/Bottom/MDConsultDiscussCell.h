@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MDDiscussListModel.h"
 
 @interface MDConsultDiscussCell : UITableViewCell
+
+@property (nonatomic ,strong)MDDiscussListModel* listModel;
 
 @end
