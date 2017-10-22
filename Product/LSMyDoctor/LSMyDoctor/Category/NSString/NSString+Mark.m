@@ -171,7 +171,7 @@
     [paragraphStyle setLineSpacing:0];//调整行间距
     [attributeString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attributeString length])];
     
-    CGSize size = [text boundingRectWithSize:CGSizeMake(label.width, 0)
+    CGSize size = [text boundingRectWithSize:CGSizeMake(label.bounds.size.width, 0)
                                      options:
                    NSStringDrawingTruncatesLastVisibleLine |
                    NSStringDrawingUsesLineFragmentOrigin |

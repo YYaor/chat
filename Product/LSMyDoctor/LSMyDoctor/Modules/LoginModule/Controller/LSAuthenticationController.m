@@ -612,6 +612,7 @@
     [param setValue:self.nameTextField.text forKey:@"doctorname"];
     [param setValue:self.projectId forKey:@"dep"];
     [param setValue:self.careerButton.titleLabel.text forKey:@"title"];
+    [param setValue:self.hospital_id forKey:@"hosid"];
     
     NSString* url = PATH(@"%@/my/register");
     

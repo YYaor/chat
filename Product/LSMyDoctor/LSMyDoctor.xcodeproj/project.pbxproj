@@ -219,6 +219,8 @@
 		DF93F6831F9B3BDF0025D40D /* MDSetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93F6811F9B3BDF0025D40D /* MDSetPasswordVC.m */; };
 		DF93F6871F9B3BF00025D40D /* MDCheckInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93F6851F9B3BF00025D40D /* MDCheckInfoCell.m */; };
 		DF93F6881F9B3BF00025D40D /* MDCheckInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF93F6861F9B3BF00025D40D /* MDCheckInfoCell.xib */; };
+		DF93F68D1F9C8B3E0025D40D /* LSMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93F68B1F9C8B3E0025D40D /* LSMessageCell.m */; };
+		DF93F68E1F9C8B3E0025D40D /* LSMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF93F68C1F9C8B3E0025D40D /* LSMessageCell.xib */; };
 		DFD5C7091F8167A300045E39 /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C6E81F8167A300045E39 /* FSCalendar+Deprecated.m */; };
 		DFD5C70A1F8167A300045E39 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C6EA1F8167A300045E39 /* FSCalendar.m */; };
 		DFD5C70B1F8167A300045E39 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C6EC1F8167A300045E39 /* FSCalendarAppearance.m */; };
@@ -796,6 +798,9 @@
 		DF93F6841F9B3BF00025D40D /* MDCheckInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCheckInfoCell.h; sourceTree = "<group>"; };
 		DF93F6851F9B3BF00025D40D /* MDCheckInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCheckInfoCell.m; sourceTree = "<group>"; };
 		DF93F6861F9B3BF00025D40D /* MDCheckInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDCheckInfoCell.xib; sourceTree = "<group>"; };
+		DF93F68A1F9C8B3E0025D40D /* LSMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMessageCell.h; sourceTree = "<group>"; };
+		DF93F68B1F9C8B3E0025D40D /* LSMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMessageCell.m; sourceTree = "<group>"; };
+		DF93F68C1F9C8B3E0025D40D /* LSMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMessageCell.xib; sourceTree = "<group>"; };
 		DFD5C6E81F8167A300045E39 /* FSCalendar+Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSCalendar+Deprecated.m"; sourceTree = "<group>"; };
 		DFD5C6E91F8167A300045E39 /* FSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
 		DFD5C6EA1F8167A300045E39 /* FSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
@@ -1975,9 +1980,8 @@
 		DF87A7CD1F78358300EF0461 /* MessageModule */ = {
 			isa = PBXGroup;
 			children = (
+				DF93F6891F9C8B3E0025D40D /* View */,
 				DF87A7CE1F78358300EF0461 /* Controller */,
-				DF87A7CF1F78358300EF0461 /* Model */,
-				DF87A7D01F78358300EF0461 /* View */,
 			);
 			path = MessageModule;
 			sourceTree = "<group>";
@@ -1990,20 +1994,6 @@
 				DF87A7E51F7835FE00EF0461 /* LSMessageController.xib */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		DF87A7CF1F78358300EF0461 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		DF87A7D01F78358300EF0461 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		DF87A7D11F78358300EF0461 /* MineModule */ = {
@@ -2081,6 +2071,16 @@
 				DF93F67C1F9B3AD40025D40D /* ZHPickView.m */,
 			);
 			path = ZHPickView;
+			sourceTree = "<group>";
+		};
+		DF93F6891F9C8B3E0025D40D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DF93F68A1F9C8B3E0025D40D /* LSMessageCell.h */,
+				DF93F68B1F9C8B3E0025D40D /* LSMessageCell.m */,
+				DF93F68C1F9C8B3E0025D40D /* LSMessageCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		DFD5C6E71F8167A300045E39 /* FSCalendar */ = {
@@ -2933,6 +2933,7 @@
 				DFFD8EE11F7C377B00FF0ECD /* LSWorkAdviceController.xib in Resources */,
 				4A0CE6F31F975BC900F7C187 /* MDSickerRequestCell.xib in Resources */,
 				0F3E63221F8C788600A19FF2 /* SGQRCode.bundle in Resources */,
+				DF93F68E1F9C8B3E0025D40D /* LSMessageCell.xib in Resources */,
 				DF27381C1F8FCF1100154B6A /* LSWorkArticleAddController.xib in Resources */,
 				4A0CE6C61F945BDF00F7C187 /* MDPeerinstructCell.xib in Resources */,
 				DFFD8ED71F7C23C300FF0ECD /* LSWorkAppointController.xib in Resources */,
@@ -3113,6 +3114,7 @@
 				0F3E622F1F8B475E00A19FF2 /* YYSearchBar.m in Sources */,
 				DF87A6B71F7827E200EF0461 /* MASLayoutConstraint.m in Sources */,
 				DFF015DF1F7AC25F00527CFA /* MJRefreshComponent.m in Sources */,
+				DF93F68D1F9C8B3E0025D40D /* LSMessageCell.m in Sources */,
 				DF87A8191F78BC0700EF0461 /* LSNetworkTool.m in Sources */,
 				4A89282C1F98B0C90051A868 /* MDDoctorListModel.m in Sources */,
 				DFD5C7111F8167A300045E39 /* FSCalendarDelegationFactory.m in Sources */,

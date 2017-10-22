@@ -22,11 +22,22 @@ static NSString *cellId = @"LSWorkAdviceCell";
 
 @implementation LSWorkAdviceController
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self initForView];
+    [self requestData];
 }
 
 - (void)initForView
@@ -36,6 +47,27 @@ static NSString *cellId = @"LSWorkAdviceCell";
     [self.tableView registerNib:[UINib nibWithNibName:cellId bundle:nil] forCellReuseIdentifier:cellId];
     
     self.tableView.rowHeight = 100;
+}
+
+- (void)requestData
+{
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    
+    [param setValue:[Defaults objectForKey:@"cookie"] forKey:@"cookie"];
+    [param setValue:@100 forKey:@"pagenum"];
+    [param setValue:@1 forKey:@"pagesize"];
+    [param setValue:@1 forKey:@"type"];
+    
+    NSString *url = PATH(@"%@/dr/beRequestList");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]])
+        {
+            NSDictionary * dict = responseObj;
+        }
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
 }
 
 #pragma mark - UITableViewDelegate

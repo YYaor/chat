@@ -254,7 +254,7 @@
         return;
     }
     
-    if (![self isMobile:self.phoneTextFiled.text]) {
+    if (![NSString isMobile:self.phoneTextFiled.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
         self.phoneNoticeLabel.text = @"手机号码有误";
         return;
@@ -288,11 +288,11 @@
         }];
 }
 
-- (BOOL)isMobile:(NSString *)string {
-    NSString *regex = @"^((13[0-9])|(15[^4,\\D])|(18[0-9])|(14[0-9])|(17[0-9]))\\d{8}$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    return [pred evaluateWithObject:string];
-}
+//- (BOOL)isMobile:(NSString *)string {
+//    NSString *regex = @"^((13[0-9])|(15[^4,\\D])|(18[0-9])|(14[0-9])|(17[0-9]))\\d{8}$";
+//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+//    return [pred evaluateWithObject:string];
+//}
 
 -(void)loginButtonClick{
     
@@ -301,7 +301,7 @@
         return;
     }
     
-    if (![self isMobile:self.phoneTextFiled.text]) {
+    if (![NSString isMobile:self.phoneTextFiled.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
         self.phoneNoticeLabel.text = @"手机号码有误";
         return;
