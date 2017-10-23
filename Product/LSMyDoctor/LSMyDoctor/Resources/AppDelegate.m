@@ -57,12 +57,15 @@
 }
 
 -(BOOL)loginIM{
-    
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue]) {
+        return NO;
+    }
+    NSString *doctorId = [[NSUserDefaults standardUserDefaults] objectForKey:@"doctorId"];
     BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
     if (!isAutoLogin) {
         
-        EMError *error = [[EMClient sharedClient] loginWithUsername:@"zjc123"
-                                                           password:@"zjc123"];
+        EMError *error = [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"ug369D%@",doctorId]
+                                                           password:@"000000"];
         if (!error)
         {
             [[EMClient sharedClient].options setIsAutoLogin:YES];

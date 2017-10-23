@@ -330,17 +330,6 @@
             NSDictionary * dict = responseObj;
             
             if (dict[@"status"] && [dict[@"status"] isEqualToString:@"0"]&& dict[@"cookie"]) {
-                
-                [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"ug369D%@",self.phoneTextFiled.text]
-                                                  password:@"000000"
-                                                completion:^(NSString *aUsername, EMError *aError) {
-                                                    if (!aError) {
-                                                        NSLog(@"环信登录成功");
-                                                    } else {
-                                                        NSLog(@"环信登录失败");
-                                                    }
-                                                }];
-                
                 //登录成功
                 [Defaults setBool:YES forKey:@"isLogin"];
                 [Defaults setValue:dict[@"cookie"] forKey:@"cookie"];
@@ -351,6 +340,15 @@
                     [Defaults setValue:self.pswTextFiled.text forKey:@"passWord"];
                 }
                 
+                [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"ug369D%@",dict[@"doctorid"]]
+                                                  password:@"000000"
+                                                completion:^(NSString *aUsername, EMError *aError) {
+                                                    if (!aError) {
+                                                        NSLog(@"环信登录成功");
+                                                    } else {
+                                                        NSLog(@"环信登录失败");
+                                                    }
+                                                }];
                 
                 [Defaults synchronize];
                 

@@ -621,18 +621,13 @@
         if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
         {
             
-            EMError *error = [[EMClient sharedClient] registerWithUsername:self.phoneNumStr password:@"000000"];
+            NSLog(@"注册会话成功");
             
-            if (error==nil) {
+            if (responseObj[@"message"]) {
+                [XHToast showCenterWithText:responseObj[@"message"]];
+                //注册成功后去登录
                 
-                NSLog(@"注册会话成功");
-                
-                if (responseObj[@"message"]) {
-                    [XHToast showCenterWithText:responseObj[@"message"]];
-                    //注册成功后去登录
-                    
-                    [self loginData];
-                }
+                [self loginData];
             }
         }else
         {
@@ -660,17 +655,6 @@
             NSDictionary * dict = responseObj;
             
             if (dict[@"status"] && [dict[@"status"] isEqualToString:@"0"]&& dict[@"cookie"]) {
-                
-                [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"ug369D%@",self.pwdStr]
-                                                  password:@"000000"
-                                                completion:^(NSString *aUsername, EMError *aError) {
-                                                    if (!aError) {
-                                                        NSLog(@"环信登录成功");
-                                                    } else {
-                                                        NSLog(@"环信登录失败");
-                                                    }
-                                                }];
-                
                 //登录成功
                 [Defaults setBool:YES forKey:@"isLogin"];
                 [Defaults setValue:dict[@"cookie"] forKey:@"cookie"];
@@ -683,6 +667,16 @@
                 [Defaults setValue:doctorId forKey:@"doctorId"];
                 
                 [Defaults synchronize];
+
+                [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"ug369D%@",doctorId]
+                                                  password:@"000000"
+                                                completion:^(NSString *aUsername, EMError *aError) {
+                                                    if (!aError) {
+                                                        NSLog(@"环信登录成功");
+                                                    } else {
+                                                        NSLog(@"环信登录失败");
+                                                    }
+                                                }];
                 
                 //注册成功直接登录，并不用验证个人信息
                 
