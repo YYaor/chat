@@ -273,6 +273,9 @@ static TLNetworkStatus     networkStatus;
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             // 隐藏请求HUD
             [SVProgressHUD dismiss];
+            if (failBlock) {
+                failBlock(error);
+            }
             // 移除当前请求
             [[self allTasks] removeObject:task];
         }];

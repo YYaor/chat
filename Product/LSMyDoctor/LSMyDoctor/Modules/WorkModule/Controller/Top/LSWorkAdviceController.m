@@ -92,10 +92,14 @@ static NSString *cellId = @"LSWorkAdviceCell";
     LSWorkAdviceCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
     return cell;
 }
-
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,9 +107,19 @@ static NSString *cellId = @"LSWorkAdviceCell";
     UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath)
     {
         NSLog(@"___%s___", __func__);
+        NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+        
+        //    [param setValue:@100 forKey:@"id"];
+        [param setValue:@2 forKey:@"result"];
+        NSString *url = PATH(@"%@/dr/dealwithRequest");
+        
+        [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+            
+        } failBlock:^(NSError *error) {
+            [XHToast showCenterWithText:@"fail"];
+        }];
     }];
     
     return @[action];
 }
-
 @end

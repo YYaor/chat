@@ -15,4 +15,18 @@
 @implementation LSWorkAdviceCell
 
 
+-(void)agreeButtonClick{
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    
+//    [param setValue:@100 forKey:@"id"];
+    [param setValue:@1 forKey:@"result"];
+    NSString *url = PATH(@"%@/dr/dealwithRequest");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
+
 @end

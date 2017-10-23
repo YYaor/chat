@@ -431,6 +431,7 @@
         _phoneTextFiled.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         _phoneTextFiled.font = [UIFont systemFontOfSize:14];
         [_phoneTextFiled addTarget:self action:@selector(phoneTextChangged:) forControlEvents:UIControlEventEditingChanged];
+        _phoneTextFiled.text = @"15502810729";
     }
     return _phoneTextFiled;
 }
@@ -443,6 +444,7 @@
         _pswTextFiled.delegate = self;
         _pswTextFiled.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         _pswTextFiled.font = [UIFont systemFontOfSize:14];
+        _pswTextFiled.text = @"111111";
 
     }
     return _pswTextFiled;
