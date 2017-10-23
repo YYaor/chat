@@ -34,7 +34,9 @@
 @property (nonatomic, strong) NSMutableArray* projectMutlArr;//科室
 @property (nonatomic, strong) NSMutableArray* titleMutlArr;//职称
 
-@property (nonatomic, strong) NSString *projectId;
+@property (nonatomic, strong) NSString *projectId;//科室
+@property (nonatomic, strong) NSString *department_name;
+
 @property (nonatomic, strong) NSString *hospital_id;
 
 @property (nonatomic, strong) ZHPickView *pickview;
@@ -45,11 +47,7 @@
 @property (strong, nonatomic)  UIView *maskView;
 
 //data
-//@property (copy, nonatomic) NSArray *provinceArray;//1列
 @property (copy, nonatomic) NSArray *cityArray;//2列
-//@property (copy, nonatomic) NSArray *townArray;//3列
-//@property (nonatomic,copy) NSString *selModule;//当前滚轮选项对应的模块报告module
-//@property (nonatomic,copy) NSString *searchKey;//搜索关键字
 
 
 @end
@@ -473,14 +471,6 @@
                 [weakSelf.projectMutlArr removeAllObjects];
                 [weakSelf.projectMutlArr addObjectsFromArray:responseObj[@"data"]];
                 weakSelf.cityArray = [weakSelf.projectMutlArr firstObject][@"depList"];
-//                NSMutableArray* projectNameArr = [NSMutableArray array];
-//                [projectNameArr removeAllObjects];
-//                for (NSDictionary* dict in weakSelf.projectMutlArr ) {
-//                    if (dict[@"department_name"]) {
-//                        [projectNameArr addObject:dict[@"department_name"]];
-//                    }
-//                    
-//                }
                 
                 NSArray* projectArr = [self.projectMutlArr copy];//将mutlArr转成Arr
                 
@@ -490,22 +480,13 @@
                     return ;
                 }
                 
-//                weakSelf.pickview=[[ZHPickView alloc] initPickviewWithArray:@[projectArr] isHaveNavControler:NO];
-//                weakSelf.pickview.tag = 4;
-//                weakSelf.pickview.delegate=self;
-//                [weakSelf.pickview show];
-                
                 [self.view addSubview:self.maskView];
                 [self.view addSubview:self.pickerBgView];
                 self.maskView.alpha = 0;
-//                self.pickerBgView.sd_y = kScreenHeight;
                 
                 [UIView animateWithDuration:0.3 animations:^{
                     self.maskView.alpha = 0.3;
-//                    self.pickerBgView.sd_y = kScreenHeight - 255;
                 }];
-                
-                
                 
             }else{
                 NSLog(@"返回数据有误");
@@ -704,8 +685,6 @@
     } failBlock:^(NSError *error) {
         [XHToast showCenterWithText:@"fail"];
     }];
-    
-    
 }
 
 -(void)back{
@@ -756,31 +735,12 @@
             }
         }
     }
-//    else if(pickView.tag == 4)
-//    {
-//        //所在科室
-//        [self.roomButton setTitle:resultString forState:UIControlStateNormal];
-//        [self.roomButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        
-//        for (NSDictionary* dict in self.projectMutlArr) {
-//            if (dict[@"department_id"] && dict[@"department_name"] && [dict[@"department_name"] isEqualToString:self.roomButton.titleLabel.text]) {
-//                
-//                self.projectId = dict[@"department_id"];
-//            }
-//        }
-//        
-//        NSLog(@"123");
-//        
-//    }
     else if(pickView.tag == 5)
     {
         //职称
         [self.careerButton setTitle:resultString forState:UIControlStateNormal];
         [self.careerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
-//
-//    [self.selectArr replaceObjectAtIndex:pickView.tag -1 withObject:resultString];
-//    [infoTab reloadData];
 }
 
 #pragma mark - pickerView
@@ -790,8 +750,6 @@
     self.maskView.backgroundColor = [UIColor blackColor];
     self.maskView.alpha = 0;
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMyPicker)]];
-    
-//    self.pickerBgView.sd_width = LSSCREENWIDTH;
     
     self.pickerBgView=[[UIView alloc] initWithFrame:CGRectMake(0, LSSCREENHEIGHT-255, LSSCREENWIDTH, 255)];
     [self.pickerBgView setBackgroundColor:[UIColor whiteColor]];
@@ -819,7 +777,6 @@
 - (void)hideMyPicker {
     [UIView animateWithDuration:0.3 animations:^{
         self.maskView.alpha = 0;
-//        self.pickerBgView.sd_y = kScreenHeight;
     } completion:^(BOOL finished) {
         [self.maskView removeFromSuperview];
         [self.pickerBgView removeFromSuperview];
@@ -829,33 +786,21 @@
 //确定
 -(void)btnOk{
     
-//    //所在科室
-//    [self.roomButton setTitle:resultString forState:UIControlStateNormal];
-//    [self.roomButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    
-//    for (NSDictionary* dict in self.projectMutlArr) {
-//        if (dict[@"department_id"] && dict[@"department_name"] && [dict[@"department_name"] isEqualToString:self.roomButton.titleLabel.text]) {
-//            
-//            self.projectId = dict[@"department_id"];
-//        }
-//    }
+    for (NSInteger i=0; i<self.cityArray.count; i++)
+    {
+        NSString *name = self.cityArray[i][@"department_name"];
+        if ([name isEqualToString:self.department_name])
+        {
+            self.projectId = self.cityArray[i][@"department_id"];
+        }
+    }
     
-//    if (_selModule == nil) {
-//        WFReportSelModel *firModel = _pickerDataArray[0];
-//        WFReportSelModel *secModel = firModel.data[0];
-//        WFReportSelModel *thirdModel = secModel.data[0];
-//        _selModule = thirdModel.module?thirdModel.module:@"";
-//        _searchKey = thirdModel.searchKey;
-//    }
-//    if(str_One&&str_Two&&str_Three){
-//        
-//        NSString *resultStr = [NSString stringWithFormat:@"%@-%@-%@",str_One,str_Two,str_Three];
-//        _nameString= [WFLayoutHelper mixImage:_image text:resultStr fontSize:17];
-//        [_reportCollectionView reloadData];
-//    }
+    //所在科室
+    [self.roomButton setTitle:self.department_name forState:UIControlStateNormal];
+    [self.roomButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
     [self hideMyPicker];
     
-//    NSLog(@"%@",_selModule);
 }
 #pragma mark - UIPicker Delegate
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -868,10 +813,9 @@
         
         return self.projectMutlArr.count;
     } else {
+        self.department_name = self.cityArray[0][@"department_name"];
         return self.cityArray.count;
     }
-//    NSArray *temp = self.projectMutlArr[component][@"depList"];
-//    return temp.count;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
@@ -888,22 +832,8 @@
     myView.backgroundColor = [UIColor clearColor];
     
     if (component == 0) {
-//        if (row>=self.provinceArray.count) {
-//            myView.text=@"";
-//        }else{
-//            myView.text = self.projectMutlArr[row][@"specialty_name"];
-//        }
         myView.text = self.projectMutlArr[row][@"specialty_name"];
     } else if (component == 1) {
-//        if (row>=self.cityArray.count) {
-//            myView.text=@"";
-//        }else{
-//            
-////            WFReportSelModel *model = [self.cityArray objectAtIndex:row];
-////            myView.text = model.appLayoutName;
-//            NSArray *temp = self.projectMutlArr[row][@"depList"];
-//            myView.text = temp[row][@"department_name"];
-//        }
         NSArray *temp = self.cityArray;
         myView.text = temp[row][@"department_name"];
     }
@@ -916,60 +846,20 @@
     
     //第一列
     if (component == 0) {
-        
-//        WFReportSelModel *model1 = self.provinceArray[row];
-//        str_One=model1.appLayoutName;
-//        
-//        //设置数组
-//        self.cityArray = model1.data;
-//        
-//        WFReportSelModel *model2 = self.cityArray[0];
-//        self.townArray=model2.data;
-//        
-//        str_Two=model2.appLayoutName;
-//        
-//        WFReportSelModel *townModel = self.townArray[0];
-//        str_Three=townModel.appLayoutName;
-//        //        str_ThreeID=self.townArray[0][@"sort_id"];
-//        
-//        [pickerView reloadComponent:1];
-//        self.cityArray = self.projectMutlArr[row][@"depList"];
         self.cityArray = self.projectMutlArr[row][@"depList"];
 
         [pickerView reloadAllComponents];
         [pickerView selectRow:0 inComponent:1 animated:YES];
-//
-//        _selModule = townModel.module?townModel.module:@"";
-//        _searchKey = townModel.searchKey;
-//        
-//        NSLog(@"%@-%@-%@",str_One,str_Two,str_Three);
+        self.department_name = self.cityArray[0][@"department_name"];
     }
     
     //第二列
     if (component == 1) {
         
         NSArray *temp = self.cityArray;
-        self.projectId = temp[row][@"department_id"];
-//        WFReportSelModel *model = self.cityArray[row];
-//        self.townArray = model.data;
-//        
-//        str_Two = model.appLayoutName;
-//        
-//        WFReportSelModel *townModel = self.townArray[0];
-//        str_Three=townModel.appLayoutName;
-//        
-//        [pickerView reloadComponent:2];
-//        [pickerView selectRow:0 inComponent:2 animated:YES];
-//        
-//        _selModule = townModel.module?townModel.module:@"";
-//        _searchKey = townModel.searchKey;
-//        
-//        NSLog(@"%@-%@-%@",str_One,str_Two,str_Three);
-        
+        self.department_name = temp[row][@"department_name"];
     }
 }
-
-
 
 #pragma mark - setter && getter
 
