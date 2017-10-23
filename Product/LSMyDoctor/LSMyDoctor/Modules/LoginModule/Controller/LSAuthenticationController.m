@@ -472,7 +472,7 @@
             if ([responseObj[@"data"] isKindOfClass:[NSArray class]]) {
                 [weakSelf.projectMutlArr removeAllObjects];
                 [weakSelf.projectMutlArr addObjectsFromArray:responseObj[@"data"]];
-                
+                weakSelf.cityArray = [weakSelf.projectMutlArr firstObject][@"depList"];
 //                NSMutableArray* projectNameArr = [NSMutableArray array];
 //                [projectNameArr removeAllObjects];
 //                for (NSDictionary* dict in weakSelf.projectMutlArr ) {
@@ -859,20 +859,19 @@
 }
 #pragma mark - UIPicker Delegate
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return self.projectMutlArr.count;
+    return 2;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     
-//    if (component == 0) {
-//        
-//        return self.projectMutlArr.count;
-//    } else {
-//        
-//        return self.cityArray.count;
-//    }
-    NSArray *temp = self.projectMutlArr[component][@"depList"];
-    return temp.count;
+    if (component == 0) {
+        
+        return self.projectMutlArr.count;
+    } else {
+        return self.cityArray.count;
+    }
+//    NSArray *temp = self.projectMutlArr[component][@"depList"];
+//    return temp.count;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
@@ -905,7 +904,7 @@
 //            NSArray *temp = self.projectMutlArr[row][@"depList"];
 //            myView.text = temp[row][@"department_name"];
 //        }
-        NSArray *temp = self.projectMutlArr[row][@"depList"];
+        NSArray *temp = self.cityArray;
         myView.text = temp[row][@"department_name"];
     }
     
@@ -935,7 +934,8 @@
 //        
 //        [pickerView reloadComponent:1];
 //        self.cityArray = self.projectMutlArr[row][@"depList"];
-        
+        self.cityArray = self.projectMutlArr[row][@"depList"];
+
         [pickerView reloadAllComponents];
         [pickerView selectRow:0 inComponent:1 animated:YES];
 //
@@ -943,13 +943,12 @@
 //        _searchKey = townModel.searchKey;
 //        
 //        NSLog(@"%@-%@-%@",str_One,str_Two,str_Three);
-        
     }
     
     //第二列
     if (component == 1) {
         
-        NSArray *temp = self.projectMutlArr[row][@"depList"];
+        NSArray *temp = self.cityArray;
         self.projectId = temp[row][@"department_id"];
 //        WFReportSelModel *model = self.cityArray[row];
 //        self.townArray = model.data;
