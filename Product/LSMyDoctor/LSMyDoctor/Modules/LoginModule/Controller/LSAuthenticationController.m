@@ -661,7 +661,15 @@
             
             if (dict[@"status"] && [dict[@"status"] isEqualToString:@"0"]&& dict[@"cookie"]) {
                 
-                
+                [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"ug369D%@",self.pwdStr]
+                                                  password:@"000000"
+                                                completion:^(NSString *aUsername, EMError *aError) {
+                                                    if (!aError) {
+                                                        NSLog(@"环信登录成功");
+                                                    } else {
+                                                        NSLog(@"环信登录失败");
+                                                    }
+                                                }];
                 
                 //登录成功
                 [Defaults setBool:YES forKey:@"isLogin"];
