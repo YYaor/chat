@@ -12,11 +12,15 @@
 
 #import "LSWorkAdviceCell.h"
 
+#import <Foundation/Foundation.h>
+
 static NSString *cellId = @"LSWorkAdviceCell";
 
 @interface LSWorkAdviceController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+@property (nonatomic, copy) NSMutableArray *dataArray;
 
 @end
 
@@ -57,13 +61,16 @@ static NSString *cellId = @"LSWorkAdviceCell";
     [param setValue:@100 forKey:@"pagenum"];
     [param setValue:@1 forKey:@"pagesize"];
     [param setValue:@1 forKey:@"type"];
-    
-    NSString *url = PATH(@"%@/dr/beRequestList");
-    
+    [param setValue:AccessToken forKey:@"accessToken"];
+
+    NSString *url = PATH(@"%@/beRequestList");
+    self.dataArray = [[NSMutableArray alloc]init];
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         if ([responseObj isKindOfClass:[NSDictionary class]])
         {
             NSDictionary * dict = responseObj;
+//            [self.dataArray removeAllObjects];
+            [self.dataArray addObjectsFromArray:dict[@"content"]];
         }
     } failBlock:^(NSError *error) {
         [XHToast showCenterWithText:@"fail"];
@@ -76,20 +83,26 @@ static NSString *cellId = @"LSWorkAdviceCell";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    LSWorkAdviceDetailController *vc = [[LSWorkAdviceDetailController alloc] initWithNibName:@"LSWorkAdviceDetailController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
+//    LSWorkAdviceDetailController *vc = [[LSWorkAdviceDetailController alloc] initWithNibName:@"LSWorkAdviceDetailController" bundle:nil];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
+                                                 initWithConversationChatter:@"ug369p788" conversationType:0];
+    
+    [self.navigationController pushViewController:chatController animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LSWorkAdviceCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
+    cell.dataDic = self.dataArray[indexPath.row];
     return cell;
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -111,10 +124,11 @@ static NSString *cellId = @"LSWorkAdviceCell";
         
         //    [param setValue:@100 forKey:@"id"];
         [param setValue:@2 forKey:@"result"];
-        NSString *url = PATH(@"%@/dr/dealwithRequest");
+        NSString *url = PATH(@"%@/dealwithRequest");
         
         [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-            
+            [self.dataArray removeObjectAtIndex:indexPath.row];
+            [self.tableView reloadData];
         } failBlock:^(NSError *error) {
             [XHToast showCenterWithText:@"fail"];
         }];

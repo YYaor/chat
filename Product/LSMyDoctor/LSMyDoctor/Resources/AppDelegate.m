@@ -45,7 +45,7 @@
     [[EaseSDKHelper shareHelper] hyphenateApplication:application
                         didFinishLaunchingWithOptions:launchOptions
                                                appkey:@"1186170929115740#youge"
-                                         apnsCertName:@"release"
+                                         apnsCertName:@"MyDoctor_Dev_Apns"
                                           otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
     [self loginIM];
     //获取token

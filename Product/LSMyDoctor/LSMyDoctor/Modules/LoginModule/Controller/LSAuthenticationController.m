@@ -650,19 +650,15 @@
                 
                 [Defaults synchronize];
                 
-                [[EMClient sharedClient] registerWithUsername:[NSString stringWithFormat:@"ug369D%@",doctorId] password:@"000000" completion:^(NSString *aUsername, EMError *aError) {
-                    if (aUsername) {
-                        [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"ug369D%@",doctorId]
-                                                          password:@"000000"
-                                                        completion:^(NSString *aUsername, EMError *aError) {
-                                                            if (!aError) {
-                                                                NSLog(@"环信登录成功");
-                                                            } else {
-                                                                NSLog(@"环信登录失败");
-                                                            }
-                                                        }];
-                    }
-                }];
+                [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"ug369D%@",doctorId]
+                                                  password:@"000000"
+                                                completion:^(NSString *aUsername, EMError *aError) {
+                                                    if (!aError) {
+                                                        NSLog(@"环信登录成功");
+                                                    } else {
+                                                        NSLog(@"环信登录失败");
+                                                    }
+                                                }];
 
                 
                 

@@ -23,12 +23,18 @@
 {
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     
-    //    [param setValue:@100 forKey:@"id"];
+    [param setValue:@100 forKey:@"id"];
     [param setValue:@1 forKey:@"result"];
+    [param setValue:[Defaults objectForKey:@"cookie"] forKey:@"cookie"];
+    [param setValue:AccessToken forKey:@"accessToken"];
     NSString *url = PATH(@"%@/dealwithRequest");
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-        
+        if (self.agreeClickBlock) {
+            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:self.dataDic];
+            [dic setObject:@"已通过" forKey:@"remark"];
+            self.agreeClickBlock(dic);
+        }
     } failBlock:^(NSError *error) {
         [XHToast showCenterWithText:@"fail"];
     }];
