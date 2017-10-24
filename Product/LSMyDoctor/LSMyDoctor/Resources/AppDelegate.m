@@ -10,6 +10,7 @@
 
 #import "LSTabBarController.h"
 #import "LSLoginController.h"
+#import "SplashViewController.h"
 
 #import "SVProgressHUD.h"
 
@@ -151,6 +152,18 @@
             [Defaults setValue:responseObject[@"data"] forKey:@"accessToken"];
             NSLog(@"*******token:%@*****",responseObject[@"data"]);
             [Defaults synchronize];
+            
+//            //更改状态蓝颜色
+//            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+//            
+//            self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//            self.window.backgroundColor = [UIColor whiteColor];
+            
+//            //启动引导页控制器
+//            SplashViewController *splashVC = [[SplashViewController alloc]init];
+//            self.window.rootViewController = splashVC;
+//            
+//            [self.window makeKeyAndVisible];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
