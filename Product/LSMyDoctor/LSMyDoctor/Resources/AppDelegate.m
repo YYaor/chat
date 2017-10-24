@@ -28,7 +28,7 @@
     //    options.apnsCertName = @"PengGe_Doctor_p12";
     //    [[EMClient sharedClient] initializeSDKWithOptions:options];
     
-    
+    [NSThread sleepForTimeInterval:3.0];
     //设置键盘
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
     manager.enable = YES;

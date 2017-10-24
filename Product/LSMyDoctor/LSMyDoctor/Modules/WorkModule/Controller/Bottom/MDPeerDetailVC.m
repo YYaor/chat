@@ -81,7 +81,7 @@
     if (self.isFriend) {
         //已经是好友
         NSLog(@"对话");
-        MDSingleCommunicateVC* singleCoummunicateVC = [[MDSingleCommunicateVC alloc] initWithConversationChatter:self.doctorIdStr conversationType:EMConversationTypeChat];
+        MDSingleCommunicateVC* singleCoummunicateVC = [[MDSingleCommunicateVC alloc] initWithConversationChatter:[NSString stringWithFormat:@"ug369D%@",self.doctorIdStr] conversationType:EMConversationTypeChat];
         singleCoummunicateVC.titleNameStr = self.detailModel.doctor_name;
         singleCoummunicateVC.singleIdStr = self.doctorIdStr;
         [self.navigationController pushViewController:singleCoummunicateVC animated:YES];

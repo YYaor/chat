@@ -20,6 +20,8 @@
     
     self.title = self.titleNameStr;
     
+    self.conversation.ext = [NSDictionary dictionary];
+    
     UIButton* singleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     singleBtn.frame = CGRectMake(LSSCREENWIDTH - 100, 7, 80, 30);
     [singleBtn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];

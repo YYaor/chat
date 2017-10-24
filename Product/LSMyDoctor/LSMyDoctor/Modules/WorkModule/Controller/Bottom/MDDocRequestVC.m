@@ -83,7 +83,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MDRequestContentModel* contentModel = self.requestModel.content[indexPath.section];
-    if ([contentModel.remark isEqualToString:@"已通过"]) {
+    if ([contentModel.result isEqualToString:@"已通过"]) {
         return @"移除";
     }else{
         return @"拒绝";
@@ -97,7 +97,7 @@
     if(editingStyle == UITableViewCellEditingStyleDelete)
     {
         MDRequestContentModel* contentModel = self.requestModel.content[indexPath.section];
-        if ([contentModel.remark isEqualToString:@"已通过"]) {
+        if ([contentModel.result isEqualToString:@"已通过"]) {
             //移除按钮点击
             [self removeTheRequestWithRequestId:contentModel.requestId];
         }else{

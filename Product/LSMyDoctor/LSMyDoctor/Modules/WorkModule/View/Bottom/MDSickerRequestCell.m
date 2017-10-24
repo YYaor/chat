@@ -65,6 +65,22 @@
         self.userValueLab.text = contentModel.remark;
     }
     
+    if ([contentModel.result isEqualToString:@"已通过"]) {
+        self.agreeBtn.hidden = YES;
+        UILabel* resultLab = [[UILabel alloc] init];
+        
+        resultLab.text = contentModel.result;
+        resultLab.textColor = [UIColor grayColor];
+        [self.contentView addSubview:resultLab];
+        [resultLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.contentView.mas_centerY);
+            make.right.equalTo(self.contentView.mas_right).offset(-10);
+        }];
+        
+        
+    }else{
+        self.agreeBtn.hidden = NO;
+    }
 
     
     

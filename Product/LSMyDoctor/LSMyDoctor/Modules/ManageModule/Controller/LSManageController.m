@@ -30,7 +30,7 @@
     
     UIButton *loignButton = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
     loignButton.backgroundColor = [UIColor redColor];
-    [self.view addSubview:loignButton];
+//    [self.view addSubview:loignButton];
     [loignButton addTarget:self action:@selector(loginButtonClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
