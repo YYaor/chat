@@ -10,23 +10,29 @@
 
 @interface LSWorkAdviceCell ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *headImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLab;
+@property (weak, nonatomic) IBOutlet UILabel *infoLab;
+
+
 @end
 
 @implementation LSWorkAdviceCell
 
-
--(void)agreeButtonClick{
+- (IBAction)agreeButtonClick
+{
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     
-//    [param setValue:@100 forKey:@"id"];
+    //    [param setValue:@100 forKey:@"id"];
     [param setValue:@1 forKey:@"result"];
-    NSString *url = PATH(@"%@/dr/dealwithRequest");
+    NSString *url = PATH(@"%@/dealwithRequest");
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-
+        
     } failBlock:^(NSError *error) {
         [XHToast showCenterWithText:@"fail"];
     }];
 }
+
 
 @end

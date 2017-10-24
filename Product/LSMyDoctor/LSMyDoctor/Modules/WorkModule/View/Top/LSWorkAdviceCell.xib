@@ -80,6 +80,9 @@
                                 <color key="value" red="0.24313725489999999" green="0.81568627449999997" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="agreeButtonClick" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zfm-BJ-ncj"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -98,6 +101,11 @@
                     <constraint firstItem="wPa-2C-sEq" firstAttribute="bottom" secondItem="oXp-ud-whe" secondAttribute="bottom" constant="-5" id="xyP-fI-P3X"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="headImageView" destination="oXp-ud-whe" id="hZN-Rs-3TA"/>
+                <outlet property="infoLab" destination="wPa-2C-sEq" id="ZGJ-zl-rLn"/>
+                <outlet property="nameLab" destination="h7z-uH-3eT" id="Q8M-2R-eHH"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>
