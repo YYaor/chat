@@ -13,11 +13,16 @@
 
 #import "LSMineHeaderView.h"
 #import "LSMineListCell.h"
+
+#import "LSMineModel.h"
+
 @interface LSMineController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate>
 
 @property (nonatomic,strong)UITableView *dataTableView;
 
 @property (nonatomic,strong)LSMineHeaderView *headerView;
+
+@property (nonatomic, strong) LSMineModel *mineModel;
 
 @end
 
@@ -105,7 +110,6 @@
         }
     }
     
-    [self.headerView updateWithImageURL:@"" name:@"陈医生" room:@"儿科" career:@"主任医生"];
     return cell;
 }
 
@@ -153,6 +157,8 @@
 #pragma mark -- 获取个人信息
 - (void)getMineInfoData
 {
+    LSWEAKSELF;
+    
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
     [param setValue:[Defaults valueForKey:@"cookie"] forKey:@"cookie"];
@@ -171,16 +177,16 @@
 //            MyBaseInfoModel* baseModel = self.myInfoModel.myBaseInfo[0];
 //            
 //            [mineTab reloadData];
+            weakSelf.mineModel = [LSMineModel yy_modelWithJSON:responseObj];
             
+            [weakSelf.headerView updateWithImageURL:weakSelf.mineModel.myImage?weakSelf.mineModel.myImage:@"" name:weakSelf.mineModel.myName career:weakSelf.mineModel.myRemark];
             
         }else
         {
             [XHToast showCenterWithText:responseObj[@"message"]];
         }
-        
-        
     } failBlock:^(NSError *error) {
-        [XHToast showCenterWithText:@"fail"];
+        //[XHToast showCenterWithText:@"fail"];
     }];
 }
 

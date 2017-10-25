@@ -25,34 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self initNavView];
     [self initForView];
     [self initTouchEvents];
 }
-
-//-(void)initNavView{
-//    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
-//    navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
-//    [self.view addSubview:navView];
-//    
-//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 44, 44)];
-//    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-//    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-//    [navView addSubview:backButton];
-//    
-//    
-//    UILabel *titleLabel = [[UILabel alloc]init];
-//    titleLabel.font = [UIFont systemFontOfSize:18];
-//    titleLabel.textColor = [UIColor whiteColor];
-//    titleLabel.text = @"设置密码";
-//    titleLabel.backgroundColor = [UIColor clearColor];
-//    [navView addSubview:titleLabel];
-//    
-//    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(navView);
-//        make.centerY.equalTo(navView).offset(8);
-//    }];
-//}
 
 -(void)initForView{
     
@@ -66,7 +41,6 @@
     [self.oldPswTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(12);
         make.right.equalTo(self.view).offset(-12);
-//        make.top.equalTo(self.view).offset(64+18);
         make.top.equalTo(self.view).offset(18);
     }];
     
@@ -133,6 +107,53 @@
 
 -(void)sureButtonClick{
     
+    if ([self.oldPswTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length<=0)
+    {
+        [XHToast showCenterWithText:@"请输入旧密码"];
+        return;
+    }
+    
+    if ([self.oldPswTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length<=0)
+    {
+        [XHToast showCenterWithText:@"请输入新密码"];
+        return;
+    }
+    
+    if ([self.oldPswTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length<=0)
+    {
+        [XHToast showCenterWithText:@"请输入确认密码"];
+        return;
+    }
+    
+    if (![self.nPswTextField.text isEqualToString:self.secPswTextField.text])
+    {
+        [XHToast showCenterWithText:@"两次密码不一致，请重新输入"];
+        return;
+    }
+    
+    LSWEAKSELF;
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:Cookie forKey:@"cookie"];
+    [param setValue:AccessToken forKey:@"accessToken"];
+    [param setValue:[NSString md5String:self.oldPswTextField.text] forKey:@"oldPasswd"];
+    [param setValue:[NSString md5String:self.nPswTextField.text] forKey:@"passwd"];
+    
+    NSString* url = PATH(@"%@/my/passwd");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }else
+        {
+            [XHToast showCenterWithText:responseObj[@"message"]];
+        }
+    } failBlock:^(NSError *error) {
+        //[XHToast showCenterWithText:@"fail"];
+    }];
 }
 
 -(UIView *)getLine{

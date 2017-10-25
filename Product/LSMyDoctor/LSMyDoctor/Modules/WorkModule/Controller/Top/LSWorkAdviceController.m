@@ -74,7 +74,7 @@ static NSString *cellId = @"LSWorkAdviceCell";
             [self.tableView reloadData];
         }
     } failBlock:^(NSError *error) {
-        [XHToast showCenterWithText:@"fail"];
+        //[XHToast showCenterWithText:@"fail"];
     }];
 }
 
@@ -139,7 +139,7 @@ static NSString *cellId = @"LSWorkAdviceCell";
                               [self.tableView reloadData];
                           }
                       } failBlock:^(NSError *error) {
-                          [XHToast showCenterWithText:@"fail"];
+                          //[XHToast showCenterWithText:@"fail"];
                       }];
                   }];
     }else{
@@ -161,7 +161,7 @@ static NSString *cellId = @"LSWorkAdviceCell";
                           }
                           
                       } failBlock:^(NSError *error) {
-                          [XHToast showCenterWithText:@"fail"];
+                          //[XHToast showCenterWithText:@"fail"];
                       }];
                   }];
     }

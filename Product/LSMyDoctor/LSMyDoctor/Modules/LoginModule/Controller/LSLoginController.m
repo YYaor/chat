@@ -284,15 +284,9 @@
                 }
             }
         } failBlock:^(NSError *error) {
-            [XHToast showCenterWithText:@"fail"];
+            //[XHToast showCenterWithText:@"fail"];
         }];
 }
-
-//- (BOOL)isMobile:(NSString *)string {
-//    NSString *regex = @"^((13[0-9])|(15[^4,\\D])|(18[0-9])|(14[0-9])|(17[0-9]))\\d{8}$";
-//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-//    return [pred evaluateWithObject:string];
-//}
 
 -(void)loginButtonClick{
     
@@ -402,7 +396,7 @@
             }
         }
     } failBlock:^(NSError *error) {
-        [XHToast showCenterWithText:@"fail"];
+        //[XHToast showCenterWithText:@"fail"];
     }];
 }
 
@@ -443,7 +437,7 @@
         _phoneTextFiled.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         _phoneTextFiled.font = [UIFont systemFontOfSize:14];
         [_phoneTextFiled addTarget:self action:@selector(phoneTextChangged:) forControlEvents:UIControlEventEditingChanged];
-    //    _phoneTextFiled.text = @"15502810729";
+        _phoneTextFiled.text = @"15502810729";
     }
     return _phoneTextFiled;
 }
@@ -456,7 +450,7 @@
         _pswTextFiled.delegate = self;
         _pswTextFiled.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         _pswTextFiled.font = [UIFont systemFontOfSize:14];
-  //      _pswTextFiled.text = @"111111";
+        _pswTextFiled.text = @"111111";
 
     }
     return _pswTextFiled;

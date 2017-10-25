@@ -173,11 +173,8 @@
         }else{
             [XHToast showCenterWithText:@"数据格式错误"];
         }
-        
-        
-        
     } failBlock:^(NSError *error) {
-        [XHToast showCenterWithText:@"fail"];
+//        //[XHToast showCenterWithText:@"fail"];
     }];
 
 }

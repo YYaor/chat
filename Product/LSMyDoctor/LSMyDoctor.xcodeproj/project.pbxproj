@@ -241,6 +241,7 @@
 		DFD5C7171F8167A300045E39 /* FSCalendarTransitionCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C7051F8167A300045E39 /* FSCalendarTransitionCoordinator.m */; };
 		DFD5C7181F8167A300045E39 /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C7071F8167A300045E39 /* FSCalendarWeekdayView.m */; };
 		DFD5C7191F8167A300045E39 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFD5C7081F8167A300045E39 /* Info.plist */; };
+		DFEC43EE1FA0EECC00DA8FAC /* LSMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DFEC43ED1FA0EECC00DA8FAC /* LSMineModel.m */; };
 		DFF010B11F7AB4FA00527CFA /* LSMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF010B01F7AB4FA00527CFA /* LSMineHeaderView.m */; };
 		DFF0152C1F7AC15700527CFA /* EaseUI.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF014071F7AC15700527CFA /* EaseUI.m */; };
 		DFF0152D1F7AC15700527CFA /* EaseUI.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DFF014081F7AC15700527CFA /* EaseUI.podspec */; };
@@ -842,6 +843,8 @@
 		DFD5C7061F8167A300045E39 /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarWeekdayView.h; sourceTree = "<group>"; };
 		DFD5C7071F8167A300045E39 /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarWeekdayView.m; sourceTree = "<group>"; };
 		DFD5C7081F8167A300045E39 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFEC43EC1FA0EECC00DA8FAC /* LSMineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineModel.h; sourceTree = "<group>"; };
+		DFEC43ED1FA0EECC00DA8FAC /* LSMineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineModel.m; sourceTree = "<group>"; };
 		DFF010AF1F7AB4FA00527CFA /* LSMineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineHeaderView.h; sourceTree = "<group>"; };
 		DFF010B01F7AB4FA00527CFA /* LSMineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineHeaderView.m; sourceTree = "<group>"; };
 		DFF014051F7AC15700527CFA /* EaseUI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseUI-Prefix.pch"; sourceTree = "<group>"; };
@@ -1299,6 +1302,8 @@
 			children = (
 				0F8314771F7B3F55008A9E22 /* LSUserModel.h */,
 				0F8314781F7B3F55008A9E22 /* LSUserModel.m */,
+				DFEC43EC1FA0EECC00DA8FAC /* LSMineModel.h */,
+				DFEC43ED1FA0EECC00DA8FAC /* LSMineModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2991,6 +2996,7 @@
 				0FB200BE1F78CEFC005BC289 /* YYShopMainTypeView.m in Sources */,
 				DFFD8EDB1F7C25AD00FF0ECD /* LSWorkAppointCell.m in Sources */,
 				DFF015A21F7AC15700527CFA /* EaseConversationCell.m in Sources */,
+				DFEC43EE1FA0EECC00DA8FAC /* LSMineModel.m in Sources */,
 				DF87A7B71F782DE000EF0461 /* IQTitleBarButtonItem.m in Sources */,
 				0F8314721F7B3BE3008A9E22 /* LSMineUserSettingController.m in Sources */,
 				0F8314801F7B40BC008A9E22 /* NSObject+YYModel.m in Sources */,

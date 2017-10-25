@@ -41,7 +41,7 @@
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
         make.left.equalTo(self.contentView).offset(12);
-        make.size.mas_equalTo(CGSizeMake(24, 19));
+        make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

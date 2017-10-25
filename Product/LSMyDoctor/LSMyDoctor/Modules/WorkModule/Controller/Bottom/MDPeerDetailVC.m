@@ -230,7 +230,7 @@
         
         
     } failBlock:^(NSError *error) {
-        [XHToast showCenterWithText:@"fail"];
+        //[XHToast showCenterWithText:@"fail"];
     }];
 }
 
@@ -266,7 +266,7 @@
         
         
     } failBlock:^(NSError *error) {
-        [XHToast showCenterWithText:@"fail"];
+        //[XHToast showCenterWithText:@"fail"];
     }];
 }
 

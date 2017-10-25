@@ -238,8 +238,8 @@ static TLNetworkStatus     networkStatus;
             if ([responseObject[@"api_code"] integerValue] == 0) {
                 successBlock ? successBlock(responseObject) : nil;
             }else{
-                failBlock ? failBlock(nil) : nil;
-                [[DSToast toastWithText:responseObject[@"api_message"]] show];
+//                failBlock ? failBlock(nil) : nil;
+                [[DSToast toastWithText:responseObject[@"message"]] show];
             }
             // 移除当前请求
             [[self allTasks] removeObject:task];
@@ -264,8 +264,8 @@ static TLNetworkStatus     networkStatus;
             if ([responseObject[@"status"] integerValue] == 0) {
                 successBlock ? successBlock(responseObject) : nil;
             }else{
-                failBlock ? failBlock(nil) : nil;
-                [[DSToast toastWithText:responseObject[@"api_message"]] show];
+//                failBlock ? failBlock(responseObject) : nil;
+                [[DSToast toastWithText:responseObject[@"message"]] show];
             }
             // 移除当前请求
             [[self allTasks] removeObject:task];

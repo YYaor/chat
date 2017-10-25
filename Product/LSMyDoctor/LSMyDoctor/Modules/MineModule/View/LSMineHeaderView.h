@@ -12,6 +12,6 @@
 
 @property (nonatomic,weak) id controller;
 
--(void)updateWithImageURL:(NSString *)imageURL name:(NSString *)name room:(NSString *)room career:(NSString *)career;
+-(void)updateWithImageURL:(NSString *)imageURL name:(NSString *)name career:(NSString *)career;
 
 @end

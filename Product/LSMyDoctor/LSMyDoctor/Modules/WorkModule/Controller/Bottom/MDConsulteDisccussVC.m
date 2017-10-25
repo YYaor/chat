@@ -136,7 +136,7 @@
         
         
     } failBlock:^(NSError *error) {
-        [XHToast showCenterWithText:@"fail"];
+        //[XHToast showCenterWithText:@"fail"];
     }];
 }
 

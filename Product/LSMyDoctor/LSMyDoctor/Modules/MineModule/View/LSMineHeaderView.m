@@ -52,9 +52,9 @@
     }];
 }
 
--(void)updateWithImageURL:(NSString *)imageURL name:(NSString *)name room:(NSString *)room career:(NSString *)career{
+-(void)updateWithImageURL:(NSString *)imageURL name:(NSString *)name career:(NSString *)career{
     self.nameLabel.text = name;
-    self.infoLabel.text = [NSString stringWithFormat:@"%@  %@",room,career];
+    self.infoLabel.text = [NSString stringWithFormat:@"%@",career];
 }
 
 -(void)headClick{
