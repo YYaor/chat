@@ -23,6 +23,12 @@
 
 @implementation LSMineController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    //获取个人信息
+    [self getMineInfoData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -143,6 +149,42 @@
         }
     }
 }
+
+#pragma mark -- 获取个人信息
+- (void)getMineInfoData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:[Defaults valueForKey:@"cookie"] forKey:@"cookie"];
+    [param setValue:[Defaults valueForKey:@"accessToken"] forKey:@"accessToken"];
+    
+    NSString* url = PATH(@"%@/my/info");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            
+//            self.myInfoModel = [MDMyInfoModel yy_modelWithDictionary:responseObj];
+//            
+//            MyServiceCountModel* serviceModel = self.myInfoModel.myServiceCount[0];
+//            MyBaseInfoModel* baseModel = self.myInfoModel.myBaseInfo[0];
+//            
+//            [mineTab reloadData];
+            
+            
+        }else
+        {
+            [XHToast showCenterWithText:responseObj[@"message"]];
+        }
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
+
+#pragma mark - getter & setter
 
 -(UITableView *)dataTableView{
     if (!_dataTableView) {

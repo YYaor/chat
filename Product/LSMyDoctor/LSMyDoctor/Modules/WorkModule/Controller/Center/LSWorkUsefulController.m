@@ -26,6 +26,7 @@
     [super viewDidLoad];
     
     [self initForView];
+    [self requestData];
     [self initForAction];
 }
 
@@ -59,6 +60,24 @@
         vc.text = weakSelf.dataArr[index];
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
+}
+
+- (void)requestData
+{
+    __weak typeof(self) weakSelf = self;
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:[Defaults valueForKey:@"cookie"] forKey:@"cookie"];
+    [param setValue:[Defaults valueForKey:@"accessToken"] forKey:@"accessToken"];
+    
+    NSString *url = PATH(@"%@/chatCommon");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        NSLog(@"%@", responseObj);
+    } failBlock:^(NSError *error) {
+        NSLog(@"");
+    }];
 }
 
 - (void)rightItemClick
