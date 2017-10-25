@@ -20,7 +20,7 @@ static NSString *cellId = @"LSWorkAdviceCell";
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
-@property (nonatomic, copy) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
@@ -69,8 +69,8 @@ static NSString *cellId = @"LSWorkAdviceCell";
         if ([responseObj isKindOfClass:[NSDictionary class]])
         {
             NSDictionary * dict = responseObj;
-//            [self.dataArray removeAllObjects];
-            [self.dataArray addObjectsFromArray:dict[@"content"]];
+            [self.dataArray removeAllObjects];
+            [self.dataArray addObject:dict[@"data"][@"content"]];
         }
     } failBlock:^(NSError *error) {
         [XHToast showCenterWithText:@"fail"];

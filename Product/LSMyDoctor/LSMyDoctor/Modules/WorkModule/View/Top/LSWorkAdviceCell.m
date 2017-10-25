@@ -19,6 +19,13 @@
 
 @implementation LSWorkAdviceCell
 
+-(void)setDataDic:(NSDictionary *)dataDic{
+    _dataDic = dataDic;
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:dataDic[@"img_url"]] placeholderImage:nil];
+    self.nameLab.text = dataDic[@"username"];
+    self.infoLab.text = dataDic[@""];
+}
+
 - (IBAction)agreeButtonClick
 {
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
