@@ -121,7 +121,7 @@
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         if ([responseObj[@"status"] integerValue] == 0) {
             if (weakSelf.deleteBlock) {
-                weakSelf.deleteBlock(responseObj[@"data"]);
+                weakSelf.deleteBlock(weakSelf.dataDic);
             }
             [weakSelf.navigationController popViewControllerAnimated:YES];
 

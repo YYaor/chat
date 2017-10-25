@@ -37,6 +37,12 @@
 
 - (void)setDataArr:(NSArray *)array
 {
+
+    
+    
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
+    }
     UIView *view = [[UIView alloc]init];
     view.frame = CGRectMake(0, 15, self.frame.size.width, 1);
     view.backgroundColor = [UIColor whiteColor];
