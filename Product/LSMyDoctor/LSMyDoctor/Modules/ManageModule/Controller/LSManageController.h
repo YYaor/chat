@@ -10,4 +10,6 @@
 
 @interface LSManageController : UIViewController
 
+@property (nonatomic,copy)void (^chooseBlock)(NSArray *modelArray);
+
 @end

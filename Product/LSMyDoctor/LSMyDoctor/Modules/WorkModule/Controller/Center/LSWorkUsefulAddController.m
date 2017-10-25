@@ -37,6 +37,7 @@
     self.textView.placeholder = @"请输入常用语";
     
     self.textView.text = self.dataDic[@"content"];
+    
     if (!self.dataDic[@"content"])
     {
         self.deleteBtn.hidden = YES;
@@ -69,7 +70,8 @@
         
         [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
             if ([responseObj[@"status"] integerValue] == 0) {
-                [self.dataDic setValue:self.textView.text forKey:@"content"];
+//                [weakSelf.dataDic removeObjectForKey:@"content"];
+//                [weakSelf.dataDic setValue:weakSelf.textView.text forKey:@"content"];
                 if (weakSelf.updateBlock) {
                     weakSelf.updateBlock(responseObj[@"data"]);
                 }
