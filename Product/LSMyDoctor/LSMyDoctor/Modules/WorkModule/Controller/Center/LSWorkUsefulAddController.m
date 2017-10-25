@@ -34,10 +34,10 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    self.textView.text = self.text;
     self.textView.placeholder = @"请输入常用语";
     
-    if (!self.text)
+    self.textView.text = self.dataDic[@"content"];
+    if (!self.dataDic[@"content"])
     {
         self.deleteBtn.hidden = YES;
     }
@@ -55,7 +55,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    if (self.text)
+    if (self.dataDic[@"content"])
     {
         //修改
         NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
@@ -63,12 +63,18 @@
         [param setValue:[Defaults valueForKey:@"cookie"] forKey:@"cookie"];
         [param setValue:[Defaults valueForKey:@"accessToken"] forKey:@"accessToken"];
         [param setValue:self.textView.text forKey:@"content"];
-        [param setValue:@"" forKey:@"id"];
+        [param setValue:self.dataDic[@"id"] forKey:@"id"];
         
         NSString *url = PATH(@"%@/updateChatCommon");
         
         [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-            NSLog(@"%@", responseObj);
+            if ([responseObj[@"status"] integerValue] == 0) {
+                [self.dataDic setValue:self.textView.text forKey:@"content"];
+                if (weakSelf.updateBlock) {
+                    weakSelf.updateBlock(responseObj[@"data"]);
+                }
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }
         } failBlock:^(NSError *error) {
             NSLog(@"");
         }];
@@ -86,6 +92,14 @@
         
         [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
             NSLog(@"%@", responseObj);
+            if ([responseObj[@"status"] integerValue] == 0) {
+                weakSelf.dataDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.textView.text,@"content", nil];
+                if (weakSelf.addBlock) {
+                    weakSelf.addBlock(weakSelf.dataDic);
+                }
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }
+            
         } failBlock:^(NSError *error) {
             NSLog(@"");
         }];
@@ -100,12 +114,18 @@
     
     [param setValue:[Defaults valueForKey:@"cookie"] forKey:@"cookie"];
     [param setValue:[Defaults valueForKey:@"accessToken"] forKey:@"accessToken"];
-    [param setValue:@"" forKey:@"id"];
+    [param setValue:self.dataDic[@"id"] forKey:@"id"];
     
     NSString *url = PATH(@"%@/deleteChatCommon");
-    
+    __weak typeof(self) weakSelf = self;
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-        NSLog(@"%@", responseObj);
+        if ([responseObj[@"status"] integerValue] == 0) {
+            if (weakSelf.deleteBlock) {
+                weakSelf.deleteBlock(responseObj[@"data"]);
+            }
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+
+        }
     } failBlock:^(NSError *error) {
         NSLog(@"");
     }];

@@ -26,6 +26,11 @@
     {
         self.backgroundColor = [UIColor whiteColor];
         self.delegate = delegate;
+        
+        UIView *view = [[UIView alloc]init];
+        view.frame = CGRectMake(0, 15, self.frame.size.width, 1);
+        view.backgroundColor = [UIColor whiteColor];
+         [self addSubview:view];
     }
     return self;
 }
@@ -35,15 +40,13 @@
     UIView *view = [[UIView alloc]init];
     view.frame = CGRectMake(0, 15, self.frame.size.width, 1);
     view.backgroundColor = [UIColor whiteColor];
-    
     [self addSubview:view];
-    
     self.GroupArray = array;
     
     for (int i = 0; i < array.count; i ++)
     {
         
-        NSString *name = array[i];
+        NSString *name = array[i][@"content"];
         
         static UIButton *recordBtn =nil;
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];

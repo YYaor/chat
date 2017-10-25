@@ -43,7 +43,6 @@
     [self.view addSubview:self.scrollView];
     
     self.dataArr = [NSMutableArray array];
-    [self.dataArr addObjectsFromArray:@[@"撒到佛教啊", @"撒到家哦教啊", @"撒到家哦大家佛教啊啊是大是大非开始的反馈速度疯狂的设计开发", @"撒到家哦大家佛教啊", @"撒到佛教啊", @"撒到家哦教啊", @"撒到家哦大家佛教啊啊是大是大非开始的反馈速度疯狂的设计开发", @"撒到家哦大家佛教啊", @"撒到佛教啊", @"撒到家哦教啊", @"撒到家哦大家佛教啊啊是大是大非开始的反馈速度疯狂的设计开发", @"撒到家哦大家佛教啊", @"撒到佛教啊", @"撒到家哦教啊", @"撒到家哦大家佛教啊啊是大是大非开始的反馈速度疯狂的设计开发", @"撒到家哦大家佛教啊", @"撒到佛教啊", @"撒到家哦教啊", @"撒到家哦大家佛教啊啊是大是大非开始的反馈速度疯狂的设计开发", @"撒到家哦大家佛教啊", @"撒到佛教啊", @"撒到家哦教啊", @"撒到家哦大家佛教啊啊是大是大非开始的反馈速度疯狂的设计开发", @"撒到家哦大家佛教啊", @"撒到佛教啊", @"撒到家哦教啊", @"撒到家哦大家佛教啊啊是大是大非开始的反馈速度疯狂的设计开发", @"撒到家哦大家佛教啊", @"撒到佛教啊", @"撒到家哦教啊", @"撒到家哦大家佛教啊啊是大是大非开始的反馈速度疯狂的设计开发", @"撒到家哦大家佛教啊", @"撒到佛教啊", @"撒到家哦教啊", @"撒到家哦大家佛教啊啊是大是大非开始的反馈速度疯狂的设计开发", @"撒到家哦大家佛教啊", @"撒到佛教啊", @"撒到家哦教啊", @"撒到家哦大家佛教啊啊是大是大非开始的反馈速度疯狂的设计开发", @"撒到家哦大家佛教啊", @"12344444"]];
     
     self.tagsView = [[PWTagsView alloc] initWithFrame:CGRectMake(0, 0, LSSCREENWIDTH, LSSCREENHEIGHT-64) delegate:self];
     [self.tagsView setDataArr:self.dataArr];
@@ -57,8 +56,18 @@
     self.tagsView.btnBlock = ^(NSInteger index)
     {
         LSWorkUsefulAddController *vc = [[LSWorkUsefulAddController alloc] initWithNibName:@"LSWorkUsefulAddController" bundle:nil];
-        vc.text = weakSelf.dataArr[index];
         [weakSelf.navigationController pushViewController:vc animated:YES];
+        vc.dataDic = weakSelf.dataArr[index];
+
+        vc.addBlock = ^(NSDictionary *dataDic) {
+            [weakSelf.dataArr addObject:dataDic];
+            [weakSelf.tagsView removeFromSuperview];
+            [weakSelf.tagsView setDataArr:weakSelf.dataArr];
+        };
+        vc.deleteBlock = ^(NSDictionary *dataDic) {
+            [weakSelf.dataArr removeObject:dataDic];
+            [weakSelf.tagsView setDataArr:weakSelf.dataArr];
+        };
     };
 }
 
@@ -74,7 +83,9 @@
     NSString *url = PATH(@"%@/chatCommon");
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-        NSLog(@"%@", responseObj);
+        [weakSelf.dataArr removeAllObjects];
+        [weakSelf.dataArr addObjectsFromArray:responseObj[@"data"]];
+        [weakSelf.tagsView setDataArr:weakSelf.dataArr];
     } failBlock:^(NSError *error) {
         NSLog(@"");
     }];
@@ -84,6 +95,11 @@
 { 
     LSWorkUsefulAddController *vc = [[LSWorkUsefulAddController alloc] initWithNibName:@"LSWorkUsefulAddController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
+    
+    vc.addBlock = ^(NSDictionary *dataDic) {
+        [self.dataArr addObject:dataDic];
+        [self.tagsView setDataArr:self.dataArr];
+    };
 }
 
 #pragma mark - PWTagsViewDelegate

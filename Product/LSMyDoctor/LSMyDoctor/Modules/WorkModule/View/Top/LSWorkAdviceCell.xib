@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16B2659" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -102,6 +102,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="agreebutton" destination="scU-Wq-suN" id="Wfw-l2-cOV"/>
                 <outlet property="headImageView" destination="oXp-ud-whe" id="hZN-Rs-3TA"/>
                 <outlet property="infoLab" destination="wPa-2C-sEq" id="ZGJ-zl-rLn"/>
                 <outlet property="nameLab" destination="h7z-uH-3eT" id="Q8M-2R-eHH"/>

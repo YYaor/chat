@@ -10,6 +10,13 @@
 
 @interface LSWorkUsefulAddController : UIViewController
 
-@property (nonatomic, copy) NSString *text;
+@property (nonatomic, strong) NSMutableDictionary *dataDic;
+
+@property (nonatomic, copy) void (^addBlock)(NSDictionary *dataDic) ;
+
+@property (nonatomic, copy) void (^updateBlock)(NSDictionary *dataDic) ;
+
+@property (nonatomic, copy) void (^deleteBlock)(NSDictionary *dataDic) ;
+
 
 @end

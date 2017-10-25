@@ -261,7 +261,7 @@ static TLNetworkStatus     networkStatus;
             // 隐藏请求HUD
             [SVProgressHUD dismiss];
             // 判断请求接口是否成功（api_code = 0）
-            if ([responseObject[@"api_code"] integerValue] == 0) {
+            if ([responseObject[@"status"] integerValue] == 0) {
                 successBlock ? successBlock(responseObject) : nil;
             }else{
                 failBlock ? failBlock(nil) : nil;

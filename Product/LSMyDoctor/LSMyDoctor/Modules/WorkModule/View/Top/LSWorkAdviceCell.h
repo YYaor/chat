@@ -10,7 +10,7 @@
 
 @interface LSWorkAdviceCell : UITableViewCell
 
-@property (nonatomic,strong)NSDictionary *dataDic;
+@property (nonatomic,strong)NSMutableDictionary *dataDic;
 
 @property (nonatomic, copy) void (^agreeClickBlock)(NSDictionary *dataDic) ;
 

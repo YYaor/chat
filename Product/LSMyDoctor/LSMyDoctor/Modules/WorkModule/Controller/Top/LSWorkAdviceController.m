@@ -70,7 +70,8 @@ static NSString *cellId = @"LSWorkAdviceCell";
         {
             NSDictionary * dict = responseObj;
             [self.dataArray removeAllObjects];
-            [self.dataArray addObject:dict[@"data"][@"content"]];
+            [self.dataArray addObjectsFromArray:dict[@"data"][@"content"]];
+            [self.tableView reloadData];
         }
     } failBlock:^(NSError *error) {
         [XHToast showCenterWithText:@"fail"];
@@ -103,6 +104,11 @@ static NSString *cellId = @"LSWorkAdviceCell";
 {
     LSWorkAdviceCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
     cell.dataDic = self.dataArray[indexPath.row];
+    
+    cell.agreeClickBlock = ^(NSDictionary *dataDic) {
+        [self.dataArray replaceObjectAtIndex:indexPath.row withObject:dataDic];
+    };
+    
     return cell;
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,22 +123,49 @@ static NSString *cellId = @"LSWorkAdviceCell";
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath)
-    {
-        NSLog(@"___%s___", __func__);
-        NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        
-        //    [param setValue:@100 forKey:@"id"];
-        [param setValue:@2 forKey:@"result"];
-        NSString *url = PATH(@"%@/dealwithRequest");
-        
-        [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-            [self.dataArray removeObjectAtIndex:indexPath.row];
-            [self.tableView reloadData];
-        } failBlock:^(NSError *error) {
-            [XHToast showCenterWithText:@"fail"];
-        }];
-    }];
+    NSDictionary *dataDic =self.dataArray[indexPath.row];
+    UITableViewRowAction *action = nil;
+    if ([dataDic[@"result"] isEqualToString:@"已通过"]) {
+        action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath)
+                  {
+                      NSLog(@"___%s___", __func__);
+                      NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+                      [param setValue:dataDic[@"id"] forKey:@"id"];
+                      NSString *url = PATH(@"%@/removeRequest");
+                      
+                      [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+                          if ([responseObj[@"data"][@"status"] integerValue] == 0) {
+                              [self.dataArray removeObjectAtIndex:indexPath.row];
+                              [self.tableView reloadData];
+                          }
+                      } failBlock:^(NSError *error) {
+                          [XHToast showCenterWithText:@"fail"];
+                      }];
+                  }];
+    }else{
+        action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"拒绝" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath)
+                  {
+                      NSLog(@"___%s___", __func__);
+                      NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+                      
+                      [param setValue:dataDic[@"id"] forKey:@"id"];
+                      [param setValue:@2 forKey:@"result"];
+                      [param setValue:[Defaults objectForKey:@"cookie"] forKey:@"cookie"];
+                      [param setValue:AccessToken forKey:@"accessToken"];
+                      NSString *url = PATH(@"%@/dealwithRequest");
+                      
+                      [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+                          if ([responseObj[@"data"][@"status"] integerValue] == 0) {
+                              [self.dataArray removeObjectAtIndex:indexPath.row];
+                              [self.tableView reloadData];
+                          }
+                          
+                      } failBlock:^(NSError *error) {
+                          [XHToast showCenterWithText:@"fail"];
+                      }];
+                  }];
+    }
+   
     
     return @[action];
 }
