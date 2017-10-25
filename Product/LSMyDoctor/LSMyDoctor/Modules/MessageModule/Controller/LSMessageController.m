@@ -16,6 +16,8 @@ static NSString *cellId = @"LSMessageCell";
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong,nonatomic) NSMutableArray *dataArray;
+
 
 @end
 
@@ -24,7 +26,7 @@ static NSString *cellId = @"LSMessageCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.dataArray = [NSMutableArray array];
     [self initForView];
     [self requestData];
 }
@@ -42,24 +44,60 @@ static NSString *cellId = @"LSMessageCell";
 
 - (void)requestData
 {
-//    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-//    
-//    [param setValue:[Defaults objectForKey:@"cookie"] forKey:@"cookie"];
-//    [param setValue:@100 forKey:@"pagenum"];
-//    [param setValue:@1 forKey:@"pagesize"];
-//    [param setValue:@1 forKey:@"type"];
-//    
-//    NSString *url = PATH(@"%@/dr/beRequestList");
-//    
-//    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-//        if ([responseObj isKindOfClass:[NSDictionary class]])
-//        {
-//            NSDictionary * dict = responseObj;
-//        }
-//    } failBlock:^(NSError *error) {
-//        [XHToast showCenterWithText:@"fail"];
-//    }];
+    NSArray *aaaa = [[EMClient sharedClient].chatManager getAllConversations];
+    [self.dataArray addObjectsFromArray:[[EMClient sharedClient].chatManager getAllConversations]];
+
+    [self.tableView reloadData];
 }
+
+//- (EaseConversationModel *)getConversationModel:(EMConversation *)conversation
+//{
+//    EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:conversation];
+//    if (model.conversation.type == EMConversationTypeChat) {
+//        
+//        EMMessage *lastMessage = conversation.lastReceivedMessage;
+//        
+//        NSDictionary *data = [HXUser getUser:conversation.conversationId];
+//        
+//        if (data){
+//            model.avatarURLPath = [data valueForKey:@"headerUrl"];
+//            model.title = [data valueForKey:@"nickName"];
+//        } else {
+//            NSDictionary *dic = lastMessage.ext;
+//            if (dic){
+//                NSString *nickName = [dic valueForKey:@"nickName"];
+//                model.title = nickName;
+//                model.avatarURLPath = [dic valueForKey:@"headerUrl"];
+//            }
+//        }
+//    } else if (model.conversation.type == EMConversationTypeGroupChat) {
+//        
+//        EMMessage *lastMessage = conversation.latestMessage;
+//        
+//        NSDictionary *data = [HXUser getUser:conversation.conversationId];
+//        if (data){
+//            model.avatarURLPath = [data valueForKey:@"groupHeaderUrl"];
+//            model.title = [data valueForKey:@"groupHeaderName"];
+//        } else {
+//            NSDictionary *dic = lastMessage.ext;
+//            NSString *nickName = [dic valueForKey:@"groupHeaderName"];
+//            model.title = nickName;
+//            model.avatarURLPath = [dic valueForKey:@"groupHeaderUrl"];
+//        }
+//        
+//        NSDictionary *groupDic = lastMessage.ext;
+//        NSDictionary *dic = conversation.ext;
+//        NSString * subject = [dic valueForKey:@"subject"];
+//        if (subject&&subject.length>0){
+//            model.title = subject;
+//        } else {
+//            model.title = [groupDic valueForKey:@"groupHeaderName"];
+//        }
+//        model.avatarURLPath = [groupDic valueForKey:@"groupHeaderUrl"];
+//    }
+//    return model;
+//}
+
 
 #pragma mark - UITableViewDelegate
 
@@ -72,7 +110,7 @@ static NSString *cellId = @"LSMessageCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

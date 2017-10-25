@@ -350,6 +350,7 @@
                                                     }
                                                 }];
                 
+                [self asyncGroupFromServer];
                 [Defaults synchronize];
                 
                 if (self.typeView.selectIndex== 1) {
@@ -403,7 +404,18 @@
     } failBlock:^(NSError *error) {
         [XHToast showCenterWithText:@"fail"];
     }];
+}
 
+- (void)asyncGroupFromServer
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[EMClient sharedClient].groupManager getJoinedGroups];
+        EMError *error = nil;
+        [[EMClient sharedClient].groupManager getJoinedGroupsFromServerWithPage:nil pageSize:0 error:&error];
+        if (!error) {
+            
+        }
+    });
 }
 
 -(void)registButtonClick{

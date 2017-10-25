@@ -660,7 +660,7 @@
                                                     }
                                                 }];
 
-                
+                [self asyncGroupFromServer];
                 
                 //注册成功直接登录，并不用验证个人信息
                 
@@ -681,6 +681,18 @@
     } failBlock:^(NSError *error) {
         [XHToast showCenterWithText:@"fail"];
     }];
+}
+
+- (void)asyncGroupFromServer
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[EMClient sharedClient].groupManager getJoinedGroups];
+        EMError *error = nil;
+        [[EMClient sharedClient].groupManager getJoinedGroupsFromServerWithPage:nil pageSize:0 error:&error];
+        if (!error) {
+            
+        }
+    });
 }
 
 -(void)back{

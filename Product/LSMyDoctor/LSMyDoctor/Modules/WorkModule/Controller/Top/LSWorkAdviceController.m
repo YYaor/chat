@@ -88,7 +88,7 @@ static NSString *cellId = @"LSWorkAdviceCell";
 //    [self.navigationController pushViewController:vc animated:YES];
     
     EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
-                                                 initWithConversationChatter:@"ug369p788" conversationType:0];
+                                                 initWithConversationChatter:@"ug369p791" conversationType:0];
     
     [self.navigationController pushViewController:chatController animated:YES];
 }

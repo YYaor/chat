@@ -10,4 +10,6 @@
 
 @interface LSMessageCell : UITableViewCell
 
+@property (nonatomic,strong)EMConversation *conversation;
+
 @end
