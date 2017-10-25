@@ -217,7 +217,6 @@
     
     NSString* url = PATH(@"%@/misc/code");
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    
     [param setValue:AccessToken forKey:@"accessToken"];
     [param setValue:self.phoneTextField.text forKey:@"phone"];
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {

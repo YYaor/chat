@@ -40,6 +40,7 @@
 #define Style_Color_Content_Black [UIColor colorFromHexString:@"212121"] //字体黑色
 
 #define Defaults [NSUserDefaults standardUserDefaults]
+#define Cookie [Defaults valueForKey:@"cookie"]
 #define AccessToken [Defaults valueForKey:@"accessToken"]
 
 #define LSWEAKSELF __weak typeof(self) weakSelf = self

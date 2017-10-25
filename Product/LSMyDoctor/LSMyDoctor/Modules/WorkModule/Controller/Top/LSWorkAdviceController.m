@@ -58,8 +58,8 @@ static NSString *cellId = @"LSWorkAdviceCell";
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     
     [param setValue:[Defaults objectForKey:@"cookie"] forKey:@"cookie"];
-    [param setValue:@100 forKey:@"pagenum"];
-    [param setValue:@1 forKey:@"pagesize"];
+    [param setValue:@1 forKey:@"pagenum"];
+    [param setValue:@100 forKey:@"pagesize"];
     [param setValue:@1 forKey:@"type"];
     [param setValue:AccessToken forKey:@"accessToken"];
 
