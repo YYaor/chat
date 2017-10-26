@@ -7,7 +7,7 @@
 //
 
 #import "LSBeginChatController.h"
-#import "LSChoosePatientController.h"
+#import "MDChooseSickerVC.h"
 #import "LSChooseMateController.h"
 #import "MDDoctorListModel.h"
 #import "LSAddDocCollectionCell.h"
@@ -263,9 +263,9 @@
 #pragma mark -- 选择讨论对象按钮点击
 -(void)choosePatientView{
     
-    LSChoosePatientController *choosePatientVC = [[LSChoosePatientController  alloc]init];
+    MDChooseSickerVC *chooseSickerVC = [[MDChooseSickerVC  alloc]init];
     
-    [self.navigationController pushViewController:choosePatientVC animated:YES];
+    [self.navigationController pushViewController:chooseSickerVC animated:YES];
 }
 
 #pragma mark -- 创建讨论组并开始讨论

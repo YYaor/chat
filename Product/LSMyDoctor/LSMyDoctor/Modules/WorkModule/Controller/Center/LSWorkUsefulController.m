@@ -21,12 +21,18 @@
 
 @implementation LSWorkUsefulController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self requestData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self initForView];
-    [self requestData];
     [self initForAction];
 }
 
