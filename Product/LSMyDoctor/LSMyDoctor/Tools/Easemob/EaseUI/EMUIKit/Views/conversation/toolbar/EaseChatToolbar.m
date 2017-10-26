@@ -112,7 +112,7 @@
     _backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _backgroundImageView.backgroundColor = [UIColor clearColor];
     _backgroundImageView.image = [[UIImage imageNamed:@"EaseUIResource.bundle/messageToolbarBg"] stretchableImageWithLeftCapWidth:0.5 topCapHeight:10];
-    [self addSubview:_backgroundImageView];
+//    [self addSubview:_backgroundImageView];
     
     //toolbar
     _toolbarView = [[UIView alloc] initWithFrame:self.bounds];
@@ -133,18 +133,27 @@
     _inputTextView.placeHolder = NSEaseLocalizedString(@"message.toolBar.inputPlaceHolder", @"input a new message");
     _inputTextView.delegate = self;
     _inputTextView.backgroundColor = [UIColor clearColor];
-    _inputTextView.layer.borderColor = [UIColor colorWithWhite:0.8f alpha:1.0f].CGColor;
-    _inputTextView.layer.borderWidth = 0.65f;
-    _inputTextView.layer.cornerRadius = 6.0f;
+//    _inputTextView.layer.borderColor = [UIColor colorWithWhite:0.8f alpha:1.0f].CGColor;
+//    _inputTextView.layer.borderWidth = 0.65f;
+//    _inputTextView.layer.cornerRadius = 6.0f;
     _previousTextViewContentHeight = [self _getTextViewContentH:_inputTextView];
     [_toolbarView addSubview:_inputTextView];
+    
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor colorFromHexString:LSLIGHTGRAYCOLOR];
+    [_toolbarView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(_inputTextView);
+        make.top.equalTo(_inputTextView.mas_bottom).offset(1);
+        make.height.mas_equalTo(1);
+    }];
     
     //change input type
     UIButton *styleChangeButton = [[UIButton alloc] init];
     styleChangeButton.accessibilityIdentifier = @"style";
     styleChangeButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    [styleChangeButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_record"] forState:UIControlStateNormal];
-    [styleChangeButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_keyboard"] forState:UIControlStateSelected];
+    [styleChangeButton setImage:[UIImage imageNamed:@"voice"] forState:UIControlStateNormal];
+    [styleChangeButton setImage:[UIImage imageNamed:@"voice"] forState:UIControlStateSelected];
     [styleChangeButton addTarget:self action:@selector(styleButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     EaseChatToolbarItem *styleItem = [[EaseChatToolbarItem alloc] initWithButton:styleChangeButton withView:nil];
@@ -182,9 +191,9 @@
     self.moreButton = [[UIButton alloc] init];
     self.moreButton.accessibilityIdentifier = @"more";
     self.moreButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    [self.moreButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_more"] forState:UIControlStateNormal];
-    [self.moreButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_moreSelected"] forState:UIControlStateHighlighted];
-    [self.moreButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_keyboard"] forState:UIControlStateSelected];
+    [self.moreButton setImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
+    [self.moreButton setImage:[UIImage imageNamed:@"more"] forState:UIControlStateHighlighted];
+    [self.moreButton setImage:[UIImage imageNamed:@"more"] forState:UIControlStateSelected];
     [self.moreButton addTarget:self action:@selector(moreButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     EaseChatToolbarItem *moreItem = [[EaseChatToolbarItem alloc] initWithButton:self.moreButton withView:self.moreView];
     
@@ -227,7 +236,7 @@
 {
     if (_moreView == nil) {
         _moreView = [[EaseChatBarMoreView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_toolbarView.frame), self.frame.size.width, 80) type:self.chatBarType];
-        _moreView.backgroundColor = [UIColor colorWithRed:240 / 255.0 green:242 / 255.0 blue:247 / 255.0 alpha:1.0];
+        _moreView.backgroundColor = [UIColor whiteColor];
         _moreView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     }
     

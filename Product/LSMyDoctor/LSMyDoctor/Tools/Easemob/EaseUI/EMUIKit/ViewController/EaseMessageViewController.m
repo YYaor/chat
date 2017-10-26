@@ -101,7 +101,7 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithRed:248 / 255.0 green:248 / 255.0 blue:248 / 255.0 alpha:1.0];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideImagePicker) name:@"hideImagePicker" object:nil];
@@ -146,7 +146,7 @@ typedef enum : NSUInteger {
     [[EaseBaseMessageCell appearance] setAvatarSize:40.f];
     [[EaseBaseMessageCell appearance] setAvatarCornerRadius:20.f];
     
-    [[EaseChatBarMoreView appearance] setMoreViewBackgroundColor:[UIColor colorWithRed:240 / 255.0 green:242 / 255.0 blue:247 / 255.0 alpha:1.0]];
+    [[EaseChatBarMoreView appearance] setMoreViewBackgroundColor:[UIColor whiteColor]];
     
     [self tableViewDidTriggerHeaderRefresh];
     [self setupEmotion];
