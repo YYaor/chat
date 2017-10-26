@@ -1765,6 +1765,14 @@ typedef enum : NSUInteger {
             model = [[EaseMessageModel alloc] initWithMessage:message];
             model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
             model.failImageName = @"imageDownloadFail";
+            
+            if (message.ext!=nil) {
+                if (message.ext[@"avatar"] != nil) {
+                    model.avatarURLPath = message.ext[@"avatar"];
+                }
+                model.nickname =message.ext[@"nickname"];
+            }
+            model.failImageName = @"imageDownloadFail";
         }
         
         if (model) {
@@ -1896,10 +1904,13 @@ typedef enum : NSUInteger {
 
 - (void)sendTextMessage:(NSString *)text withExt:(NSDictionary*)ext
 {
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]initWithDictionary:ext];
+//    [dic setObject:[Defaults valueForKey:@"nickname"] forKey:@"nickname"];
+    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
     EMMessage *message = [EaseSDKHelper sendTextMessage:text
                                                      to:self.conversation.conversationId
                                             messageType:[self _messageTypeFromConversationType]
-                                             messageExt:ext];
+                                             messageExt:dic];
     [self _sendMessage:message];
 }
 
