@@ -11,12 +11,16 @@
 #import "LSChooseMateController.h"
 #import "MDDoctorListModel.h"
 #import "LSAddDocCollectionCell.h"
+#import "MDChooseSickerModel.h"
+#import "MDGroupCommunicateVC.h"
+
 @interface LSBeginChatController ()<UICollectionViewDelegate,UICollectionViewDataSource>
-
+{
+    UILabel* sickerNameLab;//选择的讨论对象姓名
+}
 @property (nonatomic,strong)UICollectionView *dataCollectionView;
-
 @property (nonatomic,strong)NSMutableArray *dataArray;
-
+@property (nonatomic,strong)NSMutableArray *chooseSickerArr;
 @property (nonatomic,strong)UIButton *nextButton;
 
 @end
@@ -42,6 +46,12 @@
     }
     return _dataArray;
 }
+-(NSMutableArray *)chooseSickerArr{
+    if (!_chooseSickerArr) {
+        _chooseSickerArr = [[NSMutableArray alloc]init];
+    }
+    return _chooseSickerArr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,12 +70,11 @@
     [self.view addSubview:chooseMateView];
     [chooseMateView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
-        make.height.mas_equalTo(40);
+        make.height.mas_equalTo(50);
     }];
     
     
     UILabel *title = [UILabel new];
-    title.font = [UIFont systemFontOfSize:14];
     title.text = @"邀请同行";
     title.textColor = [UIColor colorFromHexString:@"333333"];
     [chooseMateView addSubview:title];
@@ -113,7 +122,6 @@
     UIView *chooseMateView = [[UIView alloc]init];
     
     UILabel *title = [UILabel new];
-    title.font = [UIFont systemFontOfSize:14];
     title.text = @"选择讨论对象";
     title.textColor = [UIColor colorFromHexString:@"333333"];
     [chooseMateView addSubview:title];
@@ -131,6 +139,18 @@
         make.centerY.equalTo(chooseMateView);
         make.right.equalTo(chooseMateView).offset(-14);
     }];
+    
+    sickerNameLab = [[UILabel alloc] init];
+    sickerNameLab.text = @"请选择讨论对象";
+    sickerNameLab.font = [UIFont systemFontOfSize:15.0f];
+    sickerNameLab.textColor = [UIColor darkGrayColor];
+    [chooseMateView addSubview:sickerNameLab];
+    [sickerNameLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(chooseMateView.mas_centerY);
+        make.right.equalTo(moreImage.mas_left).offset(-8);
+    }];
+    
+    
     
     UIView *line = [UIView new];
     line.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
@@ -250,6 +270,10 @@
     chooseMateVC.chooseBlock = ^(NSArray *modelArray) {
         [self.dataArray addObjectsFromArray:modelArray];
         [self.dataCollectionView reloadData];
+        if (self.dataArray.count > 0 && self.chooseSickerArr.count > 0) {
+            //局选择好后，改变开始讨论按钮状态
+            _nextButton.backgroundColor = BaseColor;
+        }
     };
     [self.navigationController pushViewController:chooseMateVC animated:YES];
 }
@@ -258,12 +282,34 @@
 {
     //开始讨论
     NSLog(@"开始讨论按钮点击");
+    if (self.chooseSickerArr.count <= 0) {
+        [XHToast showCenterWithText:@"请选择讨论对象"];
+        return;
+    }
+    if (self.dataArray.count <= 0) {
+        [XHToast showCenterWithText:@"请选择参与讨论的医生"];
+        return;
+    }
+    
     [self creatDiscussRoomData];
 }
 #pragma mark -- 选择讨论对象按钮点击
 -(void)choosePatientView{
     
     MDChooseSickerVC *chooseSickerVC = [[MDChooseSickerVC  alloc]init];
+    
+    chooseSickerVC.chooseBlock = ^ (NSMutableArray* chooseArr){
+        if (chooseArr.count > 0) {
+            [self.chooseSickerArr removeAllObjects];
+            self.chooseSickerArr = chooseArr;
+            MDChooseSickerModel* sickerModel = chooseArr[0];
+            sickerNameLab.text = sickerModel.username;
+            if (self.dataArray.count > 0 && self.chooseSickerArr.count > 0) {
+                //局选择好后，改变开始讨论按钮状态
+                _nextButton.backgroundColor = BaseColor;
+            }
+        }
+    };
     
     [self.navigationController pushViewController:chooseSickerVC animated:YES];
 }
@@ -278,13 +324,16 @@
         [doctorMultArr addObject:model.doctor_id];
     }
     NSString *doctorIdsStr = [doctorMultArr componentsJoinedByString:@","];
-    
+    MDChooseSickerModel* sickerModel = nil;
+    if (self.chooseSickerArr.count > 0 ) {
+        sickerModel = self.chooseSickerArr[0];
+    }
     
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
     [param setValue:doctorIdsStr forKey:@"doctorids"];
-    [param setValue:@(170) forKey:@"userid"];
-    [param setValue:@"ceshib" forKey:@"username"];
+    [param setValue:@([sickerModel.user_id integerValue]) forKey:@"userid"];
+    [param setValue:sickerModel.username forKey:@"username"];
     
     NSString* url = PATH(@"%@/createRoom");
     
@@ -294,8 +343,13 @@
             if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
             {
                 //TO--DO创建房间成功 ，跳转群组会话页面
+                /*
+                MDGroupCommunicateVC* groupCommunicateVC = [[MDGroupCommunicateVC alloc] initWithConversationChatter:listModel.groupId conversationType:EMConversationTypeGroupChat];
                 
-                
+                groupCommunicateVC.title = [NSString stringWithFormat:@"%@患者的讨论组",listModel.name];
+                groupCommunicateVC.groupIdStr = listModel.groupId;
+                [self.navigationController pushViewController:groupCommunicateVC animated:YES];
+                */
                 
             }else
             {

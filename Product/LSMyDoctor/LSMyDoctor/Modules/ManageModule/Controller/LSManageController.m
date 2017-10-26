@@ -64,47 +64,71 @@
 }
 
 -(void)loadData{
-    LSPatientModel *model1 = [[LSPatientModel alloc]init];
-    model1.name = @"张三";
-    model1.sex = @"男";
-    model1.age = @"10";
     
-    LSPatientModel *model2 = [[LSPatientModel alloc]init];
-    model2.name = @"李四";
-    model2.sex = @"女";
-    model2.age = @"10";
+    LSWEAKSELF;
     
-    LSPatientModel *model3 = [[LSPatientModel alloc]init];
-    model3.name = @"王五";
-    model3.sex = @"男";
-    //    model3.age = @"15";
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
-    LSPatientModel *model4 = [[LSPatientModel alloc]init];
-    model4.name = @"李四四";
-    model4.sex = @"女";
-    model4.age = @"134";
+    NSString* url = PATH(@"%@/queryPatientList");
     
-    [self.dataArray addObjectsFromArray: [NSArray arrayWithObjects:model1,model2,model3,model4, nil]];
-    
-    [LSUtil getOrderPatientList:self.dataArray patientListDictBlock:^(NSDictionary<NSString *,NSMutableDictionary *> *addressBookDict, NSArray *nameKeys) {
-        //得到排序后的数组
-        [self.sectionArray addObjectsFromArray:nameKeys];
-        self.dataDic = [[NSMutableDictionary alloc]initWithDictionary:addressBookDict];
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         
-        for (int i = 0; i < nameKeys.count; i++) {
-            NSArray *nameArray = [self.dataDic objectForKey:nameKeys[i]];
-            NSMutableArray *rowArray = [[NSMutableArray alloc]init]; // 每个字母里面包含的数组
-            NSArray *selectArray = [NSArray array];
-            for (int j = 0; j < nameArray.count ; j++) {
-                NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"name == %@", [nameArray[j] objectForKey:@"name"]];
-                selectArray = [self.dataArray filteredArrayUsingPredicate:filterPredicate];
-                [rowArray addObjectsFromArray:selectArray];
-            }
-            [self.orderArray addObject:rowArray];
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            [weakSelf.dataArray removeAllObjects];
             
+            [weakSelf.dataArray addObjectsFromArray:responseObj[@"data"]];
+            
+            [weakSelf.dataTableView reloadData];
+            
+        }else
+        {
+            [XHToast showCenterWithText:responseObj[@"message"]];
         }
-        [self.dataTableView reloadData];
+    } failBlock:^(NSError *error) {
+        
     }];
+//    LSPatientModel *model1 = [[LSPatientModel alloc]init];
+//    model1.name = @"张三";
+//    model1.sex = @"男";
+//    model1.age = @"10";
+//    
+//    LSPatientModel *model2 = [[LSPatientModel alloc]init];
+//    model2.name = @"李四";
+//    model2.sex = @"女";
+//    model2.age = @"10";
+//    
+//    LSPatientModel *model3 = [[LSPatientModel alloc]init];
+//    model3.name = @"王五";
+//    model3.sex = @"男";
+//    //    model3.age = @"15";
+//    
+//    LSPatientModel *model4 = [[LSPatientModel alloc]init];
+//    model4.name = @"李四四";
+//    model4.sex = @"女";
+//    model4.age = @"134";
+//    
+//    [self.dataArray addObjectsFromArray: [NSArray arrayWithObjects:model1,model2,model3,model4, nil]];
+//    
+//    [LSUtil getOrderPatientList:self.dataArray patientListDictBlock:^(NSDictionary<NSString *,NSMutableDictionary *> *addressBookDict, NSArray *nameKeys) {
+//        //得到排序后的数组
+//        [self.sectionArray addObjectsFromArray:nameKeys];
+//        self.dataDic = [[NSMutableDictionary alloc]initWithDictionary:addressBookDict];
+//        
+//        for (int i = 0; i < nameKeys.count; i++) {
+//            NSArray *nameArray = [self.dataDic objectForKey:nameKeys[i]];
+//            NSMutableArray *rowArray = [[NSMutableArray alloc]init]; // 每个字母里面包含的数组
+//            NSArray *selectArray = [NSArray array];
+//            for (int j = 0; j < nameArray.count ; j++) {
+//                NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"name == %@", [nameArray[j] objectForKey:@"name"]];
+//                selectArray = [self.dataArray filteredArrayUsingPredicate:filterPredicate];
+//                [rowArray addObjectsFromArray:selectArray];
+//            }
+//            [self.orderArray addObject:rowArray];
+//            
+//        }
+//        [self.dataTableView reloadData];
+//    }];
 }
 
 -(void)sureClick{

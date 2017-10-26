@@ -112,9 +112,9 @@
 		4A8928371F99C82A0051A868 /* LSAddDocCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8928361F99C82A0051A868 /* LSAddDocCollectionCell.m */; };
 		4A89283A1F99CF5E0051A868 /* MDDiscussListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8928391F99CF5E0051A868 /* MDDiscussListModel.m */; };
 		4A90B40C1FA1D3AD00076BC1 /* MDChooseSickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A90B40A1FA1D3AD00076BC1 /* MDChooseSickerVC.m */; };
-		4A90B40D1FA1D3AD00076BC1 /* MDChooseSickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A90B40B1FA1D3AD00076BC1 /* MDChooseSickerVC.xib */; };
 		4A90B4111FA1D91700076BC1 /* MDChooseSickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A90B40F1FA1D91700076BC1 /* MDChooseSickerCell.m */; };
 		4A90B4121FA1D91700076BC1 /* MDChooseSickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A90B4101FA1D91700076BC1 /* MDChooseSickerCell.xib */; };
+		4A90B4151FA1E1A500076BC1 /* MDChooseSickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A90B4141FA1E1A500076BC1 /* MDChooseSickerModel.m */; };
 		4AFAD5261F99D7DD00B20CA2 /* MDGroupCommunicateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD5251F99D7DD00B20CA2 /* MDGroupCommunicateVC.m */; };
 		4AFAD52F1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD52D1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.m */; };
 		4AFAD5341F99DE2D00B20CA2 /* MDNewDiscussCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD5321F99DE2D00B20CA2 /* MDNewDiscussCell.m */; };
@@ -609,10 +609,11 @@
 		4A8928391F99CF5E0051A868 /* MDDiscussListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDiscussListModel.m; sourceTree = "<group>"; };
 		4A90B4091FA1D3AD00076BC1 /* MDChooseSickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDChooseSickerVC.h; sourceTree = "<group>"; };
 		4A90B40A1FA1D3AD00076BC1 /* MDChooseSickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDChooseSickerVC.m; sourceTree = "<group>"; };
-		4A90B40B1FA1D3AD00076BC1 /* MDChooseSickerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDChooseSickerVC.xib; sourceTree = "<group>"; };
 		4A90B40E1FA1D91700076BC1 /* MDChooseSickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDChooseSickerCell.h; sourceTree = "<group>"; };
 		4A90B40F1FA1D91700076BC1 /* MDChooseSickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDChooseSickerCell.m; sourceTree = "<group>"; };
 		4A90B4101FA1D91700076BC1 /* MDChooseSickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDChooseSickerCell.xib; sourceTree = "<group>"; };
+		4A90B4131FA1E1A500076BC1 /* MDChooseSickerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDChooseSickerModel.h; sourceTree = "<group>"; };
+		4A90B4141FA1E1A500076BC1 /* MDChooseSickerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDChooseSickerModel.m; sourceTree = "<group>"; };
 		4AFAD5241F99D7DD00B20CA2 /* MDGroupCommunicateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupCommunicateVC.h; sourceTree = "<group>"; };
 		4AFAD5251F99D7DD00B20CA2 /* MDGroupCommunicateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDGroupCommunicateVC.m; sourceTree = "<group>"; };
 		4AFAD52C1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupDiscussDetailVC.h; sourceTree = "<group>"; };
@@ -1526,7 +1527,6 @@
 				DF0AFECD1F8FA13E00B19151 /* LSBeginChatController.m */,
 				4A90B4091FA1D3AD00076BC1 /* MDChooseSickerVC.h */,
 				4A90B40A1FA1D3AD00076BC1 /* MDChooseSickerVC.m */,
-				4A90B40B1FA1D3AD00076BC1 /* MDChooseSickerVC.xib */,
 				0F6B7CCF1F906224004EEF27 /* LSChooseMateController.h */,
 				0F6B7CD01F906224004EEF27 /* LSChooseMateController.m */,
 				4A0CE6CC1F960B8F00F7C187 /* MDConsulteDisccussVC.h */,
@@ -1587,6 +1587,8 @@
 				4A89282F1F98E6970051A868 /* MDDoctorDetailModel.m */,
 				4A8928381F99CF5E0051A868 /* MDDiscussListModel.h */,
 				4A8928391F99CF5E0051A868 /* MDDiscussListModel.m */,
+				4A90B4131FA1E1A500076BC1 /* MDChooseSickerModel.h */,
+				4A90B4141FA1E1A500076BC1 /* MDChooseSickerModel.m */,
 			);
 			path = Bottom;
 			sourceTree = "<group>";
@@ -2931,7 +2933,6 @@
 				DF87A7DD1F7835A500EF0461 /* LSWorkController.xib in Resources */,
 				DF5A093A1F7D473D00CF5410 /* LSWorkTailController.xib in Resources */,
 				DFFD8ED21F7C236100FF0ECD /* LSWorkUnreplyCell.xib in Resources */,
-				4A90B40D1FA1D3AD00076BC1 /* MDChooseSickerVC.xib in Resources */,
 				DF81C2471F84C43700D4D851 /* LSWorkOutcallListCell.xib in Resources */,
 				DFF015EB1F7AC25F00527CFA /* MJRefresh.bundle in Resources */,
 				DF87ABF81F83EBD70080AACA /* LSWorkOutcallListController.xib in Resources */,
@@ -3219,6 +3220,7 @@
 				DFF015651F7AC15700527CFA /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				DFF0155E1F7AC15700527CFA /* EMSDWebImagePrefetcher.m in Sources */,
 				DFD5C70F1F8167A300045E39 /* FSCalendarCollectionViewLayout.m in Sources */,
+				4A90B4151FA1E1A500076BC1 /* MDChooseSickerModel.m in Sources */,
 				4A0CE6A41F9094F500F7C187 /* SDWebImageDownloader.m in Sources */,
 				4A0CE69F1F9094F500F7C187 /* MKAnnotationView+WebCache.m in Sources */,
 				DF87A6B01F7827E200EF0461 /* AFURLResponseSerialization.m in Sources */,

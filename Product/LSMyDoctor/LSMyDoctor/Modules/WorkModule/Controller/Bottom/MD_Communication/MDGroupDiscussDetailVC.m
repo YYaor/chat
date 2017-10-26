@@ -103,17 +103,19 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     
     MDAllMemberReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"mDAllMemberReusableView" forIndexPath:indexPath];
-    
+    view.userInteractionEnabled = YES;
     if ([kind isEqualToString:UICollectionElementKindSectionFooter] && indexPath.section == 0){
         //只有section == 0时存在查看所有群成员
         UIButton* allMemberBtn = [[UIButton alloc] init];
         [allMemberBtn setTitle:@"查看所有群成员 > " forState:UIControlStateNormal];
         [allMemberBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        
         [allMemberBtn addTarget:self action:@selector(allMemberBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:allMemberBtn];
         [allMemberBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.bottom.right.equalTo(view);
+            make.top.left.bottom.right.mas_equalTo(view);
         }];
+        
         
     }
     return view;
@@ -195,6 +197,17 @@
         }else{
             //置顶群
             cell.cellNameLab.text = @"置顶群";
+            UISwitch* topSwitch = [[UISwitch alloc] init];
+            topSwitch.onTintColor = BaseColor;
+            [topSwitch addTarget:self action:@selector(topSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+            [cell addSubview:topSwitch];
+            [topSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(cell.mas_centerY);
+                make.right.equalTo(cell.mas_right).offset(-15);
+            }];
+            
+            
+            
         }
         
         return cell;
@@ -232,6 +245,44 @@
     
 }
 
+#pragma mark -- 置顶群开关操作
+- (void)topSwitchChanged:(UISwitch*)sender
+{
+    NSString* str = sender.on ? @"开关打开" : @"开关关闭";
+    NSLog(@"%@",str);
+}
+
+#pragma mark  -- 获取讨论组详情
+- (void)getGroupDetailRequest
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:self.groupIdStr forKey:@"groupId"];
+    
+    NSString* url = PATH(@"%@/doctorInfo");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                
+                [discussCol reloadData];
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        //[XHToast showCenterWithText:@"fail"];
+    }];
+}
 
 
 

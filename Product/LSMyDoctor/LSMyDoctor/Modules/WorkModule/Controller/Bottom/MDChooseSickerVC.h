@@ -10,4 +10,7 @@
 
 @interface MDChooseSickerVC : UIViewController
 
+
+@property (nonatomic,copy)void (^chooseBlock)(NSMutableArray *modelArray);
+
 @end

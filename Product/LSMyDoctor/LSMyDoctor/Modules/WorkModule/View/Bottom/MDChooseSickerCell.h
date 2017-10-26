@@ -10,4 +10,10 @@
 
 @interface MDChooseSickerCell : UITableViewCell
 
+@property (nonatomic , assign) BOOL isSelected;
+@property (nonatomic , strong) NSString* imgUrl;
+@property (nonatomic , strong) NSString* userNameStr;//姓名
+@property (nonatomic , strong) NSString* sexAndAgeStr;
+@property (nonatomic , assign) BOOL isImportant;
+
 @end

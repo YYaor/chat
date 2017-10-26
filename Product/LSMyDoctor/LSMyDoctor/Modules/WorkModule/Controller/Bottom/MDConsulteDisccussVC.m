@@ -99,7 +99,7 @@
     
     MDGroupCommunicateVC* groupCommunicateVC = [[MDGroupCommunicateVC alloc] initWithConversationChatter:listModel.groupId conversationType:EMConversationTypeGroupChat];
     
-    groupCommunicateVC.title = [NSString stringWithFormat:@"%@患者的讨论组",listModel.name];
+    groupCommunicateVC.title = listModel.name;
     groupCommunicateVC.groupIdStr = listModel.groupId;
     [self.navigationController pushViewController:groupCommunicateVC animated:YES];
     
