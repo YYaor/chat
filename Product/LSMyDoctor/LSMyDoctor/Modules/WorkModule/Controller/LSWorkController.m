@@ -164,7 +164,7 @@
 //        [self.navigationController pushViewController:vc animated:YES];
         
         EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
-                                                     initWithConversationChatter:@"1123" conversationType:0];
+                                                     initWithConversationChatter:@"菜鸡那去耍123" conversationType:0];
         chatController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:chatController animated:YES];
     }
