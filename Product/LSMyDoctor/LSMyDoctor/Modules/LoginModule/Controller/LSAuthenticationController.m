@@ -630,7 +630,7 @@
                 NSRange rang = {32,1};
                 NSString* doctorId = [cookie substringWithRange:rang];
                 
-                [Defaults setValue:doctorId forKey:@"doctorId"];
+                [Defaults setValue:doctorId forKey:@"doctorid"];
                 
                 [Defaults synchronize];
                 

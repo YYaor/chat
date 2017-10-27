@@ -61,7 +61,7 @@
     if (![[Defaults objectForKey:@"isLogin"] boolValue]) {
         return NO;
     }
-    NSString *doctorId = [Defaults objectForKey:@"doctorId"];
+    NSString *doctorId = [Defaults objectForKey:@"doctorid"];
     BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
     if (!isAutoLogin) {
         

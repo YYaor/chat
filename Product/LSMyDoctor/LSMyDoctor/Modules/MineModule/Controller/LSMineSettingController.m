@@ -67,7 +67,7 @@
     //存在NSUserDefault中的有 isLogin doctorId cookie accessToken phoneNum
     
     [Defaults removeObjectForKey:@"isLogin"];
-    [Defaults removeObjectForKey:@"doctorId"];
+    [Defaults removeObjectForKey:@"doctorid"];
     [Defaults removeObjectForKey:@"cookie"];
     [Defaults removeObjectForKey:@"accessToken"];
     
