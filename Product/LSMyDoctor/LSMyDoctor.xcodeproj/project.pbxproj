@@ -115,6 +115,7 @@
 		4A90B4111FA1D91700076BC1 /* MDChooseSickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A90B40F1FA1D91700076BC1 /* MDChooseSickerCell.m */; };
 		4A90B4121FA1D91700076BC1 /* MDChooseSickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A90B4101FA1D91700076BC1 /* MDChooseSickerCell.xib */; };
 		4A90B4151FA1E1A500076BC1 /* MDChooseSickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A90B4141FA1E1A500076BC1 /* MDChooseSickerModel.m */; };
+		4ACCD7391FA2C25E003F1BBD /* MDGroupDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCD7381FA2C25E003F1BBD /* MDGroupDetailModel.m */; };
 		4AFAD5261F99D7DD00B20CA2 /* MDGroupCommunicateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD5251F99D7DD00B20CA2 /* MDGroupCommunicateVC.m */; };
 		4AFAD52F1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD52D1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.m */; };
 		4AFAD5341F99DE2D00B20CA2 /* MDNewDiscussCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD5321F99DE2D00B20CA2 /* MDNewDiscussCell.m */; };
@@ -620,6 +621,8 @@
 		4A90B4101FA1D91700076BC1 /* MDChooseSickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDChooseSickerCell.xib; sourceTree = "<group>"; };
 		4A90B4131FA1E1A500076BC1 /* MDChooseSickerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDChooseSickerModel.h; sourceTree = "<group>"; };
 		4A90B4141FA1E1A500076BC1 /* MDChooseSickerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDChooseSickerModel.m; sourceTree = "<group>"; };
+		4ACCD7371FA2C25E003F1BBD /* MDGroupDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupDetailModel.h; sourceTree = "<group>"; };
+		4ACCD7381FA2C25E003F1BBD /* MDGroupDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDGroupDetailModel.m; sourceTree = "<group>"; };
 		4AFAD5241F99D7DD00B20CA2 /* MDGroupCommunicateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupCommunicateVC.h; sourceTree = "<group>"; };
 		4AFAD5251F99D7DD00B20CA2 /* MDGroupCommunicateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDGroupCommunicateVC.m; sourceTree = "<group>"; };
 		4AFAD52C1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupDiscussDetailVC.h; sourceTree = "<group>"; };
@@ -1569,6 +1572,8 @@
 				4AFAD53B1F99E27A00B20CA2 /* MDGroupNameCell.h */,
 				4AFAD53C1F99E27A00B20CA2 /* MDGroupNameCell.m */,
 				4AFAD53D1F99E27A00B20CA2 /* MDGroupNameCell.xib */,
+				4ACCD7371FA2C25E003F1BBD /* MDGroupDetailModel.h */,
+				4ACCD7381FA2C25E003F1BBD /* MDGroupDetailModel.m */,
 			);
 			path = MD_Communication;
 			sourceTree = "<group>";
@@ -3198,6 +3203,7 @@
 				DFF015DC1F7AC25F00527CFA /* UIViewController+HUD.m in Sources */,
 				DFF015551F7AC15700527CFA /* MWTapDetectingView.m in Sources */,
 				DFBFCEE81FA23EBE006A7A21 /* LSManageCell.m in Sources */,
+				4ACCD7391FA2C25E003F1BBD /* MDGroupDetailModel.m in Sources */,
 				DFFD8ED61F7C23C300FF0ECD /* LSWorkAppointController.m in Sources */,
 				DFF015801F7AC15700527CFA /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				4A0CE6AA1F9094F500F7C187 /* UIImage+MultiFormat.m in Sources */,

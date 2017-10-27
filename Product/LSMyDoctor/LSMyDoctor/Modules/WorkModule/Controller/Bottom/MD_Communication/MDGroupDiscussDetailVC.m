@@ -11,11 +11,14 @@
 #import "MDAllMemberReusableView.h"//查看群成员
 #import "MDGroupNameCell.h"
 #import "LSChooseMateController.h"
+#import "MDGroupDetailModel.h"//群组详情
 
 @interface MDGroupDiscussDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     UICollectionView* discussCol;
 }
+
+@property (nonatomic ,strong)MDGroupDetailModel* groupDetailModel;
 
 @end
 
@@ -27,6 +30,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setUpUi];
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self getGroupDetailRequest];
 }
 #pragma mark -- 创建界面
 - (void)setUpUi
@@ -76,7 +83,11 @@
 {
     if (section == 0) {
         //群成员
-        return 8;
+        if (self.groupDetailModel.users.count > 6) {
+            return 8;
+        }else{
+            return self.groupDetailModel.users.count + 2;
+        }
         
     }else{
         return 1;
@@ -143,7 +154,7 @@
         //查看所有群成员
         return CGSizeMake(LSSCREENWIDTH, 30);
     }else{
-        return CGSizeMake(LSSCREENWIDTH, 1.00000f);
+        return CGSizeMake(LSSCREENWIDTH, 0.000001f);
     }
 }
 
@@ -162,6 +173,9 @@
             cell.userNameLab.text = @"";
         }else{
             //加过来的好友
+            MDGroupUserModel* userModel = self.groupDetailModel.users[indexPath.item - 1];
+            
+            cell.userNameLab.text = userModel.doctor_name;
             
             
         }
@@ -257,15 +271,16 @@
 {
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
-    [param setValue:self.groupIdStr forKey:@"groupId"];
+    [param setValue:self.groupIdStr forKey:@"roomid"];
     
-    NSString* url = PATH(@"%@/doctorInfo");
+    NSString* url = PATH(@"%@/queryRoomInfo");
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         if ([responseObj isKindOfClass:[NSDictionary class]]) {
             
             if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
             {
+                self.groupDetailModel = [MDGroupDetailModel yy_modelWithDictionary:responseObj[@"data"]];
                 
                 [discussCol reloadData];
             }else

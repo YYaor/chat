@@ -45,8 +45,8 @@
     
     self.viewControllers = @[
                              [[UINavigationController alloc] initWithRootViewController:[[LSWorkController alloc] initWithNibName:@"LSWorkController" bundle:nil]],
-//                             [[UINavigationController alloc] initWithRootViewController:[[EaseConversationListViewController alloc] init]],
-                             [[UINavigationController alloc] initWithRootViewController:[[LSMessageController alloc] initWithNibName:@"LSMessageController" bundle:nil]],
+                             [[UINavigationController alloc] initWithRootViewController:[[EaseConversationListViewController alloc] init]],
+//                             [[UINavigationController alloc] initWithRootViewController:[[LSMessageController alloc] initWithNibName:@"LSMessageController" bundle:nil]],
                              [[UINavigationController alloc] initWithRootViewController:[[LSManageController alloc] initWithNibName:@"LSManageController" bundle:nil]],
                              [[UINavigationController alloc] initWithRootViewController:[[LSMineController alloc] initWithNibName:@"LSMineController" bundle:nil]],
                              ];

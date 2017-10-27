@@ -191,7 +191,7 @@
         return;
     }
     
-    if (![self isMobile:self.phoneTextField.text]) {
+    if (![NSString isMobile:self.phoneTextField.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
         self.phoneNoticeLabel.text = @"手机号码格式不正确";
         return;
@@ -222,12 +222,6 @@
     } failBlock:^(NSError *error) {
         //[XHToast showCenterWithText:@"fail"];
     }];
-}
-
-- (BOOL)isMobile:(NSString *)string {
-    NSString *regex = @"^((13[0-9])|(15[^4,\\D])|(18[0-9])|(14[0-9])|(17[0-9]))\\d{8}$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    return [pred evaluateWithObject:string];
 }
 
 - (void)buttonTitleTime:(UIButton *)button withTime:(NSString *)time

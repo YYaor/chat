@@ -282,8 +282,8 @@
 
 -(void)loginButtonClick{
     
-//    self.phoneTextFiled.text = @"15502810729";//id 42
-    self.phoneTextFiled.text = @"18180847173";//id 43
+    self.phoneTextFiled.text = @"15502810729";//id 42
+//    self.phoneTextFiled.text = @"18180847173";//id 43
     self.pswTextFiled.text = @"111111";
 
     
