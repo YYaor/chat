@@ -282,8 +282,8 @@
 
 -(void)loginButtonClick{
     
-    self.phoneTextFiled.text = @"15502810729";//id 42
-//    self.phoneTextFiled.text = @"18180847173";//id 43
+//    self.phoneTextFiled.text = @"15502810729";//id 42
+    self.phoneTextFiled.text = @"18180847173";//id 43
     self.pswTextFiled.text = @"111111";
 
     
@@ -326,6 +326,8 @@
                 [Defaults setValue:dict[@"cookie"] forKey:@"cookie"];
                 [Defaults setValue:self.phoneTextFiled.text forKey:@"phoneNum"];
                 [Defaults setValue:dict[@"doctorid"] forKey:@"doctorid"];
+                [Defaults setValue:dict[@"username"] forKey:@"username"];
+
                 if (self.typeView.selectIndex != 1) {
                     //密码登录
                     [Defaults setValue:self.pswTextFiled.text forKey:@"passWord"];

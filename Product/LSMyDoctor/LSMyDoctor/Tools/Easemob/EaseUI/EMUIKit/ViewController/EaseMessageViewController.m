@@ -86,6 +86,7 @@ typedef enum : NSUInteger {
     if (self) {
         _conversation = [[EMClient sharedClient].chatManager getConversation:conversationChatter type:conversationType createIfNotExist:YES];
         
+        
         _messageCountOfPage = 10;
         _timeCellHeight = 30;
         _deleteConversationIfNull = YES;
@@ -1770,7 +1771,7 @@ typedef enum : NSUInteger {
                 if (message.ext[@"avatar"] != nil) {
                     model.avatarURLPath = message.ext[@"avatar"];
                 }
-                model.nickname =message.ext[@"nickname"];
+                model.nickname =message.ext[@"username"];
             }
             model.failImageName = @"imageDownloadFail";
         }
@@ -1905,7 +1906,8 @@ typedef enum : NSUInteger {
 - (void)sendTextMessage:(NSString *)text withExt:(NSDictionary*)ext
 {
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]initWithDictionary:ext];
-//    [dic setObject:[Defaults valueForKey:@"nickname"] forKey:@"nickname"];
+    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
+    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
     [dic setObject:@"headURLdoctor" forKey:@"avatar"];
     EMMessage *message = [EaseSDKHelper sendTextMessage:text
                                                      to:self.conversation.conversationId
@@ -1918,12 +1920,16 @@ typedef enum : NSUInteger {
                           longitude:(double)longitude
                          andAddress:(NSString *)address
 {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
+    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
+    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
     EMMessage *message = [EaseSDKHelper sendLocationMessageWithLatitude:latitude
                                                               longitude:longitude
                                                                 address:address
                                                                      to:self.conversation.conversationId
                                                             messageType:[self _messageTypeFromConversationType]
-                                                             messageExt:nil];
+                                                             messageExt:dic];
     [self _sendMessage:message];
 }
 
@@ -1936,11 +1942,14 @@ typedef enum : NSUInteger {
     else{
         progress = self;
     }
-    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
+    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
+    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
     EMMessage *message = [EaseSDKHelper sendImageMessageWithImageData:imageData
                                                                    to:self.conversation.conversationId
                                                           messageType:[self _messageTypeFromConversationType]
-                                                           messageExt:nil];
+                                                           messageExt:dic];
     [self _sendMessage:message];
 }
 
@@ -1953,11 +1962,14 @@ typedef enum : NSUInteger {
     else{
         progress = self;
     }
-    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
+    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
+    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
     EMMessage *message = [EaseSDKHelper sendImageMessageWithImage:image
                                                                to:self.conversation.conversationId
                                                       messageType:[self _messageTypeFromConversationType]
-                                                       messageExt:nil];
+                                                       messageExt:dic];
     [self _sendMessage:message];
 }
 
@@ -1971,12 +1983,15 @@ typedef enum : NSUInteger {
     else{
         progress = self;
     }
-    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
+    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
+    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
     EMMessage *message = [EaseSDKHelper sendVoiceMessageWithLocalPath:localPath
                                                              duration:duration
                                                                    to:self.conversation.conversationId
                                                           messageType:[self _messageTypeFromConversationType]
-                                                           messageExt:nil];
+                                                           messageExt:dic];
     [self _sendMessage:message];
 }
 
@@ -1989,11 +2004,14 @@ typedef enum : NSUInteger {
     else{
         progress = self;
     }
-    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
+    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
+    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
     EMMessage *message = [EaseSDKHelper sendVideoMessageWithURL:url
                                                              to:self.conversation.conversationId
                                                     messageType:[self _messageTypeFromConversationType]
-                                                     messageExt:nil];
+                                                     messageExt:dic];
     [self _sendMessage:message];
 }
 

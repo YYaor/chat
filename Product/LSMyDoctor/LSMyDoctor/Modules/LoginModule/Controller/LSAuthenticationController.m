@@ -625,7 +625,8 @@
                 [Defaults setBool:YES forKey:@"isLogin"];
                 [Defaults setValue:dict[@"cookie"] forKey:@"cookie"];
                 [Defaults setValue:self.phoneNumStr forKey:@"phoneNum"];
-                
+                [Defaults setValue:dict[@"username"] forKey:@"username"];
+
                 NSString* cookie = dict[@"cookie"];
                 NSRange rang = {32,1};
                 NSString* doctorId = [cookie substringWithRange:rang];

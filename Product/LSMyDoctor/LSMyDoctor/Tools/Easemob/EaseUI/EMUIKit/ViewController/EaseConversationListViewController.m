@@ -44,6 +44,11 @@
     [self tableViewDidTriggerHeaderRefresh];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self tableViewDidTriggerHeaderRefresh];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -63,6 +68,20 @@
     return [self.dataArray count];
 }
 
+- (id<IConversationModel>)conversationListViewController:(EaseConversationListViewController *)conversationListViewController
+                                    modelForConversation:(EMConversation *)conversation{
+    //用环信提供的model就可以了
+    EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:conversation];
+    
+    EMMessage *lastmessage = conversation.latestMessage;
+    if ([lastmessage.ext[@"doctorid"] isEqualToString:conversation.conversationId]) {
+        model.avatarURLPath = lastmessage.ext[@"avatar"];
+        model.title = lastmessage.ext[@"username"];
+    }
+    
+    return model;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = [EaseConversationCell cellIdentifierWithModel:nil];
@@ -78,6 +97,7 @@
     }
     
     id<IConversationModel> model = [self.dataArray objectAtIndex:indexPath.row];
+    
     cell.model = model;
     
     if (_dataSource && [_dataSource respondsToSelector:@selector(conversationListViewController:latestMessageTitleForConversationModel:)]) {
@@ -188,6 +208,12 @@
         }
         else{
             model = [[EaseConversationModel alloc] initWithConversation:converstion];
+            
+//            EMMessage *lastmessage = converstion.latestMessage;
+//            if ([lastmessage.ext[@"doctorid"] isEqualToString:converstion.conversationId]) {
+//                model.avatarURLPath = lastmessage.ext[@"avatar"];
+//                model.title = lastmessage.ext[@"username"];
+//            }
         }
         
         if (model) {

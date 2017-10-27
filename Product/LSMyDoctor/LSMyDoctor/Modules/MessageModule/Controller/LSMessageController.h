@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LSMessageController : UIViewController
+@interface LSMessageController : EaseConversationListViewController
 
 @end
