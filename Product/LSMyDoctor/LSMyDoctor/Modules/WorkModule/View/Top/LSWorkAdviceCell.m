@@ -44,12 +44,11 @@
 
 - (IBAction)agreeButtonClick
 {
-    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
     [param setValue:self.dataDic[@"id"] forKey:@"id"];
     [param setValue:@1 forKey:@"result"];
-    [param setValue:[Defaults objectForKey:@"cookie"] forKey:@"cookie"];
-    [param setValue:AccessToken forKey:@"accessToken"];
+
     NSString *url = PATH(@"%@/dealwithRequest");
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {

@@ -52,16 +52,16 @@
     //获取token
     [self initAccessToken];
     
-    [self intoRootForLogin];
+//    [self intoRootForLogin];
     
     return YES;
 }
 
 -(BOOL)loginIM{
-    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue]) {
+    if (![[Defaults objectForKey:@"isLogin"] boolValue]) {
         return NO;
     }
-    NSString *doctorId = [[NSUserDefaults standardUserDefaults] objectForKey:@"doctorId"];
+    NSString *doctorId = [Defaults objectForKey:@"doctorId"];
     BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
     if (!isAutoLogin) {
         
@@ -153,17 +153,17 @@
             NSLog(@"*******token:%@*****",responseObject[@"data"]);
             [Defaults synchronize];
             
-//            //更改状态蓝颜色
-//            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
-//            
-//            self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//            self.window.backgroundColor = [UIColor whiteColor];
+            //更改状态蓝颜色
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
             
-//            //启动引导页控制器
-//            SplashViewController *splashVC = [[SplashViewController alloc]init];
-//            self.window.rootViewController = splashVC;
-//            
-//            [self.window makeKeyAndVisible];
+            self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            self.window.backgroundColor = [UIColor whiteColor];
+            
+            //启动引导页控制器
+            SplashViewController *splashVC = [[SplashViewController alloc]init];
+            self.window.rootViewController = splashVC;
+            
+            [self.window makeKeyAndVisible];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

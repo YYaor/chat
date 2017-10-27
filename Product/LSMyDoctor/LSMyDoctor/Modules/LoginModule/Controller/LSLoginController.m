@@ -52,7 +52,6 @@
     self.navigationController.navigationBarHidden = YES;
     [self initNavView];
     [self initForView];
-    [self initTouchEvents];
     
     isFirst = YES;
 
@@ -137,14 +136,11 @@
         make.centerY.equalTo(self.pswTextFiled);
         make.size.mas_equalTo(CGSizeMake(100, 20));
     }];
-}
-
--(void)initTouchEvents{
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide)];
-    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
-    tapGestureRecognizer.cancelsTouchesInView = NO;
-    //将触摸事件添加到当前view
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+    
+    if ([Defaults objectForKey:@"phoneNum"])
+    {
+        self.phoneTextFiled.text = [Defaults objectForKey:@"phoneNum"];
+    }
 }
 
 #pragma mark - YYShopMainTypeViewDelegate
@@ -237,10 +233,6 @@
         self.phoneClearButton.hidden = YES;
     }
 }
-//键盘滑落
--(void)keyboardHide{
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-}
 
 -(void)phoneClearButtonClick{
     self.phoneClearButton.hidden = YES;
@@ -289,6 +281,11 @@
 }
 
 -(void)loginButtonClick{
+    
+    self.phoneTextFiled.text = @"15502810729";//id 42
+//    self.phoneTextFiled.text = @"18180847173";//id 43
+    self.pswTextFiled.text = @"111111";
+
     
     if (self.phoneTextFiled.text == nil || self.phoneTextFiled.text.length == 0) {
         [LSUtil showAlter:self.view withText:@"请输入手机号码" withOffset:-20];
@@ -437,7 +434,6 @@
         _phoneTextFiled.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         _phoneTextFiled.font = [UIFont systemFontOfSize:14];
         [_phoneTextFiled addTarget:self action:@selector(phoneTextChangged:) forControlEvents:UIControlEventEditingChanged];
-     //   _phoneTextFiled.text = @"15502810729";
     }
     return _phoneTextFiled;
 }
@@ -450,8 +446,6 @@
         _pswTextFiled.delegate = self;
         _pswTextFiled.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         _pswTextFiled.font = [UIFont systemFontOfSize:14];
-    //    _pswTextFiled.text = @"111111";
-
     }
     return _pswTextFiled;
 }

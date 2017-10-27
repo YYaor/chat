@@ -48,6 +48,7 @@ static NSString *cellId = @"LSMessageCell";
 
 - (void)requestData
 {
+    [self.dataArray removeAllObjects];
     [self.dataArray addObjectsFromArray:[[EMClient sharedClient].chatManager getAllConversations]];
     
     [self.tableView reloadData];

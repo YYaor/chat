@@ -67,8 +67,6 @@
     
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
-    [param setValue:Cookie forKey:@"cookie"];
-    [param setValue:AccessToken forKey:@"accessToken"];
     [param setValue:self.infoTextView.text forKey:@"feedback"];
     
     NSString* url = PATH(@"%@/my/feedback");

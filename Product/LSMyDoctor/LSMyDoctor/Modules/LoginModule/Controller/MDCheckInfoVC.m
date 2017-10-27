@@ -176,7 +176,6 @@
     
     NSString* url = PATH(@"%@/login/confirm");
     
-    
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         
         if ([responseObj[@"status"] isEqualToString:@"0"])

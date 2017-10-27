@@ -50,7 +50,6 @@
     self.navigationController.navigationBarHidden = YES;
     [self initNavView];
     [self initForView];
-    [self initTouchEvents];
     
     isFirst = YES;
 }
@@ -171,14 +170,6 @@
     }];
 }
 
--(void)initTouchEvents{
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide)];
-    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
-    tapGestureRecognizer.cancelsTouchesInView = NO;
-    //将触摸事件添加到当前view
-    [self.view addGestureRecognizer:tapGestureRecognizer];
-}
-
 #pragma mark - clickEvents
 
 -(void)phoneTextChangged:(UITextField *)sender{
@@ -187,15 +178,6 @@
     }else{
         self.phoneClearButton.hidden = YES;
     }
-}
-
--(void)back{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-//键盘滑落
--(void)keyboardHide{
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 
 -(void)phoneClearButtonClick{

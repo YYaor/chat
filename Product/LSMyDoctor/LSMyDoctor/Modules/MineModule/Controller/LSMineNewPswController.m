@@ -26,7 +26,6 @@
     [super viewDidLoad];
     
     [self initForView];
-    [self initTouchEvents];
 }
 
 -(void)initForView{
@@ -88,23 +87,6 @@
     }];
 }
 
--(void)initTouchEvents{
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide)];
-    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
-    tapGestureRecognizer.cancelsTouchesInView = NO;
-    //将触摸事件添加到当前view
-    [self.view addGestureRecognizer:tapGestureRecognizer];
-}
-
-//键盘滑落
--(void)keyboardHide{
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-}
-
--(void)back{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 -(void)sureButtonClick{
     
     if ([self.oldPswTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length<=0)
@@ -134,9 +116,7 @@
     LSWEAKSELF;
     
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-    
-    [param setValue:Cookie forKey:@"cookie"];
-    [param setValue:AccessToken forKey:@"accessToken"];
+
     [param setValue:[NSString md5String:self.oldPswTextField.text] forKey:@"oldPasswd"];
     [param setValue:[NSString md5String:self.nPswTextField.text] forKey:@"passwd"];
     

@@ -7,64 +7,201 @@
 //
 
 #import "LSManageController.h"
-#import "LSLoginController.h"
+
+#import "LSManageDetailController.h"
 
 #import "YYSearchBar.h"
-#import "LSPatientListCell.h"
-#import "LSPatientModel.h"
+#import "LSManageCell.h"
+#import "LSManageModel.h"
+
+static NSString *cellId = @"LSManageCell";
 
 @interface LSManageController () <UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
+@property (nonatomic, strong) UITableView *sickerTab;
+
+@property (nonatomic,strong) NSMutableArray *groupDataArr;
+
+//排序后的出现过的拼音首字母数组
+@property(nonatomic,strong)NSMutableArray *indexArray;
+//排序好的结果数组
+@property(nonatomic,strong)NSMutableArray *letterResultArr;
+
 @property (nonatomic,strong)YYSearchBar *searchBar;
-
-@property (nonatomic,strong)UITableView *dataTableView;
-
-@property (nonatomic,strong)NSMutableArray *sectionArray;
-
-@property (nonatomic,strong)NSMutableDictionary *dataDic;
-//搜索数组
-@property (nonatomic,strong)NSMutableArray *searchArray;
-//服务器返回数组
-@property (nonatomic,strong)NSMutableArray *dataArray;
-//整理后的数组
-@property (nonatomic,strong)NSMutableArray *orderArray;
-//选择的对象
-@property (nonatomic,strong)NSMutableArray *chooseArray;
 
 @end
 
 @implementation LSManageController
 
-- (void)viewDidLoad
-{
+
+#pragma mark -- 懒加载
+- (NSMutableArray *)groupDataArr{
+    
+    if (_groupDataArr == nil) {
+        _groupDataArr = [NSMutableArray array];
+        
+    }
+    return _groupDataArr;
+}
+- (NSMutableArray *)indexArray{
+    
+    if (_indexArray == nil) {
+        _indexArray = [NSMutableArray array];
+        
+    }
+    return _indexArray;
+}
+- (NSMutableArray *)letterResultArr{
+    
+    if (_letterResultArr == nil) {
+        _letterResultArr = [NSMutableArray array];
+        
+    }
+    return _letterResultArr;
+}
+
+- (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initForView];
-    [self loadData];
-}
-
-- (void)initForView
-{
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.navigationItem.title = @"患者管理";
-    self.view.backgroundColor = [UIColor colorFromHexString:@"F0F8FF"];
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    UIBarButtonItem *scanItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(sureClick)];
-    self.navigationItem.rightBarButtonItem = scanItem;
+    UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    sureBtn.frame = CGRectMake(LSSCREENWIDTH - 100, 7, 80, 30);
+    [sureBtn addTarget:self action:@selector(sureBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [sureBtn setTitle:@"创建群" forState:UIControlStateNormal];
+    [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    [self.view addSubview:self.dataTableView];
+    UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:sureBtn];
+    self.navigationItem.rightBarButtonItem = rightBtnItem;
     
-    [self.dataTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.bottom.equalTo(self.view);
-    }];
+    [self setUpUi];
+    
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    //加载医生的患者列表
+    [self getSickerListDataWithUserName:nil];
+}
+#pragma mark -- 确定按钮点击
+- (void)sureBtnClick
+{
+    NSLog(@"确定按钮点击");
+//    NSMutableArray* chooseArr = [NSMutableArray array];
+//    [chooseArr removeAllObjects];
+//    for (MDChooseSickerModel *model in self.groupDataArr) {
+//        if (model.is_Selected) {
+//            [chooseArr addObject:model];
+//        }
+//    }
+//    if (self.chooseBlock) {
+//        self.chooseBlock(chooseArr);
+//    }
+//    
+//    
+//    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark -- 创建界面
+- (void)setUpUi
+{
+    //创建界面
+    
+    self.searchBar = [[YYSearchBar alloc] initWithSearchTab];
+    self.searchBar.frame = CGRectMake(0, 0, LSSCREENWIDTH, 52);
+    self.searchBar.delegate = self;
+    self.searchBar.layer.masksToBounds = YES;
+    self.searchBar.layer.cornerRadius = 4;
+    self.searchBar.placeholder = @"请输入患者姓名";
+    
+    [self.view addSubview:_searchBar];
+    
+    //列表
+    self.sickerTab = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, LSSCREENWIDTH, LSSCREENHEIGHT - 60 - 65) style:UITableViewStyleGrouped];
+    self.sickerTab.delegate = self;
+    self.sickerTab.dataSource = self;
+    self.sickerTab.sectionIndexBackgroundColor = [UIColor clearColor];
+    self.sickerTab.sectionIndexColor = BaseColor;
+    [self.view addSubview:self.sickerTab];
+    
+    //注册Cell
+    [self.sickerTab registerNib:[UINib nibWithNibName:cellId bundle:nil] forCellReuseIdentifier:cellId];
 }
 
--(void)keyboardDown{
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+#pragma mark -- UISearchBarDelegate
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    
 }
 
--(void)loadData{
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    [self getSickerListDataWithUserName:searchBar.text];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    
+    [self getSickerListDataWithUserName:searchBar.text];
+}
+
+#pragma mark -- UITableViewDelegate/UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.indexArray.count;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[self.letterResultArr objectAtIndex:section] count];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.00000001f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30.0f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100.0f;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.indexArray objectAtIndex:section];
+}
+//section右侧index数组
+-(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    return self.indexArray;
+}
+//点击右侧索引表项时调用 索引与section的对应关系
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
+    return index;
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    LSManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LSManageCell"];
+    [cell setDataWithEntity:self.letterResultArr[indexPath.section][indexPath.row]];
+    return cell;
+    
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    LSManageDetailController *vc = [[LSManageDetailController alloc] initWithNibName:@"LSManageDetailController" bundle:nil];
+    vc.model = self.letterResultArr[indexPath.section][indexPath.row];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark -- 获取分组列表
+- (void)getSickerListDataWithUserName:(NSString*)usernameStr
+{
     LSWEAKSELF;
     
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
@@ -75,11 +212,15 @@
         
         if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
         {
-            [weakSelf.dataArray removeAllObjects];
+            NSArray *dataList = [NSArray yy_modelArrayWithClass:[LSManageModel class] json:responseObj[@"data"]];
             
-            [weakSelf.dataArray addObjectsFromArray:responseObj[@"data"]];
+            [weakSelf.groupDataArr removeAllObjects];
+            [weakSelf.groupDataArr addObjectsFromArray:dataList];
             
-            [weakSelf.dataTableView reloadData];
+            weakSelf.indexArray = [BMChineseSort IndexWithArray:weakSelf.groupDataArr Key:@"username"];
+            weakSelf.letterResultArr = [BMChineseSort sortObjectArray:weakSelf.groupDataArr Key:@"username"];
+            
+            [weakSelf.sickerTab reloadData];
             
         }else
         {
@@ -88,243 +229,6 @@
     } failBlock:^(NSError *error) {
         
     }];
-//    LSPatientModel *model1 = [[LSPatientModel alloc]init];
-//    model1.name = @"张三";
-//    model1.sex = @"男";
-//    model1.age = @"10";
-//    
-//    LSPatientModel *model2 = [[LSPatientModel alloc]init];
-//    model2.name = @"李四";
-//    model2.sex = @"女";
-//    model2.age = @"10";
-//    
-//    LSPatientModel *model3 = [[LSPatientModel alloc]init];
-//    model3.name = @"王五";
-//    model3.sex = @"男";
-//    //    model3.age = @"15";
-//    
-//    LSPatientModel *model4 = [[LSPatientModel alloc]init];
-//    model4.name = @"李四四";
-//    model4.sex = @"女";
-//    model4.age = @"134";
-//    
-//    [self.dataArray addObjectsFromArray: [NSArray arrayWithObjects:model1,model2,model3,model4, nil]];
-//    
-//    [LSUtil getOrderPatientList:self.dataArray patientListDictBlock:^(NSDictionary<NSString *,NSMutableDictionary *> *addressBookDict, NSArray *nameKeys) {
-//        //得到排序后的数组
-//        [self.sectionArray addObjectsFromArray:nameKeys];
-//        self.dataDic = [[NSMutableDictionary alloc]initWithDictionary:addressBookDict];
-//        
-//        for (int i = 0; i < nameKeys.count; i++) {
-//            NSArray *nameArray = [self.dataDic objectForKey:nameKeys[i]];
-//            NSMutableArray *rowArray = [[NSMutableArray alloc]init]; // 每个字母里面包含的数组
-//            NSArray *selectArray = [NSArray array];
-//            for (int j = 0; j < nameArray.count ; j++) {
-//                NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"name == %@", [nameArray[j] objectForKey:@"name"]];
-//                selectArray = [self.dataArray filteredArrayUsingPredicate:filterPredicate];
-//                [rowArray addObjectsFromArray:selectArray];
-//            }
-//            [self.orderArray addObject:rowArray];
-//            
-//        }
-//        [self.dataTableView reloadData];
-//    }];
-}
-
--(void)sureClick{
-    for (LSPatientModel *model in self.dataArray) {
-        if (model.isChoosed) {
-            [self.chooseArray addObject:model];
-        }
-    }
-    if (self.chooseBlock) {
-        self.chooseBlock(self.chooseArray);
-    }
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    
-}
-
-#pragma mark - tableViewDelegate
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if (self.searchBar.text.length > 0) {
-        return 1;
-    }else{
-        return self.sectionArray.count;
-    }
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.searchBar.text.length > 0) {
-        return self.searchArray.count;
-    }else{
-        return [self.orderArray[section] count];
-    }
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LSPatientListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LSPatientListCell"];
-    if (!cell) {
-        cell = [[LSPatientListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LSPatientListCell"];
-    }
-    if (self.searchBar.text.length > 0) {
-        cell.model = self.searchArray[indexPath.row];
-    }else{
-        NSArray *dataArray = self.orderArray[indexPath.section];
-        cell.model = dataArray[indexPath.row];
-    }
-    
-    return cell;
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (self.searchBar.text.length > 0) {
-        return [[UIView alloc]init];
-    }else{
-        UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
-        UILabel *sectionLabel = [[UILabel alloc]init];
-        sectionLabel.font = [UIFont systemFontOfSize:15];
-        sectionLabel.textColor = [UIColor blackColor];
-        sectionLabel.text = self.sectionArray[section];
-        [headView addSubview:sectionLabel];
-        [sectionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(headView);
-            make.left.equalTo(headView).offset(14);
-        }];
-        
-        return headView;
-    }
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (self.searchBar.text.length > 0) {
-        return 0;
-    }else{
-        return 40;
-    }
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LSPatientModel *chooseModel = nil;
-    if (self.searchBar.text.length > 0) {
-        chooseModel = self.searchArray[indexPath.row];
-        for (LSPatientModel *model in self.searchArray) {
-            if (model != chooseModel) {
-                model.isChoosed = NO;
-            }
-        }
-        
-    }else{
-        NSArray *dataArray = self.orderArray[indexPath.section];
-        chooseModel = dataArray[indexPath.row];
-        for (LSPatientModel *model in self.dataArray) {
-            if (model != chooseModel) {
-                model.isChoosed = NO;
-            }
-        }
-    }
-    chooseModel.isChoosed = !chooseModel.isChoosed;
-    [self.dataTableView reloadData];
-    
-}
-
-#pragma mark - searchBarDelegate
-
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self keyboardDown];
-}
-
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    if (searchBar.text.length > 0) {
-        [self setFilterString:searchBar.text];
-    }else{
-        [self.searchArray removeAllObjects];
-        [self.dataTableView reloadData];
-    }
-}
-
--(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    
-}
-
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    
-}
-
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    
-}
-
-- (void)setFilterString:(NSString *)filterString {
-    NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"name CONTAINS %@", filterString];
-    [self.searchArray addObjectsFromArray:[self.dataArray filteredArrayUsingPredicate:filterPredicate]];
-    
-    [self.dataTableView reloadData];
-}
-
-
--(NSMutableArray *)sectionArray{
-    if (!_sectionArray) {
-        _sectionArray = [[NSMutableArray alloc] init];
-    }
-    return _sectionArray;
-}
-
--(NSMutableArray *)chooseArray{
-    if (!_chooseArray) {
-        _chooseArray = [[NSMutableArray alloc] init];
-    }
-    return _chooseArray;
-}
-
--(NSMutableArray *)orderArray{
-    if (!_orderArray) {
-        _orderArray = [[NSMutableArray alloc] init];
-    }
-    return _orderArray;
-}
-
--(NSMutableArray *)searchArray{
-    if (!_searchArray) {
-        _searchArray = [[NSMutableArray alloc] init];
-    }
-    return _searchArray;
-}
-
--(NSMutableArray *)dataArray{
-    if (!_dataArray) {
-        _dataArray = [[NSMutableArray alloc] init];
-    }
-    return _dataArray;
-}
-
--(UITableView *)dataTableView{
-    if (!_dataTableView) {
-        _dataTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _dataTableView.delegate = self;
-        _dataTableView.dataSource = self;
-        _dataTableView.backgroundColor = [UIColor whiteColor];
-        _dataTableView.tableHeaderView = self.searchBar;
-    }
-    return _dataTableView;
-}
-
--(YYSearchBar *)searchBar{
-    if (!_searchBar) {
-        _searchBar = [[YYSearchBar alloc]initWithSearchTab];
-        _searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 52);
-        _searchBar.delegate = self;
-        _searchBar.layer.masksToBounds = YES;
-        _searchBar.layer.cornerRadius = 4;
-    }
-    return _searchBar;
 }
 
 @end

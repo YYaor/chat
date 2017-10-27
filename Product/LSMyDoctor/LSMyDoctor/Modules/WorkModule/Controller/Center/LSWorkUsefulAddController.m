@@ -61,8 +61,6 @@
         //修改
         NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
         
-        [param setValue:[Defaults valueForKey:@"cookie"] forKey:@"cookie"];
-        [param setValue:[Defaults valueForKey:@"accessToken"] forKey:@"accessToken"];
         [param setValue:self.textView.text forKey:@"content"];
         [param setValue:self.dataDic[@"id"] forKey:@"id"];
         
@@ -86,8 +84,6 @@
         //添加
         NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
         
-        [param setValue:[Defaults valueForKey:@"cookie"] forKey:@"cookie"];
-        [param setValue:[Defaults valueForKey:@"accessToken"] forKey:@"accessToken"];
         [param setValue:self.textView.text forKey:@"content"];
         
         NSString *url = PATH(@"%@/addChatCommon");
@@ -114,8 +110,6 @@
 {
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
-    [param setValue:[Defaults valueForKey:@"cookie"] forKey:@"cookie"];
-    [param setValue:[Defaults valueForKey:@"accessToken"] forKey:@"accessToken"];
     [param setValue:self.dataDic[@"id"] forKey:@"id"];
     
     NSString *url = PATH(@"%@/deleteChatCommon");

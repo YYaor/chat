@@ -59,7 +59,6 @@
     self.navigationController.navigationBarHidden = YES;
     [self initNavView];
     [self initForView];
-    [self initTouchEvents];
 }
 
 -(void)initNavView{
@@ -236,14 +235,6 @@
     [self setupPickerView];
 }
 
--(void)initTouchEvents{
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide)];
-    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
-    tapGestureRecognizer.cancelsTouchesInView = NO;
-    //将触摸事件添加到当前view
-    [self.view addGestureRecognizer:tapGestureRecognizer];
-}
-
 -(UIImageView *)newImageView{
     UIImageView *imageView = [[UIImageView alloc]init];
     imageView.image = [UIImage imageNamed:@"right_Green_Public"];
@@ -266,11 +257,6 @@
     }else{
         self.clearButton.hidden = YES;
     }
-}
-
-//键盘滑落
--(void)keyboardHide{
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 
 -(void)clearButtonClick{
@@ -457,9 +443,7 @@
     LSWEAKSELF;
     
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-    
-//    [param setValue:self.hospital_id forKey:@"hosid"];
-    
+        
     NSString* url = PATH(@"%@/department");
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {

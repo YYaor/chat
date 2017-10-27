@@ -106,18 +106,20 @@
 {
     __weak typeof(self) weakSelf = self;
     
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setValue:[NSNumber numberWithInteger:0] forKey:@"deviceType"];
-    [param setValue:[Defaults valueForKey:@"accessToken"] forKey:@"accessToken"];
-    [param setValue:[Defaults valueForKey:@"cookie"] forKey:@"cookie"];
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
-    NSString* url = PATH(@"%@/home/loadGuides");
+    [param setValue:@0 forKey:@"deviceType"];
+    [param setObject:@2 forKey:@"type"];
+    
+    NSString* headUrl = [API_HOST substringToIndex:API_HOST.length - 3];
+    NSString* url = [NSString stringWithFormat:@"%@/home/loadGuides",headUrl];
+    
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         NSDictionary *returnData = responseObj;
         if (returnData && returnData[@"data"]) {
             NSArray *guidesArr = [NSArray yy_modelArrayWithClass:[GuidePageModel class] json:[returnData[@"data"] objectForKey:@"guides"]];
             //设置引导页
-            //            [[[GuidePageView alloc]initViewWithImageUrls:guidesArr] show];
+//            [[[GuidePageView alloc]initViewWithImageUrls:guidesArr] show];
             [self setScrollViewWithImagesArray:guidesArr];
         }
 
@@ -127,25 +129,6 @@
         }];
         NSLog(@"引导页请求失败:%@",error);
     }];
-//    [[TLAsiNetworkHandler sharedInstance] requestURL:@"" networkType:TLAsiNetWorkPOST params:dicc delegate:nil showHUD:YES successBlock:^(NSDictionary *returnData) {
-//        
-//        if (returnData && returnData[@"data"]) {
-//            NSArray *guidesArr = [NSArray yy_modelArrayWithClass:[GuidePageModel class] json:[returnData[@"data"] objectForKey:@"guides"]];
-//            //设置引导页
-//            //            [[[GuidePageView alloc]initViewWithImageUrls:guidesArr] show];
-//            [self setScrollViewWithImagesArray:guidesArr];
-//        }
-//
-//    } failureBlock:^(NSError *error) {
-//        
-//        [AlertHelper InitMyAlertWithMessageAndBlock:@"请检查您的网络" And:self AndCallback:^(id data) {
-//            [self toMainControllerView];
-//        }];
-//        NSLog(@"引导页请求失败:%@",error);
-//    }];
-    
-    
-    
 }
 
 - (void)toMainControllerView{
@@ -156,7 +139,15 @@
 //    [UIApplication sharedApplication].delegate.window.rootViewController = navMain;
     
     AppDelegate *app = LSAPPDELEGATE;
-    [app intoRootForMain];
+    
+    if ([Defaults objectForKey:@"isLogin"])
+    {
+        [app intoRootForMain];
+    }
+    else
+    {
+        [app intoRootForLogin];
+    }
 }
 
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -174,9 +165,7 @@
     
     if ( nu + 1 > _pageControl.numberOfPages) {
         //当最后一个是滑动跳转
-        
         [self toMainControllerView];
-        
     }
     
 }
@@ -193,63 +182,65 @@
     [param setValue:app_Version forKey:@"currentVersion"];
     [param setValue:AccessToken forKey:@"accessToken"];
     
-    NSString* url = PATH(@"%@/home/loadAppVersion");
+    NSString* headUrl = [API_HOST substringToIndex:API_HOST.length - 3];
+    NSString* url = [NSString stringWithFormat:@"%@/home/loadAppVersion",headUrl];
+//    NSString* url = PATH(@"%@/home/loadAppVersion");
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         
         NSLog(@"%@",responseObj);
-//        if (returnData) {
-//            NSInteger status = [returnData[@"status"] integerValue];
-//            if (status == 0) {
-//                NSDictionary *dict = returnData[@"data"];
-//                BOOL hasNewVersion = [dict[@"hasNewVersion"] boolValue];
-//                if (hasNewVersion) {
-//                    //有新版本
-//                    NSString *updateLog = dict[@"updateLog"];//更新的日志
-//                    NSString *newVersion = dict[@"newVersion"];//更新的版本号
-//                    NSLog(@"%@ == %@",newVersion,updateLog);
-//                    BOOL isMandatory = [dict[@"isMandatory"] boolValue];
-//                    NSString *btnName = @"确定";
-//                    if (isMandatory) {
-//                        //强制更新
-//                        btnName = @"更新";
-//                        [AlertHelper InitMyAlertWithTitle:@"更新" AndMessage:@"当前版本过低，请更新后继续使用！" And:self btnName:btnName AndCallback:^(id data) {
-//                            
-//                            if (isMandatory) {
-//                                //强制更新
-//                                NSURL *url = [NSURL URLWithString:uploadNewAppUrl];
-//                                [[UIApplication sharedApplication] openURL:url];
-//                            }else{
-//                                [self LeadIngPageUrlRequest]; //引导页请求
-//                            }
-//                        }];
-//                    }else{
-//                        //非强制更新
-//                        [AlertHelper InitMyAlertWithTitle:@"更新" AndMessage:@"有新版本发布，是否更新？" And:self CanCleBtnName:@"取消" SureBtnName:@"更新" AndCancleBtnCallback:^(id data) {
-//                            
-//                            //取消
-//                            [self LeadIngPageUrlRequest]; //引导页请求
-//
-//                        } AndSureBtnCallback:^(id data) {
-//                            
-//                            //更新
-//                            NSURL *url = [NSURL URLWithString:uploadNewAppUrl];
-//                            [[UIApplication sharedApplication] openURL:url];
-//                        }];
-//                        
-//                    }
-//                    
-//                    
-//                }else{
-//                    //无新版本
-//                    [self LeadIngPageUrlRequest]; //引导页请求
-//                }
-//            }else{
-//                [self LeadIngPageUrlRequest]; //引导页请求
-//            }
-//        }else{
-//            [self LeadIngPageUrlRequest]; //引导页请求
-//        }
+        if (responseObj) {
+            NSInteger status = [responseObj[@"status"] integerValue];
+            if (status == 0) {
+                NSDictionary *dict = responseObj[@"data"];
+                BOOL hasNewVersion = [dict[@"hasNewVersion"] boolValue];
+                if (hasNewVersion) {
+                    //有新版本
+                    NSString *updateLog = dict[@"updateLog"];//更新的日志
+                    NSString *newVersion = dict[@"newVersion"];//更新的版本号
+                    NSLog(@"%@ == %@",newVersion,updateLog);
+                    BOOL isMandatory = [dict[@"isMandatory"] boolValue];
+                    NSString *btnName = @"确定";
+                    if (isMandatory) {
+                        //强制更新
+                        btnName = @"更新";
+                        [AlertHelper InitMyAlertWithTitle:@"更新" AndMessage:@"当前版本过低，请更新后继续使用！" And:self btnName:btnName AndCallback:^(id data) {
+                            
+                            if (isMandatory) {
+                                //强制更新
+                                NSURL *url = [NSURL URLWithString:uploadNewAppUrl];
+                                [[UIApplication sharedApplication] openURL:url];
+                            }else{
+                                [self LeadIngPageUrlRequest]; //引导页请求
+                            }
+                        }];
+                    }else{
+                        //非强制更新
+                        [AlertHelper InitMyAlertWithTitle:@"更新" AndMessage:@"有新版本发布，是否更新？" And:self CanCleBtnName:@"取消" SureBtnName:@"更新" AndCancleBtnCallback:^(id data) {
+                            
+                            //取消
+                            [self LeadIngPageUrlRequest]; //引导页请求
+
+                        } AndSureBtnCallback:^(id data) {
+                            
+                            //更新
+                            NSURL *url = [NSURL URLWithString:uploadNewAppUrl];
+                            [[UIApplication sharedApplication] openURL:url];
+                        }];
+                        
+                    }
+                    
+                    
+                }else{
+                    //无新版本
+                    [self LeadIngPageUrlRequest]; //引导页请求
+                }
+            }else{
+                [self LeadIngPageUrlRequest]; //引导页请求
+            }
+        }else{
+            [self LeadIngPageUrlRequest]; //引导页请求
+        }
         
     } failBlock:^(NSError *error) {
         

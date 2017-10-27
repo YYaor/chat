@@ -153,14 +153,14 @@
     else if (btn.tag == 20003)
     {
         //常用语管理
-//        LSWorkUsefulController *vc = [[LSWorkUsefulController alloc] initWithNibName:@"LSWorkUsefulController" bundle:nil];
-//        vc.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:vc animated:YES];
+        LSWorkUsefulController *vc = [[LSWorkUsefulController alloc] initWithNibName:@"LSWorkUsefulController" bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
         
-        EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
-                                                     initWithConversationChatter:@"1123" conversationType:0];
-        chatController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:chatController animated:YES];
+//        EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
+//                                                     initWithConversationChatter:@"1123" conversationType:0];
+//        chatController.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:chatController animated:YES];
     }
     else if (btn.tag == 20004)
     {

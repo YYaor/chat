@@ -10,6 +10,8 @@
 #import "LSMineNewPswController.h"
 #import "LSMineSettingCell.h"
 
+#import "SDImageCache.h"
+
 @interface LSMineSettingController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView *dataTableView;
@@ -18,6 +20,7 @@
 
 @property (nonatomic,strong)NSString *cacheString;
 
+@property (nonatomic,strong)UIButton *sureButton;
 
 @end
 
@@ -26,7 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self initNavView];
     [self initForView];
     [self getCacheSize];
 }
@@ -41,38 +43,61 @@
     });
 }
 
-//-(void)initNavView{
-//    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
-//    navView.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
-//    [self.view addSubview:navView];
-//    
-//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 44, 44)];
-//    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-//    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-//    [navView addSubview:backButton];
-//    
-//    
-//    UILabel *titleLabel = [[UILabel alloc]init];
-//    titleLabel.font = [UIFont systemFontOfSize:18];
-//    titleLabel.textColor = [UIColor whiteColor];
-//    titleLabel.text = @"设置";
-//    titleLabel.backgroundColor = [UIColor clearColor];
-//    [navView addSubview:titleLabel];
-//    
-//    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(navView);
-//        make.centerY.equalTo(navView).offset(8);
-//    }];
-//}
 
 -(void)initForView{
     
     self.navigationItem.title = @"设置";
     
     [self.view addSubview:self.dataTableView];
+    [self.view addSubview:self.sureButton];
+    
     [self.dataTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
-//        make.top.equalTo(self.view).offset(64);
+    }];
+    
+    [self.sureButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(20);
+        make.right.equalTo(self.view).offset(-20);
+        make.bottom.equalTo(self.view).offset(-20);
+        make.height.mas_equalTo(40);
+    }];
+}
+
+-(void)sureButtonClick{
+    //存在NSUserDefault中的有 isLogin doctorId cookie accessToken phoneNum
+    
+    [Defaults removeObjectForKey:@"isLogin"];
+    [Defaults removeObjectForKey:@"doctorId"];
+    [Defaults removeObjectForKey:@"cookie"];
+    [Defaults removeObjectForKey:@"accessToken"];
+    
+    [Defaults synchronize];
+    
+    
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    
+    NSString* headUrl = [API_HOST substringToIndex:API_HOST.length - 3];
+    NSString* url = [NSString stringWithFormat:@"%@/home/getAccessTokenEx",headUrl];
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj)
+    {
+        if ([responseObj[@"status"] integerValue] == 0)
+        {
+            [Defaults setValue:responseObj[@"data"] forKey:@"accessToken"];
+            NSLog(@"*******token:%@*****",responseObj[@"data"]);
+            [Defaults synchronize];
+            
+            AppDelegate *app = LSAPPDELEGATE;
+            [app intoRootForLogin];
+        }
+        else
+        {
+            [XHToast showCenterWithText:responseObj[@"message"]];
+        }
+    }
+                              failBlock:^(NSError *error)
+    {
+        
     }];
 }
 
@@ -118,19 +143,27 @@
 }
 
 
-//-(void)back{
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
-
 -(UITableView *)dataTableView{
     if (!_dataTableView) {
         _dataTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _dataTableView.delegate = self;
         _dataTableView.dataSource = self;
-        _dataTableView.backgroundColor = [UIColor colorFromHexString:@"dedede"];
     }
     return _dataTableView;
+}
+
+-(UIButton *)sureButton{
+    if (!_sureButton) {
+        _sureButton = [[UIButton alloc]init];
+        [_sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        _sureButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+        [_sureButton setTitle:@"退出" forState:UIControlStateNormal];
+        _sureButton.layer.masksToBounds = YES;
+        _sureButton.layer.cornerRadius = 20;
+        _sureButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _sureButton;
 }
 
 -(AFAutoPurgingImageCache *)imageCache{
@@ -139,5 +172,72 @@
     }
     return _imageCache;
 }
+
+//#pragma mark -- 计算目录下文件（除去.data文件）大小
+//- (NSString *)fileSizeForDir:(NSString*)path
+//{
+//    // 总大小
+//    unsigned long long size = 0;
+//    NSString *sizeText = @"0 B";
+//    // 文件管理者
+//    NSFileManager *mgr = [NSFileManager defaultManager];
+//    
+//    // 文件属性
+//    NSDictionary *attrs = [mgr attributesOfItemAtPath:path error:nil];
+//    // 如果这个文件或者文件夹不存在,或者路径不正确直接返回0;
+//    if (attrs == nil) return [NSString stringWithFormat:@"%lluKB",size];
+//    if ([attrs.fileType isEqualToString:NSFileTypeDirectory]) { // 如果是文件夹
+//        // 获得文件夹的大小  == 获得文件夹中所有文件的总大小
+//        NSDirectoryEnumerator *enumerator = [mgr enumeratorAtPath:path];
+//        for (NSString *subpath in enumerator) {
+//            
+//            NSString *fullSubpath = [path stringByAppendingPathComponent:subpath];
+//            
+//            // 累加文件大小
+//            size += [mgr attributesOfItemAtPath:fullSubpath error:nil].fileSize;
+//            
+////            if ([subpath rangeOfString:@".data"].location == NSNotFound) {
+////                NSLog(@"该名称为其他类型，例如文件夹或者非布局或非问卷文件");
+////
+////            } else {
+////                //要删除的布局和问卷统计大小
+////                // 全路径
+////                NSString *fullSubpath = [path stringByAppendingPathComponent:subpath];
+////
+////                // 累加文件大小
+////                size += [mgr attributesOfItemAtPath:fullSubpath error:nil].fileSize;
+////
+////
+////            }
+//            
+//        }
+//        
+//        NSInteger tmpSize = [[SDImageCache sharedImageCache] getSize];
+//        size += tmpSize;
+//        if (size >= pow(10, 9)) { // size >= 1GB
+//            sizeText = [NSString stringWithFormat:@"%.2fGB", size / pow(10, 9)];
+//        } else if (size >= pow(10, 6)) { // 1GB > size >= 1MB
+//            sizeText = [NSString stringWithFormat:@"%.2fMB", size / pow(10, 6)];
+//        } else if (size >= pow(10, 3)) { // 1MB > size >= 1KB
+//            sizeText = [NSString stringWithFormat:@"%.2fKB", size / pow(10, 3)];
+//        } else { // 1KB > size
+//            sizeText = [NSString stringWithFormat:@"%zdB", size];
+//        }
+//        return sizeText;
+//    } else { // 如果是文件
+//        size = attrs.fileSize;
+//        if (size >= pow(10, 9)) { // size >= 1GB
+//            sizeText = [NSString stringWithFormat:@"%.2fGB", size / pow(10, 9)];
+//        } else if (size >= pow(10, 6)) { // 1GB > size >= 1MB
+//            sizeText = [NSString stringWithFormat:@"%.2fMB", size / pow(10, 6)];
+//        } else if (size >= pow(10, 3)) { // 1MB > size >= 1KB
+//            sizeText = [NSString stringWithFormat:@"%.2fKB", size / pow(10, 3)];
+//        } else { // 1KB > size
+//            sizeText = [NSString stringWithFormat:@"%zdB", size];
+//        }
+//        
+//    }
+//    return sizeText;
+//}
 
 @end

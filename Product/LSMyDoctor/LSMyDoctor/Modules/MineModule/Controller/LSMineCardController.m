@@ -59,7 +59,6 @@
     [self.contentView addSubview:self.qRLabel];
     
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.view).offset(64+20);
         make.top.equalTo(self.view).offset(20);
         make.left.equalTo(self.view).offset(24);
         make.right.equalTo(self.view).offset(-24);
@@ -159,10 +158,6 @@
     
 }
 
--(void)back{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 -(UIView *)contentView{
     if (!_contentView) {
@@ -259,21 +254,5 @@
     }
     return _qRLabel;
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

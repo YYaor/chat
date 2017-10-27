@@ -55,13 +55,11 @@ static NSString *cellId = @"LSWorkAdviceCell";
 
 - (void)requestData
 {
-    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
-    [param setValue:[Defaults objectForKey:@"cookie"] forKey:@"cookie"];
     [param setValue:@1 forKey:@"pagenum"];
     [param setValue:@100 forKey:@"pagesize"];
     [param setValue:@1 forKey:@"type"];
-    [param setValue:AccessToken forKey:@"accessToken"];
 
     NSString *url = PATH(@"%@/beRequestList");
     self.dataArray = [[NSMutableArray alloc]init];
@@ -142,12 +140,11 @@ static NSString *cellId = @"LSWorkAdviceCell";
         action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"拒绝" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath)
                   {
                       NSLog(@"___%s___", __func__);
-                      NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+                      NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
                       
                       [param setValue:dataDic[@"id"] forKey:@"id"];
                       [param setValue:@2 forKey:@"result"];
-                      [param setValue:[Defaults objectForKey:@"cookie"] forKey:@"cookie"];
-                      [param setValue:AccessToken forKey:@"accessToken"];
+                      
                       NSString *url = PATH(@"%@/dealwithRequest");
                       
                       [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {

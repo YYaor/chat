@@ -161,22 +161,12 @@
     
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
-    [param setValue:[Defaults valueForKey:@"cookie"] forKey:@"cookie"];
-    [param setValue:[Defaults valueForKey:@"accessToken"] forKey:@"accessToken"];
-    
     NSString* url = PATH(@"%@/my/info");
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         
         if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
         {
-            
-//            self.myInfoModel = [MDMyInfoModel yy_modelWithDictionary:responseObj];
-//            
-//            MyServiceCountModel* serviceModel = self.myInfoModel.myServiceCount[0];
-//            MyBaseInfoModel* baseModel = self.myInfoModel.myBaseInfo[0];
-//            
-//            [mineTab reloadData];
             weakSelf.mineModel = [LSMineModel yy_modelWithJSON:responseObj];
             
             [weakSelf.headerView updateWithImageURL:weakSelf.mineModel.myImage?weakSelf.mineModel.myImage:@"" name:weakSelf.mineModel.myName career:weakSelf.mineModel.myRemark];
