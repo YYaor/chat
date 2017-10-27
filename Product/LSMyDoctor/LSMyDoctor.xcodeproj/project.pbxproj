@@ -149,6 +149,7 @@
 		DF5A094E1F7D526E00CF5410 /* LSWorkTailDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A094C1F7D526E00CF5410 /* LSWorkTailDetailCell.xib */; };
 		DF5A09851F7D604C00CF5410 /* LSWorkOutcallController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */; };
 		DF5A09861F7D604C00CF5410 /* LSWorkOutcallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */; };
+		DF63DAEE1FA2D83C008F9110 /* LSWorkUnreplyListController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF63DAED1FA2D83C008F9110 /* LSWorkUnreplyListController.m */; };
 		DF73EAF71F9FA2490088DBE8 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF73EAF51F9FA2490088DBE8 /* SplashViewController.m */; };
 		DF73EAF81F9FA2490088DBE8 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF73EAF61F9FA2490088DBE8 /* SplashViewController.xib */; };
 		DF73EAFB1F9FA2D70088DBE8 /* YGPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DF73EAFA1F9FA2D70088DBE8 /* YGPageControl.m */; };
@@ -673,6 +674,8 @@
 		DF5A09821F7D604C00CF5410 /* LSWorkOutcallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkOutcallController.h; sourceTree = "<group>"; };
 		DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkOutcallController.m; sourceTree = "<group>"; };
 		DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkOutcallController.xib; sourceTree = "<group>"; };
+		DF63DAEC1FA2D83C008F9110 /* LSWorkUnreplyListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkUnreplyListController.h; sourceTree = "<group>"; };
+		DF63DAED1FA2D83C008F9110 /* LSWorkUnreplyListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkUnreplyListController.m; sourceTree = "<group>"; };
 		DF73EAF41F9FA2490088DBE8 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		DF73EAF51F9FA2490088DBE8 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		DF73EAF61F9FA2490088DBE8 /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
@@ -2826,6 +2829,8 @@
 				DFFD8EC61F7C235800FF0ECD /* LSWorkUnreplyController.h */,
 				DFFD8EC71F7C235800FF0ECD /* LSWorkUnreplyController.m */,
 				DFFD8EC81F7C235800FF0ECD /* LSWorkUnreplyController.xib */,
+				DF63DAEC1FA2D83C008F9110 /* LSWorkUnreplyListController.h */,
+				DF63DAED1FA2D83C008F9110 /* LSWorkUnreplyListController.m */,
 				DFFD8ED31F7C23C300FF0ECD /* LSWorkAppointController.h */,
 				DFFD8ED41F7C23C300FF0ECD /* LSWorkAppointController.m */,
 				DFFD8ED51F7C23C300FF0ECD /* LSWorkAppointController.xib */,
@@ -3062,6 +3067,7 @@
 				0F6E10941F7B7A8500C2477B /* LSMineSettingCell.m in Sources */,
 				4A0CE6D21F960BBC00F7C187 /* MDConsultDiscussCell.m in Sources */,
 				0FF0B8061F987A96003B4C7E /* README.md in Sources */,
+				DF63DAEE1FA2D83C008F9110 /* LSWorkUnreplyListController.m in Sources */,
 				DF73EB091FA0DD9C0088DBE8 /* LSPatientModel.m in Sources */,
 				DF87A6BC1F7827E200EF0461 /* View+MASAdditions.m in Sources */,
 				DF87A6B11F7827E200EF0461 /* AFURLSessionManager.m in Sources */,

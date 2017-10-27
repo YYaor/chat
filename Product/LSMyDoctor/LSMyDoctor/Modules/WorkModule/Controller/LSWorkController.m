@@ -10,6 +10,7 @@
 
 //top
 #import "LSWorkUnreplyController.h"
+#import "LSWorkUnreplyListController.h"
 #import "LSWorkAppointController.h"
 #import "LSWorkTailController.h"
 #import "LSWorkAdviceController.h"
@@ -102,9 +103,14 @@
     if (btn.tag == 10000)
     {
         //待回复
-        LSWorkUnreplyController *vc = [[LSWorkUnreplyController alloc] initWithNibName:@"LSWorkUnreplyController" bundle:nil];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+//        LSWorkUnreplyController *vc = [[LSWorkUnreplyController alloc] initWithNibName:@"LSWorkUnreplyController" bundle:nil];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+        
+        LSWorkUnreplyListController *chatListVC = [[LSWorkUnreplyListController alloc] init];
+        chatListVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:chatListVC animated:YES];
+
     }
     else if (btn.tag == 10001)
     {
