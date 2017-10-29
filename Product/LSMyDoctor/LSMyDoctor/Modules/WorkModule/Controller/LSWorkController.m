@@ -8,6 +8,8 @@
 
 #import "LSWorkController.h"
 
+#import "YGScanVC.h"
+
 //top
 #import "LSWorkUnreplyController.h"
 #import "LSWorkUnreplyListController.h"
@@ -93,8 +95,13 @@
     self.scrollView.contentSize = CGSizeMake(LSSCREENWIDTH, CGRectGetMaxY(self.bottomView.frame)+20);
 }
 
+#pragma mark -- 扫一扫按钮点击
 - (void)scanItemClick
 {
+    NSLog(@"扫一扫按钮点击。。。");
+    YGScanVC* scanVC = [[YGScanVC alloc] init];
+    scanVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:scanVC animated:YES];
     
 }
 

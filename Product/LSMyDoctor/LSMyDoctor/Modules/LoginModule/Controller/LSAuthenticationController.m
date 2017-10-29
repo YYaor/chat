@@ -859,7 +859,6 @@
 -(UITextField *)nameTextField{
     if (!_nameTextField) {
         _nameTextField = [[UITextField alloc]init];
-        _nameTextField.keyboardType = UIKeyboardTypeNumberPad;
         _nameTextField.placeholder = @"请输入昵称";
         _nameTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         _nameTextField.font = [UIFont systemFontOfSize:14];

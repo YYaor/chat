@@ -26,16 +26,6 @@ static NSString *cellId = @"LSWorkAdviceCell";
 
 @implementation LSWorkAdviceController
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -117,6 +107,8 @@ static NSString *cellId = @"LSWorkAdviceCell";
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    LSWEAKSELF;
+    
     NSDictionary *dataDic =self.dataArray[indexPath.row];
     UITableViewRowAction *action = nil;
     if ([dataDic[@"result"] isEqualToString:@"已通过"]) {
@@ -129,8 +121,9 @@ static NSString *cellId = @"LSWorkAdviceCell";
                       
                       [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
                           if ([responseObj[@"data"][@"status"] integerValue] == 0) {
-                              [self.dataArray removeObjectAtIndex:indexPath.row];
-                              [self.tableView reloadData];
+//                              [self.dataArray removeObjectAtIndex:indexPath.row];
+//                              [self.tableView reloadData];
+                              [weakSelf requestData];
                           }
                       } failBlock:^(NSError *error) {
                           //[XHToast showCenterWithText:@"fail"];
@@ -149,8 +142,9 @@ static NSString *cellId = @"LSWorkAdviceCell";
                       
                       [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
                           if ([responseObj[@"data"][@"status"] integerValue] == 0) {
-                              [self.dataArray removeObjectAtIndex:indexPath.row];
-                              [self.tableView reloadData];
+//                              [self.dataArray removeObjectAtIndex:indexPath.row];
+//                              [self.tableView reloadData];
+                              [weakSelf requestData];
                           }
                           
                       } failBlock:^(NSError *error) {

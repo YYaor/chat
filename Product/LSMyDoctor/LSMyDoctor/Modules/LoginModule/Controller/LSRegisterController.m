@@ -172,6 +172,11 @@
 
 #pragma mark - clickEvents
 
+- (void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)phoneTextChangged:(UITextField *)sender{
     if (sender.text.length>0) {
         self.phoneClearButton.hidden = NO;
@@ -270,21 +275,31 @@
     if (self.phoneTextField.text.length <= 0)
     {
         [XHToast showCenterWithText:@"请输入手机号"];
+        return;
     }
     
     if (self.codeTextField.text.length <= 0)
     {
         [XHToast showCenterWithText:@"输入验证码"];
+        return;
     }
     
     if (self.pswTextField.text.length <= 0)
     {
         [XHToast showCenterWithText:@"请设置登录密码"];
+        return;
     }
     
     if (![self.pswTextField.text isEqualToString:self.confPswTextField.text])
     {
         [XHToast showCenterWithText:@"密码不相同"];
+        return;
+    }
+    
+    if (!self.agreementButton.isSelected)
+    {
+        [XHToast showCenterWithText:@"请先同意佑格医生用户协议"];
+        return;
     }
     
     LSAuthenticationController *authenticationController = [[LSAuthenticationController alloc]init];
@@ -294,8 +309,9 @@
     [self.navigationController pushViewController:authenticationController animated:YES];
 }
 
--(void)agreementButtonClick{
-    
+- (void)agreementButtonClick
+{
+    self.agreementButton.selected = !self.agreementButton.selected;
 }
 
 #pragma mark - setter && getter
@@ -391,6 +407,8 @@
         _agreementButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [_agreementButton addTarget:self action:@selector(agreementButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [_agreementButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_agreementButton setImage:[UIImage imageNamed:@"unSelectBox_Public"] forState:UIControlStateNormal];
+        [_agreementButton setImage:[UIImage imageNamed:@"selectedBox_Public"] forState:UIControlStateSelected];
         NSString *string = @"点击注册即同意《佑格医生用户协议》";
         NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
         [attString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromHexString:LSGREENCOLOR] range:NSMakeRange(string.length-10, 10)];

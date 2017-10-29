@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/tailong/!svn/ver/1103/TLPlugin/iOS/TLBPluginExample/TLBPluginExample/ZBarSDK/Headers
+END
+ZBarHelpController.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/tailong/!svn/ver/1103/TLPlugin/iOS/TLBPluginExample/TLBPluginExample/ZBarSDK/Headers/ZBarHelpController.h
+END
+ZBarImageScanner.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/tailong/!svn/ver/1103/TLPlugin/iOS/TLBPluginExample/TLBPluginExample/ZBarSDK/Headers/ZBarImageScanner.h
+END
+ZBarReaderView.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/tailong/!svn/ver/1103/TLPlugin/iOS/TLBPluginExample/TLBPluginExample/ZBarSDK/Headers/ZBarReaderView.h
+END
+zbar.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/tailong/!svn/ver/1103/TLPlugin/iOS/TLBPluginExample/TLBPluginExample/ZBarSDK/Headers/zbar.h
+END
+ZBarReaderViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/tailong/!svn/ver/1103/TLPlugin/iOS/TLBPluginExample/TLBPluginExample/ZBarSDK/Headers/ZBarReaderViewController.h
+END
+ZBarSDK.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/tailong/!svn/ver/1103/TLPlugin/iOS/TLBPluginExample/TLBPluginExample/ZBarSDK/Headers/ZBarSDK.h
+END
+ZBarImage.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/tailong/!svn/ver/1103/TLPlugin/iOS/TLBPluginExample/TLBPluginExample/ZBarSDK/Headers/ZBarImage.h
+END
+ZBarSymbol.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/tailong/!svn/ver/1103/TLPlugin/iOS/TLBPluginExample/TLBPluginExample/ZBarSDK/Headers/ZBarSymbol.h
+END
+ZBarCaptureReader.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/tailong/!svn/ver/1103/TLPlugin/iOS/TLBPluginExample/TLBPluginExample/ZBarSDK/Headers/ZBarCaptureReader.h
+END
+ZBarReaderController.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/tailong/!svn/ver/1103/TLPlugin/iOS/TLBPluginExample/TLBPluginExample/ZBarSDK/Headers/ZBarReaderController.h
+END
+ZBarCameraSimulator.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/tailong/!svn/ver/1103/TLPlugin/iOS/TLBPluginExample/TLBPluginExample/ZBarSDK/Headers/ZBarCameraSimulator.h
+END
