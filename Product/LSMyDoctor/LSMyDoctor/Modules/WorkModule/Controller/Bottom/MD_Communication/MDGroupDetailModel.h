@@ -8,25 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MDGroupDetailModel : NSObject<YYModel>
+@interface MDGroupDetailModel : NSObject<YYModel,NSCoding,NSCopying>
 
-@property (nonatomic ,strong) NSString* groupId;
-@property (nonatomic ,strong) NSString* name;
-@property (nonatomic ,strong) NSString* doctor_id;
-@property (nonatomic ,strong) NSString* im_roomid;
-@property (nonatomic ,strong) NSArray* users;
+@property (nonatomic ,copy) NSString* groupId;
+@property (nonatomic ,copy) NSString* name;
+@property (nonatomic ,copy) NSString* doctor_id;
+@property (nonatomic ,copy) NSString* im_roomid;
+@property (nonatomic ,copy) NSArray* users;
 
 @end
 
-@interface MDGroupUserModel : NSObject<YYModel>
+@interface MDGroupUserModel : NSObject<YYModel,NSCoding,NSCopying>
 
-@property (nonatomic ,strong) NSString* im_username;
-@property (nonatomic ,strong) NSString* doctor_id;
-@property (nonatomic ,strong) NSString* doctor_name;
-@property (nonatomic ,strong) NSString* doctor_title;
-@property (nonatomic ,strong) NSString* doctor_phone;
-@property (nonatomic ,strong) NSString* department_name;
-@property (nonatomic ,strong) NSString* hospital_name;
+@property (nonatomic ,copy) NSString* im_username;
+@property (nonatomic ,copy) NSString* doctor_id;
+@property (nonatomic ,copy) NSString* doctor_name;
+@property (nonatomic ,copy) NSString* doctor_title;
+@property (nonatomic ,copy) NSString* doctor_phone;
+@property (nonatomic ,copy) NSString* department_name;
+@property (nonatomic ,copy) NSString* hospital_name;
 
 @end
 

@@ -10,11 +10,6 @@
 
 @implementation MDGroupDetailModel
 
-//第二级content
-+ (NSDictionary *)modelCustomPropertyMapper{
-    
-    return @{@"groupId" : @"id"};
-}
 
 //对象拷贝
 -(id)copyWithZone:(NSZone*)zone {
@@ -34,7 +29,17 @@
     
     return groupDetailModel;
 }
-
+//第二级content
++ (NSDictionary *)modelCustomPropertyMapper{
+    
+    return @{@"groupId" : @"id" };
+}
++ (NSDictionary *)modelContainerPropertyGenericClass{
+    
+    //将applications属性的数组元素，变成对象数组
+    return @{@"users":[MDGroupUserModel class]};
+    
+}
 //归档
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     

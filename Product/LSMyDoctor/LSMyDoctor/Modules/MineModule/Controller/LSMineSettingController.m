@@ -87,8 +87,16 @@
             NSLog(@"*******token:%@*****",responseObj[@"data"]);
             [Defaults synchronize];
             
-            AppDelegate *app = LSAPPDELEGATE;
-            [app intoRootForLogin];
+            [[EMClient sharedClient] logout:YES completion:^(EMError *aError) {
+                if (!aError) {
+                    NSLog(@"退出登录成功");
+                    
+                    AppDelegate *app = LSAPPDELEGATE;
+                    [app intoRootForLogin];
+                }
+            }];
+            
+            
         }
         else
         {

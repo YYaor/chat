@@ -67,6 +67,8 @@
         _dataTableView.delegate = self;
         _dataTableView.dataSource = self;
         _dataTableView.backgroundColor = [UIColor whiteColor];
+        _dataTableView.sectionIndexBackgroundColor = [UIColor clearColor];
+        _dataTableView.sectionIndexColor = BaseColor;
     }
     return _dataTableView;
 }
@@ -139,19 +141,25 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSArray *dataArray = self.letterResultArr[indexPath.section];
+    NSArray *listArray = self.letterResultArr[indexPath.section];
     
-    MDDoctorListModel* listModel = dataArray[indexPath.row];
-    for (MDDoctorListModel *model in dataArray) {
-        if (model != listModel) {
-            
-            model.isChoise = NO;
-        }
+    MDDoctorListModel* listModel = listArray[indexPath.row];
+    
+    NSMutableArray* doctorIdArr = [NSMutableArray array];
+    [doctorIdArr removeAllObjects];
+    for (MDGroupUserModel* userModel in self.groupDetailModel.users) {
+        [doctorIdArr addObject:userModel.doctor_id];
     }
-    listModel.isChoise = YES;
+    
+    BOOL isHere = [doctorIdArr containsObject:listModel.doctor_id];
+    if (!isHere) {
+        listModel.isChoise = !listModel.isChoise;
+    }
+    
     [self.dataTableView reloadData];
 }
 
+#pragma mark -- 右上确定按钮点击
 -(void)sureClick{
     
     for (MDDoctorListModel *model in self.dataArray) {
@@ -159,11 +167,41 @@
             [self.chooseArray addObject:model];
         }
     }
-    if (self.chooseBlock) {
-        self.chooseBlock(self.chooseArray);
-    }
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.submitData) {
+        //需要提交数据 -- 修改群成员
+        NSMutableArray* submitArr = [NSMutableArray array];
+        [submitArr removeAllObjects];
+        NSMutableArray* haveIdArr = [NSMutableArray array];
+        [haveIdArr removeAllObjects];
+        
+        for (MDGroupUserModel* userModel in self.groupDetailModel.users) {
+            [haveIdArr addObject:userModel.doctor_id];
+        }
+        
+        for (MDDoctorListModel *model in self.chooseArray) {
+            if (![haveIdArr containsObject:model.doctor_id]) {
+                [submitArr addObject:model.doctor_id];
+            }
+        }
+        
+        
+        
+        NSString* addStr = [submitArr componentsJoinedByString:@","];
+        
+        [self changeMemberDataWithUserId:addStr];
+        
+        
+        
+    }else{
+        //需要返回数据，创建讨论组时
+        if (self.chooseBlock) {
+            
+            self.chooseBlock(self.chooseArray);
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     
 }
 
@@ -182,6 +220,17 @@
                 NSArray* list = [NSArray yy_modelArrayWithClass:[MDDoctorListModel class] json:responseObj[@"data"]];
                 [self.dataArray removeAllObjects];
                 [self.dataArray addObjectsFromArray:list];
+                
+                if (self.submitData && self.groupDetailModel.users.count > 0) {
+                    //修改群组成员，将已有的群组成员标记已选中
+                    for (MDGroupUserModel* userModel in self.groupDetailModel.users) {
+                        for (MDDoctorListModel* listModel in self.dataArray) {
+                            if ([userModel.doctor_id isEqualToString:listModel.doctor_id]) {
+                                listModel.isChoise = YES;
+                            }
+                        }
+                    }
+                }
                 
                 self.indexArray = [BMChineseSort IndexWithArray:self.dataArray Key:@"doctor_name"];
                 self.letterResultArr = [BMChineseSort sortObjectArray:self.dataArray Key:@"doctor_name"];
@@ -203,6 +252,41 @@
         //[XHToast showCenterWithText:@"fail"];
     }];
 }
+
+#pragma mark -- 提交修改成员的数据
+- (void)changeMemberDataWithUserId:(NSString*)userIdStr;
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:userIdStr forKey:@"doctorids"];
+    [param setValue:self.groupIdStr forKey:@"roomid"];
+    
+    NSString* url = PATH(@"%@/addRoomUser");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                [self.navigationController popViewControllerAnimated:YES];
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+
+}
+
+
 
 
 
