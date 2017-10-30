@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MDDiscussListModel.h"
 
 @interface MDConsultDiscussCell : UITableViewCell
 
-@property (nonatomic ,strong)MDDiscussListModel* listModel;
+@property (nonatomic ,strong)NSString* imgUrlStr;//组头像
+@property (nonatomic ,strong)NSString* groupNameStr;//组名称
+@property (nonatomic ,strong)NSString* valueStr;//最新聊天内容
+@property (nonatomic ,strong)NSString* timeStr;//最新的聊天时间
+
 
 @end

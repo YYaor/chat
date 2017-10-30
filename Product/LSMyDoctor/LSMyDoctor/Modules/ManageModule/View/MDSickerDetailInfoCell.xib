@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="135" id="KGk-i7-Jjw" customClass="MDSickerDetailInfoCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="134.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="klC-qt-a4m">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headImg_public" translatesAutoresizingMaskIntoConstraints="NO" id="YH7-Sb-PEq">
+                                <rect key="frame" x="15" y="10" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YH7-Sb-PEq" secondAttribute="height" multiplier="1:1" id="b7d-4d-Zzt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVe-uw-2QR">
+                                <rect key="frame" x="85" y="15" width="39" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="男    88岁" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZD-nA-ASs">
+                                <rect key="frame" x="85" y="45.5" width="69.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="5Xa-pq-h8P"/>
+                            <constraint firstItem="VVe-uw-2QR" firstAttribute="leading" secondItem="YH7-Sb-PEq" secondAttribute="trailing" constant="10" id="GxP-vS-ab0"/>
+                            <constraint firstItem="RZD-nA-ASs" firstAttribute="bottom" secondItem="YH7-Sb-PEq" secondAttribute="bottom" constant="-5" id="H50-AD-NKW"/>
+                            <constraint firstItem="YH7-Sb-PEq" firstAttribute="height" secondItem="klC-qt-a4m" secondAttribute="height" multiplier="3:4" id="IHG-jq-9Px"/>
+                            <constraint firstItem="RZD-nA-ASs" firstAttribute="leading" secondItem="YH7-Sb-PEq" secondAttribute="trailing" constant="10" id="MK9-Iv-MHY"/>
+                            <constraint firstItem="YH7-Sb-PEq" firstAttribute="leading" secondItem="klC-qt-a4m" secondAttribute="leading" constant="15" id="Rt4-hK-pFp"/>
+                            <constraint firstItem="YH7-Sb-PEq" firstAttribute="centerY" secondItem="klC-qt-a4m" secondAttribute="centerY" id="hhb-gT-edy"/>
+                            <constraint firstItem="VVe-uw-2QR" firstAttribute="top" secondItem="YH7-Sb-PEq" secondAttribute="top" constant="5" id="sS4-NX-NFJ"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KMe-aH-zRa">
+                        <rect key="frame" x="0.0" y="80" width="320" height="54.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="54.5" id="Qea-V6-23o"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="klC-qt-a4m" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="3Z1-aP-DbD"/>
+                    <constraint firstItem="klC-qt-a4m" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="4bG-3B-zqp"/>
+                    <constraint firstItem="KMe-aH-zRa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="hTt-fs-s99"/>
+                    <constraint firstItem="KMe-aH-zRa" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="mO8-3R-ayq"/>
+                    <constraint firstItem="klC-qt-a4m" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="rx3-UX-uLZ"/>
+                    <constraint firstItem="KMe-aH-zRa" firstAttribute="top" secondItem="klC-qt-a4m" secondAttribute="bottom" id="uao-Ft-JKF"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="KMe-aH-zRa" secondAttribute="bottom" constant="-8" id="yzB-IG-hLf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="labelsView" destination="KMe-aH-zRa" id="PhN-s2-6QL"/>
+                <outlet property="sexAndAgeLab" destination="RZD-nA-ASs" id="dk3-vP-wfs"/>
+                <outlet property="userImgView" destination="YH7-Sb-PEq" id="tsb-lO-yoj"/>
+                <outlet property="userNameLab" destination="VVe-uw-2QR" id="B0C-qL-5rF"/>
+                <outlet property="viewHeight" destination="Qea-V6-23o" id="XoM-IY-PhR"/>
+            </connections>
+            <point key="canvasLocation" x="-168" y="-126.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="headImg_public" width="106" height="106"/>
+    </resources>
+</document>

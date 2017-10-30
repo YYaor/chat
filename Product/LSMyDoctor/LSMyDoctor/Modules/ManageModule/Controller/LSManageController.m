@@ -7,12 +7,13 @@
 //
 
 #import "LSManageController.h"
-
-#import "LSManageDetailController.h"
-
+#import "MDSickerDetailVC.h"
 #import "YYSearchBar.h"
+#import "MDManageGroupCell.h"
 #import "LSManageCell.h"
 #import "LSManageModel.h"
+#import "MDSickerGroupVC.h"
+#import "MDAddGroupVC.h"
 
 static NSString *cellId = @"LSManageCell";
 
@@ -68,13 +69,13 @@ static NSString *cellId = @"LSManageCell";
     self.navigationItem.title = @"患者管理";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    sureBtn.frame = CGRectMake(LSSCREENWIDTH - 100, 7, 80, 30);
-    [sureBtn addTarget:self action:@selector(sureBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [sureBtn setTitle:@"创建群" forState:UIControlStateNormal];
-    [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    UIButton *addGroupBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    addGroupBtn.frame = CGRectMake(LSSCREENWIDTH - 100, 7, 80, 30);
+    [addGroupBtn addTarget:self action:@selector(addGroupBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [addGroupBtn setTitle:@"创建群" forState:UIControlStateNormal];
+    [addGroupBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:sureBtn];
+    UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:addGroupBtn];
     self.navigationItem.rightBarButtonItem = rightBtnItem;
     
     [self setUpUi];
@@ -85,23 +86,13 @@ static NSString *cellId = @"LSManageCell";
     //加载医生的患者列表
     [self getSickerListDataWithUserName:nil];
 }
-#pragma mark -- 确定按钮点击
-- (void)sureBtnClick
+#pragma mark -- 创建群按钮点击
+- (void)addGroupBtnClick
 {
-    NSLog(@"确定按钮点击");
-//    NSMutableArray* chooseArr = [NSMutableArray array];
-//    [chooseArr removeAllObjects];
-//    for (MDChooseSickerModel *model in self.groupDataArr) {
-//        if (model.is_Selected) {
-//            [chooseArr addObject:model];
-//        }
-//    }
-//    if (self.chooseBlock) {
-//        self.chooseBlock(chooseArr);
-//    }
-//    
-//    
-//    [self.navigationController popViewControllerAnimated:YES];
+    NSLog(@"创建群按钮点击");
+    MDAddGroupVC* addGroupVC = [[MDAddGroupVC alloc] init];
+    addGroupVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:addGroupVC animated:YES];
 }
 #pragma mark -- 创建界面
 - (void)setUpUi
@@ -118,7 +109,7 @@ static NSString *cellId = @"LSManageCell";
     [self.view addSubview:_searchBar];
     
     //列表
-    self.sickerTab = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, LSSCREENWIDTH, LSSCREENHEIGHT - 60 - 65) style:UITableViewStyleGrouped];
+    self.sickerTab = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, LSSCREENWIDTH, LSSCREENHEIGHT - 60 - 65 - 45) style:UITableViewStyleGrouped];
     self.sickerTab.delegate = self;
     self.sickerTab.dataSource = self;
     self.sickerTab.sectionIndexBackgroundColor = [UIColor clearColor];
@@ -127,6 +118,9 @@ static NSString *cellId = @"LSManageCell";
     
     //注册Cell
     [self.sickerTab registerNib:[UINib nibWithNibName:cellId bundle:nil] forCellReuseIdentifier:cellId];
+    [self.sickerTab registerNib:[UINib nibWithNibName:@"MDManageGroupCell" bundle:nil] forCellReuseIdentifier:@"mDManageGroupCell"];
+    
+    
 }
 
 #pragma mark -- UISearchBarDelegate
@@ -150,11 +144,14 @@ static NSString *cellId = @"LSManageCell";
 #pragma mark -- UITableViewDelegate/UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.indexArray.count;
+    return self.indexArray.count + 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.letterResultArr objectAtIndex:section] count];
+    if (section == 0) {
+        return 1;
+    }
+    return [[self.letterResultArr objectAtIndex:section -1] count];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -162,16 +159,27 @@ static NSString *cellId = @"LSManageCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 30.0f;
+    if (section == 0) {
+        return 0.00001f;
+    }else{
+        return 30.0f;
+    }
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100.0f;
+    if (indexPath.section == 0) {
+        return 50;
+    }
+    return 80.0f;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [self.indexArray objectAtIndex:section];
+    if (section == 0) {
+        return nil;
+    }
+    return [self.indexArray objectAtIndex:section - 1];
 }
 //section右侧index数组
 -(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
@@ -179,24 +187,43 @@ static NSString *cellId = @"LSManageCell";
 }
 //点击右侧索引表项时调用 索引与section的对应关系
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
-    return index;
+    return index + 1;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LSManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LSManageCell"];
-    [cell setDataWithEntity:self.letterResultArr[indexPath.section][indexPath.row]];
-    return cell;
+    if (indexPath.section == 0) {
+        MDManageGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDManageGroupCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.groupNumLab.text = @"22";
+        return cell;
+        
+     }else{
+        LSManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LSManageCell"];
+         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell setDataWithEntity:self.letterResultArr[indexPath.section -1][indexPath.row]];
+        return cell;
+    }
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    LSManageDetailController *vc = [[LSManageDetailController alloc] initWithNibName:@"LSManageDetailController" bundle:nil];
-    vc.model = self.letterResultArr[indexPath.section][indexPath.row];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.section == 0) {
+        //点击群组
+        NSLog(@"点击群组");
+        MDSickerGroupVC* sickerGroupVC = [[MDSickerGroupVC alloc] init];
+        sickerGroupVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:sickerGroupVC animated:YES];
+    }else{
+        MDSickerDetailVC* sickerDetailVC = [[MDSickerDetailVC alloc] init];
+        LSManageModel* model = self.letterResultArr[indexPath.section - 1][indexPath.row];
+        sickerDetailVC.sickerIdStr = model.user_id;
+        sickerDetailVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:sickerDetailVC animated:YES];
+    }
+    
 }
 
 #pragma mark -- 获取分组列表

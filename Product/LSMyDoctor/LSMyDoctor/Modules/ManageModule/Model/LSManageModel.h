@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LSManageModel : NSObject
+@interface LSManageModel : NSObject<YYModel>
 
-@property (nonatomic, copy) NSString *age;//患者年龄
+@property (nonatomic, copy) NSString *birthday;//患者出生日期
 @property (nonatomic, copy) NSString *img_url;//患者头像
 @property (nonatomic, copy) NSString *is_focus;//是否关注 0否 1是
 @property (nonatomic, copy) NSString *sex;//患者性别

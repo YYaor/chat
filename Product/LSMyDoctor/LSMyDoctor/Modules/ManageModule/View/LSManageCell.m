@@ -24,7 +24,16 @@
 {
     [self.img_url sd_setImageWithURL:[NSURL URLWithString:entity.img_url] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
     self.username.text = entity.username;
-    self.userinfo.text = [NSString stringWithFormat:@"%@  %@", entity.sex, entity.age];
+    NSString* sexStr = @"男";
+    if ([entity.sex isEqualToString:@"1"]) {
+        sexStr = @"男";
+    }else if ([entity.sex isEqualToString:@"2"]){
+        sexStr = @"女";
+    }else{
+        sexStr = entity.sex;
+    }
+    
+    self.userinfo.text = [NSString stringWithFormat:@"%@  %@",sexStr, [NSString getAgeFromBirthday:entity.birthday]];
     
     if ([entity.is_focus isEqualToString:@"0"])
     {

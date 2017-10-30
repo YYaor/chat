@@ -1,26 +1,24 @@
 //
-//  MDConsulteDisccussVC.m
-//  MyDoctor
+//  MDSickerGroupVC.m
+//  LSMyDoctor
 //
-//  Created by WangQuanjiang on 17/9/20.
-//  Copyright © 2017年 惠生. All rights reserved.
+//  Created by WangQuanjiang on 17/10/30.
+//  Copyright © 2017年 赵炯丞. All rights reserved.
 //
 
-#import "MDConsulteDisccussVC.h"
+#import "MDSickerGroupVC.h"
 #import "MDConsultDiscussCell.h"
-#import "MDDiscussListModel.h"
-#import "MDGroupCommunicateVC.h"
+#import "MDSickerGroupModel.h"
 
-@interface MDConsulteDisccussVC ()<UITableViewDataSource,UITableViewDelegate>
+@interface MDSickerGroupVC ()<UITableViewDelegate , UITableViewDataSource>
 {
-    UITableView* listTab;//列表
+    UITableView* groupTab;
 }
 @property (nonatomic , strong) NSMutableArray* groupArr;
-
 @end
 
-@implementation MDConsulteDisccussVC
-
+@implementation MDSickerGroupVC
+#pragma mark -- 懒加载
 -(NSMutableArray *)groupArr{
     if (!_groupArr) {
         _groupArr = [[NSMutableArray alloc] init];
@@ -31,32 +29,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"会诊讨论";
+    self.title = @"群组";
     
     [self setUpUi];
     
+    // Do any additional setup after loading the view.
 }
-
 - (void)viewWillAppear:(BOOL)animated
 {
-    //获取会诊讨论组列表
-    [self getDiscussListData];
+    //获取列表数据
+    [self getSickerGroupListData];
 }
-
 #pragma mark -- 创建界面
 - (void)setUpUi
 {
     //创建界面
-    listTab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, LSSCREENWIDTH, LSSCREENHEIGHT) style:UITableViewStyleGrouped];
-    listTab.delegate = self;
-    listTab.dataSource = self;
-    [self.view addSubview:listTab];
+    groupTab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, LSSCREENWIDTH, LSSCREENHEIGHT) style:UITableViewStyleGrouped];
+    groupTab.delegate = self;
+    groupTab.dataSource = self;
+    [self.view addSubview:groupTab];
     
     //注册Cell
-    [listTab registerNib:[UINib nibWithNibName:@"MDConsultDiscussCell" bundle:nil] forCellReuseIdentifier:@"mDConsultDiscussCell"];
+    [groupTab registerNib:[UINib nibWithNibName:@"MDConsultDiscussCell" bundle:nil] forCellReuseIdentifier:@"mDConsultDiscussCell"];
+    
     
 }
-
 
 #pragma mark -- UITableViewDelegate/UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -85,48 +82,41 @@
 {
     MDConsultDiscussCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDConsultDiscussCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    MDDiscussListModel* listModel = self.groupArr[indexPath.section];
+    MDSickerGroupModel* listModel = self.groupArr[indexPath.section];
     
     cell.imgUrlStr = listModel.img_url;
-    cell.groupNameStr = [NSString stringWithFormat:@"%@患者的讨论组",listModel.name];
+    cell.groupNameStr = listModel.name;
+    
     
     return cell;
 }
-
-//群组点击方法
+#pragma mark -- 群组按钮点击
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    MDSickerGroupModel* listModel = self.groupArr[indexPath.section];
     
-    NSLog(@"点击跳转对应群组对话");
-    MDDiscussListModel* listModel = self.groupArr[indexPath.section];
     
-    MDGroupCommunicateVC* groupCommunicateVC = [[MDGroupCommunicateVC alloc] initWithConversationChatter:listModel.groupId conversationType:EMConversationTypeGroupChat];
-    
-    groupCommunicateVC.title = listModel.name;
-    groupCommunicateVC.groupIdStr = listModel.groupId;
-    [self.navigationController pushViewController:groupCommunicateVC animated:YES];
-    
+    NSLog(@"点击进入会话");
 }
-
-
 #pragma mark -- 获取会诊讨论组列表
-- (void)getDiscussListData
+- (void)getSickerGroupListData
 {
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
-    NSString* url = PATH(@"%@/queryRoomList");
+    NSString* url = PATH(@"%@/queryGroupList");
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         if ([responseObj isKindOfClass:[NSDictionary class]]) {
             
             if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
             {
-                NSArray* list = [NSArray yy_modelArrayWithClass:[MDDiscussListModel class] json:responseObj[@"data"]];
+                NSArray* list = [NSArray yy_modelArrayWithClass:[MDSickerGroupModel class] json:responseObj[@"data"]];
                 [self.groupArr removeAllObjects];
                 [self.groupArr addObjectsFromArray:list];
                 
-                [listTab reloadData];
+                [groupTab reloadData];
                 
             }else
             {
