@@ -36,6 +36,9 @@
 #define LSSKYCOLOR @"F0FBFF"//天空蓝
 
 
+#define CHATUSERTABLE @"CHATUSERTABLE"
+#define CHATUSERKEYS @{@"uid" : @"text", @"nickName" : @"text", @"headerUrl" : @"text",@"groupHeaderName" : @"text",@"groupHeaderUrl" : @"text"}
+
 #define BaseColor [UIColor colorFromHexString:LSGREENCOLOR]
 #define Style_Color_Content_Black [UIColor colorFromHexString:@"212121"] //字体黑色
 

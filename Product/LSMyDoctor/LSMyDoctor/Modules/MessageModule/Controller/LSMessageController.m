@@ -10,6 +10,7 @@
 
 #import "LSMessageCell.h"
 
+#import "FMDBTool.h"
 static NSString *cellId = @"LSMessageCell";
 
 @interface LSMessageController () <UITableViewDelegate, UITableViewDataSource>
@@ -48,8 +49,48 @@ static NSString *cellId = @"LSMessageCell";
 
 - (void)requestData
 {
+    
+    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    NSArray* sorted = [conversations sortedArrayUsingComparator:
+                       ^(EMConversation *obj1, EMConversation* obj2){
+                           EMMessage *message1 = [obj1 latestMessage];
+                           EMMessage *message2 = [obj2 latestMessage];
+                           if(message1.timestamp > message2.timestamp) {
+                               return(NSComparisonResult)NSOrderedAscending;
+                           }else {
+                               return(NSComparisonResult)NSOrderedDescending;
+                           }
+                       }];
+    
+    
+    
     [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:[[EMClient sharedClient].chatManager getAllConversations]];
+    for (EMConversation *converstion in sorted) {
+        EaseConversationModel *model = nil;
+        if (self.dataSource && [self.dataSource respondsToSelector:@selector(conversationListViewController:modelForConversation:)]) {
+            model = [self.dataSource conversationListViewController:self
+                                               modelForConversation:converstion];
+        }
+        else{
+            model = [[EaseConversationModel alloc] initWithConversation:converstion];
+        }
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // 耗时的操作
+            
+            NSDictionary *dicDB = [FMDBTool selectUserLoginViewInfoSqlTableWithTypeListName:CHATUSERTABLE
+                                                                                     search:@[[NSString stringWithFormat:@"uid = '791'"]] dataTyep:CHATUSERKEYS];
+            if (dicDB) {
+                model.title = dicDB[@"nickName"];
+                model.avatarURLPath = dicDB[@"headerUrl"];
+            }
+            [self.tableView reloadData];
+        });
+        
+        if (model) {
+            [self.dataArray addObject:model];
+        }
+    }
     
     [self.tableView reloadData];
 }
@@ -60,9 +101,9 @@ static NSString *cellId = @"LSMessageCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    EMConversation *converSation = self.dataArray[indexPath.row];
+    EaseConversationModel *converSation = self.dataArray[indexPath.row];
     EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
-                                                 initWithConversationChatter:converSation.conversationId conversationType:converSation.type];
+                                                 initWithConversationChatter:converSation.conversation.conversationId conversationType:converSation.conversation.type];
     chatController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatController animated:YES];
 }

@@ -209,12 +209,6 @@
         }
         else{
             model = [[EaseConversationModel alloc] initWithConversation:converstion];
-            
-//            EMMessage *lastmessage = converstion.latestMessage;
-//            if ([lastmessage.ext[@"doctorid"] isEqualToString:converstion.conversationId]) {
-//                model.avatarURLPath = lastmessage.ext[@"avatar"];
-//                model.title = lastmessage.ext[@"username"];
-//            }
         }
         
         if (model) {

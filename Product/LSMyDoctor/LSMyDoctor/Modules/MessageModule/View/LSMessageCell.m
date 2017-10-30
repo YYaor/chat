@@ -19,22 +19,22 @@
 
 @implementation LSMessageCell
 
--(void)setConversation:(EMConversation *)conversation
+-(void)setConversation:(EaseConversationModel *)conversation
 {
     _conversation = conversation;
  
-    EaseMessageModel *messageModel = [[EaseMessageModel alloc]initWithMessage:conversation.latestMessage];
+    EaseMessageModel *messageModel = [[EaseMessageModel alloc]initWithMessage:conversation.conversation.latestMessage];
     
-    self.nameLabel.text = messageModel.message.conversationId;
+    self.nameLabel.text = conversation.title;
     self.messageLabel.text = messageModel.text;
     self.timeLabel.text = [self getChatTime:[NSString stringWithFormat:@"%lld",messageModel.message.timestamp]];
 
     self.headImageView.image = messageModel.avatarImage;
-    if (conversation.unreadMessagesCount == 0) {
+    if (conversation.conversation.unreadMessagesCount == 0) {
         self.unreadLabel.hidden = YES;
     }else{
         self.unreadLabel.hidden = NO;
-        self.unreadLabel.text = [NSString stringWithFormat:@"%d",conversation.unreadMessagesCount];
+        self.unreadLabel.text = [NSString stringWithFormat:@"%d",conversation.conversation.unreadMessagesCount];
     }
 }
 

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F35D0191FA6BB0B00F090DE /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F35D0161FA6BB0B00F090DE /* FMDatabase.m */; };
+		0F35D01A1FA6BB0B00F090DE /* FMDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F35D0181FA6BB0B00F090DE /* FMDBTool.m */; };
+		0F35D0241FA6BBB200F090DE /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F35D01C1FA6BBB200F090DE /* FMDatabaseAdditions.m */; };
+		0F35D0251FA6BBB200F090DE /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F35D01E1FA6BBB200F090DE /* FMDatabasePool.m */; };
+		0F35D0261FA6BBB200F090DE /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F35D0201FA6BBB200F090DE /* FMDatabaseQueue.m */; };
+		0F35D0271FA6BBB200F090DE /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F35D0231FA6BBB200F090DE /* FMResultSet.m */; };
+		0F35D0291FA6BC5200F090DE /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F35D0281FA6BC5200F090DE /* libsqlite3.0.tbd */; };
 		0F3E622A1F8B468B00A19FF2 /* LSChoosePatientController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E62281F8B468B00A19FF2 /* LSChoosePatientController.m */; };
 		0F3E622B1F8B468B00A19FF2 /* LSChoosePatientController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F3E62291F8B468B00A19FF2 /* LSChoosePatientController.xib */; };
 		0F3E622F1F8B475E00A19FF2 /* YYSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E622E1F8B475E00A19FF2 /* YYSearchBar.m */; };
@@ -419,6 +426,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F35D0151FA6BB0B00F090DE /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		0F35D0161FA6BB0B00F090DE /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		0F35D0171FA6BB0B00F090DE /* FMDBTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBTool.h; sourceTree = "<group>"; };
+		0F35D0181FA6BB0B00F090DE /* FMDBTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDBTool.m; sourceTree = "<group>"; };
+		0F35D01B1FA6BBB200F090DE /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		0F35D01C1FA6BBB200F090DE /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		0F35D01D1FA6BBB200F090DE /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		0F35D01E1FA6BBB200F090DE /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		0F35D01F1FA6BBB200F090DE /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		0F35D0201FA6BBB200F090DE /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		0F35D0211FA6BBB200F090DE /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		0F35D0221FA6BBB200F090DE /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		0F35D0231FA6BBB200F090DE /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		0F35D0281FA6BC5200F090DE /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		0F3E62271F8B468B00A19FF2 /* LSChoosePatientController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSChoosePatientController.h; sourceTree = "<group>"; };
 		0F3E62281F8B468B00A19FF2 /* LSChoosePatientController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSChoosePatientController.m; sourceTree = "<group>"; };
 		0F3E62291F8B468B00A19FF2 /* LSChoosePatientController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSChoosePatientController.xib; sourceTree = "<group>"; };
@@ -1197,6 +1218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F35D0291FA6BC5200F090DE /* libsqlite3.0.tbd in Frameworks */,
 				0F3E62831F8C717400A19FF2 /* QuartzCore.framework in Frameworks */,
 				0F3E62811F8C716A00A19FF2 /* CoreVideo.framework in Frameworks */,
 				0F3E627F1F8C715D00A19FF2 /* CoreMedia.framework in Frameworks */,
@@ -1216,6 +1238,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F35D0141FA6BB0B00F090DE /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				0F35D01B1FA6BBB200F090DE /* FMDatabaseAdditions.h */,
+				0F35D01C1FA6BBB200F090DE /* FMDatabaseAdditions.m */,
+				0F35D01D1FA6BBB200F090DE /* FMDatabasePool.h */,
+				0F35D01E1FA6BBB200F090DE /* FMDatabasePool.m */,
+				0F35D01F1FA6BBB200F090DE /* FMDatabaseQueue.h */,
+				0F35D0201FA6BBB200F090DE /* FMDatabaseQueue.m */,
+				0F35D0211FA6BBB200F090DE /* FMDB.h */,
+				0F35D0221FA6BBB200F090DE /* FMResultSet.h */,
+				0F35D0231FA6BBB200F090DE /* FMResultSet.m */,
+				0F35D0151FA6BB0B00F090DE /* FMDatabase.h */,
+				0F35D0161FA6BB0B00F090DE /* FMDatabase.m */,
+				0F35D0171FA6BB0B00F090DE /* FMDBTool.h */,
+				0F35D0181FA6BB0B00F090DE /* FMDBTool.m */,
+			);
+			path = FMDB;
+			sourceTree = "<group>";
+		};
 		0F3E622C1F8B475E00A19FF2 /* YYSearchBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1228,6 +1270,7 @@
 		0F3E62301F8B482000A19FF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0F35D0281FA6BC5200F090DE /* libsqlite3.0.tbd */,
 				0F3E62821F8C717400A19FF2 /* QuartzCore.framework */,
 				0F3E62801F8C716A00A19FF2 /* CoreVideo.framework */,
 				0F3E627E1F8C715D00A19FF2 /* CoreMedia.framework */,
@@ -1854,6 +1897,7 @@
 		DF87A63D1F7820A700EF0461 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				0F35D0141FA6BB0B00F090DE /* FMDB */,
 				DF87A6461F78217100EF0461 /* LSPrefixHeader.h */,
 				4A0CE6B21F90A13300F7C187 /* MDHeader.h */,
 				4A0CE6B31F90A17F00F7C187 /* MDHttpUrl.h */,
@@ -3010,7 +3054,7 @@
 				TargetAttributes = {
 					DF87A1B61F781B7700EF0461 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 9F5M55YYN4;
+						DevelopmentTeam = QEW2Q934R5;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -3129,6 +3173,7 @@
 				DF335A1C1F954CB9009D026E /* PWTagsView.m in Sources */,
 				DFF015891F7AC15700527CFA /* EaseMessageViewController.m in Sources */,
 				DFF0156B1F7AC15700527CFA /* PSTCollectionViewController.m in Sources */,
+				0F35D0271FA6BBB200F090DE /* FMResultSet.m in Sources */,
 				DFF015EA1F7AC25F00527CFA /* MJRefreshStateHeader.m in Sources */,
 				DFF015331F7AC15700527CFA /* EMCDDeviceManager+Remind.m in Sources */,
 				4A0CE6A81F9094F500F7C187 /* UIButton+WebCache.m in Sources */,
@@ -3143,6 +3188,7 @@
 				DF5A094D1F7D526E00CF5410 /* LSWorkTailDetailCell.m in Sources */,
 				4AFAD5341F99DE2D00B20CA2 /* MDNewDiscussCell.m in Sources */,
 				DF87A6F31F782A8E00EF0461 /* UIProgressView+AFNetworking.m in Sources */,
+				0F35D0241FA6BBB200F090DE /* FMDatabaseAdditions.m in Sources */,
 				DF73EB0A1FA0DD9C0088DBE8 /* LSPatientListCell.m in Sources */,
 				DF87A7AD1F782DE000EF0461 /* IQUIScrollView+Additions.m in Sources */,
 				0F6E10861F7B799600C2477B /* LSMineNewPswController.m in Sources */,
@@ -3244,6 +3290,7 @@
 				4A0CE6AB1F9094F500F7C187 /* UIImage+WebP.m in Sources */,
 				DFF0157F1F7AC15700527CFA /* EaseChineseToPinyin.m in Sources */,
 				DF4EC87E1FA6514F007D9A96 /* rscode.c in Sources */,
+				0F35D0251FA6BBB200F090DE /* FMDatabasePool.m in Sources */,
 				DFD5C7131F8167A300045E39 /* FSCalendarExtensions.m in Sources */,
 				4A0CE6E81F9726D900F7C187 /* MDSingleCommunicateVC.m in Sources */,
 				DFF0157D1F7AC15700527CFA /* UIViewController+DismissKeyboard.m in Sources */,
@@ -3253,6 +3300,7 @@
 				0FB200E51F79E771005BC289 /* LSAuthenticationController.m in Sources */,
 				DFF0156E1F7AC15700527CFA /* PSTCollectionViewItemKey.m in Sources */,
 				DF87A6B21F7827E200EF0461 /* Colours.m in Sources */,
+				0F35D0191FA6BB0B00F090DE /* FMDatabase.m in Sources */,
 				DFF0157A1F7AC15700527CFA /* NSDate+Category.m in Sources */,
 				DF73EAFE1F9FA35A0088DBE8 /* GuidePageModel.m in Sources */,
 				DFF015E51F7AC25F00527CFA /* MJRefreshBackGifFooter.m in Sources */,
@@ -3268,6 +3316,7 @@
 				DF87A7E61F7835FE00EF0461 /* LSMessageController.m in Sources */,
 				DF87A6B61F7827E200EF0461 /* MASConstraintMaker.m in Sources */,
 				DFF015E41F7AC25F00527CFA /* MJRefreshAutoStateFooter.m in Sources */,
+				0F35D0261FA6BBB200F090DE /* FMDatabaseQueue.m in Sources */,
 				DF87A6B51F7827E200EF0461 /* MASConstraint.m in Sources */,
 				4A0CE6C51F945BDF00F7C187 /* MDPeerinstructCell.m in Sources */,
 				DF87A6BB1F7827E200EF0461 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -3424,6 +3473,7 @@
 				DFF015F01F7AC25F00527CFA /* UIView+MJExtension.m in Sources */,
 				DFF015771F7AC15700527CFA /* EaseConversationModel.m in Sources */,
 				DFF015831F7AC15700527CFA /* EaseEmojiEmoticons.m in Sources */,
+				0F35D01A1FA6BB0B00F090DE /* FMDBTool.m in Sources */,
 				DFF015531F7AC15700527CFA /* MWPhotoBrowser.m in Sources */,
 				0FF0B80A1F987A96003B4C7E /* SVProgressHUD.m in Sources */,
 				DFF015F31F7AC8F300527CFA /* UIView+LSLayer.m in Sources */,
@@ -3543,7 +3593,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9F5M55YYN4;
+				DEVELOPMENT_TEAM = QEW2Q934R5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3588,7 +3638,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9F5M55YYN4;
+				DEVELOPMENT_TEAM = QEW2Q934R5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

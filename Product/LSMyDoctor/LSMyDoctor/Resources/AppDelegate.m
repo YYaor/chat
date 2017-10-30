@@ -11,6 +11,7 @@
 #import "LSTabBarController.h"
 #import "LSLoginController.h"
 #import "SplashViewController.h"
+#import "FMDBTool.h"
 
 #import "SVProgressHUD.h"
 
@@ -88,6 +89,10 @@
         [[EMClient sharedClient].groupManager getJoinedGroupsFromServerWithPage:nil pageSize:0 error:&error];
         if (!error) {
             
+        }
+        
+        if (![FMDBTool typeListWithTypeListName:CHATUSERTABLE]) {
+            [FMDBTool createTypeListTableWithTyoeListName:CHATUSERTABLE type:CHATUSERKEYS];
         }
     });
 }

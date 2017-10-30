@@ -12,7 +12,7 @@
 #import "YYShopMainTypeView.h"
 #import "MDCheckInfoVC.h"
 #import "NSString+Mark.h"
-
+#import "FMDBTool.h"
 @interface LSLoginController ()<UITextFieldDelegate,YYShopMainTypeViewDelegate>
 
 @property (nonatomic,strong) UITextField *phoneTextFiled;
@@ -283,8 +283,8 @@
 -(void)loginButtonClick{
     
 //    self.phoneTextFiled.text = @"15502810729";//id 42
-//    self.phoneTextFiled.text = @"18180847173";//id 43
-//    self.pswTextFiled.text = @"111111";
+    self.phoneTextFiled.text = @"18180847173";//id 43
+    self.pswTextFiled.text = @"111111";
 
     
     if (self.phoneTextFiled.text == nil || self.phoneTextFiled.text.length == 0) {
@@ -409,6 +409,10 @@
             
         }
     });
+    
+    if (![FMDBTool typeListWithTypeListName:CHATUSERTABLE]) {
+        [FMDBTool createTypeListTableWithTyoeListName:CHATUSERTABLE type:CHATUSERKEYS];
+    }
 }
 
 -(void)registButtonClick{

@@ -13,7 +13,7 @@
 #import "LSWorkAdviceCell.h"
 
 #import <Foundation/Foundation.h>
-
+//#import "FMDBTool.h"
 static NSString *cellId = @"LSWorkAdviceCell";
 
 @interface LSWorkAdviceController () <UITableViewDelegate, UITableViewDataSource>
@@ -60,6 +60,13 @@ static NSString *cellId = @"LSWorkAdviceCell";
             [self.dataArray removeAllObjects];
             [self.dataArray addObjectsFromArray:dict[@"data"][@"content"]];
             [self.tableView reloadData];
+            
+//            for (NSDictionary *dic in self.dataArray) {
+//                [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
+//                                                              data:@{@"uid" : dic[@"id"],
+//                                                                     @"nickName" : dic[@"username"] ? dic[@"username"] : @"",
+//                                                                     @"headerUrl" : dic[@"img_url"] ? dic[@"img_url"] : @""}];
+//            }
         }
     } failBlock:^(NSError *error) {
         //[XHToast showCenterWithText:@"fail"];

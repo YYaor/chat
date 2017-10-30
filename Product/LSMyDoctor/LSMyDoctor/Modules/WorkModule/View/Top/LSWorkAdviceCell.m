@@ -7,7 +7,7 @@
 //
 
 #import "LSWorkAdviceCell.h"
-
+#import "FMDBTool.h"
 @interface LSWorkAdviceCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
@@ -59,6 +59,11 @@
                 self.agreeClickBlock(dic);
             }
         }
+        
+        [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
+                                                      data:@{@"uid" : [NSString stringWithFormat:@"ug369P%@",self.dataDic[@"id"]],
+                                                             @"nickName" : self.dataDic[@"username"] ? self.dataDic[@"username"] : @"",
+                                                             @"headerUrl" : self.dataDic[@"img_url"] ? self.dataDic[@"img_url"] : @""}];
         
     } failBlock:^(NSError *error) {
         //[XHToast showCenterWithText:@"fail"];

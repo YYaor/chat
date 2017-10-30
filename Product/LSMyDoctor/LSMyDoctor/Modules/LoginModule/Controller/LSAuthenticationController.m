@@ -10,6 +10,8 @@
 
 #import "ZHPickView.h"
 
+#import "FMDBTool.h"
+
 @interface LSAuthenticationController () <ZHPickViewDelegate, UIPickerViewDelegate,UIPickerViewDataSource>
 
 @property (nonatomic,strong)UITextField *nameTextField;
@@ -678,6 +680,10 @@
             
         }
     });
+    
+    if (![FMDBTool typeListWithTypeListName:CHATUSERTABLE]) {
+        [FMDBTool createTypeListTableWithTyoeListName:CHATUSERTABLE type:CHATUSERKEYS];
+    }
 }
 
 -(void)back{
