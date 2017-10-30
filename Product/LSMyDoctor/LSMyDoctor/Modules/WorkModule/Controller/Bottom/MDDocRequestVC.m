@@ -10,6 +10,7 @@
 #import "MDSickerRequestCell.h"
 #import "MDPeerReuqestModel.h"
 
+#import "FMDBTool.h"
 @interface MDDocRequestVC ()<UITableViewDelegate,UITableViewDataSource,MDSickerRequestCellDelegate>
 {
     UITableView* requestTab;
@@ -102,7 +103,7 @@
             [self removeTheRequestWithRequestId:contentModel.requestId];
         }else{
             //拒绝按钮点击
-            [self dealWithTheRequestWithResult:2 requestId:contentModel.requestId];
+            [self dealWithTheRequestWithResult:2 requestId:contentModel.requestId mDRequestContentModel:contentModel];
         }
         
     }
@@ -123,7 +124,7 @@
 {
     NSLog(@"同意按钮点击：%@",contentModel.requestId);
     
-    [self dealWithTheRequestWithResult:1 requestId:contentModel.requestId];
+    [self dealWithTheRequestWithResult:1 requestId:contentModel.requestId mDRequestContentModel:contentModel];
 }
 
 #pragma mark -- 获取请求列表
@@ -163,7 +164,7 @@
 
 }
 #pragma mark -- 同意或拒绝请求
-- (void)dealWithTheRequestWithResult:(NSInteger)result requestId:(NSString*)requestIdStr
+- (void)dealWithTheRequestWithResult:(NSInteger)result requestId:(NSString*)requestIdStr mDRequestContentModel:(MDRequestContentModel *)MDRequestContentModel
 {
     //result值：1 -- 同意     2 -- 拒绝
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
@@ -179,6 +180,12 @@
             if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
             {
                 [self getRequestData];
+                if (result == 1) {
+                    [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
+                                                                  data:@{@"uid" : [NSString stringWithFormat:@"ug369P%@",MDRequestContentModel.requestId],
+                                                                         @"nickName" : MDRequestContentModel.username ? MDRequestContentModel.username : @"",
+                                                                         @"headerUrl" : MDRequestContentModel.img_url ? MDRequestContentModel.img_url : @""}];
+                }
                 
             }else
             {

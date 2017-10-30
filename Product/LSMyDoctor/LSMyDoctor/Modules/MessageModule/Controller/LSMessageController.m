@@ -79,7 +79,7 @@ static NSString *cellId = @"LSMessageCell";
             // 耗时的操作
             
             NSDictionary *dicDB = [FMDBTool selectUserLoginViewInfoSqlTableWithTypeListName:CHATUSERTABLE
-                                                                                     search:@[[NSString stringWithFormat:@"uid = '791'"]] dataTyep:CHATUSERKEYS];
+                                                                                     search:@[[NSString stringWithFormat:@"uid = '%@'",converstion.conversationId]] dataTyep:CHATUSERKEYS];
             if (dicDB) {
                 model.title = dicDB[@"nickName"];
                 model.avatarURLPath = dicDB[@"headerUrl"];
