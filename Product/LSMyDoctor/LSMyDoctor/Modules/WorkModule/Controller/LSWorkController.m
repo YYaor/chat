@@ -330,18 +330,21 @@
             btn.tag = i+30000;
             [_bottomView addSubview:btn];
             
+            
+            
             //添加未读数量
             CGFloat countHeight = 20.0f;//未读数量显示的高度
             UILabel* countLab = [[UILabel alloc] init];
             countLab.text = @"2";
+            countLab.textAlignment = NSTextAlignmentCenter;
             countLab.textColor = [UIColor whiteColor];
             countLab.layer.masksToBounds = YES;
             countLab.layer.cornerRadius = countHeight/2;
-            countLab.backgroundColor = BaseColor;
+            countLab.backgroundColor = [UIColor colorFromHexString:@"FC7E57"];
             [btn addSubview:countLab];
             [countLab mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(btn.mas_right);
-                make.top.equalTo(btn.mas_top);
+                make.right.equalTo(btn.mas_right).offset(countHeight/3);
+                make.top.equalTo(btn.mas_top).offset(-countHeight/3);
                 make.height.mas_equalTo(countHeight);
                 make.width.equalTo(countLab.mas_height);
             }];

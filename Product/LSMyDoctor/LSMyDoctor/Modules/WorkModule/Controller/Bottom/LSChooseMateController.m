@@ -136,7 +136,19 @@
     cell.modelNameStr = listModel.doctor_name;
     cell.modelValueStr = [NSString stringWithFormat:@"%@  %@  %@",listModel.doctor_title,listModel.department_name,listModel.hospital_name];
     cell.goodAt = listModel.doctor_specialty;
-    cell.isChoosed = listModel.isChoise;
+    
+    NSMutableArray* haveIdArr = [NSMutableArray array];
+    [haveIdArr removeAllObjects];
+    
+    for (MDGroupUserModel* userModel in self.groupDetailModel.users) {
+        [haveIdArr addObject:userModel.doctor_id];
+    }
+    if ([haveIdArr containsObject:listModel.doctor_id]) {
+        cell.isChoosed = YES;
+    }else{
+        cell.isChoosed = listModel.isChoise;
+    }
+    
     return cell;
 }
 
