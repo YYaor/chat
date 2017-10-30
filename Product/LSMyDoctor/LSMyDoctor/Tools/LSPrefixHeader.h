@@ -28,6 +28,7 @@
 #pragma mark --- 第三方
 //提示
 #import "XHToast.h"
+#import "DSToast.h"
 //网络
 #import "AFNetworking.h"
 #import "TLAsiNetworkHandler.h"
@@ -45,6 +46,7 @@
 #import "IQKeyboardManager.h"
 //菊花
 #import "BlocMBProgressHUD.h"
+#import "SVProgressHUD.h"
 //通用工具类
 #import "LSUtil.h"
 //model解析

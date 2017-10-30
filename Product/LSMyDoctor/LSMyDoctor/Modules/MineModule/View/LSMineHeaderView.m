@@ -53,12 +53,15 @@
 }
 
 -(void)updateWithImageURL:(NSString *)imageURL name:(NSString *)name career:(NSString *)career{
+    
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
     self.nameLabel.text = name;
     self.infoLabel.text = [NSString stringWithFormat:@"%@",career];
 }
 
 -(void)headClick{
     LSMineUserSettingController *userSettingController = [[LSMineUserSettingController alloc]init];
+    userSettingController.model = self.model;
     userSettingController.hidesBottomBarWhenPushed = YES;
     [[self.controller navigationController] pushViewController:userSettingController animated:YES];
 }
@@ -68,9 +71,6 @@
         _headImageView = [[UIImageView alloc]init];
         _headImageView.layer.masksToBounds = YES;
         _headImageView.layer.cornerRadius = 40;
-        _headImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-        _headImageView.backgroundColor = [UIColor redColor];
-        _headImageView.layer.borderWidth = 1;
         _headImageView.userInteractionEnabled = YES;
         [_headImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headClick)]];
     }
@@ -94,13 +94,5 @@
     }
     return _infoLabel;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

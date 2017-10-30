@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "LSMineModel.h"
+
 @interface LSMineHeaderView : UIView
 
 @property (nonatomic,weak) id controller;
+
+@property (nonatomic, strong) LSMineModel *model;
 
 -(void)updateWithImageURL:(NSString *)imageURL name:(NSString *)name career:(NSString *)career;
 

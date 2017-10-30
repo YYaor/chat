@@ -150,6 +150,8 @@
 		DF2738381F913A5500154B6A /* LSWorkUsefulAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2738361F913A5500154B6A /* LSWorkUsefulAddController.m */; };
 		DF2738391F913A5500154B6A /* LSWorkUsefulAddController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF2738371F913A5500154B6A /* LSWorkUsefulAddController.xib */; };
 		DF335A1C1F954CB9009D026E /* PWTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF335A1B1F954CB9009D026E /* PWTagsView.m */; };
+		DF4B0A241FA7A63900D57AF9 /* LSMineUserNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B0A221FA7A63900D57AF9 /* LSMineUserNameController.m */; };
+		DF4B0A251FA7A63900D57AF9 /* LSMineUserNameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4B0A231FA7A63900D57AF9 /* LSMineUserNameController.xib */; };
 		DF4EC8601FA65030007D9A96 /* YGScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC85F1FA65030007D9A96 /* YGScanVC.m */; };
 		DF4EC8781FA6514F007D9A96 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC8631FA6514F007D9A96 /* bitstream.c */; };
 		DF4EC8791FA6514F007D9A96 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC8651FA6514F007D9A96 /* mask.c */; };
@@ -691,6 +693,9 @@
 		DF2738371F913A5500154B6A /* LSWorkUsefulAddController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkUsefulAddController.xib; sourceTree = "<group>"; };
 		DF335A1A1F954CB9009D026E /* PWTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWTagsView.h; sourceTree = "<group>"; };
 		DF335A1B1F954CB9009D026E /* PWTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWTagsView.m; sourceTree = "<group>"; };
+		DF4B0A211FA7A63900D57AF9 /* LSMineUserNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineUserNameController.h; sourceTree = "<group>"; };
+		DF4B0A221FA7A63900D57AF9 /* LSMineUserNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineUserNameController.m; sourceTree = "<group>"; };
+		DF4B0A231FA7A63900D57AF9 /* LSMineUserNameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMineUserNameController.xib; sourceTree = "<group>"; };
 		DF4EC85E1FA65030007D9A96 /* YGScanVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGScanVC.h; sourceTree = "<group>"; };
 		DF4EC85F1FA65030007D9A96 /* YGScanVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGScanVC.m; sourceTree = "<group>"; };
 		DF4EC8631FA6514F007D9A96 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
@@ -2266,6 +2271,9 @@
 				0F83146F1F7B3BE3008A9E22 /* LSMineUserSettingController.h */,
 				0F8314701F7B3BE3008A9E22 /* LSMineUserSettingController.m */,
 				0F8314711F7B3BE3008A9E22 /* LSMineUserSettingController.xib */,
+				DF4B0A211FA7A63900D57AF9 /* LSMineUserNameController.h */,
+				DF4B0A221FA7A63900D57AF9 /* LSMineUserNameController.m */,
+				DF4B0A231FA7A63900D57AF9 /* LSMineUserNameController.xib */,
 				0F6E10881F7B79A800C2477B /* LSMineSettingController.h */,
 				0F6E10891F7B79A800C2477B /* LSMineSettingController.m */,
 				0F6E108A1F7B79A800C2477B /* LSMineSettingController.xib */,
@@ -3111,8 +3119,8 @@
 				TargetAttributes = {
 					DF87A1B61F781B7700EF0461 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = QEW2Q934R5;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 9F5M55YYN4;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -3190,6 +3198,7 @@
 				4A0CE6DE1F9724E300F7C187 /* MDWaitForReplyVC.xib in Resources */,
 				0F6E10871F7B799600C2477B /* LSMineNewPswController.xib in Resources */,
 				DF2738171F8FC6E300154B6A /* LSWorkArticleController.xib in Resources */,
+				DF4B0A251FA7A63900D57AF9 /* LSMineUserNameController.xib in Resources */,
 				DF87A6401F7820A700EF0461 /* LaunchScreen.storyboard in Resources */,
 				DFFD8EE11F7C377B00FF0ECD /* LSWorkAdviceController.xib in Resources */,
 				4A0CE6F31F975BC900F7C187 /* MDSickerRequestCell.xib in Resources */,
@@ -3350,6 +3359,7 @@
 				DFF015361F7AC15700527CFA /* wav.mm in Sources */,
 				0FF0B8081F987A96003B4C7E /* SVProgressAnimatedView.m in Sources */,
 				4AA2FE261FA6F343009009D8 /* MDAddGroupVC.m in Sources */,
+				DF4B0A241FA7A63900D57AF9 /* LSMineUserNameController.m in Sources */,
 				DFF0156C1F7AC15700527CFA /* PSTCollectionViewData.m in Sources */,
 				4A0CE6A91F9094F500F7C187 /* UIImage+GIF.m in Sources */,
 				DF87A6B41F7827E200EF0461 /* MASCompositeConstraint.m in Sources */,
@@ -3663,7 +3673,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QEW2Q934R5;
+				DEVELOPMENT_TEAM = 9F5M55YYN4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3696,8 +3706,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pengge.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "87d0ae3f-05bd-4acc-b2c9-b1b92604a675";
+				PROVISIONING_PROFILE_SPECIFIER = MyDoctor_Dev_Wqj;
 			};
 			name = Debug;
 		};
@@ -3708,7 +3718,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QEW2Q934R5;
+				DEVELOPMENT_TEAM = 9F5M55YYN4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3736,8 +3746,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pengge.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "87d0ae3f-05bd-4acc-b2c9-b1b92604a675";
+				PROVISIONING_PROFILE_SPECIFIER = MyDoctor_Dev_Wqj;
 			};
 			name = Release;
 		};

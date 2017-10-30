@@ -181,8 +181,8 @@
         {
             weakSelf.mineModel = [LSMineModel yy_modelWithJSON:responseObj];
             
+            weakSelf.headerView.model = weakSelf.mineModel;
             [weakSelf.headerView updateWithImageURL:weakSelf.mineModel.myImage?weakSelf.mineModel.myImage:@"" name:weakSelf.mineModel.myName career:weakSelf.mineModel.myRemark];
-            
         }else
         {
             [XHToast showCenterWithText:responseObj[@"message"]];

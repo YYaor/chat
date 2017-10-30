@@ -103,7 +103,7 @@
     if (self.captureSession)
     {
         self.captureVideoPreviewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
-        self.captureVideoPreviewLayer.frame = CGRectMake(0, 64, LSSCREENWIDTH, LSSCREENHEIGHT - 64);
+        self.captureVideoPreviewLayer.frame = CGRectMake(0, 0, LSSCREENWIDTH, LSSCREENHEIGHT - 64);
         self.captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
         [self.view.layer addSublayer: self.captureVideoPreviewLayer];
     }

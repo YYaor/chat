@@ -1,8 +1,8 @@
 //
-//  LSMineUserSettingController.h
+//  LSMineUserNameController.h
 //  LSMyDoctor
 //
-//  Created by 赵炯丞 on 2017/9/27.
+//  Created by 赵炯丞 on 2017/10/31.
 //  Copyright © 2017年 赵炯丞. All rights reserved.
 //
 
@@ -10,10 +10,8 @@
 
 #import "LSMineModel.h"
 
-@interface LSMineUserSettingController : UIViewController
+@interface LSMineUserNameController : UIViewController
 
 @property (nonatomic, strong) LSMineModel *model;
-
-- (void)updateMainInfoData;
 
 @end

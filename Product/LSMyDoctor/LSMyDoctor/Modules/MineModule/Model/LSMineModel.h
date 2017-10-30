@@ -18,8 +18,8 @@
 @property (nonatomic, copy) NSString *myBackgroud;
 @property (nonatomic, copy) NSString *myImage;
 
-@property (nonatomic, copy) NSArray *myServiceCount;
-@property (nonatomic, copy) NSArray *myBaseInfo;
-@property (nonatomic, copy) NSArray *myServices;
+@property (nonatomic, copy) NSMutableArray *myServiceCount;
+@property (nonatomic, copy) NSMutableArray *myBaseInfo;
+@property (nonatomic, copy) NSMutableArray *myServices;
 
 @end

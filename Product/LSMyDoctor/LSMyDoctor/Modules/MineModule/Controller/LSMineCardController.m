@@ -126,8 +126,11 @@
     }];
 }
 
--(void)setUserModel:(LSMineModel *)userModel{
+-(void)setUserModel:(LSMineModel *)userModel
+{
     _userModel = userModel;
+    
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:userModel.myImage] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
     
     self.nameLabel.text = userModel.myName;
     
@@ -200,7 +203,6 @@
 -(UIImageView *)headImageView{
     if (!_headImageView) {
         _headImageView = [[UIImageView alloc]init];
-        _headImageView.backgroundColor = [UIColor redColor];
         _headImageView.layer.masksToBounds = YES;
         _headImageView.layer.cornerRadius = 30;
     }
