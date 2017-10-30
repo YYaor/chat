@@ -83,6 +83,8 @@ static NSString *cellId = @"LSMessageCell";
             if (dicDB) {
                 model.title = dicDB[@"nickName"];
                 model.avatarURLPath = dicDB[@"headerUrl"];
+            }else{
+                [self requestPdata:converstion.conversationId];
             }
             [self.tableView reloadData];
         });
@@ -93,6 +95,14 @@ static NSString *cellId = @"LSMessageCell";
     }
     
     [self.tableView reloadData];
+}
+
+-(void)requestPdata:(NSString *)conversationId
+{
+//    [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
+//                                                  data:@{@"uid" : [NSString stringWithFormat:@"ug369P%@",self.dataDic[@"id"]],
+//                                                         @"nickName" : self.dataDic[@"username"] ? self.dataDic[@"username"] : @"",
+//                                                         @"headerUrl" : self.dataDic[@"img_url"] ? self.dataDic[@"img_url"] : @""}];
 }
 
 

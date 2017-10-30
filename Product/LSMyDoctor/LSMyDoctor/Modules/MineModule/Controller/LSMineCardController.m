@@ -124,7 +124,33 @@
         make.centerX.equalTo(self.contentView);
         make.top.equalTo(self.qRimageView.mas_bottom).offset(15);
     }];
+}
+
+-(void)setUserModel:(LSMineModel *)userModel{
+    _userModel = userModel;
     
+    self.nameLabel.text = userModel.myName;
+    
+    self.roomAndCareerLabel.text = [NSString stringWithFormat:@"%@  %@",userModel.myBaseInfo[3][@"value"],userModel.myBaseInfo[4][@"value"]];
+    
+    NSString *hosString = [NSString stringWithFormat:@"所在医院   %@",userModel.myBaseInfo[2][@"value"]];
+    NSMutableAttributedString *hosAttString = [[NSMutableAttributedString alloc]initWithString:hosString];
+    [hosAttString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromHexString:@"bfbfbf"] range:NSMakeRange(0, 4)];
+    self.hospitalLabel.attributedText = hosAttString;
+    
+    NSString *goodatString = [NSString stringWithFormat:@"擅       长   %@",userModel.myBaseInfo[5][@"value"]];
+    NSMutableAttributedString *goodatAttString = [[NSMutableAttributedString alloc]initWithString:goodatString];
+    [goodatAttString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromHexString:@"bfbfbf"] range:NSMakeRange(0, 9)];
+    self.goodatLabel.attributedText = goodatAttString;
+    
+    self.infoLabel.text = userModel.myBaseInfo[6][@"value"];
+    
+    [self.view layoutIfNeeded];
+    [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(CGRectGetMaxY(self.qRLabel.frame)+40);
+    }];
+    
+    self.qRimageView.image = [SGQRCodeGenerateManager generateWithDefaultQRCodeData:userModel.myBaseInfo[0][@"value"] imageViewWidth:self.qRimageView.frame.size.width];
 }
 
 -(void)setUser:(LSUserModel *)user{

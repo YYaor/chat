@@ -12,7 +12,7 @@
 
 #import "SDImageCache.h"
 
-@interface LSMineSettingController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LSMineSettingController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property (nonatomic,strong)UITableView *dataTableView;
 
@@ -144,6 +144,17 @@
         [self.navigationController pushViewController:newPswController animated:YES];
     }
     if (indexPath.row == 2) {
+        
+        [[[UIAlertView alloc] initWithTitle:@"" message:@"是否清楚缓存？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
+    }
+    if (indexPath.row == 1) {
+        [XHToast showCenterWithText:@"当前已是最新版本"];
+    }
+}
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
         [self.imageCache removeAllImages];
         [self getCacheSize];
         [self.dataTableView reloadData];

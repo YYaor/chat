@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "LSUserModel.h"
-
+#import "LSMineModel.h"
 @interface LSMineCardController : UIViewController
 
 @property(nonatomic,strong)LSUserModel *user;
+
+@property(nonatomic,strong)LSMineModel *userModel;
 
 @end

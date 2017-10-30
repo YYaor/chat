@@ -131,14 +131,26 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             LSMineCardController *cardController = [[LSMineCardController alloc]init];
-            cardController.user = [[LSUserModel alloc]init];
+            cardController.userModel = self.mineModel;
             cardController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:cardController animated:YES];
         }
     }
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
+            NSLog(@"联系客服");
+            NSString* customerService = [NSString stringWithFormat:@"客服电话：%@",self.mineModel.customerService];
             
+            [AlertHelper InitMyAlertWithTitle:@"" AndMessage:customerService And:self CanCleBtnName:@"取消" SureBtnName:@"确定" AndCancleBtnCallback:^(id data) {
+                //取消
+                
+            } AndSureBtnCallback:^(id data) {
+                
+                //呼叫
+                NSString* telNum = [[NSMutableString alloc] initWithFormat:@"tel:%@",self.mineModel.customerService];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telNum]];
+                
+            }];
         }
         if (indexPath.row == 1) {
             LSMineFeedbackController *feedbackController = [[LSMineFeedbackController alloc]init];
