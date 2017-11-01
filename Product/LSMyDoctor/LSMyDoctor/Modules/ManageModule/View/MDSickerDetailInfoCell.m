@@ -51,6 +51,61 @@
     NSArray* labelsArr = [infoModel.userLabels allValues];
     NSLog(@"%@",labelsArr);
     
+    for (UIView* v in self.labelsView.subviews) {
+        [v removeFromSuperview];
+    }
+    
+    NSInteger numRow = 1;//取行数，向上取整
+    if (labelsArr.count + 1 >= 4) {
+        numRow = (NSInteger)ceilf(((float)labelsArr.count + 1)/4);
+        
+        numRow = numRow > 2 ? 2 : numRow;
+    }
+    
+    CGFloat labelWidth = (LSSCREENWIDTH - 25)/4;
+    CGFloat labelHeight = labelWidth/3;
+    
+    self.viewHeight.constant = numRow * (labelHeight + 8);
+    
+    if (labelsArr.count + 1 > 0) {
+        
+        for (int i = 0; i < numRow; i++) {
+            for(int j = 0 ;j < 4; j ++){
+                
+                UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake((labelWidth + 5)*j , (labelHeight + 8)*i, labelWidth, labelHeight)];
+                
+                if (4 * i + j  > labelsArr.count) {
+                    label.text = @"测试";
+                }else if(4 * i + j == 0){
+                    label.text = @"标签：";
+                    label.textColor = BaseColor;
+                    label.textAlignment = NSTextAlignmentRight;
+                    label.font = [UIFont systemFontOfSize:20];
+                }else{
+                    label.textAlignment = NSTextAlignmentCenter;
+                    label.textColor = [UIColor whiteColor];
+                    label.layer.masksToBounds = YES;
+                    label.layer.cornerRadius = labelHeight/2;
+                    label.backgroundColor = [UIColor lightGrayColor];
+                    label.font = [UIFont systemFontOfSize:15];
+                    label.text = labelsArr[4*i+j - 1];
+                }
+                
+                [self.labelsView addSubview:label];
+                if (4 * i + j  > labelsArr.count) {
+                    label.hidden = YES;
+                }else{
+                    label.hidden = NO;
+                }
+                
+            }
+            
+        }
+        
+    }
+
+    
+    
     
     
     

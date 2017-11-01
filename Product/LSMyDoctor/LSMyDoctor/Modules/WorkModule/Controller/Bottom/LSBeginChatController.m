@@ -267,7 +267,9 @@
 #pragma mark -- 添加按钮点击
 -(void)addButtonClick{
     LSChooseMateController *chooseMateVC = [[LSChooseMateController alloc] init];
+    chooseMateVC.haveArr = self.dataArray;
     chooseMateVC.chooseBlock = ^(NSArray *modelArray) {
+        [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:modelArray];
         [self.dataCollectionView reloadData];
         if (self.dataArray.count > 0 && self.chooseSickerArr.count > 0) {
@@ -345,7 +347,7 @@
                 //TO--DO创建房间成功 ，跳转群组会话页面
                 /*
                 MDGroupCommunicateVC* groupCommunicateVC = [[MDGroupCommunicateVC alloc] initWithConversationChatter:listModel.groupId conversationType:EMConversationTypeGroupChat];
-                
+                groupCommunicateVC.isPeer = YES;
                 groupCommunicateVC.title = [NSString stringWithFormat:@"%@患者的讨论组",listModel.name];
                 groupCommunicateVC.groupIdStr = listModel.groupId;
                 [self.navigationController pushViewController:groupCommunicateVC animated:YES];

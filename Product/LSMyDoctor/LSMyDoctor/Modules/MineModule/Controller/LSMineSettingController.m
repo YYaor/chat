@@ -66,6 +66,64 @@
 -(void)sureButtonClick{
     //存在NSUserDefault中的有 isLogin doctorId cookie accessToken phoneNum
     
+//    NSMutableDictionary *param1 = [MDRequestParameters shareRequestParameters];
+//    
+//    [param1 setValue:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
+//    
+//    NSString *url1 = [NSString stringWithFormat:@"%@/member/logout", UGAPI_HOST];
+//    
+//    [TLAsiNetworkHandler requestWithUrl:url1 params:param1 showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj)
+//     {
+//         if ([responseObj[@"status"] integerValue] == 0)
+//         {
+//             [Defaults removeObjectForKey:@"isLogin"];
+//             [Defaults removeObjectForKey:@"doctorid"];
+//             [Defaults removeObjectForKey:@"cookie"];
+//             [Defaults removeObjectForKey:@"accessToken"];
+//             
+//             [Defaults synchronize];
+//             
+//             NSMutableDictionary *param2 = [[NSMutableDictionary alloc] init];
+//             
+//             NSString *url2 = [NSString stringWithFormat:@"%@/home/getAccessTokenEx",UGAPI_HOST];
+//             
+//             [TLAsiNetworkHandler requestWithUrl:url2 params:param2 showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj)
+//              {
+//                  if ([responseObj[@"status"] integerValue] == 0)
+//                  {
+//                      [Defaults setValue:responseObj[@"data"] forKey:@"accessToken"];
+//                      NSLog(@"*******token:%@*****",responseObj[@"data"]);
+//                      [Defaults synchronize];
+//                      
+//                      [[EMClient sharedClient] logout:YES completion:^(EMError *aError) {
+//                          if (!aError) {
+//                              NSLog(@"退出登录成功");
+//                              
+//                              AppDelegate *app = LSAPPDELEGATE;
+//                              [app intoRootForLogin];
+//                          }
+//                      }];
+//                  }
+//                  else
+//                  {
+//                      [XHToast showCenterWithText:responseObj[@"message"]];
+//                  }
+//              }
+//                                       failBlock:^(NSError *error)
+//              {
+//                  
+//              }];
+//         }
+//         else
+//         {
+//             [XHToast showCenterWithText:responseObj[@"message"]];
+//         }
+//     }
+//                              failBlock:^(NSError *error)
+//     {
+//         
+//     }];
+    
     [Defaults removeObjectForKey:@"isLogin"];
     [Defaults removeObjectForKey:@"doctorid"];
     [Defaults removeObjectForKey:@"cookie"];
@@ -73,40 +131,39 @@
     
     [Defaults synchronize];
     
-    
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     
-    NSString* headUrl = [API_HOST substringToIndex:API_HOST.length - 3];
-    NSString* url = [NSString stringWithFormat:@"%@/home/getAccessTokenEx",headUrl];
+    NSString *url = [NSString stringWithFormat:@"%@/home/getAccessTokenEx",UGAPI_HOST];
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj)
-    {
-        if ([responseObj[@"status"] integerValue] == 0)
-        {
-            [Defaults setValue:responseObj[@"data"] forKey:@"accessToken"];
-            NSLog(@"*******token:%@*****",responseObj[@"data"]);
-            [Defaults synchronize];
-            
-            [[EMClient sharedClient] logout:YES completion:^(EMError *aError) {
-                if (!aError) {
-                    NSLog(@"退出登录成功");
-                    
-                    AppDelegate *app = LSAPPDELEGATE;
-                    [app intoRootForLogin];
-                }
-            }];
-            
-            
-        }
-        else
-        {
-            [XHToast showCenterWithText:responseObj[@"message"]];
-        }
-    }
+     {
+         if ([responseObj[@"status"] integerValue] == 0)
+         {
+             [Defaults setValue:responseObj[@"data"] forKey:@"accessToken"];
+             NSLog(@"*******token:%@*****",responseObj[@"data"]);
+             [Defaults synchronize];
+             
+             [[EMClient sharedClient] logout:YES completion:^(EMError *aError) {
+                 if (!aError) {
+                     NSLog(@"退出登录成功");
+                     
+                     AppDelegate *app = LSAPPDELEGATE;
+                     [app intoRootForLogin];
+                 }
+             }];
+         }
+         else
+         {
+             [XHToast showCenterWithText:responseObj[@"message"]];
+         }
+     }
                               failBlock:^(NSError *error)
-    {
-        
-    }];
+     {
+         
+     }];
+
+    
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -176,7 +233,7 @@
     if (!_sureButton) {
         _sureButton = [[UIButton alloc]init];
         [_sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        _sureButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+        _sureButton.backgroundColor = [UIColor colorFromHexString:@"FE7F51"];
         [_sureButton setTitle:@"退出" forState:UIControlStateNormal];
         _sureButton.layer.masksToBounds = YES;
         _sureButton.layer.cornerRadius = 20;

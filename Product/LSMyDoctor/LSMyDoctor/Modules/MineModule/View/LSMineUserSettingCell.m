@@ -82,7 +82,7 @@
 
 -(void)updateHead:(NSString *)headURL{
     
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:headURL] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, headURL]] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
 }
 
 -(void)updateName:(NSString *)name{

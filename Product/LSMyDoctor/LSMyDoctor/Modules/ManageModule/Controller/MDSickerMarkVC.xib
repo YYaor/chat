@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MDSickerMarkVC">
+            <connections>
+                <outlet property="btnView" destination="La9-Xy-Jt3" id="yd3-ev-nYz"/>
+                <outlet property="saveBtn" destination="SqC-a7-UDW" id="EVo-KF-vQf"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="La9-Xy-Jt3">
+                    <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SqC-a7-UDW">
+                            <rect key="frame" x="30" y="10" width="315" height="40"/>
+                            <color key="backgroundColor" red="0.28235294117647058" green="0.80784313725490198" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="保 存">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="saveBtnClick:" destination="-1" eventType="touchUpInside" id="qTD-Cc-ilv"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="SqC-a7-UDW" firstAttribute="centerY" secondItem="La9-Xy-Jt3" secondAttribute="centerY" id="Hjb-G4-zs7"/>
+                        <constraint firstAttribute="height" constant="60" id="YVS-SO-UVR"/>
+                        <constraint firstItem="SqC-a7-UDW" firstAttribute="top" secondItem="La9-Xy-Jt3" secondAttribute="top" constant="10" id="ctN-f5-Bfr"/>
+                        <constraint firstItem="SqC-a7-UDW" firstAttribute="centerX" secondItem="La9-Xy-Jt3" secondAttribute="centerX" id="wpy-64-Ngz"/>
+                        <constraint firstItem="SqC-a7-UDW" firstAttribute="leading" secondItem="La9-Xy-Jt3" secondAttribute="leading" constant="30" id="xgP-iL-ui2"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="La9-Xy-Jt3" secondAttribute="bottom" id="26F-rq-lDY"/>
+                <constraint firstAttribute="trailing" secondItem="La9-Xy-Jt3" secondAttribute="trailing" id="qmC-h3-qvD"/>
+                <constraint firstItem="La9-Xy-Jt3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zbg-q6-xwu"/>
+            </constraints>
+            <point key="canvasLocation" x="362.5" y="313.5"/>
+        </view>
+    </objects>
+</document>

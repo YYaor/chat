@@ -7,7 +7,9 @@
 //
 
 #import "LSMineFeedbackController.h"
+
 #import "YYPlaceholderTextView.h"
+
 @interface LSMineFeedbackController ()
 
 @property (nonatomic,strong)YYPlaceholderTextView *infoTextView;
@@ -20,8 +22,10 @@
 
 @implementation LSMineFeedbackController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
     [self initForView];
 }
 
@@ -75,6 +79,7 @@
         
         if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
         {
+            [XHToast showCenterWithText:responseObj[@"提交成功"]];
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }else
         {

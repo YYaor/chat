@@ -9,7 +9,7 @@
 #import "MDGroupDiscussDetailVC.h"
 #import "MDNewDiscussCell.h"
 #import "LSChooseMateController.h"
-#import "MDGroupDetailModel.h"//群组详情
+#import "MDGroupDetailModel.h"//同行讨论组详情
 
 @interface MDGroupDiscussDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -67,6 +67,9 @@
 - (void)deleteGroupBtnClick
 {
     NSLog(@"解散此群");
+    
+    [self deleteGroupData];
+    
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -116,6 +119,7 @@
             NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/..%@",API_HOST,@"imgurl"]];
             [cell.userImgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"headImg_public"]];
             cell.userNameLab.text = userModel.doctor_name;
+            
         }
         
         
@@ -132,6 +136,7 @@
     if (indexPath.item == self.groupDetailModel.users.count + 1) {
         //点击最后一个加号
         NSLog(@"点击添加好友");
+        
         LSChooseMateController *chooseMateVC = [[LSChooseMateController alloc] init];
         chooseMateVC.submitData = YES;
         chooseMateVC.groupDetailModel  = self.groupDetailModel;
@@ -153,9 +158,11 @@
 {
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
+    //同行的讨论组
     [param setValue:self.groupIdStr forKey:@"roomid"];
     
     NSString* url = PATH(@"%@/queryRoomInfo");
+    
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         if ([responseObj isKindOfClass:[NSDictionary class]]) {
@@ -163,7 +170,6 @@
             if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
             {
                 self.groupDetailModel = [MDGroupDetailModel yy_modelWithDictionary:responseObj[@"data"]];
-                
                 [discussCol reloadData];
             }else
             {
@@ -180,7 +186,40 @@
         //[XHToast showCenterWithText:@"fail"];
     }];
 }
-
+#pragma mark  -- 删除讨论组
+- (void)deleteGroupData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    [param setValue:self.groupIdStr forKey:@"roomid"];
+    
+    NSString* url = PATH(@"%@/deleteDoctorRoom");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                //解散成功
+                UIViewController* vc = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 3];
+                
+                [self.navigationController popToViewController:vc animated:YES];
+                
+                
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        //[XHToast showCenterWithText:@"fail"];
+    }];
+}
 
 
 @end

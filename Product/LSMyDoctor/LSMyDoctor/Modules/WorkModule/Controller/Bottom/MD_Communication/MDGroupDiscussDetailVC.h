@@ -11,5 +11,6 @@
 @interface MDGroupDiscussDetailVC : UIViewController
 
 @property (nonatomic ,strong)NSString* groupIdStr;//组的id
+@property (nonatomic ,assign)BOOL isPeer;
 
 @end

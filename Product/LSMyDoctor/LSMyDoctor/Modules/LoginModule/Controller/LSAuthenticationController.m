@@ -373,7 +373,6 @@
     }];
 }
 
-#pragma mark - youwenti
 -(void)hospitalButtonClick{
     
     if ([self.cityButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
@@ -566,7 +565,7 @@
     
     if ([self.careerButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
     {
-        [XHToast showTopWithText:@"请先获取所在医院"];
+        [XHToast showTopWithText:@"请先获取职称"];
         return;
     }
     
@@ -958,7 +957,7 @@
         [_commitButton setTitle:@"提交" forState:UIControlStateNormal];
         _commitButton.layer.masksToBounds = YES;
         _commitButton.layer.cornerRadius = 20;
-        _clearButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        _commitButton.titleLabel.font = [UIFont systemFontOfSize:14];
     }
     return _commitButton;
 }

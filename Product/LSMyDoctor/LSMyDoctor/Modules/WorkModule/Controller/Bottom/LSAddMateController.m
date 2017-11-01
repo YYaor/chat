@@ -33,7 +33,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     //获取详
-    [self getDoctorListRequestDataWithCity:nil country:nil department:nil doctorName:nil hospital:nil];
+    [self getDoctorListRequestDataWithCity:nil country:nil department:nil doctorName:nil hospital:nil phoneNum:nil];
 }
 
 -(void)initForView{
@@ -97,6 +97,14 @@
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     
+    if ([NSString isMobile:searchBar.text]) {
+        //手机号
+        [self getDoctorListRequestDataWithCity:nil country:nil department:nil doctorName:nil hospital:nil phoneNum:searchBar.text];
+    }else{
+        [self getDoctorListRequestDataWithCity:nil country:nil department:nil doctorName:searchBar.text hospital:nil phoneNum:nil];
+    }
+    
+    
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
@@ -104,7 +112,12 @@
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    
+    if ([NSString isMobile:searchBar.text]) {
+        //手机号
+        [self getDoctorListRequestDataWithCity:nil country:nil department:nil doctorName:nil hospital:nil phoneNum:searchBar.text];
+    }else{
+        [self getDoctorListRequestDataWithCity:nil country:nil department:nil doctorName:searchBar.text hospital:nil phoneNum:nil];
+    }
 }
 
 -(NSMutableArray *)dataArray{
@@ -139,7 +152,7 @@
 }
 
 #pragma mark -- 获取医生列表
-- (void)getDoctorListRequestDataWithCity:(NSString*)cityStr country:(NSString*)countryStr department:(NSString*)departmentStr doctorName:(NSString*)docotorNameStr hospital:(NSString*)hopitalNameStr
+- (void)getDoctorListRequestDataWithCity:(NSString*)cityStr country:(NSString*)countryStr department:(NSString*)departmentStr doctorName:(NSString*)docotorNameStr hospital:(NSString*)hopitalNameStr phoneNum:(NSString*)phoneNumber
 {
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
@@ -148,6 +161,7 @@
     [param setValue:departmentStr forKey:@"department"];
     [param setValue:docotorNameStr forKey:@"doctorName"];
     [param setValue:hopitalNameStr forKey:@"hospital"];
+    [param setValue:phoneNumber forKey:@"phone"];
     
     NSString* url = PATH(@"%@/doctorList");
     

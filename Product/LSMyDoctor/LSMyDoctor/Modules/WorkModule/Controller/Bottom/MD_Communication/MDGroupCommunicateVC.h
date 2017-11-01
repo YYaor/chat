@@ -11,5 +11,6 @@
 @interface MDGroupCommunicateVC : EaseMessageViewController
 
 @property (nonatomic ,strong)NSString* groupIdStr;
+@property (nonatomic ,assign)BOOL isPeer;
 
 @end

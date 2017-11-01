@@ -13,6 +13,7 @@
 #import "MDPeerDetailVC.h"
 #import "MDConsulteDisccussVC.h"
 #import "MDDoctorListModel.h"
+#import "MDDiscussListModel.h"
 
 @interface LSManageMateController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -84,6 +85,8 @@
 {
     //获取我的同行列表
     [self getMyPeerListData];
+    //获取讨论组列表
+    [self getDiscussListData];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -357,6 +360,36 @@
     }];
 }
 
+#pragma mark -- 获取会诊讨论组列表
+- (void)getDiscussListData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    NSString* url = PATH(@"%@/queryRoomList");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                NSArray* list = [NSArray yy_modelArrayWithClass:[MDDiscussListModel class] json:responseObj[@"data"]];
+                self.groupNumLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)list.count];
+                
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        //[XHToast showCenterWithText:@"fail"];
+    }];
+}
 
 
 

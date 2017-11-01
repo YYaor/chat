@@ -48,25 +48,19 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
+      "filename" : "1-1启动页附件.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "2x"
     },
     {
-      "orientation" : "portrait",
+      "extent" : "full-screen",
       "idiom" : "iphone",
-      "extent" : "full-screen",
-      "minimum-system-version" : "7.0",
       "subtype" : "retina4",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "640-960.png",
-      "unassigned" : true
-    },
-    {
       "filename" : "640-1136.png",
-      "unassigned" : true
+      "minimum-system-version" : "7.0",
+      "orientation" : "portrait",
+      "scale" : "2x"
     }
   ],
   "info" : {

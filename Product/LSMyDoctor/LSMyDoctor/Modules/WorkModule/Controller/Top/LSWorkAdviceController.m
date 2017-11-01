@@ -93,11 +93,14 @@ static NSString *cellId = @"LSWorkAdviceCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    LSWEAKSELF;
+    
     LSWorkAdviceCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
     cell.dataDic = self.dataArray[indexPath.row];
     
     cell.agreeClickBlock = ^(NSDictionary *dataDic) {
-        [self.dataArray replaceObjectAtIndex:indexPath.row withObject:dataDic];
+//        [self.dataArray replaceObjectAtIndex:indexPath.row withObject:dataDic];
+        [weakSelf requestData];
     };
     
     return cell;

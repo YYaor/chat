@@ -10,6 +10,7 @@
 #import "MDChooseSickerCell.h"
 #import "MDChooseSickerModel.h"
 #import "MDSickerLabelsModel.h"
+#import "MDGroupCommunicateVC.h"
 
 @interface MDAddGroupVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZHPickViewDelegate>
 {
@@ -113,96 +114,123 @@
     NSLog(@"确定按钮点击");
     
     [self.selectresultArr removeAllObjects];
-    for (MDChooseSickerModel* sickerModel in self.groupDataArr) {
-        if (sickerModel.is_Selected) {
-            [self.selectresultArr addObject:sickerModel.user_id];
+    
+    if (self.submitData) {
+        //已经有群，添加后直接提交
+       
+        NSMutableArray* haveIdArr = [NSMutableArray array];
+        [haveIdArr removeAllObjects];
+        
+        for (MDSickerGroupUserModel* userModel in self.groupDetailModel.users) {
+            [haveIdArr addObject:userModel.user_id];
         }
+        
+        for (MDChooseSickerModel *model in self.groupDataArr) {
+            if (![haveIdArr containsObject:model.user_id]) {
+                [self.selectresultArr addObject:model.user_id];
+            }
+        }
+        
+        if (self.selectresultArr.count <= 0) {
+            [XHToast showCenterWithText:@"请选择新加的群成员"];
+            return;
+        }
+        //添加群
+        [self addUserToGroupRequest];
+        
+    }else{
+        for (MDChooseSickerModel* sickerModel in self.groupDataArr) {
+            if (sickerModel.is_Selected) {
+                [self.selectresultArr addObject:sickerModel.user_id];
+            }
+        }
+        
+        if (self.selectresultArr.count <= 0) {
+            [XHToast showCenterWithText:@"请选择群成员"];
+            return;
+        }
+        //新建群
+        _getView = [[UIView alloc] init];
+        _getView.frame = [UIScreen mainScreen].bounds;
+        _getView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        //给视图添加点击方法
+        UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelBtnClick)];
+        recognizer.numberOfTapsRequired=1;
+        [_getView addGestureRecognizer:recognizer];
+        
+        //白色布景
+        UIView* whiteView = [[UIView alloc] init];
+        whiteView.backgroundColor = [UIColor whiteColor];
+        whiteView.layer.masksToBounds = YES;
+        whiteView.userInteractionEnabled = YES;
+        whiteView.layer.cornerRadius = 6.0f;
+        [_getView addSubview:whiteView];
+        [whiteView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(_getView.mas_centerX);
+            make.centerY.equalTo(_getView.mas_centerY);
+            make.width.equalTo(_getView.mas_width).multipliedBy(0.8);
+            make.height.equalTo(@150);
+        }];
+        //取消按钮
+        UIButton* cancelBtn = [[UIButton alloc] init];
+        [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        cancelBtn.layer.masksToBounds = YES;
+        cancelBtn.layer.borderWidth = 0.5f;
+        cancelBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        [cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [whiteView addSubview:cancelBtn];
+        [cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(whiteView.mas_left);
+            make.bottom.equalTo(whiteView.mas_bottom);
+            make.height.equalTo(@40);
+            make.width.equalTo(whiteView.mas_width).multipliedBy(0.5);
+        }];
+        //确定按钮
+        
+        UIButton* submitBtn = [[UIButton alloc] init];
+        [submitBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [submitBtn setTitleColor:BaseColor forState:UIControlStateNormal];
+        submitBtn.layer.masksToBounds = YES;
+        submitBtn.layer.borderWidth = 0.5f;
+        submitBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        [submitBtn addTarget:self action:@selector(submitBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [whiteView addSubview:submitBtn];
+        [submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(whiteView.mas_right);
+            make.bottom.equalTo(cancelBtn.mas_bottom);
+            make.height.equalTo(cancelBtn.mas_height);
+            make.left.equalTo(cancelBtn.mas_right);
+        }];
+        //请输入您的卡券
+        UILabel* inputLab = [[UILabel alloc] init];
+        inputLab.text = @"群组名：";
+        inputLab.textColor = Style_Color_Content_Black;
+        [whiteView addSubview:inputLab];
+        [inputLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(whiteView.mas_left).offset(10);
+            make.top.equalTo(whiteView.mas_top).offset(20);
+        }];
+        
+        inputTF = [[UITextField alloc] init];
+        inputTF.layer.masksToBounds = YES;
+        inputTF.delegate = self;
+        [inputTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        inputTF.layer.borderWidth = 1.0f;
+        inputTF.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        inputTF.layer.cornerRadius = 4.5f;
+        [whiteView addSubview:inputTF];
+        [inputTF mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(inputLab.mas_bottom).offset(10);
+            make.centerX.equalTo(whiteView.mas_centerX);
+            make.left.equalTo(whiteView.mas_left).offset(20);
+            make.height.equalTo(@40);
+        }];
+        
+        
+        [[UIApplication sharedApplication].keyWindow addSubview:_getView];
     }
     
-    if (self.selectresultArr.count <= 0) {
-        [XHToast showCenterWithText:@"请选择群成员"];
-        return;
-    }
-    
-    _getView = [[UIView alloc] init];
-    _getView.frame = [UIScreen mainScreen].bounds;
-    _getView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    //给视图添加点击方法
-    UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelBtnClick)];
-    recognizer.numberOfTapsRequired=1;
-    [_getView addGestureRecognizer:recognizer];
-    
-    //白色布景
-    UIView* whiteView = [[UIView alloc] init];
-    whiteView.backgroundColor = [UIColor whiteColor];
-    whiteView.layer.masksToBounds = YES;
-    whiteView.userInteractionEnabled = YES;
-    whiteView.layer.cornerRadius = 6.0f;
-    [_getView addSubview:whiteView];
-    [whiteView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(_getView.mas_centerX);
-        make.centerY.equalTo(_getView.mas_centerY);
-        make.width.equalTo(_getView.mas_width).multipliedBy(0.8);
-        make.height.equalTo(@150);
-    }];
-    //取消按钮
-    UIButton* cancelBtn = [[UIButton alloc] init];
-    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    cancelBtn.layer.masksToBounds = YES;
-    cancelBtn.layer.borderWidth = 0.5f;
-    cancelBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    [cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [whiteView addSubview:cancelBtn];
-    [cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(whiteView.mas_left);
-        make.bottom.equalTo(whiteView.mas_bottom);
-        make.height.equalTo(@40);
-        make.width.equalTo(whiteView.mas_width).multipliedBy(0.5);
-    }];
-    //确定按钮
-    
-    UIButton* submitBtn = [[UIButton alloc] init];
-    [submitBtn setTitle:@"确定" forState:UIControlStateNormal];
-    [submitBtn setTitleColor:BaseColor forState:UIControlStateNormal];
-    submitBtn.layer.masksToBounds = YES;
-    submitBtn.layer.borderWidth = 0.5f;
-    submitBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    [submitBtn addTarget:self action:@selector(submitBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [whiteView addSubview:submitBtn];
-    [submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(whiteView.mas_right);
-        make.bottom.equalTo(cancelBtn.mas_bottom);
-        make.height.equalTo(cancelBtn.mas_height);
-        make.left.equalTo(cancelBtn.mas_right);
-    }];
-    //请输入您的卡券
-    UILabel* inputLab = [[UILabel alloc] init];
-    inputLab.text = @"群组名：";
-    inputLab.textColor = Style_Color_Content_Black;
-    [whiteView addSubview:inputLab];
-    [inputLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(whiteView.mas_left).offset(10);
-        make.top.equalTo(whiteView.mas_top).offset(20);
-    }];
-    
-    inputTF = [[UITextField alloc] init];
-    inputTF.layer.masksToBounds = YES;
-    inputTF.delegate = self;
-    [inputTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    inputTF.layer.borderWidth = 1.0f;
-    inputTF.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    inputTF.layer.cornerRadius = 4.5f;
-    [whiteView addSubview:inputTF];
-    [inputTF mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(inputLab.mas_bottom).offset(10);
-        make.centerX.equalTo(whiteView.mas_centerX);
-        make.left.equalTo(whiteView.mas_left).offset(20);
-        make.height.equalTo(@40);
-    }];
-    
-    
-    [[UIApplication sharedApplication].keyWindow addSubview:_getView];
 }
 
 #pragma mark -- 阴影取消按钮点击
@@ -369,8 +397,21 @@
         {
             NSArray *dataList = [NSArray yy_modelArrayWithClass:[MDChooseSickerModel class] json:responseObj[@"data"]];
             
+            
             [weakSelf.groupDataArr removeAllObjects];
             [weakSelf.groupDataArr addObjectsFromArray:dataList];
+            
+            if (self.submitData && self.groupDetailModel.users.count > 0) {
+                //修改群组成员，将已有的群组成员标记已选中
+                for (MDSickerGroupUserModel* userModel in weakSelf.groupDetailModel.users) {
+                    for (MDChooseSickerModel* listModel in weakSelf.groupDataArr) {
+                        if ([userModel.user_id isEqualToString:listModel.user_id]) {
+                            listModel.is_Selected = YES;
+                        }
+                    }
+                }
+            }
+            
             
             weakSelf.indexArray = [BMChineseSort IndexWithArray:weakSelf.groupDataArr Key:@"username"];
             weakSelf.letterResultArr = [BMChineseSort sortObjectArray:weakSelf.groupDataArr Key:@"username"];
@@ -434,6 +475,47 @@
                 
                 NSString* imGroupId = responseObj[@"data"][@"im_groupid"];
                 NSLog(@"创建成功%@",imGroupId);
+                MDGroupCommunicateVC* groupCommunicateVC = [[MDGroupCommunicateVC alloc] initWithConversationChatter:imGroupId conversationType:EMConversationTypeGroupChat];
+                groupCommunicateVC.isPeer = NO;
+                groupCommunicateVC.title = groupNameStr;
+   //             groupCommunicateVC.groupIdStr = listModel.groupId;
+                [self.navigationController pushViewController:groupCommunicateVC animated:YES];
+                
+                
+                
+            }else{
+                [XHToast showCenterWithText:@"创建失败"];
+            }
+            
+        }else
+        {
+            [XHToast showCenterWithText:@"数据解析错误"];
+        }
+    } failBlock:^(NSError *error) {
+        [self cancelBtnClick];
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
+#pragma mark -- 加患者入群 --- 已经存在群的
+- (void)addUserToGroupRequest
+{
+    NSString* userIdsStr = [self.selectresultArr componentsJoinedByString:@","];
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:self.groupIdStr forKey:@"groupid"];
+    [param setValue:userIdsStr forKey:@"userids"];
+    
+    NSString* url = PATH(@"%@/addGroupUser");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        [self cancelBtnClick];
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            if (responseObj[@"data"] && responseObj[@"data"][@"im_groupid"]) {
+                //创建成功
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                
             }else{
                 [XHToast showCenterWithText:@"创建失败"];
             }

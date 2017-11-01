@@ -11,22 +11,35 @@
 #import "MDSickerClassCell.h"
 #import "MDSickerDetailBottomCell.h"
 #import "MDSickerDetailModel.h"
+#import "MDSickerMarkVC.h"
+#import "MDSickerLabelsModel.h"
+#import "MDSickerRemarkVC.h"
+#import "MDEditGroupVC.h"
 
 @interface MDSickerDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView* detailTab;
 }
 @property (nonatomic , strong)MDSickerDetailModel* detailModel;
+@property (nonatomic , strong)NSMutableArray*   labelsMultArr;//分类信息数组
 
 @end
 
 @implementation MDSickerDetailVC
-
+- (NSMutableArray *)labelsMultArr{
+    
+    if (_labelsMultArr == nil) {
+        _labelsMultArr = [NSMutableArray array];
+        
+    }
+    return _labelsMultArr;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"患者主页";
-    
+    //获取常用标签
+    [self getLabelsData];
     [self setUpUi];
 }
 #pragma mark -- 创建界面
@@ -82,7 +95,7 @@
 {
     if (section == 1) {
         //个人信息
-        return 3;
+        return 4;
     }else{
         return 1;
     }
@@ -132,7 +145,7 @@
             
             UISwitch* isImportantSwitch = [[UISwitch alloc] init];
             isImportantSwitch.on = self.detailModel.is_focus;
-//            isImportant = self.sickerModel.keyflag;
+            isImportantSwitch.onTintColor = BaseColor;
             [isImportantSwitch addTarget:self action:@selector(switchBtnClick:) forControlEvents:UIControlEventValueChanged];
             [cell addSubview:isImportantSwitch];
             [isImportantSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -147,8 +160,13 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             if (indexPath.row == 1) {
                 cell.cellTitleLab.text = @"患者分类";
+                cell.cellValueLab.text = self.detailModel.classifyLabels;
+            }else if (indexPath.row == 2){
+                cell.cellTitleLab.text = @"所在分组";
+                cell.cellValueLab.text = self.detailModel.groups;
             }else{
                 cell.cellTitleLab.text = @"备注";
+                cell.cellValueLab.text = self.detailModel.remark;
             }
             
             return cell;
@@ -166,22 +184,48 @@
     
 }
 
-
-#pragma mark -- 是否为重点点击
-- (void)switchBtnClick:(UISwitch*)sender
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    isImportant = sender.isOn;
-    if (sender.isOn) {
-        NSLog(@"打开");
-    }else{
-        NSLog(@"关闭");
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        //编辑标签
+    }else if (indexPath.section == 1){
+        if (indexPath.row == 1) {
+            //分类信息
+            MDSickerMarkVC* editMarkVC = [[MDSickerMarkVC alloc] init];
+            editMarkVC.userNameStr = self.detailModel.username;
+            editMarkVC.userIdStr = self.sickerIdStr;
+            editMarkVC.haveMarkArr = [NSMutableArray arrayWithArray:[self.detailModel.classifyLabels componentsSeparatedByString:@","]];
+            editMarkVC.usefulMarkArr = self.labelsMultArr;
+            [self.navigationController pushViewController:editMarkVC animated:YES];
+            
+        }else if (indexPath.row == 2){
+            //所在分组
+            MDEditGroupVC* editGroupVC = [[MDEditGroupVC alloc] init];
+            editGroupVC.groupIdStr = self.detailModel.groupids;
+            editGroupVC.userIdStr = self.sickerIdStr;
+            editGroupVC.userNameStr = self.detailModel.username;
+            [self.navigationController pushViewController:editGroupVC animated:YES];
+        }else{
+            //备注
+            MDSickerRemarkVC* sickerRemarkVC = [[MDSickerRemarkVC alloc] init];
+            sickerRemarkVC.remarkStr = self.detailModel.remark;
+            sickerRemarkVC.userIdStr = self.sickerIdStr;
+            sickerRemarkVC.userNameStr = self.detailModel.username;
+            [self.navigationController pushViewController:sickerRemarkVC animated:YES];
+            
+        }
     }
     
 }
 
 
 
-
+#pragma mark -- 是否为重点点击
+- (void)switchBtnClick:(UISwitch*)sender
+{
+    [self changeSickerDetailWithisFocus:sender.isOn];
+}
 
 
 #pragma mark -- 获取患者详情
@@ -211,5 +255,57 @@
     }];
 }
 
+#pragma mark -- 修改患者资料
+- (void)changeSickerDetailWithisFocus:(BOOL)isFocus
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:@(isFocus) forKey:@"focus"];
+    [param setValue:self.sickerIdStr forKey:@"userid"];
+    [param setValue:self.detailModel.username forKey:@"username"];
+    
+    NSString* url = PATH(@"%@/updatePatientRemark");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            [self getSickerDetailRequestData];
+            
+        }else
+        {
+            [XHToast showCenterWithText:@"更改失败"];
+        }
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
+
+#pragma mark -- 获取分类信息
+- (void)getLabelsData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    NSString* url = PATH(@"%@/labels");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            [self.labelsMultArr removeAllObjects];
+            NSArray *labelsList = [NSArray yy_modelArrayWithClass:[MDSickerLabelsModel class] json:responseObj[@"data"]];
+            
+            for (MDSickerLabelsModel* model in labelsList) {
+                [self.labelsMultArr addObject:model.label_text];
+            }
+            NSLog(@"12313");
+        }else
+        {
+            [XHToast showCenterWithText:@"数据解析错误"];
+        }
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+    
+}
 
 @end

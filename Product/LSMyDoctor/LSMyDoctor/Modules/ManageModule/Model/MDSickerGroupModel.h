@@ -17,5 +17,7 @@
 @property (nonatomic, copy) NSString *is_stick;//是否置顶
 @property (nonatomic, copy) NSString *name;//群名称
 
+@property (nonatomic, assign) BOOL isSelected;//是否选中
+
 
 @end

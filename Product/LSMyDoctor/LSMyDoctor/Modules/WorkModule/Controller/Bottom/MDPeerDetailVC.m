@@ -254,6 +254,9 @@
                 }else{
                     [XHToast showCenterWithText:@"请求已发送成功"];
                 }
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                
             }else
             {
                 [XHToast showCenterWithText:@"获取数据失败"];

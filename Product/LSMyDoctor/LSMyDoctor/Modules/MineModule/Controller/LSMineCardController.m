@@ -130,7 +130,7 @@
 {
     _userModel = userModel;
     
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:userModel.myImage] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, userModel.myImage]] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
     
     self.nameLabel.text = userModel.myName;
     

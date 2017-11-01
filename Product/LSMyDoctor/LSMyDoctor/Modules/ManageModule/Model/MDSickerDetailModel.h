@@ -12,10 +12,13 @@
 
 @property (nonatomic , copy) NSString* username;
 @property (nonatomic , assign) BOOL is_focus;
+@property (nonatomic , copy) NSString* img_url;
 @property (nonatomic , copy) NSString* sex;
+@property (nonatomic , copy) NSString* remark;
 @property (nonatomic , copy) NSString* birthday;
 @property (nonatomic , copy) NSString* groups;
-@property (nonatomic , copy) NSString* classifyLabels;
-@property (nonatomic , copy) NSDictionary* userLabels;
+@property (nonatomic , copy) NSString* groupids;
+@property (nonatomic , copy) NSString* classifyLabels;//自定义标签
+@property (nonatomic , copy) NSDictionary* userLabels;//患者画像标签
 
 @end

@@ -22,6 +22,7 @@
 #import "MDRequestParameters.h"
 #import "BMChineseSort.h"
 #import "AlertHelper.h"
+#import "WFHelperButton.h"
 
 #import "AppDelegate.h"
 

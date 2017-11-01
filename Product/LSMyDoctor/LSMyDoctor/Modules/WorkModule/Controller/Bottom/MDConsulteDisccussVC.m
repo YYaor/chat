@@ -102,7 +102,7 @@
     MDDiscussListModel* listModel = self.groupArr[indexPath.section];
     
     MDGroupCommunicateVC* groupCommunicateVC = [[MDGroupCommunicateVC alloc] initWithConversationChatter:listModel.groupId conversationType:EMConversationTypeGroupChat];
-    
+    groupCommunicateVC.isPeer = YES;
     groupCommunicateVC.title = listModel.name;
     groupCommunicateVC.groupIdStr = listModel.groupId;
     [self.navigationController pushViewController:groupCommunicateVC animated:YES];

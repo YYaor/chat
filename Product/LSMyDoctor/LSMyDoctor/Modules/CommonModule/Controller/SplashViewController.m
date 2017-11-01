@@ -14,7 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (nonatomic,strong) YGPageControl *pageControl;
+//@property (nonatomic,strong) YGPageControl *pageControl;
 
 @end
 
@@ -51,17 +51,18 @@
 
 - (void) setScrollViewWithImagesArray:(NSArray *) images{
     
-    self.scrollView.contentSize = CGSizeMake(images.count * LSSCREENWIDTH+LSSCREENWIDTH, LSSCREENHEIGHT);
+//    self.scrollView.contentSize = CGSizeMake(images.count * LSSCREENWIDTH+LSSCREENWIDTH, LSSCREENHEIGHT);
+    self.scrollView.contentSize = CGSizeMake(images.count * LSSCREENWIDTH, LSSCREENHEIGHT);
     self.scrollView.delegate = self;
     
-    _pageControl = [[YGPageControl alloc] initWithFrame:CGRectMake(0, LSSCREENHEIGHT - 60, LSSCREENWIDTH, 30)];
-    //设置圆点个数
-    _pageControl.numberOfPages = images.count;
-    _pageControl.currentPage = 0;
-    _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
-    _pageControl.currentPageIndicatorTintColor = RGBCOLOR(255, 198, 122);
+//    _pageControl = [[YGPageControl alloc] initWithFrame:CGRectMake(0, LSSCREENHEIGHT - 60, LSSCREENWIDTH, 30)];
+//    //设置圆点个数
+//    _pageControl.numberOfPages = images.count;
+//    _pageControl.currentPage = 0;
+//    _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+//    _pageControl.currentPageIndicatorTintColor = RGBCOLOR(255, 198, 122);
     
-    [self.view addSubview:_pageControl];
+//    [self.view addSubview:_pageControl];
     
     //添加图片控件
     for (int i = 0; i < images.count; ++i) {
@@ -111,8 +112,7 @@
     [param setValue:@0 forKey:@"deviceType"];
     [param setObject:@2 forKey:@"type"];
     
-    NSString* headUrl = [API_HOST substringToIndex:API_HOST.length - 3];
-    NSString* url = [NSString stringWithFormat:@"%@/home/loadGuides",headUrl];
+    NSString *url = [NSString stringWithFormat:@"%@/home/loadGuides",UGAPI_HOST];
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         NSDictionary *returnData = responseObj;
@@ -156,19 +156,19 @@
 //    _pageControl.currentPage = index;
 //}
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    int index = (int) (scrollView.contentOffset.x / LSSCREENWIDTH + 0.5);
-    _pageControl.currentPage = index;
-    
-    NSInteger nu = ceilf((float)(scrollView.contentOffset.x / LSSCREENWIDTH));
-    
-    if ( nu + 1 > _pageControl.numberOfPages) {
-        //当最后一个是滑动跳转
-        [self toMainControllerView];
-    }
-    
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    
+//    int index = (int) (scrollView.contentOffset.x / LSSCREENWIDTH + 0.5);
+//    _pageControl.currentPage = index;
+//    
+//    NSInteger nu = ceilf((float)(scrollView.contentOffset.x / LSSCREENWIDTH));
+//    
+//    if ( nu + 1 > _pageControl.numberOfPages) {
+//        //当最后一个是滑动跳转
+//        [self toMainControllerView];
+//    }
+//    
+//}
 
 //加载app版本信息
 - (void)loadAppVersion{
@@ -182,9 +182,7 @@
     [param setValue:app_Version forKey:@"currentVersion"];
     [param setValue:AccessToken forKey:@"accessToken"];
     
-    NSString* headUrl = [API_HOST substringToIndex:API_HOST.length - 3];
-    NSString* url = [NSString stringWithFormat:@"%@/home/loadAppVersion",headUrl];
-//    NSString* url = PATH(@"%@/home/loadAppVersion");
+    NSString *url = [NSString stringWithFormat:@"%@/home/loadAppVersion",UGAPI_HOST];
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         

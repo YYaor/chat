@@ -8,7 +8,7 @@
 
 #import "MDGroupCommunicateVC.h"
 #import "MDGroupDiscussDetailVC.h"
-
+#import "MDSickerGroupDetialVC.h"
 @interface MDGroupCommunicateVC ()
 
 @end
@@ -18,22 +18,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIButton* groupBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    groupBtn.frame = CGRectMake(LSSCREENWIDTH - 100, 7, 80, 30);
-    [groupBtn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [groupBtn setImage:[UIImage imageNamed:@"people_white"] forState:UIControlStateNormal];
-    [groupBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 50, 0, 0)];
-    UIBarButtonItem *copyBarBtn = [[UIBarButtonItem alloc] initWithCustomView:groupBtn];
-    self.navigationItem.rightBarButtonItem = copyBarBtn;
+    if (self.groupIdStr.length > 0) {
+        UIButton* groupBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        groupBtn.frame = CGRectMake(LSSCREENWIDTH - 100, 7, 80, 30);
+        [groupBtn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [groupBtn setImage:[UIImage imageNamed:@"people_white"] forState:UIControlStateNormal];
+        [groupBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 50, 0, 0)];
+        UIBarButtonItem *copyBarBtn = [[UIBarButtonItem alloc] initWithCustomView:groupBtn];
+        self.navigationItem.rightBarButtonItem = copyBarBtn;
+        
+    }
     
     // Do any additional setup after loading the view.
 }
 
 - (void)rightBtnClick
 {
-    MDGroupDiscussDetailVC* detailVC = [[MDGroupDiscussDetailVC alloc] init];
-    detailVC.groupIdStr = self.groupIdStr;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    if (self.isPeer) {
+        MDGroupDiscussDetailVC* detailVC = [[MDGroupDiscussDetailVC alloc] init];
+        detailVC.groupIdStr = self.groupIdStr;
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }else{
+        MDSickerGroupDetialVC* detailVC = [[MDSickerGroupDetialVC alloc] init];
+        detailVC.groupIdStr = self.groupIdStr;
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
+    
 }
 
 

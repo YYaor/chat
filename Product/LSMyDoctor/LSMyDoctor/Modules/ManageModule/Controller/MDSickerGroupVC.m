@@ -9,6 +9,7 @@
 #import "MDSickerGroupVC.h"
 #import "MDConsultDiscussCell.h"
 #import "MDSickerGroupModel.h"
+#import "MDGroupCommunicateVC.h"
 
 @interface MDSickerGroupVC ()<UITableViewDelegate , UITableViewDataSource>
 {
@@ -63,7 +64,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 1;
-    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -97,8 +97,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MDSickerGroupModel* listModel = self.groupArr[indexPath.section];
     
+    MDGroupCommunicateVC* groupCommunicateVC = [[MDGroupCommunicateVC alloc] initWithConversationChatter:listModel.im_groupid conversationType:EMConversationTypeGroupChat];
+    groupCommunicateVC.isPeer = NO;
+    groupCommunicateVC.title = listModel.name;
+    groupCommunicateVC.groupIdStr = listModel.groupId;
+    [self.navigationController pushViewController:groupCommunicateVC animated:YES];
     
-    NSLog(@"点击进入会话");
 }
 #pragma mark -- 获取会诊讨论组列表
 - (void)getSickerGroupListData

@@ -393,6 +393,7 @@ static TLNetworkStatus     networkStatus;
                 TLUploadParam *uploadParam = (TLUploadParam *)uploadFile;
                 [formData appendPartWithFileData:uploadParam.data name:uploadParam.paramKey
                                         fileName:uploadParam.fileName mimeType:uploadParam.mimeType];
+                
             }else{
                 NSLog(@"文件数组不是TLUploadParam对象，请检查文件数组类型");
                 return;
@@ -411,11 +412,12 @@ static TLNetworkStatus     networkStatus;
         
          [SVProgressHUD dismiss];
         // 判断请求接口是否成功（api_code = 0）
-        if ([responseObject[@"api_code"] integerValue] == 0) {
+        if ([responseObject[@"status"] integerValue] == 0) {
             successBlock ? successBlock(responseObject) : nil;
         }else{
             failBlock ? failBlock(nil) : nil;
-            [[DSToast toastWithText:responseObject[@"api_message"]] show];
+//            [[DSToast toastWithText:responseObject[@"api_message"]] show];
+            [[DSToast toastWithText:responseObject[@"message"]] show];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

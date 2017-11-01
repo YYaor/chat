@@ -9,6 +9,9 @@
 #import "LSMineUserSettingController.h"
 
 #import "LSMineUserNameController.h"
+#import "LSMineUserHospitalController.h"
+#import "LSMineUserGoodatController.h"
+#import "LSMineUserInfoController.h"
 
 #import "LSMineUserSettingCell.h"
 
@@ -22,7 +25,7 @@
 @property (nonatomic, strong) NSString *projectId;//科室
 @property (nonatomic, strong) NSString *department_name;
 
-@property (nonatomic, strong) NSString *hospital_id;
+//@property (nonatomic, strong) NSString *hospital_id;
 
 @property (nonatomic, strong) ZHPickView *pickview;
 
@@ -139,6 +142,13 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     
+    if (indexPath.row == 2)
+    {
+        //跳往医院选择
+        LSMineUserHospitalController *vc = [[LSMineUserHospitalController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
     if (indexPath.row == 3)
     {
         //科室
@@ -232,6 +242,22 @@
             //[XHToast showCenterWithText:@"fail"];
         }];
     }
+    
+    if (indexPath.row == 5)
+    {
+        //跳往擅长
+        LSMineUserGoodatController *vc = [[LSMineUserGoodatController alloc] initWithNibName:@"LSMineUserGoodatController" bundle:nil];
+        vc.model = self.model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if (indexPath.row == 6)
+    {
+        //跳往个人简介
+        LSMineUserInfoController *vc = [[LSMineUserInfoController alloc] initWithNibName:@"LSMineUserInfoController" bundle:nil];
+        vc.model = self.model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -255,7 +281,7 @@
     
     if (indexPath.row == 0) {
         [cell hideHeadImageView:NO];
-        [cell updateHead:nil];
+        [cell updateHead:self.model.myImage];
     }else{
         [cell hideHeadImageView:YES];
         if (indexPath.row == 1) {
@@ -293,6 +319,8 @@
 #pragma mark - 从相册选择图片后操作
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
+    LSWEAKSELF;
+    
     //NSLog(@"%@",info);
     
     //获取源图像（未经裁剪）
@@ -306,73 +334,48 @@
         UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
     }
     //将照片存到沙盒
-    [self saveImage:image];
+//    [self saveImage:image];
+    
+    //上传图片
+    //上传的图片对象
+    TLUploadParam *uploadImage = [[TLUploadParam alloc] init];
+    uploadImage.data = UIImageJPEGRepresentation(image, 0.8);
+    uploadImage.fileName = [uploadImage fileName];
+    uploadImage.paramKey = @"1";
+    uploadImage.mimeType = [uploadImage mimeType];
+    
+    //根据图片返回图片地址
+    NSMutableDictionary *params = [MDRequestParameters shareRequestParameters];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@", UGAPI_HOST, @"/common/upload/pictrues"];
+    
+    [TLAsiNetworkHandler uploadWithImageArray:[NSMutableArray arrayWithObject:uploadImage] url:url params:params showHUD:YES progressBlock:^(int64_t bytesRead, int64_t totalBytes) {
+        
+    } successBlock:^(id responseObj) {
+        if ([responseObj[@"status"] longValue] == 0)
+        {
+            NSString *imgUrl = responseObj[@"data"][@"urls"][0];
+            
+            NSMutableArray *arr = [NSMutableArray arrayWithArray:self.model.myBaseInfo];
+            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:arr[0]];
+            [dic setValue:imgUrl forKey:@"value"];
+            [arr replaceObjectAtIndex:0 withObject:dic];
+            
+            weakSelf.model.myBaseInfo = arr;
+            
+            [weakSelf updateMainInfoData];
+        }
+        else
+        {
+            [XHToast showCenterWithText:responseObj[@"message"]];
+        }
+    } failBlock:^(NSError *error) {
+        
+    }];
     
     [picker dismissViewControllerAnimated:YES completion:^{
     }];
 }
-#pragma mark - 保存图片
-- (void) saveImage:(UIImage *)currentImage {
-    //设置照片的品质
-    NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
-    
-    NSLog(@"%@",NSHomeDirectory());
-    // 获取沙盒目录
-    NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/currentImage.png"];
-    // 将图片写入文件
-    [imageData writeToFile:filePath atomically:NO];
-    //将选择的图片显示出来
-    
-    [self upLoadFile:filePath WithImg:currentImage];
-    
-}
-
-#pragma mark -- 文件上传请求
-- (void)upLoadFile:(NSString*)fileStr WithImg:(UIImage*)img
-{
-    TLUploadParam *uploadImage = [[TLUploadParam alloc] init];
-    
-    if(img){
-        uploadImage.data = UIImageJPEGRepresentation(img, 0.8);
-        uploadImage.fileName = [uploadImage fileName];
-        uploadImage.paramKey = @"1";
-        uploadImage.mimeType = [uploadImage mimeType];
-    }
-    
-    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-    
-    NSString* lasturl = @"/common/upload/file";
-    NSString* headUrl = [API_HOST substringToIndex:API_HOST.length - 3];
-    NSString* url = [NSString stringWithFormat:@"%@%@",headUrl,lasturl];
-    
-    [param setObject:fileStr forKey:@"keyName"];
-    
-    [self uploadFileWithURL:url params:param successBlock:^(id responseObj) {
-        
-        if ([responseObj isKindOfClass:[NSDictionary class]]) {
-            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"]) {
-                if (responseObj[@"data"] && responseObj[@"data"][@"url"]) {
-                    
-                    NSString* url = responseObj[@"data"][@"url"];
-                    //上传Url给后台
-                    [self savePhotoWithUrl:url];
-                    
-                }else{
-                    [XHToast showCenterWithText:@"返回数据错误"];
-                }
-            }else{
-                [XHToast showCenterWithText:@"返回数据错误"];
-            }
-        }else{
-            [XHToast showCenterWithText:@"返回数据错误"];
-        }
-        NSLog(@"成功");
-        
-    } failureBlock:^(NSError *error) {
-        NSLog(@"失败");
-    } uploadParam:[NSMutableArray arrayWithObject:uploadImage] showHUD:NO];
-}
-
 
 #pragma mark - 照片存到本地后的回调
 - (void)image:(UIImage*)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo{
@@ -383,75 +386,36 @@
     }
 }
 
-#pragma mark -- 将返回的图片Url发给后台保存
+#pragma mar - 修改个人信息
 
-- (void)savePhotoWithUrl:(NSString*)imgUrl
+- (void)updateMainInfoData
 {
+    LSWEAKSELF;
+    
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
-    [param setValue:imgUrl forKey:@"imgUrl"];
-    NSString* url = PATH(@"%@/my/doctorImg");
+    [param setValue:self.model.myBaseInfo[0][@"value"] forKey:@"imgUrl"];//医生头像
+    [param setValue:self.model.myBaseInfo[1][@"value"] forKey:@"name"];//医生姓名
+    [param setValue:self.model.myBaseInfo[2][@"id"] forKey:@"hosid"];//医院ID
+    [param setValue:self.model.myBaseInfo[3][@"id"] forKey:@"depid"];//科室ID
+    [param setValue:self.model.myBaseInfo[4][@"value"] forKey:@"title"];//医生职称
+    [param setValue:self.model.myBaseInfo[5][@"value"] forKey:@"specialty"];//医生擅长
+    [param setValue:self.model.myBaseInfo[6][@"value"] forKey:@"introduction"];//医生介绍
+    [param setValue:self.model.myBaseInfo[7][@"value"] forKey:@"experience"];//执业经验
+    
+    NSString* url = PATH(@"%@/my/updateInfo");
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         
-        if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
         {
-            [self getMineInfoData];
+            [weakSelf getMineInfoData];
         }else
         {
             [XHToast showCenterWithText:responseObj[@"message"]];
         }
-        
     } failBlock:^(NSError *error) {
-        [XHToast showCenterWithText:@"fail"];
-    }];
-}
-
-- (void)uploadFileWithURL:(NSString*)url
-                   params:(NSDictionary*)paramsDict
-             successBlock:(TLResponseSuccessBlock)successBlock
-             failureBlock:(TLResponseFailBlock)failureBlock
-              uploadParam:(NSMutableArray *)uploadParams
-                  showHUD:(BOOL)showHUD
-{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    [manager POST:url parameters:paramsDict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        
-        for (int i = 0; i < uploadParams.count; i++) {
-            if ([uploadParams[i] isKindOfClass:[TLUploadParam class]]) {
-                TLUploadParam *uploadParam = (TLUploadParam *)uploadParams[i];
-                [formData appendPartWithFileData:uploadParam.data name:uploadParam.paramKey fileName:uploadParam.fileName mimeType:uploadParam.mimeType];
-            }else{
-                NSLog(@"文件数组不是TLUploadParam对象，请检查文件数组类型");
-                return;
-            }
-        }
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-        [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:@"上传中"];
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        [SVProgressHUD dismiss];
-        // 根据服务器返回状态判定请求是否成功
-        if ([responseObject[@"api_code"] integerValue] != 0) {
-            
-            if (failureBlock) {
-                failureBlock(nil);
-            }
-            [[DSToast toastWithText:responseObject[@"api_message"]] show];
-            
-            return;
-        }
-        if (successBlock) {
-            NSLog(@"----> 接口请求成功");
-            successBlock(responseObject);
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        [SVProgressHUD dismiss];
-        NSLog(@"----> %@",error.domain);
+        //[XHToast showCenterWithText:@"fail"];
     }];
 }
 
@@ -479,40 +443,6 @@
     }];
 }
 
-#pragma mar - 修改个人信息
-
-- (void)updateMainInfoData
-{
-    LSWEAKSELF;
-    
-    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-    
-    [param setValue:@"" forKey:@"depid"];//科室ID
-    [param setValue:@"" forKey:@"experience"];//执业经验
-    [param setValue:@"" forKey:@"hosid"];//医院ID
-    [param setValue:@"" forKey:@"imgUrl"];//医生头像
-    [param setValue:@"" forKey:@"introduction"];//医生介绍
-    [param setValue:@"" forKey:@"name"];//医生姓名
-    [param setValue:@"" forKey:@"specialty"];//医生擅长
-    [param setValue:@"" forKey:@"title"];//医生职称
-    
-    NSString* url = PATH(@"%@/my/updateInfo");
-    
-    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-        
-//        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
-//        {
-//            weakSelf.model = [LSMineModel yy_modelWithJSON:responseObj];
-//            [weakSelf.dataTableView reloadData];
-//        }else
-//        {
-//            [XHToast showCenterWithText:responseObj[@"message"]];
-//        }
-    } failBlock:^(NSError *error) {
-        //[XHToast showCenterWithText:@"fail"];
-    }];
-}
-
 #pragma mark ZhpickVIewDelegate 点击确定方法的回调
 -(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString
 {
@@ -526,7 +456,7 @@
         [arr replaceObjectAtIndex:4 withObject:dic];
         self.model.myBaseInfo = arr;
 
-        [self.dataTableView reloadData];
+        [self updateMainInfoData];
     }
 }
 
@@ -586,10 +516,11 @@
     NSMutableArray *arr = [NSMutableArray arrayWithArray:self.model.myBaseInfo];
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:arr[3]];
     [dic setValue:self.department_name forKey:@"value"];
+    [dic setValue:self.projectId forKey:@"id"];
     [arr replaceObjectAtIndex:3 withObject:dic];
     self.model.myBaseInfo = arr;
     
-    [self.dataTableView reloadData];
+    [self updateMainInfoData];
     
     [self hideMyPicker];
     

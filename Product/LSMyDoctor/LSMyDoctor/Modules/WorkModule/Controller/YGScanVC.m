@@ -100,6 +100,8 @@
 
 - (void)initViews
 {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     if (self.captureSession)
     {
         self.captureVideoPreviewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
@@ -116,7 +118,8 @@
 //    {
         _marginTop = 50;
 //    }
-    CGFloat orignY = 64;
+//    CGFloat orignY = 64;
+    CGFloat orignY = 0;
     CGRect  topImageRect = CGRectMake(0, orignY, LSSCREENWIDTH, _marginTop);
     UIImage *topImage = [UIImage imageNamed:@"scan_background"];
     UIImageView *topbgView = [[UIImageView alloc] initWithFrame:topImageRect];
@@ -196,7 +199,7 @@
     [self.animationView removeFromSuperview];
     
     UIImageView *tmpAnimationView = [[UIImageView alloc] initWithFrame:CGRectMake((LSSCREENWIDTH - 320) / 2.0 + 50,
-                                                                                  _marginTop + 60 + 64,
+                                                                                  _marginTop + 60,
                                                                                   220,
                                                                                   2)];
     tmpAnimationView.image = [UIImage imageNamed:@"scan_animation"];
@@ -208,7 +211,7 @@
                         options:UIViewKeyframeAnimationOptionRepeat | UIViewKeyframeAnimationOptionAutoreverse
                      animations:^{
                          self.animationView.frame = CGRectMake((LSSCREENWIDTH - 320) / 2.0 + 50,
-                                                               _marginTop + 260  + 64,
+                                                               _marginTop + 260,
                                                                220,
                                                                2);
                      }

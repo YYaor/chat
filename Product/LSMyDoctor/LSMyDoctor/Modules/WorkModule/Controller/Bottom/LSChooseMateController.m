@@ -174,11 +174,13 @@
 #pragma mark -- 右上确定按钮点击
 -(void)sureClick{
     
+    
     for (MDDoctorListModel *model in self.dataArray) {
         if (model.isChoise) {
             [self.chooseArray addObject:model];
         }
     }
+    
     
     if (self.submitData) {
         //需要提交数据 -- 修改群成员
@@ -232,6 +234,16 @@
                 NSArray* list = [NSArray yy_modelArrayWithClass:[MDDoctorListModel class] json:responseObj[@"data"]];
                 [self.dataArray removeAllObjects];
                 [self.dataArray addObjectsFromArray:list];
+                
+                if (self.haveArr.count > 0) {
+                    for (MDDoctorListModel* userModel in self.haveArr) {
+                        for (MDDoctorListModel* listModel in self.dataArray) {
+                            if ([userModel.doctor_id isEqualToString:listModel.doctor_id]) {
+                                listModel.isChoise = YES;
+                            }
+                        }
+                    }
+                }
                 
                 if (self.submitData && self.groupDetailModel.users.count > 0) {
                     //修改群组成员，将已有的群组成员标记已选中

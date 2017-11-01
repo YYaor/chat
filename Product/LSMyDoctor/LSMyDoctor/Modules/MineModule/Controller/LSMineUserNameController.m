@@ -43,9 +43,16 @@
         return;
     }
     
-    NSArray *arr = self.navigationController.viewControllers;
+    NSArray *vcs = self.navigationController.viewControllers;
     
-    LSMineUserSettingController *vc = arr[arr.count-2];
+    LSMineUserSettingController *vc = vcs[vcs.count-2];
+    
+    //姓名
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:vc.model.myBaseInfo];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:arr[1]];
+    [dic setValue:self.username.text forKey:@"value"];
+    [arr replaceObjectAtIndex:1 withObject:dic];
+    vc.model.myBaseInfo = arr;
     
     [vc updateMainInfoData];
     

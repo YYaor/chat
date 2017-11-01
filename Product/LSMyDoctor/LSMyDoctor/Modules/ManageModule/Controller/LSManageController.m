@@ -14,10 +14,14 @@
 #import "LSManageModel.h"
 #import "MDSickerGroupVC.h"
 #import "MDAddGroupVC.h"
+#import "MDSickerGroupModel.h"
 
 static NSString *cellId = @"LSManageCell";
 
 @interface LSManageController () <UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+{
+    NSString* groupNumStr;
+}
 
 @property (nonatomic, strong) UITableView *sickerTab;
 
@@ -85,6 +89,8 @@ static NSString *cellId = @"LSManageCell";
 {
     //加载医生的患者列表
     [self getSickerListDataWithUserName:nil];
+    //获取群组列表
+    [self getSickerGroupListData];
 }
 #pragma mark -- 创建群按钮点击
 - (void)addGroupBtnClick
@@ -195,7 +201,7 @@ static NSString *cellId = @"LSManageCell";
     if (indexPath.section == 0) {
         MDManageGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDManageGroupCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.groupNumLab.text = @"22";
+        cell.groupNumLab.text = groupNumStr;
         return cell;
         
      }else{
@@ -257,5 +263,39 @@ static NSString *cellId = @"LSManageCell";
         
     }];
 }
+
+#pragma mark -- 获取会诊讨论组列表
+- (void)getSickerGroupListData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    NSString* url = PATH(@"%@/queryGroupList");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                NSArray* list = [NSArray yy_modelArrayWithClass:[MDSickerGroupModel class] json:responseObj[@"data"]];
+                groupNumStr = [NSString stringWithFormat:@"%lu",(unsigned long)list.count];
+                NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:0];
+                [_sickerTab reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+                
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        //[XHToast showCenterWithText:@"fail"];
+    }];
+}
+
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import "LSRegisterController.h"
+
 #import "LSAuthenticationController.h"
+#import "LSAgreementController.h"
+
 #import "NSString+Mark.h"
 
 @interface LSRegisterController ()
@@ -27,6 +30,8 @@
 @property (nonatomic,strong) UIButton *nextButton;
 
 @property (nonatomic,strong) UIButton *agreementButton;
+
+@property (nonatomic, strong) UIButton *dealBtn;
 
 @property (nonatomic,strong) UIView *phoneLine;
 
@@ -90,6 +95,7 @@
     [self.view addSubview:self.sendCodeButton];
     [self.view addSubview:self.nextButton];
     [self.view addSubview:self.agreementButton];
+    [self.view addSubview:self.dealBtn];
     [self.view addSubview:self.phoneLine];
     [self.view addSubview:self.codeLine];
     [self.view addSubview:self.pswLine];
@@ -166,7 +172,16 @@
     
     [self.agreementButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.nextButton.mas_bottom).offset(5);
-        make.centerX.equalTo(self.view);
+        make.width.mas_equalTo(160);
+        make.height.mas_offset(30);
+        make.centerX.equalTo(self.view).offset(-80);
+    }];
+    
+    [self.dealBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.nextButton.mas_bottom).offset(5);
+        make.width.mas_equalTo(160);
+        make.height.mas_offset(30);
+        make.centerX.equalTo(self.view).offset(80);
     }];
 }
 
@@ -314,6 +329,12 @@
     self.agreementButton.selected = !self.agreementButton.selected;
 }
 
+- (void)dealBtnClick
+{
+    LSAgreementController *vc = [[LSAgreementController alloc] initWithNibName:@"LSAgreementController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - setter && getter
 
 -(UITextField *)phoneTextField{
@@ -406,16 +427,27 @@
         _agreementButton = [[UIButton alloc]init];
         _agreementButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [_agreementButton addTarget:self action:@selector(agreementButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [_agreementButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_agreementButton setTitleColor:[UIColor colorFromHexString:@"8b8b8b"] forState:UIControlStateNormal];
+        [_agreementButton setTitle:@" 点击注册即同意" forState:UIControlStateNormal];
         [_agreementButton setImage:[UIImage imageNamed:@"unSelectBox_Public"] forState:UIControlStateNormal];
         [_agreementButton setImage:[UIImage imageNamed:@"selectedBox_Public"] forState:UIControlStateSelected];
-        NSString *string = @"点击注册即同意《佑格医生用户协议》";
-        NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
-        [attString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromHexString:LSGREENCOLOR] range:NSMakeRange(string.length-10, 10)];
-        [attString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromHexString:@"8b8b8b"] range:NSMakeRange(0, string.length-10)];
-        [_agreementButton setAttributedTitle:attString forState:UIControlStateNormal];
+        _agreementButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     }
     return _agreementButton;
+}
+
+- (UIButton *)dealBtn
+{
+    if (!_dealBtn)
+    {
+        _dealBtn = [[UIButton alloc]init];
+        _dealBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_dealBtn addTarget:self action:@selector(dealBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [_dealBtn setTitleColor:[UIColor colorFromHexString:LSGREENCOLOR] forState:UIControlStateNormal];
+        [_dealBtn setTitle:@"《佑格医生用户协议》" forState:UIControlStateNormal];
+        _dealBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    }
+    return _dealBtn;
 }
 
 -(UIView *)phoneLine{
