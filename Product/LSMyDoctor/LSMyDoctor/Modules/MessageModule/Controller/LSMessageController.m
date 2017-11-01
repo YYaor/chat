@@ -113,11 +113,11 @@ static NSString *cellId = @"LSMessageCell";
                         [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
                                                                       data:@{@"uid" : dic[@"im_username"],
                                                                              @"nickName" : dic[@"doctor_name"] ? dic[@"doctor_name"] : @"",
-                                                                             @"headerUrl" : dic[@"img_url"] ? dic[@"img_url"] : @""}];
+                                                                             @"headerUrl" : dic[@"doctor_image"] ? dic[@"doctor_image"] : @""}];
                         for (EaseConversationModel *conversation in self.dataArray) {
                             if ([conversation.conversation.conversationId isEqualToString:conversationId]) {
                                 conversation.title = dic[@"doctor_name"];
-                                conversation.avatarURLPath = dic[@"img_url"];
+                                conversation.avatarURLPath = dic[@"doctor_image"];
                             }
                         }
                     }
