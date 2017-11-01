@@ -202,7 +202,7 @@
             make.height.equalTo(cancelBtn.mas_height);
             make.left.equalTo(cancelBtn.mas_right);
         }];
-        //请输入您的卡券
+        //请输入群组名
         UILabel* inputLab = [[UILabel alloc] init];
         inputLab.text = @"群组名：";
         inputLab.textColor = Style_Color_Content_Black;

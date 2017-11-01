@@ -255,7 +255,9 @@
                     [XHToast showCenterWithText:@"请求已发送成功"];
                 }
                 
-                [self.navigationController popViewControllerAnimated:YES];
+                UIViewController* vc = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2];
+                
+                [self.navigationController popToViewController:vc animated:YES];
                 
             }else
             {

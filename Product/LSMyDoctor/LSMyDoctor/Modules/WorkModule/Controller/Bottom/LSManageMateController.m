@@ -76,7 +76,7 @@
     
     self.navigationItem.title = @"同行管理";
     
-    UIBarButtonItem *rightBarBtnItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"drop_white_Public"] style:UIBarButtonItemStyleDone target:self action:@selector(rightBtnClick)];
+    UIBarButtonItem *rightBarBtnItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more_white_public"] style:UIBarButtonItemStyleDone target:self action:@selector(rightBtnClick)];
     self.navigationItem.rightBarButtonItem = rightBarBtnItem;
     
     [self initForView];

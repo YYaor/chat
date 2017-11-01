@@ -12,11 +12,13 @@
 #import "MDAddGroupVC.h"//患者添加群患者
 #import "MDGroupNameCell.h"
 
-@interface MDSickerGroupDetialVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface MDSickerGroupDetialVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
 {
     UICollectionView* discussCol;
+    UITextField* inputTF;//输入群组名称
 }
 @property (nonatomic ,strong)MDSickerGroupDetailModel* groupDetailModel;
+@property (nonatomic , strong)UIView*           getView;//点击领取弹出背景层
 
 @end
 
@@ -188,8 +190,7 @@
 #pragma mark -- 是否置顶
 - (void)switchBtnClick:(UISwitch*)sender
 {
-    NSLog(@"置顶选择%@",sender.on);
-//    [self changeSickerDetailWithisFocus:sender.isOn];
+    [self changeToTopWithStick:sender.isOn];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -217,11 +218,126 @@
     }else if (indexPath.section == 1){
         //点击群组名称
         NSLog(@"点击群组名称");
+        
+        
+        
+        
     }
     
     
     
 }
+
+#pragma mark -- 修改群组名点击弹出View
+- (void)changeGroupName
+{
+    //新建群
+    _getView = [[UIView alloc] init];
+    _getView.frame = [UIScreen mainScreen].bounds;
+    _getView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    //给视图添加点击方法
+    UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelBtnClick)];
+    recognizer.numberOfTapsRequired=1;
+    [_getView addGestureRecognizer:recognizer];
+    
+    //白色布景
+    UIView* whiteView = [[UIView alloc] init];
+    whiteView.backgroundColor = [UIColor whiteColor];
+    whiteView.layer.masksToBounds = YES;
+    whiteView.userInteractionEnabled = YES;
+    whiteView.layer.cornerRadius = 6.0f;
+    [_getView addSubview:whiteView];
+    [whiteView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(_getView.mas_centerX);
+        make.centerY.equalTo(_getView.mas_centerY);
+        make.width.equalTo(_getView.mas_width).multipliedBy(0.8);
+        make.height.equalTo(@150);
+    }];
+    //取消按钮
+    UIButton* cancelBtn = [[UIButton alloc] init];
+    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    cancelBtn.layer.masksToBounds = YES;
+    cancelBtn.layer.borderWidth = 0.5f;
+    cancelBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [whiteView addSubview:cancelBtn];
+    [cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(whiteView.mas_left);
+        make.bottom.equalTo(whiteView.mas_bottom);
+        make.height.equalTo(@40);
+        make.width.equalTo(whiteView.mas_width).multipliedBy(0.5);
+    }];
+    //确定按钮
+    
+    UIButton* submitBtn = [[UIButton alloc] init];
+    [submitBtn setTitle:@"确定" forState:UIControlStateNormal];
+    [submitBtn setTitleColor:BaseColor forState:UIControlStateNormal];
+    submitBtn.layer.masksToBounds = YES;
+    submitBtn.layer.borderWidth = 0.5f;
+    submitBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [submitBtn addTarget:self action:@selector(submitBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [whiteView addSubview:submitBtn];
+    [submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(whiteView.mas_right);
+        make.bottom.equalTo(cancelBtn.mas_bottom);
+        make.height.equalTo(cancelBtn.mas_height);
+        make.left.equalTo(cancelBtn.mas_right);
+    }];
+    //请输入群组名
+    UILabel* inputLab = [[UILabel alloc] init];
+    inputLab.text = @"群组名：";
+    inputLab.textColor = Style_Color_Content_Black;
+    [whiteView addSubview:inputLab];
+    [inputLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(whiteView.mas_left).offset(10);
+        make.top.equalTo(whiteView.mas_top).offset(20);
+    }];
+    
+    inputTF = [[UITextField alloc] init];
+    inputTF.layer.masksToBounds = YES;
+    inputTF.delegate = self;
+    [inputTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    inputTF.layer.borderWidth = 1.0f;
+    inputTF.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    inputTF.layer.cornerRadius = 4.5f;
+    [whiteView addSubview:inputTF];
+    [inputTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(inputLab.mas_bottom).offset(10);
+        make.centerX.equalTo(whiteView.mas_centerX);
+        make.left.equalTo(whiteView.mas_left).offset(20);
+        make.height.equalTo(@40);
+    }];
+    
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:_getView];
+}
+
+
+#pragma mark -- 阴影取消按钮点击
+- (void)cancelBtnClick
+{
+    NSLog(@"取消");
+    [inputTF resignFirstResponder];
+    [_getView removeFromSuperview];
+}
+#pragma mark -- 确定按钮点击
+- (void)submitBtnClick
+{
+    NSLog(@"确定按钮点击");
+    [inputTF resignFirstResponder];
+    if (inputTF.text.length < 1) {
+        [XHToast showCenterWithText:@"请输入群组名"];
+        return;
+    }
+    //修改群组名称
+    [self changeGroupNameRequestData];
+    
+}
+
+
+
+
 
 #pragma mark  -- 获取讨论组详情
 - (void)getGroupDetailRequest
@@ -289,5 +405,100 @@
         //[XHToast showCenterWithText:@"fail"];
     }];
 }
+#pragma mark -- 修改群用户名操作
+- (void)changeGroupNameRequestData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:inputTF.text forKey:@"name"];
+    [param setValue:self.groupIdStr forKey:@"groupid"];
+    
+    NSString* url = PATH(@"%@/updateDoctorGroup");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            [self getGroupDetailRequest];
+            
+        }else
+        {
+            [XHToast showCenterWithText:@"更改失败"];
+        }
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
+
+#pragma mark -- 修改是否置顶操作
+- (void)changeToTopWithStick:(BOOL)stick
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:@(stick) forKey:@"is_stick"];
+    [param setValue:self.groupIdStr forKey:@"groupid"];
+    
+    NSString* url = PATH(@"%@/updateDoctorGroup");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            [self getGroupDetailRequest];
+            
+        }else
+        {
+            [XHToast showCenterWithText:@"更改失败"];
+        }
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
+
+#pragma mark -- 限制输入字数
+- (void) textFieldDidChange:(UITextField *)textField
+
+{
+    
+    NSInteger kMaxLength = 20;
+    
+    NSString *toBeString = textField.text;
+    
+    NSString *lang = [[UIApplication sharedApplication]textInputMode].primaryLanguage; //ios7之前使用[UITextInputMode currentInputMode].primaryLanguage
+    
+    if ([lang isEqualToString:@"zh-Hans"]) { //中文输入
+        
+        UITextRange *selectedRange = [textField markedTextRange];
+        
+        //获取高亮部分
+        
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        
+        if (!position) {// 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+            
+            if (toBeString.length > kMaxLength) {
+                
+                textField.text = [toBeString substringToIndex:kMaxLength];
+                
+            }
+            
+        }
+        
+        else{//有高亮选择的字符串，则暂不对文字进行统计和限制
+            
+        }
+        
+    }else{//中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
+        
+        if (toBeString.length > kMaxLength) {
+            
+            textField.text = [toBeString substringToIndex:kMaxLength];
+            
+        }
+        
+    }
+    
+}
+
 
 @end

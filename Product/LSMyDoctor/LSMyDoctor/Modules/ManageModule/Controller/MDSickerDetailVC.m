@@ -260,7 +260,7 @@
 {
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
-    [param setValue:@(isFocus) forKey:@"focus"];
+    [param setValue:@(isFocus) forKey:@"is_focus"];
     [param setValue:self.sickerIdStr forKey:@"userid"];
     [param setValue:self.detailModel.username forKey:@"username"];
     
