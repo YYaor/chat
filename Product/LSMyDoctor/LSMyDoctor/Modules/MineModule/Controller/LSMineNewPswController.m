@@ -126,6 +126,8 @@
         
         if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
         {
+            [XHToast showCenterWithText:@"修改成功"];
+
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }else
         {
@@ -134,6 +136,30 @@
     } failBlock:^(NSError *error) {
         //[XHToast showCenterWithText:@"fail"];
     }];
+}
+
+-(void)oldTextChangged:(UITextField *)sender{
+    if (sender.text.length > 0 && self.secPswTextField.text.length > 0 && self.nPswTextField.text.length>0) {
+        self.sureButton.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+    }else{
+        self.sureButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+    }
+}
+
+-(void)secTextChangged:(UITextField *)sender{
+    if (sender.text.length > 0 && self.oldPswTextField.text.length > 0 && self.nPswTextField.text.length>0) {
+        self.sureButton.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+    }else{
+        self.sureButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+    }
+}
+
+-(void)nPswTextChangged:(UITextField *)sender{
+    if (sender.text.length > 0 && self.secPswTextField.text.length > 0 && self.oldPswTextField.text.length>0) {
+        self.sureButton.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+    }else{
+        self.sureButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+    }
 }
 
 -(UIView *)getLine{
@@ -149,6 +175,8 @@
         _oldPswTextField.font = [UIFont systemFontOfSize:14];
         _oldPswTextField.placeholder = @"请输入原密码";
         _oldPswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        [_oldPswTextField addTarget:self action:@selector(oldTextChangged:) forControlEvents:UIControlEventEditingChanged];
+
 
     }
     return _oldPswTextField;
@@ -160,6 +188,8 @@
         _secPswTextField.font = [UIFont systemFontOfSize:14];
         _secPswTextField.placeholder = @"请再次输入新密码";
         _secPswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        [_secPswTextField addTarget:self action:@selector(secTextChangged:) forControlEvents:UIControlEventEditingChanged];
+
 
     }
     return _secPswTextField;
@@ -171,6 +201,8 @@
         _nPswTextField.font = [UIFont systemFontOfSize:14];
         _nPswTextField.placeholder = @"请输入新密码";
         _nPswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        [_secPswTextField addTarget:self action:@selector(nPswTextChangged:) forControlEvents:UIControlEventEditingChanged];
+
     }
     return _nPswTextField;
 }

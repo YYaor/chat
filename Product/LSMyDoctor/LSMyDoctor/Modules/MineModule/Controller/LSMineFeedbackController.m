@@ -79,8 +79,8 @@
         
         if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
         {
-            [XHToast showCenterWithText:responseObj[@"提交成功"]];
             [weakSelf.navigationController popViewControllerAnimated:YES];
+            [XHToast showCenterWithText:@"提交成功"];
         }else
         {
             [XHToast showCenterWithText:responseObj[@"message"]];

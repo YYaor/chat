@@ -232,6 +232,19 @@
     }else{
         self.phoneClearButton.hidden = YES;
     }
+    if (sender.text.length > 0 && self.pswTextFiled.text.length > 0) {
+        self.loginButton.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+    }else{
+        self.loginButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+    }
+}
+
+-(void)pswTextFiledChangged:(UITextField *)sender{
+    if (sender.text.length > 0 && self.phoneTextFiled.text.length > 0) {
+        self.loginButton.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+    }else{
+        self.loginButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+    }
 }
 
 -(void)phoneClearButtonClick{
@@ -452,6 +465,7 @@
         _pswTextFiled.delegate = self;
         _pswTextFiled.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         _pswTextFiled.font = [UIFont systemFontOfSize:14];
+        [_pswTextFiled addTarget:self action:@selector(pswTextFiledChangged:) forControlEvents:UIControlEventEditingChanged];
     }
     return _pswTextFiled;
 }

@@ -80,29 +80,92 @@ static NSString *cellId = @"LSMessageCell";
             
             NSDictionary *dicDB = [FMDBTool selectUserLoginViewInfoSqlTableWithTypeListName:CHATUSERTABLE
                                                                                      search:@[[NSString stringWithFormat:@"uid = '%@'",converstion.conversationId]] dataTyep:CHATUSERKEYS];
-            if (dicDB) {
-                model.title = dicDB[@"nickName"];
-                model.avatarURLPath = dicDB[@"headerUrl"];
-            }else{
-                [self requestPdata:converstion.conversationId];
+            if (model) {
+                if (dicDB) {
+                    model.title = dicDB[@"nickName"];
+                    model.avatarURLPath = dicDB[@"headerUrl"];
+                    [self.dataArray addObject:model];
+                }else{
+                    [self requestPdata:converstion.conversationId];
+                }
             }
-            [self.tableView reloadData];
         });
-        
-        if (model) {
-            [self.dataArray addObject:model];
-        }
     }
     
     [self.tableView reloadData];
 }
 
+-(void)checkDoctor:(NSString *)conversationId{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setObject:@[conversationId] forKey:@"im_username"];
+    
+    NSString *url = PATH(@"%@/getDoctorByIM");
+    self.dataArray = [[NSMutableArray alloc]init];
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]])
+        {
+            if ([responseObj[@"status"] integerValue] == 0) {
+                
+                if (responseObj[@"data"]) {
+                    
+                    for (NSDictionary *dic in responseObj[@"data"]) {
+                        [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
+                                                                      data:@{@"uid" : dic[@"im_username"],
+                                                                             @"nickName" : dic[@"username"] ? dic[@"username"] : @"",
+                                                                             @"headerUrl" : dic[@"img_url"] ? dic[@"img_url"] : @""}];
+                    }
+                    
+                }
+            }
+        }
+        [self requestData];
+    } failBlock:^(NSError *error) {
+
+    }];
+}
+
+-(void)checkPatient:(NSString *)conversationId{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setObject:@[conversationId] forKey:@"im_username"];
+    
+    NSString *url = PATH(@"%@/getPatientByIM");
+    self.dataArray = [[NSMutableArray alloc]init];
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]])
+        {
+            if ([responseObj[@"status"] integerValue] == 0) {
+                
+                if (responseObj[@"data"]) {
+                    
+                    for (NSDictionary *dic in responseObj[@"data"]) {
+                        [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
+                                                                      data:@{@"uid" : dic[@"im_username"],
+                                                                             @"nickName" : dic[@"username"] ? dic[@"username"] : @"",
+                                                                             @"headerUrl" : dic[@"img_url"] ? dic[@"img_url"] : @""}];
+                    }
+                    
+                }
+            }
+        }
+        [self requestData];
+    } failBlock:^(NSError *error) {
+        
+    }];
+}
+
 -(void)requestPdata:(NSString *)conversationId
 {
-//    [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
-//                                                  data:@{@"uid" : [NSString stringWithFormat:@"ug369P%@",self.dataDic[@"id"]],
-//                                                         @"nickName" : self.dataDic[@"username"] ? self.dataDic[@"username"] : @"",
-//                                                         @"headerUrl" : self.dataDic[@"img_url"] ? self.dataDic[@"img_url"] : @""}];
+
+    if ([conversationId containsString:@"P"] || [conversationId containsString:@"p"]) {
+        //病人查询
+        [self checkPatient:conversationId];
+    }else{
+        //医生查询
+        [self checkDoctor:conversationId];
+    }
+    
 }
 
 

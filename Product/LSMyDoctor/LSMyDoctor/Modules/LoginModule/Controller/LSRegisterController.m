@@ -198,6 +198,32 @@
     }else{
         self.phoneClearButton.hidden = YES;
     }
+    if (sender.text.length >0 && self.pswTextField.text.length >0 && self.codeTextField.text.length>0 && self.confPswTextField.text.length > 0) {
+        self.nextButton.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+    }else{
+        self.nextButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+    }
+}
+-(void)pswTextChangged:(UITextField *)sender{
+    if (sender.text.length >0 && self.phoneTextField.text.length >0 && self.codeTextField.text.length>0 && self.confPswTextField.text.length > 0) {
+        self.nextButton.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+    }else{
+        self.nextButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+    }
+}
+-(void)codeTextChangged:(UITextField *)sender{
+    if (sender.text.length >0 && self.pswTextField.text.length >0 && self.phoneTextField.text.length>0 && self.confPswTextField.text.length > 0) {
+        self.nextButton.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+    }else{
+        self.nextButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+    }
+}
+-(void)confPswTextChangged:(UITextField *)sender{
+    if (sender.text.length >0 && self.pswTextField.text.length >0 && self.codeTextField.text.length>0 && self.phoneTextField.text.length > 0) {
+        self.nextButton.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+    }else{
+        self.nextButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+    }
 }
 
 -(void)phoneClearButtonClick{
@@ -357,7 +383,8 @@
         _pswTextField.placeholder =@"请设置登录密码";
         _pswTextField.font = [UIFont systemFontOfSize:14];
         _pswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
-        
+        [_pswTextField addTarget:self action:@selector(pswTextChangged:) forControlEvents:UIControlEventEditingChanged];
+
     }
     return _pswTextField;
 }
@@ -369,6 +396,8 @@
         _codeTextField.placeholder =@"输入验证码";
         _codeTextField.font = [UIFont systemFontOfSize:14];
         _codeTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        [_codeTextField addTarget:self action:@selector(codeTextChangged:) forControlEvents:UIControlEventEditingChanged];
+
     }
     return _codeTextField;
 }
@@ -380,6 +409,8 @@
         _confPswTextField.placeholder =@"再次输入登录密码";
         _confPswTextField.font = [UIFont systemFontOfSize:14];
         _confPswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        [_confPswTextField addTarget:self action:@selector(confPswTextChangged:) forControlEvents:UIControlEventEditingChanged];
+
     }
     return _confPswTextField;
 }

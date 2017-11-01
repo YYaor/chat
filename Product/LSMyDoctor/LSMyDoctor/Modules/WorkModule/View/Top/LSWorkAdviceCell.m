@@ -59,11 +59,9 @@
                 self.agreeClickBlock(dic);
             }
         }
-        
-        [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
-                                                      data:@{@"uid" : [NSString stringWithFormat:@"ug369P%@",self.dataDic[@"id"]],
-                                                             @"nickName" : self.dataDic[@"username"] ? self.dataDic[@"username"] : @"",
-                                                             @"headerUrl" : self.dataDic[@"img_url"] ? self.dataDic[@"img_url"] : @""}];
+        if (self.agreeClickBlock) {
+            self.agreeClickBlock(nil);
+        }
         
     } failBlock:^(NSError *error) {
         //[XHToast showCenterWithText:@"fail"];
