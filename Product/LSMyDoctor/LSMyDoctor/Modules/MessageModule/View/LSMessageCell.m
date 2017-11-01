@@ -30,6 +30,10 @@
     self.timeLabel.text = [self getChatTime:[NSString stringWithFormat:@"%lld",messageModel.message.timestamp]];
 
     self.headImageView.image = messageModel.avatarImage;
+    if (conversation.avatarURLPath) {
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST,conversation.avatarURLPath]] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+
+    }
     if (conversation.conversation.unreadMessagesCount == 0) {
         self.unreadLabel.hidden = YES;
     }else{
