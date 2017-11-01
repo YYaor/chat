@@ -84,10 +84,10 @@ static NSString *cellId = @"LSMessageCell";
                 if (dicDB) {
                     model.title = dicDB[@"nickName"];
                     model.avatarURLPath = dicDB[@"headerUrl"];
-                    [self.dataArray addObject:model];
                 }else{
                     [self requestPdata:converstion.conversationId];
                 }
+                [self.dataArray addObject:model];
             }
         });
     }
@@ -114,7 +114,14 @@ static NSString *cellId = @"LSMessageCell";
                                                                       data:@{@"uid" : dic[@"im_username"],
                                                                              @"nickName" : dic[@"username"] ? dic[@"username"] : @"",
                                                                              @"headerUrl" : dic[@"img_url"] ? dic[@"img_url"] : @""}];
+                        for (EaseConversationModel *conversation in self.dataArray) {
+                            if ([conversation.conversation.conversationId isEqualToString:conversationId]) {
+                                conversation.title = dic[@"username"];
+                                conversation.avatarURLPath = dic[@"img_url"];
+                            }
+                        }
                     }
+                    [self.tableView reloadData];
                     
                 }
             }
@@ -144,12 +151,19 @@ static NSString *cellId = @"LSMessageCell";
                                                                       data:@{@"uid" : dic[@"im_username"],
                                                                              @"nickName" : dic[@"username"] ? dic[@"username"] : @"",
                                                                              @"headerUrl" : dic[@"img_url"] ? dic[@"img_url"] : @""}];
+                        for (EaseConversationModel *conversation in self.dataArray) {
+                            if ([conversation.conversation.conversationId isEqualToString:conversationId]) {
+                                conversation.title = dic[@"username"];
+                                conversation.avatarURLPath = dic[@"img_url"];
+                            }
+                        }
                     }
+                    [self.tableView reloadData];
                     
                 }
             }
         }
-        [self requestData];
+        
     } failBlock:^(NSError *error) {
         
     }];
