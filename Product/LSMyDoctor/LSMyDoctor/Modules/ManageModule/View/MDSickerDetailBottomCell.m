@@ -31,8 +31,9 @@
     
     
     for (int i = 0; i < 3; i++) {
-        UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(15 + (btnWidth + 15) * i, 5, btnWidth, btnWidth)];
-        
+        WFHelperButton* btn = [[WFHelperButton alloc] initWithFrame:CGRectMake(15 + (btnWidth + 15) * i, 5, btnWidth, btnWidth)];
+        btn.index = i;
+        [btn addTarget:self action:@selector(bottomBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.backView addSubview:btn];
         //标题
         UILabel* btnTitleLab = [[UILabel alloc] init];
@@ -61,16 +62,27 @@
         }];
         
         
+    }
+    
+    // Initialization code
+}
+
+#pragma mark -- 按钮点击
+- (void)bottomBtnClick:(WFHelperButton*)btn
+{
+    if (btn.index == 0) {
+        //患者近7天报告按钮点击
+        [self.delegate mDSickerDetailBottomCellSevenReportBtnClickWithBtn:btn];
+    }else if (btn.index == 1){
+        //患者病历按钮点击
+        [self.delegate mDSickerDetailBottomCellSickerMedicalRecordBtnClickWithBtn:btn];
         
-        
+    }else{
+        //我的医嘱按钮点击
+        [self.delegate mDSickerDetailBottomCellMyAdviceBtnClickWithBtn:btn];
         
     }
     
-    
-    
-    
-    
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

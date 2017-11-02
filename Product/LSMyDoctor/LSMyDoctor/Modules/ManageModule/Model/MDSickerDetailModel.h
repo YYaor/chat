@@ -21,4 +21,10 @@
 @property (nonatomic , copy) NSString* classifyLabels;//自定义标签
 @property (nonatomic , copy) NSDictionary* userLabels;//患者画像标签
 
+
+@property (nonatomic , copy) NSString* user_id;
+@property (nonatomic , copy) NSString* im_username;
+@property (nonatomic , copy) NSString* user_height;
+@property (nonatomic , copy) NSString* user_weight;
+
 @end

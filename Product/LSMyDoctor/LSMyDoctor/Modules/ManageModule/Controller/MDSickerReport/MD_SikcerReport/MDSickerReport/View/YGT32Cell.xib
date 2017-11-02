@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="106" id="KGk-i7-Jjw" customClass="YGT32Cell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="450"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="449.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMI分布图" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWi-FY-GKj">
+                        <rect key="frame" x="115" y="15" width="90" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="xlm-ET-zdN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <color key="textColor" red="0.33333333333333331" green="0.57647058823529407" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTR-Q0-ONL">
+                        <rect key="frame" x="8" y="50" width="304" height="304"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="cTR-Q0-ONL" secondAttribute="height" multiplier="1:1" id="2ie-by-nBL"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vS9-iP-qrn">
+                        <rect key="frame" x="8" y="354" width="304" height="87"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="87" id="gNz-lV-Cpo"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="cTR-Q0-ONL" secondAttribute="trailing" id="7Ic-Xk-rtg"/>
+                    <constraint firstItem="vS9-iP-qrn" firstAttribute="centerX" secondItem="cTR-Q0-ONL" secondAttribute="centerX" id="BTP-K6-8sh"/>
+                    <constraint firstItem="vS9-iP-qrn" firstAttribute="top" secondItem="cTR-Q0-ONL" secondAttribute="bottom" id="Cvp-HL-hfp"/>
+                    <constraint firstItem="cTR-Q0-ONL" firstAttribute="top" secondItem="kWi-FY-GKj" secondAttribute="bottom" constant="10" id="STY-2R-xAH"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="vS9-iP-qrn" secondAttribute="bottom" id="Zqp-oZ-TCR"/>
+                    <constraint firstItem="vS9-iP-qrn" firstAttribute="leading" secondItem="cTR-Q0-ONL" secondAttribute="leading" id="a0p-aD-Bb5"/>
+                    <constraint firstItem="cTR-Q0-ONL" firstAttribute="centerX" secondItem="kWi-FY-GKj" secondAttribute="centerX" id="cuN-5U-Fu2"/>
+                    <constraint firstItem="kWi-FY-GKj" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="efc-bu-PnX"/>
+                    <constraint firstItem="cTR-Q0-ONL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ttL-z2-xeG"/>
+                    <constraint firstItem="kWi-FY-GKj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="uhz-BX-iP7"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="7Ic-Xk-rtg"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="legendView" destination="vS9-iP-qrn" id="5fN-Rv-vVT"/>
+                <outlet property="legendViewHeight" destination="gNz-lV-Cpo" id="Wjn-h4-fbF"/>
+                <outlet property="reportView" destination="cTR-Q0-ONL" id="K5z-jH-9vd"/>
+                <outlet property="titleLab" destination="kWi-FY-GKj" id="HHG-r0-7gl"/>
+            </connections>
+            <point key="canvasLocation" x="339" y="231"/>
+        </tableViewCell>
+    </objects>
+</document>

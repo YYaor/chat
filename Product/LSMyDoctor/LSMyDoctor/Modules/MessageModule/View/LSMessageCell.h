@@ -13,3 +13,4 @@
 @property (nonatomic,strong)EaseConversationModel *conversation;
 
 @end
+

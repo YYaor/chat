@@ -10,4 +10,6 @@
 
 @interface MDWaitForReplyVC : EaseConversationListViewController
 
+@property ( nonatomic , assign) BOOL isSickerList;
+
 @end

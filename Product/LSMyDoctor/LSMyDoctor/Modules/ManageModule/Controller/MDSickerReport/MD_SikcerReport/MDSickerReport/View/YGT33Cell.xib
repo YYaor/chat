@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="YGT33Cell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40-49岁女性健康状况分布" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQ7-fM-SPW">
+                        <rect key="frame" x="8" y="15" width="239" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="Jqb-Ke-Rbt"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" red="0.33333333333333331" green="0.57647058823529407" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标签：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2HT-rY-vTw">
+                        <rect key="frame" x="8" y="55" width="55" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="55" id="jeB-9j-EIq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不吃早餐123 | 基本不吃主食123 " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWV-yP-OSj">
+                        <rect key="frame" x="65" y="55" width="247" height="36.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" red="1" green="0.49019607843137253" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="KWV-yP-OSj" secondAttribute="bottom" id="0bB-GA-xcV"/>
+                    <constraint firstItem="2HT-rY-vTw" firstAttribute="top" secondItem="CQ7-fM-SPW" secondAttribute="bottom" constant="15" id="12a-5g-hAN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="KWV-yP-OSj" secondAttribute="trailing" id="6u3-f4-FZm"/>
+                    <constraint firstItem="KWV-yP-OSj" firstAttribute="top" secondItem="2HT-rY-vTw" secondAttribute="top" id="Cbd-1p-wSN"/>
+                    <constraint firstItem="CQ7-fM-SPW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="Ig1-3K-jBu"/>
+                    <constraint firstItem="2HT-rY-vTw" firstAttribute="leading" secondItem="CQ7-fM-SPW" secondAttribute="leading" id="ey4-xc-xYg"/>
+                    <constraint firstItem="KWV-yP-OSj" firstAttribute="leading" secondItem="2HT-rY-vTw" secondAttribute="trailing" constant="2" id="pSW-kZ-fdt"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="CQ7-fM-SPW" secondAttribute="leading" id="pp1-Wk-YKR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.94175323233320152" green="0.98431372549019602" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <connections>
+                <outlet property="markNameLab" destination="2HT-rY-vTw" id="3Mm-dx-SEP"/>
+                <outlet property="markValueLab" destination="KWV-yP-OSj" id="vm4-FO-U3U"/>
+                <outlet property="titleLab" destination="CQ7-fM-SPW" id="rjj-ps-Qyt"/>
+            </connections>
+            <point key="canvasLocation" x="331" y="307"/>
+        </tableViewCell>
+    </objects>
+</document>

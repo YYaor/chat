@@ -11,7 +11,6 @@
 #import "YGScanVC.h"
 
 //top
-#import "LSWorkUnreplyController.h"
 #import "LSWorkUnreplyListController.h"
 #import "LSWorkAppointController.h"
 #import "LSWorkTailController.h"
@@ -110,10 +109,6 @@
     if (btn.tag == 10000)
     {
         //待回复
-//        LSWorkUnreplyController *vc = [[LSWorkUnreplyController alloc] initWithNibName:@"LSWorkUnreplyController" bundle:nil];
-//        vc.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:vc animated:YES];
-        
         LSWorkUnreplyListController *chatListVC = [[LSWorkUnreplyListController alloc] init];
         chatListVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:chatListVC animated:YES];
@@ -129,7 +124,6 @@
     else if (btn.tag == 10002)
     {
         //医嘱跟踪
-        
         LSWorkTailController *vc = [[LSWorkTailController alloc] initWithNibName:@"LSWorkTailController" bundle:nil];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
@@ -327,7 +321,7 @@
             [_bottomView addSubview:btn];
             
             
-            
+            /*
             //添加未读数量
             CGFloat countHeight = 20.0f;//未读数量显示的高度
             UILabel* countLab = [[UILabel alloc] init];
@@ -344,7 +338,7 @@
                 make.height.mas_equalTo(countHeight);
                 make.width.equalTo(countLab.mas_height);
             }];
-            
+            */
             
             
             UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(i*labWidth, 120, labWidth, 20)];

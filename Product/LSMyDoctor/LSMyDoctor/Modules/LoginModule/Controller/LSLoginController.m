@@ -295,7 +295,7 @@
 
 -(void)loginButtonClick{
 
- //   self.phoneTextFiled.text = @"15502810729";//id 42
+//    self.phoneTextFiled.text = @"15502810729";//id 42
 //    self.phoneTextFiled.text = @"18180847173";//id 43
 //    self.pswTextFiled.text = @"111111";
 
@@ -308,6 +308,11 @@
     if (![NSString isMobile:self.phoneTextFiled.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
         self.phoneNoticeLabel.text = @"手机号码有误";
+        return;
+    }
+    
+    if (self.pswTextFiled.text == nil || self.pswTextFiled.text.length == 0) {
+        [LSUtil showAlter:self.view withText:@"请输入密码" withOffset:-20];
         return;
     }
     

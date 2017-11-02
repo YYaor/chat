@@ -15,8 +15,9 @@
 #import "MDSickerLabelsModel.h"
 #import "MDSickerRemarkVC.h"
 #import "MDEditGroupVC.h"
+#import "MDSikerWeekReportVC.h"
 
-@interface MDSickerDetailVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface MDSickerDetailVC ()<UITableViewDelegate,UITableViewDataSource,MDSickerDetailBottomCellDelegate>
 {
     UITableView* detailTab;
 }
@@ -178,7 +179,7 @@
         
         MDSickerDetailBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDSickerDetailBottomCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        cell.delegate = self;
         return cell;
     }
     
@@ -219,15 +220,32 @@
     
 }
 
-
-
 #pragma mark -- 是否为重点点击
 - (void)switchBtnClick:(UISwitch*)sender
 {
     [self changeSickerDetailWithisFocus:sender.isOn];
 }
 
-
+#pragma mark -- 患者近7天报告按钮点击
+- (void)mDSickerDetailBottomCellSevenReportBtnClickWithBtn:(WFHelperButton *)sender
+{
+    NSLog(@"患者近7天报告按钮点击");
+    MDSikerWeekReportVC* sickerReportVC = [[MDSikerWeekReportVC alloc] init];
+    sickerReportVC.sickerModel = self.detailModel;
+    sickerReportVC.sickerLabelsArr = [[self.detailModel.userLabels allValues] copy];
+    
+    [self.navigationController pushViewController:sickerReportVC animated:YES];
+}
+#pragma mark -- 患者病历按钮点击
+- (void)mDSickerDetailBottomCellSickerMedicalRecordBtnClickWithBtn:(WFHelperButton *)sender
+{
+    NSLog(@"患者病历按钮点击");
+}
+#pragma mark -- 我的医嘱按钮点击
+- (void)mDSickerDetailBottomCellMyAdviceBtnClickWithBtn:(WFHelperButton *)sender
+{
+    NSLog(@"我的医嘱按钮点击");
+}
 #pragma mark -- 获取患者详情
 - (void)getSickerDetailRequestData
 {

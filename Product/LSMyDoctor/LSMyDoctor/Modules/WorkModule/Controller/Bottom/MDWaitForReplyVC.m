@@ -15,8 +15,7 @@ static NSString *cellId = @"LSMessageCell";
 
 @interface MDWaitForReplyVC () <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong,nonatomic) NSMutableArray *dataArray;
-
+@property (nonatomic, strong) NSMutableArray *dataList;//筛选好的聊天列表
 
 @end
 
@@ -25,7 +24,6 @@ static NSString *cellId = @"LSMessageCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.dataArray = [NSMutableArray array];
     [self initForView];
 }
 
@@ -38,7 +36,8 @@ static NSString *cellId = @"LSMessageCell";
 {
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationItem.title = @"待回复";
-    //    self.view.backgroundColor = [UIColor colorFromHexString:@"EEE9E9"];
+    
+    self.dataList = [NSMutableArray array];
     
     [self.tableView registerNib:[UINib nibWithNibName:cellId bundle:nil] forCellReuseIdentifier:cellId];
     
@@ -48,53 +47,59 @@ static NSString *cellId = @"LSMessageCell";
 - (void)requestData
 {
     
-    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
-    NSArray* sorted = [conversations sortedArrayUsingComparator:
-                       ^(EMConversation *obj1, EMConversation* obj2){
-                           EMMessage *message1 = [obj1 latestMessage];
-                           EMMessage *message2 = [obj2 latestMessage];
-                           if(message1.timestamp > message2.timestamp) {
-                               return(NSComparisonResult)NSOrderedAscending;
-                           }else {
-                               return(NSComparisonResult)NSOrderedDescending;
-                           }
-                       }];
+    if ([self.dataArray count] > 1) {
+        if ([[self.dataArray objectAtIndex:0] isKindOfClass:[EaseConversationModel class]]) {
+            
+            NSMutableArray *temp = [NSMutableArray array];
+            
+            for (EaseConversationModel *model in self.dataArray) {
+                if (([model.conversation.conversationId containsString:@"d"] || [model.conversation.conversationId containsString:@"D"]) && model.conversation.unreadMessagesCount > 0) {
+                    [temp addObject:model];
+                }
+            }
+            
+            NSArray* sorted = [temp sortedArrayUsingComparator:
+                               ^(EaseConversationModel *obj1, EaseConversationModel* obj2){
+                                   EMMessage *message1 = [obj1.conversation latestMessage];
+                                   EMMessage *message2 = [obj2.conversation latestMessage];
+                                   if(message1.timestamp > message2.timestamp) {
+                                       return(NSComparisonResult)NSOrderedAscending;
+                                   }else {
+                                       return(NSComparisonResult)NSOrderedDescending;
+                                   }
+                               }];
+            
+            [self.dataList removeAllObjects];
+            [self.dataList addObjectsFromArray:sorted];
+        }
+    }
     
-    
-    
-    [self.dataArray removeAllObjects];
-    for (EMConversation *converstion in sorted) {
+    for (EaseConversationModel *cModel in self.dataArray) {
         EaseConversationModel *model = nil;
         if (self.dataSource && [self.dataSource respondsToSelector:@selector(conversationListViewController:modelForConversation:)]) {
             model = [self.dataSource conversationListViewController:self
-                                               modelForConversation:converstion];
+                                               modelForConversation:cModel.conversation];
         }
         else{
-            model = [[EaseConversationModel alloc] initWithConversation:converstion];
+            model = [[EaseConversationModel alloc] initWithConversation:cModel.conversation];
         }
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            // 耗时的操作
-            
-            NSDictionary *dicDB = [FMDBTool selectUserLoginViewInfoSqlTableWithTypeListName:CHATUSERTABLE
-                                                                                     search:@[[NSString stringWithFormat:@"uid = '%@'",converstion.conversationId]] dataTyep:CHATUSERKEYS];
-            if (model) {
-                if (dicDB) {
-                    model.title = dicDB[@"nickName"];
-                    model.avatarURLPath = dicDB[@"headerUrl"];
-                }else{
-                    [self requestPdata:converstion.conversationId];
-                }
-                if ([model.conversation.conversationId containsString:@"D"] || [model.conversation.conversationId containsString:@"d"]) {
-                    if (model.conversation.unreadMessagesCount > 0) {
-                        [self.dataArray addObject:model];
-                    }
-                }
-            }
+// 耗时的操作
+
+//            NSDictionary *dicDB = [FMDBTool selectUserLoginViewInfoSqlTableWithTypeListName:CHATUSERTABLE
+//                                                                                     search:@[[NSString stringWithFormat:@"uid = '%@'",converstion.conversationId]] dataTyep:CHATUSERKEYS];
+//            if (model) {
+//                if (dicDB) {
+//                    model.title = dicDB[@"nickName"];
+//                    model.avatarURLPath = dicDB[@"headerUrl"];
+//                }else{
+            [self requestPdata:cModel.conversation.conversationId];
+//                }
+//                [self.dataArray addObject:model];
+//            }
         });
     }
-    
-    [self.tableView reloadData];
 }
 
 -(void)checkDoctor:(NSString *)conversationId{
@@ -112,11 +117,11 @@ static NSString *cellId = @"LSMessageCell";
                 if (responseObj[@"data"]) {
                     
                     for (NSDictionary *dic in responseObj[@"data"]) {
-                        [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
-                                                                      data:@{@"uid" : dic[@"im_username"],
-                                                                             @"nickName" : dic[@"doctor_name"] ? dic[@"doctor_name"] : @"",
-                                                                             @"headerUrl" : dic[@"doctor_image"] ? dic[@"doctor_image"] : @""}];
-                        for (EaseConversationModel *conversation in self.dataArray) {
+//                        [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
+//                                                                      data:@{@"uid" : dic[@"im_username"],
+//                                                                             @"nickName" : dic[@"doctor_name"] ? dic[@"doctor_name"] : @"",
+//                                                                             @"headerUrl" : dic[@"doctor_image"] ? dic[@"doctor_image"] : @""}];
+                        for (EaseConversationModel *conversation in self.dataList) {
                             if ([conversation.conversation.conversationId isEqualToString:conversationId]) {
                                 conversation.title = dic[@"doctor_name"];
                                 conversation.avatarURLPath = dic[@"doctor_image"];
@@ -148,11 +153,11 @@ static NSString *cellId = @"LSMessageCell";
                 if (responseObj[@"data"]) {
                     
                     for (NSDictionary *dic in responseObj[@"data"]) {
-                        [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
-                                                                      data:@{@"uid" : dic[@"im_username"],
-                                                                             @"nickName" : dic[@"username"] ? dic[@"username"] : @"",
-                                                                             @"headerUrl" : dic[@"img_url"] ? dic[@"img_url"] : @""}];
-                        for (EaseConversationModel *conversation in self.dataArray) {
+//                        [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
+//                                                                      data:@{@"uid" : dic[@"im_username"],
+//                                                                             @"nickName" : dic[@"username"] ? dic[@"username"] : @"",
+//                                                                             @"headerUrl" : dic[@"img_url"] ? dic[@"img_url"] : @""}];
+                        for (EaseConversationModel *conversation in self.dataList) {
                             if ([conversation.conversation.conversationId isEqualToString:conversationId]) {
                                 conversation.title = dic[@"username"];
                                 conversation.avatarURLPath = dic[@"img_url"];
@@ -200,13 +205,13 @@ static NSString *cellId = @"LSMessageCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArray.count;
+    return self.dataList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LSMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
-    cell.conversation = self.dataArray[indexPath.row];
+    cell.conversation = self.dataList[indexPath.row];
     return cell;
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ReportModel.h"
 
 @interface WFHelperButton : UIButton
 
@@ -14,7 +15,7 @@
 @property (nonatomic,assign) NSInteger index;
 @property (nonatomic,copy) NSString *date;
 @property (nonatomic,copy) NSString *detail;//点击弹出文字
-
+@property (nonatomic,strong) ReportGroupModel *groupModel;//组报告
 @property (nonatomic,strong) NSString* flagStr;//标识
 
 @property(nonatomic,assign) BOOL dragEnable;

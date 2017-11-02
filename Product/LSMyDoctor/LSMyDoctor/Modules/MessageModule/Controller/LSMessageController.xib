@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LSMessageController">
             <connections>
-                <outlet property="tableView" destination="0Vp-OS-YdA" id="pKW-07-3pb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,23 +18,7 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Vp-OS-YdA">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="IqX-7l-9Q6"/>
-                        <outlet property="delegate" destination="-1" id="IRK-oV-1eL"/>
-                    </connections>
-                </tableView>
-            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="0Vp-OS-YdA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0vT-Pt-c3O"/>
-                <constraint firstAttribute="bottom" secondItem="0Vp-OS-YdA" secondAttribute="bottom" id="U9M-1I-quu"/>
-                <constraint firstAttribute="trailing" secondItem="0Vp-OS-YdA" secondAttribute="trailing" id="UNm-Gs-V4y"/>
-                <constraint firstItem="0Vp-OS-YdA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Uoc-ML-aOj"/>
-            </constraints>
             <point key="canvasLocation" x="34" y="54"/>
         </view>
     </objects>
