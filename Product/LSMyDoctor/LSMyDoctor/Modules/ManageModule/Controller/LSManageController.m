@@ -132,6 +132,8 @@ static NSString *cellId = @"LSManageCell";
 #pragma mark -- UISearchBarDelegate
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     
+    [self getSickerListDataWithUserName:searchBar.text];
+    
 }
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
@@ -139,7 +141,7 @@ static NSString *cellId = @"LSManageCell";
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    
+    [self getSickerListDataWithUserName:nil];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -238,6 +240,8 @@ static NSString *cellId = @"LSManageCell";
     LSWEAKSELF;
     
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:usernameStr forKey:@"username"];
     
     NSString* url = PATH(@"%@/queryPatientList");
     

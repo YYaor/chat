@@ -135,7 +135,7 @@
                 cell.userNameLab.text = @"";
             }else{
                 MDSickerGroupUserModel* userModel = self.groupDetailModel.users[indexPath.item - 1];
-                NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/..%@",API_HOST,@"imgurl"]];
+                NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/..%@",API_HOST,userModel.img_url]];
                 [cell.userImgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"headImg_public"]];
                 cell.userNameLab.text = userModel.username;
                 

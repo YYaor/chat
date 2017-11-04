@@ -167,10 +167,10 @@
 {
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
-    [param setValue:groupIdStr forKey:@"groupid"];
-    [param setValue:self.userIdStr forKey:@"userids"];
+    [param setValue:groupIdStr forKey:@"groupids"];
+    [param setValue:self.userIdStr forKey:@"userid"];
     
-    NSString* url = PATH(@"%@/addGroupUser");
+    NSString* url = PATH(@"%@/updatePatientGroups");
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         if ([responseObj isKindOfClass:[NSDictionary class]]) {

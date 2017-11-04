@@ -11,6 +11,7 @@
 #import "MDChooseSickerModel.h"
 #import "MDSickerLabelsModel.h"
 #import "MDGroupCommunicateVC.h"
+#import "MDSickerGroupVC.h"//讨论组列表
 
 @interface MDAddGroupVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ZHPickViewDelegate>
 {
@@ -356,6 +357,7 @@
     MDChooseSickerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDChooseSickerCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     MDChooseSickerModel* sickerModel = [[self.letterResultArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    cell.imgUrl = sickerModel.img_url;
     cell.isSelected = sickerModel.is_Selected;
     cell.userNameStr = sickerModel.username;
     cell.sexAndAgeStr = [NSString stringWithFormat:@"%@   %@",sickerModel.sex,[NSString getAgeFromBirthday:sickerModel.birthday]];
@@ -475,12 +477,16 @@
                 
                 NSString* imGroupId = responseObj[@"data"][@"im_groupid"];
                 NSLog(@"创建成功%@",imGroupId);
+                MDSickerGroupVC* sickerGroupVC = [[MDSickerGroupVC alloc] init];
+                
+                [self.navigationController pushViewController:sickerGroupVC animated:YES];
+                /*
                 MDGroupCommunicateVC* groupCommunicateVC = [[MDGroupCommunicateVC alloc] initWithConversationChatter:imGroupId conversationType:EMConversationTypeGroupChat];
                 groupCommunicateVC.isPeer = NO;
                 groupCommunicateVC.title = groupNameStr;
    //             groupCommunicateVC.groupIdStr = listModel.groupId;
                 [self.navigationController pushViewController:groupCommunicateVC animated:YES];
-                
+                */
                 
                 
             }else{

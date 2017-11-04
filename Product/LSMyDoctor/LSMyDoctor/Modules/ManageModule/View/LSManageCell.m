@@ -22,7 +22,8 @@
 
 - (void)setDataWithEntity:(LSManageModel *)entity
 {
-    [self.img_url sd_setImageWithURL:[NSURL URLWithString:entity.img_url] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+    [self.img_url sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UGAPI_HOST,entity.img_url]] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+    
     self.username.text = entity.username;
     NSString* sexStr = @"男";
     if ([entity.sex isEqualToString:@"1"]) {

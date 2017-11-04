@@ -45,7 +45,7 @@
 - (void)setUpUi
 {
     //创建界面
-    groupTab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, LSSCREENWIDTH, LSSCREENHEIGHT) style:UITableViewStyleGrouped];
+    groupTab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, LSSCREENWIDTH, LSSCREENHEIGHT - 64) style:UITableViewStyleGrouped];
     groupTab.delegate = self;
     groupTab.dataSource = self;
     [self.view addSubview:groupTab];

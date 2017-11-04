@@ -68,7 +68,7 @@
         
         for (int i = 0; i < numRow; i++) {
             for(int j = 0 ;j < 4; j ++){
-                UILabel* markLab = [[UILabel alloc] initWithFrame:CGRectMake((labelWidth + 5)*j , (labelHeight + 8)*i, labelWidth, labelHeight)];
+                UILabel* markLab = [[UILabel alloc] initWithFrame:CGRectMake((labelWidth + 5)*j , (labelHeight + 8)*i + 5, labelWidth, labelHeight)];
                 
                
                 markLab.textColor = BaseColor;
@@ -82,11 +82,11 @@
                 [self.haveMarkView addSubview:markLab];
                 
                 WFHelperButton* deleteBtn = [[WFHelperButton alloc] init];
-                [deleteBtn setBackgroundImage:[UIImage imageNamed:@"deleteImgView_public"] forState:UIControlStateNormal];
+                [deleteBtn setBackgroundImage:[UIImage imageNamed:@"del_green_Public"] forState:UIControlStateNormal];
                 [deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [markLab addSubview:deleteBtn];
                 [deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.right.equalTo(markLab.mas_right);
+                    make.right.equalTo(markLab.mas_right).offset(5);
                     make.top.equalTo(markLab.mas_top).offset(-labelHeight/6);
                     make.width.equalTo(@(labelHeight/2));
                     make.height.equalTo(deleteBtn.mas_width);

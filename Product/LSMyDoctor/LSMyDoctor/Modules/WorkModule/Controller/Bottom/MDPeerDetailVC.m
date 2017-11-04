@@ -210,11 +210,19 @@
                 if (self.isFriend) {
                     //如果是已经是好友，则显示对话，
                     [beginTalkBtn setTitle:@"对话" forState:UIControlStateNormal];
+                    beginTalkBtn.enabled = YES;
                     [beginTalkBtn setBackgroundColor:BaseColor];
                 }else{
                     //如果不是好友，显示申请加好友
+                    if ([self.detailModel.isRequest integerValue] > 0) {
+                        [beginTalkBtn setBackgroundColor:[UIColor lightGrayColor]];
+                        beginTalkBtn.enabled = NO;
+                    }else{
+                        [beginTalkBtn setBackgroundColor:BaseColor];
+                        beginTalkBtn.enabled = YES;
+                    }
                     [beginTalkBtn setTitle:@"申请加好友" forState:UIControlStateNormal];
-                    [beginTalkBtn setBackgroundColor:BaseColor];
+                    
                 }
                 
                 [detailTab reloadData];
@@ -255,7 +263,7 @@
                     [XHToast showCenterWithText:@"请求已发送成功"];
                 }
                 
-                UIViewController* vc = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2];
+                UIViewController* vc = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 3];
                 
                 [self.navigationController popToViewController:vc animated:YES];
                 

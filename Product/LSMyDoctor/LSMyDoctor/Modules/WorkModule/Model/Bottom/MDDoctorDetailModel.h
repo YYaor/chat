@@ -21,5 +21,6 @@
 @property (nonatomic , strong) NSString* department_name;
 @property (nonatomic , strong) NSString* hospital_name;
 @property (nonatomic , strong) NSString* isFriend;
+@property (nonatomic , strong) NSString* isRequest;
 
 @end

@@ -23,7 +23,7 @@
 -(void)setDataDic:(NSMutableDictionary *)dataDic{
     _dataDic = dataDic;
     if (dataDic[@"img_url"]) {
-        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:dataDic[@"img_url"]] placeholderImage:nil];
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UGAPI_HOST,dataDic[@"img_url"]]] placeholderImage:nil];
     }
 
     self.nameLab.text = dataDic[@"username"];

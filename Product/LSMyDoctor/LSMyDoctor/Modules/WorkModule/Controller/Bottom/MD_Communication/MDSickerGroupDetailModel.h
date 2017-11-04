@@ -23,6 +23,7 @@
 
 @property (nonatomic ,copy) NSString* im_username;
 @property (nonatomic ,copy) NSString* user_id;
+@property (nonatomic ,copy) NSString* img_url;
 @property (nonatomic ,copy) NSString* username;
 @property (nonatomic ,copy) NSString* type;
 

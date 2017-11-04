@@ -13,6 +13,7 @@
 #import "LSAddDocCollectionCell.h"
 #import "MDChooseSickerModel.h"
 #import "MDGroupCommunicateVC.h"
+#import "MDConsulteDisccussVC.h"//讨论组列表
 
 @interface LSBeginChatController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
@@ -344,6 +345,10 @@
             
             if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
             {
+                
+                MDConsulteDisccussVC* consulteDisccussVC = [[MDConsulteDisccussVC alloc] init];
+                
+                [self.navigationController pushViewController:consulteDisccussVC animated:YES];
                 //TO--DO创建房间成功 ，跳转群组会话页面
                 /*
                 MDGroupCommunicateVC* groupCommunicateVC = [[MDGroupCommunicateVC alloc] initWithConversationChatter:listModel.groupId conversationType:EMConversationTypeGroupChat];

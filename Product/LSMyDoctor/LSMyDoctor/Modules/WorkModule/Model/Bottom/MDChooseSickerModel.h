@@ -14,6 +14,7 @@
 @property (nonatomic , strong) NSString* sex;
 @property (nonatomic , strong) NSString* username;
 @property (nonatomic , strong) NSString* is_focus;
+@property (nonatomic , strong) NSString* img_url;
 @property (nonatomic , strong) NSString* user_id;
 
 @property (nonatomic , assign) BOOL is_Selected;
