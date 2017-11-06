@@ -12,6 +12,7 @@
 #import "MDPeerDiscussCell.h"
 #import "MDSingleCommunicateVC.h"//单人聊天室
 #import "MDDoctorDetailModel.h"
+#import "MDDoctorDetailEvaluateModel.h"//评价的Model
 
 @interface MDPeerDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -19,11 +20,20 @@
     UIButton* beginTalkBtn;// 对话/申请加好友 按钮
 }
 @property (nonatomic , strong)MDDoctorDetailModel * detailModel;
+@property(nonatomic ,strong)NSMutableArray* evaluateArr;//评价的列表
 
 @end
 
 @implementation MDPeerDetailVC
-
+#pragma mark -- 懒加载
+- (NSMutableArray *)evaluateArr{
+    
+    if (_evaluateArr == nil) {
+        _evaluateArr = [[NSMutableArray alloc] init];
+        
+    }
+    return _evaluateArr;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -103,7 +113,7 @@
 {
     if (section == 3) {
         //患者评价
-        return 5;
+        return self.evaluateArr.count;
     }else{
         return 1;
     }
@@ -117,7 +127,7 @@
 {
     if (section == 3) {
         //患者评价
-        return 50;
+        return 50.0f;
     }else{
         return 0.0000001f;
     }
@@ -179,7 +189,7 @@
         //患者评价
         MDPeerDiscussCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDPeerDiscussCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        cell.model = self.evaluateArr[indexPath.row];
         return cell;
         
     }else{
@@ -224,8 +234,8 @@
                     [beginTalkBtn setTitle:@"申请加好友" forState:UIControlStateNormal];
                     
                 }
-                
-                [detailTab reloadData];
+                //获取评价列表
+                [self getEvaluateListData];
             }else
             {
                 [XHToast showCenterWithText:@"获取数据失败"];
@@ -241,6 +251,46 @@
         //[XHToast showCenterWithText:@"fail"];
     }];
 }
+
+#pragma mark -- 获取医生评价的列表
+- (void)getEvaluateListData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:self.doctorIdStr forKey:@"doctorid"];
+    [param setValue:@(1)forKey:@"pagenum"];
+    [param setValue:@(100) forKey:@"pagesize"];
+    
+    NSString* url = [NSString stringWithFormat:@"%@/patient/evaluteList",UGAPI_HOST];
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"] && responseObj[@"data"] && responseObj[@"data"][@"content"])
+            {
+                
+                NSArray* list = [NSArray yy_modelArrayWithClass:[MDDoctorDetailEvaluateModel class] json:responseObj[@"data"][@"content"]];
+                [self.evaluateArr removeAllObjects];
+                [self.evaluateArr addObjectsFromArray:list];
+                
+                [detailTab reloadData];
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+
+}
+
 
 #pragma mark -- 申请添加好友
 - (void)requestForAddToFriendRequest

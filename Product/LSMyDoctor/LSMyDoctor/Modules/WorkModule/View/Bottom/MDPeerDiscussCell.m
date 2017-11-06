@@ -24,26 +24,54 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    
-    
-    for (int i = 0; i < 5; i++) {
-        
-        UIImageView* starImgView = [[UIImageView alloc] initWithFrame:CGRectMake(32 * i, 0, 30, 30)];
-        
-        starImgView.image = [UIImage imageNamed:@"people_blue"];
-        
-        starImgView.contentMode = UIViewContentModeScaleAspectFit;
-        
-        [self.starView addSubview:starImgView];
-        
-        
-    }
-    NSString* str;
-    self.discussValueLabHeight.constant = [str heightWithFont:[UIFont systemFontOfSize:17.0f] constrainedToWidth:LSSCREENWIDTH - 16];
-    
-    
     // Initialization code
 }
+
+- (void)setModel:(MDDoctorDetailEvaluateModel *)model
+{
+    _model = model;
+    //星星
+    NSInteger selctNum = [model.score integerValue];//选中的几个星星
+    for (UIView* v in self.starView.subviews) {
+        [v removeFromSuperview];
+    }
+    CGFloat jianju = 5.0f;
+    CGFloat starWidth = 20.0f;
+    
+    for ( int i = 0; i < 5; i ++) {
+        
+        CGFloat x = (starWidth + jianju) * i;
+        
+        WFHelperButton* starBtn = [[WFHelperButton alloc] initWithFrame:CGRectMake(x, 8, starWidth, starWidth)];
+        starBtn.index = i;
+        starBtn.selected = NO;
+        if (i <= selctNum - 1) {
+            starBtn.selected = YES;
+        }else{
+            starBtn.selected = NO;
+        }
+        [starBtn setBackgroundImage:[UIImage imageNamed:@"star_grey"] forState:UIControlStateNormal];
+        [starBtn setBackgroundImage:[UIImage imageNamed:@"star_yellow"] forState:UIControlStateSelected];
+        
+        [self.starView addSubview:starBtn];
+    }
+    
+    //内容
+    self.discussValueLab.text = model.symptom;
+    
+    self.discussValueLabHeight.constant = [model.symptom heightWithFont:[UIFont systemFontOfSize:17.0f] constrainedToWidth:LSSCREENWIDTH - 16];
+    //时间
+    self.discussTimeLab.text = model.createTime;
+    //姓名
+    self.userNameLab.text = model.name;
+    
+    
+    
+    
+    
+}
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

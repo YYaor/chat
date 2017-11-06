@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MDDoctorDetailEvaluateModel.h"
 
 @interface MDPeerDiscussCell : UITableViewCell
+
+@property (nonatomic , strong)MDDoctorDetailEvaluateModel* model;
 
 @end

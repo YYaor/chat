@@ -284,6 +284,7 @@
 		4AA2FE6C1FA8251C009009D8 /* MDEditSickerGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA2FE6A1FA8251C009009D8 /* MDEditSickerGroupCell.xib */; };
 		4AA2FE6F1FA8843D009009D8 /* MDSickerGroupDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2FE6E1FA8843C009009D8 /* MDSickerGroupDetailModel.m */; };
 		4AA2FE721FA88B88009009D8 /* MDSickerGroupDetialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2FE711FA88B88009009D8 /* MDSickerGroupDetialVC.m */; };
+		4AB7A2A11FB0420200AFBFDA /* MDDoctorDetailEvaluateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB7A2A01FB0420200AFBFDA /* MDDoctorDetailEvaluateModel.m */; };
 		4ACCD7391FA2C25E003F1BBD /* MDGroupDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCD7381FA2C25E003F1BBD /* MDGroupDetailModel.m */; };
 		4AFAD5261F99D7DD00B20CA2 /* MDGroupCommunicateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD5251F99D7DD00B20CA2 /* MDGroupCommunicateVC.m */; };
 		4AFAD52F1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD52D1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.m */; };
@@ -1097,6 +1098,8 @@
 		4AA2FE6E1FA8843C009009D8 /* MDSickerGroupDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSickerGroupDetailModel.m; sourceTree = "<group>"; };
 		4AA2FE701FA88B88009009D8 /* MDSickerGroupDetialVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSickerGroupDetialVC.h; sourceTree = "<group>"; };
 		4AA2FE711FA88B88009009D8 /* MDSickerGroupDetialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSickerGroupDetialVC.m; sourceTree = "<group>"; };
+		4AB7A29F1FB0420200AFBFDA /* MDDoctorDetailEvaluateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDoctorDetailEvaluateModel.h; sourceTree = "<group>"; };
+		4AB7A2A01FB0420200AFBFDA /* MDDoctorDetailEvaluateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDoctorDetailEvaluateModel.m; sourceTree = "<group>"; };
 		4ACCD7371FA2C25E003F1BBD /* MDGroupDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupDetailModel.h; sourceTree = "<group>"; };
 		4ACCD7381FA2C25E003F1BBD /* MDGroupDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDGroupDetailModel.m; sourceTree = "<group>"; };
 		4AFAD5241F99D7DD00B20CA2 /* MDGroupCommunicateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupCommunicateVC.h; sourceTree = "<group>"; };
@@ -2546,6 +2549,8 @@
 				4A8928391F99CF5E0051A868 /* MDDiscussListModel.m */,
 				4A90B4131FA1E1A500076BC1 /* MDChooseSickerModel.h */,
 				4A90B4141FA1E1A500076BC1 /* MDChooseSickerModel.m */,
+				4AB7A29F1FB0420200AFBFDA /* MDDoctorDetailEvaluateModel.h */,
+				4AB7A2A01FB0420200AFBFDA /* MDDoctorDetailEvaluateModel.m */,
 			);
 			path = Bottom;
 			sourceTree = "<group>";
@@ -4296,6 +4301,7 @@
 				4A43C1351FAB1C9C00EAC5AA /* YGCircleCell.m in Sources */,
 				DF73EB0A1FA0DD9C0088DBE8 /* LSPatientListCell.m in Sources */,
 				DF87A7AD1F782DE000EF0461 /* IQUIScrollView+Additions.m in Sources */,
+				4AB7A2A11FB0420200AFBFDA /* MDDoctorDetailEvaluateModel.m in Sources */,
 				0F6E10861F7B799600C2477B /* LSMineNewPswController.m in Sources */,
 				4A43C13D1FAB1C9C00EAC5AA /* YGSportCell.m in Sources */,
 				DF81C24B1F8A0D9E00D4D851 /* LSWorkOutcallAddController.m in Sources */,
