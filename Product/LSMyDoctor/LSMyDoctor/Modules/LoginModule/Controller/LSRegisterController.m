@@ -13,7 +13,7 @@
 
 #import "NSString+Mark.h"
 
-@interface LSRegisterController ()
+@interface LSRegisterController () <UITextViewDelegate>
 
 @property (nonatomic,strong) UITextField *phoneTextField;
 
@@ -243,31 +243,52 @@
         return;
     }
     
-    NSString* url = PATH(@"%@/misc/code");
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    
     [param setValue:AccessToken forKey:@"accessToken"];
     [param setValue:self.phoneTextField.text forKey:@"phone"];
-    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+    
+    NSString* url1 = PATH(@"%@/my/checkPhone");
+    //验证手机号
+    [TLAsiNetworkHandler requestWithUrl:url1 params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         if ([responseObj isKindOfClass:[NSDictionary class]])
         {
             NSDictionary * dict = responseObj;
             if (dict[@"status"] && [dict[@"status"] isEqualToString:@"0"]) {
                 //返回成功
-                //获取验证码成功
-                NSString* showMessage = @"验证码已发送到手机，请注意查收";
-                if (dict[@"message"]) {
-                    showMessage = dict[@"message"];
-                }
-                [XHToast showCenterWithText:showMessage];
+                NSString* url2 = PATH(@"%@/misc/code");
                 
-                [self buttonTitleTime:self.sendCodeButton withTime:@"60"];
+                [TLAsiNetworkHandler requestWithUrl:url2 params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+                    if ([responseObj isKindOfClass:[NSDictionary class]])
+                    {
+                        NSDictionary * dict = responseObj;
+                        if (dict[@"status"] && [dict[@"status"] isEqualToString:@"0"]) {
+                            //返回成功
+                            //获取验证码成功
+                            NSString* showMessage = @"验证码已发送到手机，请注意查收";
+                            if (dict[@"message"]) {
+                                showMessage = dict[@"message"];
+                            }
+                            [XHToast showCenterWithText:showMessage];
+                            
+                            [self buttonTitleTime:self.sendCodeButton withTime:@"60"];
+                        }else{
+                            NSLog(@"返回格式输出错误");
+                        }
+                    }
+                } failBlock:^(NSError *error) {
+                    //[XHToast showCenterWithText:@"fail"];
+                }];
             }else{
                 NSLog(@"返回格式输出错误");
             }
         }
     } failBlock:^(NSError *error) {
         //[XHToast showCenterWithText:@"fail"];
+        NSLog(@"返回格式输出错误");
     }];
+    
+    
 }
 
 - (void)buttonTitleTime:(UIButton *)button withTime:(NSString *)time
@@ -313,6 +334,8 @@
 
 -(void)nextButtonClick{
     
+    LSWEAKSELF;
+    
     if (self.phoneTextField.text.length <= 0)
     {
         [XHToast showCenterWithText:@"请输入手机号"];
@@ -343,11 +366,33 @@
         return;
     }
     
-    LSAuthenticationController *authenticationController = [[LSAuthenticationController alloc]init];
-    authenticationController.phoneNumStr = self.phoneTextField.text;
-    authenticationController.verNumStr = self.codeTextField.text;
-    authenticationController.pwdStr = self.pswTextField.text;
-    [self.navigationController pushViewController:authenticationController animated:YES];
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    
+    [param setValue:AccessToken forKey:@"accessToken"];
+    [param setValue:self.phoneTextField.text forKey:@"phone"];
+    [param setValue:self.codeTextField.text forKey:@"code"];
+    
+    NSString* url = PATH(@"%@/my/checkPhone");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]])
+        {
+            NSDictionary * dict = responseObj;
+            if (dict[@"status"] && [dict[@"status"] isEqualToString:@"0"]) {
+                //返回成功
+                LSAuthenticationController *authenticationController = [[LSAuthenticationController alloc]init];
+                authenticationController.phoneNumStr = weakSelf.phoneTextField.text;
+                authenticationController.verNumStr = weakSelf.codeTextField.text;
+                authenticationController.pwdStr = weakSelf.pswTextField.text;
+                [weakSelf.navigationController pushViewController:authenticationController animated:YES];
+            }else{
+                NSLog(@"返回格式输出错误");
+            }
+        }
+    } failBlock:^(NSError *error) {
+        //[XHToast showCenterWithText:@"fail"];
+        NSLog(@"返回格式输出错误");
+    }];
 }
 
 - (void)agreementButtonClick
@@ -361,6 +406,54 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark -- 限制输入字数
+- (void) textFieldDidChange:(UITextField *)textField
+{
+    //最大长度
+    NSInteger kMaxLength = 6;
+    
+    if (textField == self.pswTextField || textField == self.confPswTextField ) {
+        
+        kMaxLength = 6;
+        
+    }else if (textField == self.phoneTextField) {
+        
+        kMaxLength = 11;
+        
+    }
+    
+    NSString *toBeString = textField.text;
+    
+    NSString *lang = [[UIApplication sharedApplication]textInputMode].primaryLanguage; //ios7之前使用[UITextInputMode currentInputMode].primaryLanguage
+    
+    if ([lang isEqualToString:@"zh-Hans"]) { //中文输入
+        
+        UITextRange *selectedRange = [textField markedTextRange];
+        
+        //获取高亮部分
+        
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        
+        if (!position) {// 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+            
+            if (toBeString.length > kMaxLength) {
+                
+                textField.text = [toBeString substringToIndex:kMaxLength];
+                [textField resignFirstResponder];
+                
+            }
+            
+        }
+        else{//有高亮选择的字符串，则暂不对文字进行统计和限制
+            
+        }
+    }else{//中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
+        if (toBeString.length > kMaxLength) {
+            textField.text = [toBeString substringToIndex:kMaxLength];
+        }
+    }
+}
+
 #pragma mark - setter && getter
 
 -(UITextField *)phoneTextField{
@@ -371,7 +464,7 @@
         _phoneTextField.font = [UIFont systemFontOfSize:14];
         _phoneTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         [_phoneTextField addTarget:self action:@selector(phoneTextChangged:) forControlEvents:UIControlEventEditingChanged];
-
+        _phoneTextField.delegate = self;
     }
     return _phoneTextField;
 }
@@ -384,7 +477,8 @@
         _pswTextField.font = [UIFont systemFontOfSize:14];
         _pswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         [_pswTextField addTarget:self action:@selector(pswTextChangged:) forControlEvents:UIControlEventEditingChanged];
-
+        _pswTextField.delegate = self;
+        _pswTextField.secureTextEntry = YES;
     }
     return _pswTextField;
 }
@@ -397,7 +491,6 @@
         _codeTextField.font = [UIFont systemFontOfSize:14];
         _codeTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         [_codeTextField addTarget:self action:@selector(codeTextChangged:) forControlEvents:UIControlEventEditingChanged];
-
     }
     return _codeTextField;
 }
@@ -410,7 +503,8 @@
         _confPswTextField.font = [UIFont systemFontOfSize:14];
         _confPswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         [_confPswTextField addTarget:self action:@selector(confPswTextChangged:) forControlEvents:UIControlEventEditingChanged];
-
+        _confPswTextField.delegate = self;
+        _confPswTextField.secureTextEntry = YES;
     }
     return _confPswTextField;
 }
@@ -463,6 +557,7 @@
         [_agreementButton setImage:[UIImage imageNamed:@"unSelectBox_Public"] forState:UIControlStateNormal];
         [_agreementButton setImage:[UIImage imageNamed:@"selectedBox_Public"] forState:UIControlStateSelected];
         _agreementButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        _agreementButton.selected = YES;
     }
     return _agreementButton;
 }

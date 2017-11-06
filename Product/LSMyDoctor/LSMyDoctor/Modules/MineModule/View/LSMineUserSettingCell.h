@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LSUserModel.h"
-@interface LSMineUserSettingCell : UITableViewCell
 
-@property (nonatomic,strong)LSUserModel *user;
+@interface LSMineUserSettingCell : UITableViewCell
 
 -(void)hideHeadImageView:(BOOL)hide;
 

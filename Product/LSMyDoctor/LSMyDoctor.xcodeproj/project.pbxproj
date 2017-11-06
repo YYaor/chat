@@ -39,7 +39,6 @@
 		0F8314721F7B3BE3008A9E22 /* LSMineUserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8314701F7B3BE3008A9E22 /* LSMineUserSettingController.m */; };
 		0F8314731F7B3BE3008A9E22 /* LSMineUserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8314711F7B3BE3008A9E22 /* LSMineUserSettingController.xib */; };
 		0F8314761F7B3C82008A9E22 /* LSMineUserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8314751F7B3C82008A9E22 /* LSMineUserSettingCell.m */; };
-		0F8314791F7B3F55008A9E22 /* LSUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8314781F7B3F55008A9E22 /* LSUserModel.m */; };
 		0F8314801F7B40BC008A9E22 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F83147C1F7B40BC008A9E22 /* NSObject+YYModel.m */; };
 		0F8314811F7B40BC008A9E22 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F83147E1F7B40BC008A9E22 /* YYClassInfo.m */; };
 		0FB200BE1F78CEFC005BC289 /* YYShopMainTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200BD1F78B4BD005BC289 /* YYShopMainTypeView.m */; };
@@ -659,8 +658,6 @@
 		0F8314711F7B3BE3008A9E22 /* LSMineUserSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMineUserSettingController.xib; sourceTree = "<group>"; };
 		0F8314741F7B3C82008A9E22 /* LSMineUserSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineUserSettingCell.h; sourceTree = "<group>"; };
 		0F8314751F7B3C82008A9E22 /* LSMineUserSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineUserSettingCell.m; sourceTree = "<group>"; };
-		0F8314771F7B3F55008A9E22 /* LSUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSUserModel.h; sourceTree = "<group>"; };
-		0F8314781F7B3F55008A9E22 /* LSUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSUserModel.m; sourceTree = "<group>"; };
 		0F83147B1F7B40BC008A9E22 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
 		0F83147C1F7B40BC008A9E22 /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
 		0F83147D1F7B40BC008A9E22 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
@@ -1846,8 +1843,6 @@
 		0FB200E81F7A527D005BC289 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0F8314771F7B3F55008A9E22 /* LSUserModel.h */,
-				0F8314781F7B3F55008A9E22 /* LSUserModel.m */,
 				DFEC43EC1FA0EECC00DA8FAC /* LSMineModel.h */,
 				DFEC43ED1FA0EECC00DA8FAC /* LSMineModel.m */,
 			);
@@ -4551,7 +4546,6 @@
 				4A43C1661FAB1C9C00EAC5AA /* JHPieChart.m in Sources */,
 				DF87A7B81F782DE000EF0461 /* IQToolbar.m in Sources */,
 				0FB200CF1F78F087005BC289 /* LSUtil.m in Sources */,
-				0F8314791F7B3F55008A9E22 /* LSUserModel.m in Sources */,
 				DFF015711F7AC15700527CFA /* PSTGridLayoutInfo.m in Sources */,
 				DFF015311F7AC15700527CFA /* EMCDDeviceManager+Microphone.m in Sources */,
 				DFF015961F7AC15700527CFA /* EaseBubbleView+Text.m in Sources */,

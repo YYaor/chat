@@ -153,35 +153,8 @@
         make.height.mas_equalTo(CGRectGetMaxY(self.qRLabel.frame)+40);
     }];
     
-    self.qRimageView.image = [SGQRCodeGenerateManager generateWithDefaultQRCodeData:userModel.myBaseInfo[0][@"value"] imageViewWidth:self.qRimageView.frame.size.width];
+    self.qRimageView.image = [SGQRCodeGenerateManager generateWithDefaultQRCodeData:userModel.myQR imageViewWidth:self.qRimageView.frame.size.width];
 }
-
--(void)setUser:(LSUserModel *)user{
-    self.nameLabel.text = @"陈医生";
-    self.roomAndCareerLabel.text = @"儿科  主任医师";
-    
-    NSString *hosString = @"所在医院   上海金瑞医院";
-    NSMutableAttributedString *hosAttString = [[NSMutableAttributedString alloc]initWithString:hosString];
-    [hosAttString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromHexString:@"bfbfbf"] range:NSMakeRange(0, 4)];
-    self.hospitalLabel.attributedText = hosAttString;
-    
-    NSString *goodatString = @"擅       长   上海金瑞医院";
-    NSMutableAttributedString *goodatAttString = [[NSMutableAttributedString alloc]initWithString:goodatString];
-    [goodatAttString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromHexString:@"bfbfbf"] range:NSMakeRange(0, 9)];
-    self.goodatLabel.attributedText = goodatAttString;
-    
-    NSString *infoString = @"个人简介上海金瑞医院个人简介上海金瑞医院个人简介上海金瑞医院个人简介上海金瑞医院个人简介上海金瑞医院";
-
-    self.infoLabel.text = infoString;
-    
-    [self.view layoutIfNeeded];
-    [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(CGRectGetMaxY(self.qRLabel.frame)+40);
-    }];
-    
-    self.qRimageView.image = [SGQRCodeGenerateManager generateWithDefaultQRCodeData:@"www.baidu.com" imageViewWidth:self.qRimageView.frame.size.width];
-}
-
 
 -(void)shareButtonClick{
     

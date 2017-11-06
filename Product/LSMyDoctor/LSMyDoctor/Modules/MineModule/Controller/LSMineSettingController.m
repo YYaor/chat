@@ -202,7 +202,7 @@
     }
     if (indexPath.row == 2) {
         
-        [[[UIAlertView alloc] initWithTitle:@"" message:@"是否清楚缓存？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"" message:[NSString stringWithFormat:@"是否清除缓存%@？", self.cacheString] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
     }
     if (indexPath.row == 1) {
         [XHToast showCenterWithText:@"当前已是最新版本"];
