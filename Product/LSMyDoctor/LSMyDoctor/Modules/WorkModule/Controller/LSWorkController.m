@@ -149,9 +149,9 @@
     else if (btn.tag == 20001)
     {
         //文章管理
-//        LSWorkArticleController *vc = [[LSWorkArticleController alloc] initWithNibName:@"LSWorkArticleController" bundle:nil];
-//        vc.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:vc animated:YES];
+        LSWorkArticleController *vc = [[LSWorkArticleController alloc] initWithNibName:@"LSWorkArticleController" bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (btn.tag == 20002)
     {

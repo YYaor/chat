@@ -21,6 +21,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (nonatomic, strong) NSMutableArray *content;
+
 @end
 
 @implementation LSWorkArticleController
@@ -49,6 +51,8 @@
 - (void)initForView
 {
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.content = [NSMutableArray array];
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"] style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
     self.navigationItem.rightBarButtonItem = rightItem;
@@ -90,7 +94,42 @@
 
 - (void)requestData
 {
-    [self.tableView reloadData];
+    LSWEAKSELF;
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:@1 forKey:@"pagenum"];
+    [param setValue:@100 forKey:@"pagesize"];
+    
+    NSString *url = @"";
+    
+    if (self.lastBtn == self.manageBtn)
+    {
+        //getArticleList 文章管理
+        url = PATH(@"%@/getArticleList");
+    }
+    else if (self.lastBtn == self.libraryBtn)
+    {
+        //collectArticleList 文章库
+        url = PATH(@"%@/collectArticleList");
+    }
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            [weakSelf.content removeAllObjects];
+            
+            [weakSelf.content addObjectsFromArray:responseObj[@"data"][@"content"]];
+            
+            [weakSelf.tableView reloadData];
+        }else
+        {
+            [XHToast showCenterWithText:responseObj[@"message"]];
+        }
+    } failBlock:^(NSError *error) {
+        //[XHToast showCenterWithText:@"fail"];
+    }];
 }
 
 #pragma mark - UITableViewDelegate
@@ -99,14 +138,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.lastBtn == self.manageBtn)
-    {
-        return 10;
-    }
-    else
-    {
-        return 5;
-    }
+    return self.content.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

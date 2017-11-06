@@ -13,7 +13,7 @@
 
 #import "NSString+Mark.h"
 
-@interface LSRegisterController () <UITextViewDelegate>
+@interface LSRegisterController ()
 
 @property (nonatomic,strong) UITextField *phoneTextField;
 
@@ -248,44 +248,28 @@
     [param setValue:AccessToken forKey:@"accessToken"];
     [param setValue:self.phoneTextField.text forKey:@"phone"];
     
-    NSString* url1 = PATH(@"%@/my/checkPhone");
-    //验证手机号
-    [TLAsiNetworkHandler requestWithUrl:url1 params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+    NSString* url = PATH(@"%@/misc/code");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         if ([responseObj isKindOfClass:[NSDictionary class]])
         {
             NSDictionary * dict = responseObj;
             if (dict[@"status"] && [dict[@"status"] isEqualToString:@"0"]) {
                 //返回成功
-                NSString* url2 = PATH(@"%@/misc/code");
+                //获取验证码成功
+                NSString* showMessage = @"验证码已发送到手机，请注意查收";
+                if (dict[@"message"]) {
+                    showMessage = dict[@"message"];
+                }
+                [XHToast showCenterWithText:showMessage];
                 
-                [TLAsiNetworkHandler requestWithUrl:url2 params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-                    if ([responseObj isKindOfClass:[NSDictionary class]])
-                    {
-                        NSDictionary * dict = responseObj;
-                        if (dict[@"status"] && [dict[@"status"] isEqualToString:@"0"]) {
-                            //返回成功
-                            //获取验证码成功
-                            NSString* showMessage = @"验证码已发送到手机，请注意查收";
-                            if (dict[@"message"]) {
-                                showMessage = dict[@"message"];
-                            }
-                            [XHToast showCenterWithText:showMessage];
-                            
-                            [self buttonTitleTime:self.sendCodeButton withTime:@"60"];
-                        }else{
-                            NSLog(@"返回格式输出错误");
-                        }
-                    }
-                } failBlock:^(NSError *error) {
-                    //[XHToast showCenterWithText:@"fail"];
-                }];
+                [self buttonTitleTime:self.sendCodeButton withTime:@"60"];
             }else{
                 NSLog(@"返回格式输出错误");
             }
         }
     } failBlock:^(NSError *error) {
         //[XHToast showCenterWithText:@"fail"];
-        NSLog(@"返回格式输出错误");
     }];
     
     
@@ -464,7 +448,7 @@
         _phoneTextField.font = [UIFont systemFontOfSize:14];
         _phoneTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         [_phoneTextField addTarget:self action:@selector(phoneTextChangged:) forControlEvents:UIControlEventEditingChanged];
-        _phoneTextField.delegate = self;
+        [_phoneTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventValueChanged];
     }
     return _phoneTextField;
 }
@@ -477,7 +461,7 @@
         _pswTextField.font = [UIFont systemFontOfSize:14];
         _pswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         [_pswTextField addTarget:self action:@selector(pswTextChangged:) forControlEvents:UIControlEventEditingChanged];
-        _pswTextField.delegate = self;
+        [_pswTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventValueChanged];
         _pswTextField.secureTextEntry = YES;
     }
     return _pswTextField;
@@ -503,7 +487,7 @@
         _confPswTextField.font = [UIFont systemFontOfSize:14];
         _confPswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         [_confPswTextField addTarget:self action:@selector(confPswTextChangged:) forControlEvents:UIControlEventEditingChanged];
-        _confPswTextField.delegate = self;
+        [_confPswTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventValueChanged];
         _confPswTextField.secureTextEntry = YES;
     }
     return _confPswTextField;
