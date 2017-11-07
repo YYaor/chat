@@ -16,6 +16,8 @@ static NSString *cellId = @"LSWorkAppointCell";
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong, nonatomic)NSMutableArray *dataArray;
+
 @end
 
 @implementation LSWorkAppointController
@@ -24,7 +26,10 @@ static NSString *cellId = @"LSWorkAppointCell";
 {
     [super viewDidLoad];
     
+    self.dataArray = [NSMutableArray array];
+    
     [self initForView];
+    [self loadData];
 }
 
 - (void)initForView
@@ -39,6 +44,30 @@ static NSString *cellId = @"LSWorkAppointCell";
     self.tableView.tableFooterView = footer;
 }
 
+-(void)loadData{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    
+    NSString *url = PATH(@"%@/getOrderList");
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]])
+        {
+            if ([responseObj[@"status"] integerValue] == 0) {
+                
+                if (responseObj[@"data"]) {
+                  
+                    [self.dataArray removeAllObjects];
+                    [self.dataArray addObjectsFromArray:responseObj[@"data"]];
+                    [self.tableView reloadData];
+                    
+                }
+            }
+        }
+    } failBlock:^(NSError *error) {
+        
+    }];
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -50,12 +79,13 @@ static NSString *cellId = @"LSWorkAppointCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LSWorkAppointCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
+    cell.dataDic = self.dataArray[indexPath.row];
     return cell;
 }
 

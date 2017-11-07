@@ -24,6 +24,8 @@
     [super viewDidLoad];
    
     [self initForView];
+    
+    [self loadData];
 }
 
 - (void)initForView
@@ -33,6 +35,29 @@
     self.dataArr = [NSMutableArray array];
     
     [self.view addSubview:self.calendar];
+}
+
+-(void)loadData{
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM"];
+    [param setObject:[formatter stringFromDate:self.calendar.currentPage] forKey:@"month"];
+    NSString *url = PATH(@"%@/visitCalendar");
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]])
+        {
+            if ([responseObj[@"status"] integerValue] == 0) {
+                
+                if (responseObj[@"data"]) {
+                    self.dataArr = responseObj[@"data"];
+                }
+            }
+        }
+    } failBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (NSDate *)changDateForUTCWithDate:(NSDate *)date
@@ -109,6 +134,8 @@
     NSDate *currentMonth = self.calendar.currentPage;
     NSDate *previousMonth = [self.calendar dateBySubstractingMonths:1 fromDate:currentMonth];
     [self.calendar setCurrentPage:previousMonth animated:YES];
+    
+    [self loadData];
 }
 
 //下一月按钮点击事件
@@ -117,6 +144,7 @@
     NSDate *currentMonth = self.calendar.currentPage;
     NSDate *nextMonth = [self.calendar dateByAddingMonths:1 toDate:currentMonth];
     [self.calendar setCurrentPage:nextMonth animated:YES];
+    [self loadData];
 }
 
 #pragma mark - FSCalendarDelegate
@@ -124,6 +152,7 @@
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
     FSCalendarCell *cell = [calendar cellForDate:date atMonthPosition:monthPosition];
+    
     
     if ([cell.titleLabel.textColor isEqual:[UIColor colorFromHexString:LSDARKGRAYCOLOR]])
     {
@@ -161,6 +190,15 @@
     if ([self isBiggerThanToday:date] > 0)
     {
         cell.titleLabel.textColor = [UIColor colorFromHexString:LSDARKGRAYCOLOR];
+    }
+    
+    for (NSString *timeStr in self.dataArr) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *time = [formatter dateFromString:timeStr];
+        if ([time isEqualToDate:date]) {
+            cell.titleLabel.textColor = [UIColor colorFromHexString:LSYELLOWCOLOR];
+        }
     }
 
 }

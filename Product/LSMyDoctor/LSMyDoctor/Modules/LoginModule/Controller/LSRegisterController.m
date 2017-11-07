@@ -460,6 +460,7 @@
         _pswTextField.placeholder =@"请设置登录密码";
         _pswTextField.font = [UIFont systemFontOfSize:14];
         _pswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
+        _pswTextField.secureTextEntry = YES;
         [_pswTextField addTarget:self action:@selector(pswTextChangged:) forControlEvents:UIControlEventEditingChanged];
         [_pswTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventValueChanged];
         _pswTextField.secureTextEntry = YES;
@@ -484,6 +485,7 @@
         _confPswTextField = [[UITextField alloc]init];
         _confPswTextField.keyboardType = UIKeyboardTypeNumberPad;
         _confPswTextField.placeholder =@"再次输入登录密码";
+        _confPswTextField.secureTextEntry = YES;
         _confPswTextField.font = [UIFont systemFontOfSize:14];
         _confPswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         [_confPswTextField addTarget:self action:@selector(confPswTextChangged:) forControlEvents:UIControlEventEditingChanged];

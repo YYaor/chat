@@ -10,4 +10,12 @@
 
 @interface LSWorkAppointCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *headImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *sexAndAgeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (nonatomic,strong)NSMutableDictionary *dataDic;
+
 @end
