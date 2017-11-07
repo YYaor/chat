@@ -11,5 +11,12 @@
 @implementation LSWorkOutcallListCell
 
 
-
+-(void)setDataDic:(NSMutableDictionary *)dataDic
+{
+    if (self.dataDic[@"img_url"]) {
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST,self.dataDic[@"img_url"]]] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+    }
+    
+    self.nameLabel.text = self.dataDic[@"user_name"];
+}
 @end

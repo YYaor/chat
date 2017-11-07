@@ -7,8 +7,10 @@
 //
 
 #import "LSWorkOutcallAddController.h"
-
-@interface LSWorkOutcallAddController ()
+#import "MDChooseSickerModel.h"
+#import "MDChooseSickerVC.h"
+@interface LSWorkOutcallAddController ()<ZHPickViewDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *choosePatientButton;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -41,17 +43,109 @@
 //诊断
 @property (weak, nonatomic) IBOutlet UIView *view6;
 @property (weak, nonatomic) IBOutlet YYPlaceholderTextView *textView6;
+@property (weak, nonatomic) IBOutlet UITextField *nameTF;
+@property (weak, nonatomic) IBOutlet UIButton *sexTF;
+@property (weak, nonatomic) IBOutlet UIButton *ageTF;
 
 
 @end
 
 @implementation LSWorkOutcallAddController
+{
+    MDChooseSickerModel *patientModel;
+}
+- (IBAction)chooseSexClick:(id)sender {
+    
+    ZHPickView *picker = [[ZHPickView alloc]initPickviewWithArray:@[@[@"男",@"女"]] isHaveNavControler:NO];
+    picker.tag = 1;
+    picker.delegate=self;
+    [picker show];
+}
+- (IBAction)chooseAgeClick:(id)sender {
+    NSMutableArray *ageArr = [NSMutableArray array];
+    for (int i = 1; i<101; i ++) {
+        NSString *string = [NSString stringWithFormat:@"%d",i];
+        [ageArr addObject:string];
+    }
+    ZHPickView *picker = [[ZHPickView alloc]initPickviewWithArray:@[ageArr] isHaveNavControler:NO];
+    picker.tag = 2;
+    picker.delegate=self;
+    [picker show];
+}
+- (IBAction)saveClick:(id)sender {
+    
+//    age	患者年龄	number
+//    chief_complaint	病情主诉	string
+//    cookie	医生cookie	string
+//    diagnosis	诊断	string
+//    disease_history	现病史	string
+//    sex	性别	number	1男，2女
+//    userid	患者ID	number
+//    username	患者姓名	string
+//    visitdate
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    [param setObject:[formatter stringFromDate:self.date] forKey:@"visitdate"];
+    [param setObject:[NSNumber numberWithInteger:[self.ageTF.titleLabel.text integerValue]] forKey:@"age"];
+    [param setObject:self.textView4.text forKey:@"chief_complaint"];
+    [param setObject:self.textView6.text forKey:@"diagnosis"];
+    [param setObject:self.textView5.text forKey:@"disease_history"];
+    if ([self.sexTF.titleLabel.text isEqualToString:@"男"]) {
+        [param setObject:[NSNumber numberWithInt:1] forKey:@"sex"];
+    }else{
+        [param setObject:[NSNumber numberWithInt:2] forKey:@"sex"];
+    }
+    [param setObject:patientModel.username forKey:@"username"];
+    [param setObject:patientModel.user_id forKey:@"userid"];
+    
+    NSString *url = PATH(@"%@/addVisit");
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]])
+        {
+            if ([responseObj[@"status"] integerValue] == 0) {
+                
+                if (responseObj[@"data"]) {
+                    [XHToast showCenterWithText:@"新增成功"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }
+        }
+    } failBlock:^(NSError *error) {
+        
+    }];
+    
+}
+
+-(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString;
+{
+    if (pickView.tag == 1) {
+        //sex
+        [self.sexTF setTitle:resultString forState:UIControlStateNormal];
+    }else{
+        [self.ageTF setTitle:resultString forState:UIControlStateNormal];
+    }
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self initForView];
+}
+- (IBAction)chooseButtonClick:(id)sender {
+    
+    MDChooseSickerVC *vc = [[MDChooseSickerVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    vc.chooseBlock = ^(NSArray *modelArray) {
+        MDChooseSickerModel *model = modelArray[0];
+        patientModel = model;
+        self.nameTF.text = model.username;
+        [self.ageTF setTitle:[NSString getAgeFromBirthday:model.birthday] forState:UIControlStateNormal];
+        [self.sexTF setTitle:model.sex forState:UIControlStateNormal];
+    };
 }
 
 - (void)initForView

@@ -18,6 +18,8 @@ static NSString *cellId = @"LSWorkOutcallListCell";
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong,nonatomic) NSMutableArray *dataArray;
+
 @end
 
 @implementation LSWorkOutcallListController
@@ -25,8 +27,12 @@ static NSString *cellId = @"LSWorkOutcallListCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.dataArray = [NSMutableArray array];
     [self initForView];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self loadData];
 }
 
 - (void)initForView
@@ -47,6 +53,29 @@ static NSString *cellId = @"LSWorkOutcallListCell";
     self.tableView.tableFooterView = footer;
 }
 
+-(void)loadData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    [param setObject:[formatter stringFromDate:self.date] forKey:@"visit_date"];
+    NSString *url = PATH(@"%@/visitList");
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]])
+        {
+            if ([responseObj[@"status"] integerValue] == 0) {
+                
+                if (responseObj[@"data"][@"list"]) {
+                    self.dataArray = responseObj[@"data"][@"list"];
+                }
+            }
+        }
+    } failBlock:^(NSError *error) {
+        
+    }];
+}
+
 - (void)rightItemClick
 {
     LSWorkOutcallAddController *vc = [[LSWorkOutcallAddController alloc] initWithNibName:@"LSWorkOutcallAddController" bundle:nil];
@@ -65,12 +94,13 @@ static NSString *cellId = @"LSWorkOutcallListCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LSWorkOutcallListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
+    cell.dataDic = self.dataArray[indexPath.row];
     return cell;
 }
 @end

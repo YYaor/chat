@@ -1,19 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LSWorkOutcallAddController">
             <connections>
+                <outlet property="ageTF" destination="wtu-rH-TjB" id="qkT-tv-QxA"/>
+                <outlet property="choosePatientButton" destination="swj-Wn-NKm" id="Et1-2c-ELk"/>
                 <outlet property="contentView" destination="zos-si-LDN" id="j93-cM-D8J"/>
                 <outlet property="dateLab" destination="X3H-Tt-x72" id="tNX-Yi-1Cc"/>
+                <outlet property="nameTF" destination="tMx-xn-6RF" id="Ifo-0a-Fay"/>
                 <outlet property="scrollView" destination="1PI-mO-eoD" id="jDW-j3-mWg"/>
+                <outlet property="sexTF" destination="t8R-rZ-jI1" id="tyU-OP-TsP"/>
                 <outlet property="textView4" destination="jOS-Pe-9nl" id="kBC-Ek-9EJ"/>
                 <outlet property="textView5" destination="J6h-Tz-Vwt" id="Hay-q9-56P"/>
                 <outlet property="textView6" destination="lnT-Ab-vsR" id="cnP-GD-6le"/>
@@ -95,6 +99,9 @@
                                 <constraint firstAttribute="width" constant="39" id="YS2-0P-o8q"/>
                             </constraints>
                             <state key="normal" image="contacts"/>
+                            <connections>
+                                <action selector="chooseButtonClick:" destination="-1" eventType="touchUpInside" id="Jft-gz-Tmr"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nWE-oM-Nuw">
                             <rect key="frame" x="325" y="5" width="1" height="29"/>
@@ -151,6 +158,9 @@
                             <state key="normal" title="请填写患者性别">
                                 <color key="titleColor" red="0.78039215689999997" green="0.78039215689999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="chooseSexClick:" destination="-1" eventType="touchUpInside" id="HuO-Mw-Tws"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -194,6 +204,9 @@
                             <state key="normal" title="请填写患者年龄">
                                 <color key="titleColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="chooseAgeClick:" destination="-1" eventType="touchUpInside" id="oBM-SC-33f"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -352,6 +365,9 @@
                             <real key="value" value="15"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="saveClick:" destination="-1" eventType="touchUpInside" id="XtA-r2-HGd"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

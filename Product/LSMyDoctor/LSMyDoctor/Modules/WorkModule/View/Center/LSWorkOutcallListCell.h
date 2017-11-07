@@ -10,4 +10,9 @@
 
 @interface LSWorkOutcallListCell : UITableViewCell
 
+@property (nonatomic,strong)NSMutableDictionary *dataDic;
+
+@property (weak, nonatomic) IBOutlet UIImageView *headImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
 @end
