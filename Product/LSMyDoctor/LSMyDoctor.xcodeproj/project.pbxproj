@@ -49,6 +49,7 @@
 		0FB200E61F79E771005BC289 /* LSAuthenticationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB200E41F79E771005BC289 /* LSAuthenticationController.xib */; };
 		0FB200EC1F7A5294005BC289 /* LSMineListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200EB1F7A5294005BC289 /* LSMineListCell.m */; };
 		0FB69CF61F7E3A5000AC31CA /* YYPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB69CF51F7E3A0F00AC31CA /* YYPlaceholderTextView.m */; };
+		0FCC13081FB3429300588A78 /* LSWorkArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC13071FB3429300588A78 /* LSWorkArticleCell.m */; };
 		0FE570181F9B4F1F004259FF /* NSString+Mark.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB200C91F78EF75005BC289 /* NSString+Mark.m */; };
 		0FF0B8051F987A96003B4C7E /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0FF0B7F91F987A96003B4C7E /* LICENSE.txt */; };
 		0FF0B8061F987A96003B4C7E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0FF0B7FA1F987A96003B4C7E /* README.md */; };
@@ -681,6 +682,8 @@
 		0FB200EB1F7A5294005BC289 /* LSMineListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSMineListCell.m; sourceTree = "<group>"; };
 		0FB69CF41F7E3A0F00AC31CA /* YYPlaceholderTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYPlaceholderTextView.h; sourceTree = "<group>"; };
 		0FB69CF51F7E3A0F00AC31CA /* YYPlaceholderTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYPlaceholderTextView.m; sourceTree = "<group>"; };
+		0FCC13061FB3429300588A78 /* LSWorkArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkArticleCell.h; sourceTree = "<group>"; };
+		0FCC13071FB3429300588A78 /* LSWorkArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkArticleCell.m; sourceTree = "<group>"; };
 		0FF0B7F91F987A96003B4C7E /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		0FF0B7FA1F987A96003B4C7E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0FF0B7FC1F987A96003B4C7E /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
@@ -4032,6 +4035,8 @@
 				DF81C2431F84C43700D4D851 /* LSWorkOutcallListCell.h */,
 				DF81C2441F84C43700D4D851 /* LSWorkOutcallListCell.m */,
 				DF81C2451F84C43700D4D851 /* LSWorkOutcallListCell.xib */,
+				0FCC13061FB3429300588A78 /* LSWorkArticleCell.h */,
+				0FCC13071FB3429300588A78 /* LSWorkArticleCell.m */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -4282,6 +4287,7 @@
 				DFF015A21F7AC15700527CFA /* EaseConversationCell.m in Sources */,
 				4AA2FE3D1FA73454009009D8 /* MDSickerClassCell.m in Sources */,
 				DFEC43EE1FA0EECC00DA8FAC /* LSMineModel.m in Sources */,
+				0FCC13081FB3429300588A78 /* LSWorkArticleCell.m in Sources */,
 				DF87A7B71F782DE000EF0461 /* IQTitleBarButtonItem.m in Sources */,
 				0F8314721F7B3BE3008A9E22 /* LSMineUserSettingController.m in Sources */,
 				4A43C1711FAB1C9C00EAC5AA /* PieCharVIew.m in Sources */,

@@ -53,6 +53,7 @@
                 if (responseObj[@"data"]) {
                     self.dataArr = responseObj[@"data"];
                 }
+                [self.calendar reloadData];
             }
         }
     } failBlock:^(NSError *error) {
@@ -192,12 +193,13 @@
         cell.titleLabel.textColor = [UIColor colorFromHexString:LSDARKGRAYCOLOR];
     }
     
-    for (NSString *timeStr in self.dataArr) {
+    for (NSDictionary *timeDic in self.dataArr) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd"];
-        NSDate *time = [formatter dateFromString:timeStr];
+        NSDate *time = [formatter dateFromString:timeDic[@"visit_date"]];
         if ([time isEqualToDate:date]) {
             cell.titleLabel.textColor = [UIColor colorFromHexString:LSYELLOWCOLOR];
+            cell.preferredTitleDefaultColor = [UIColor colorFromHexString:LSYELLOWCOLOR];
         }
     }
 

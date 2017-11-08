@@ -69,6 +69,7 @@ static NSString *cellId = @"LSWorkOutcallListCell";
                 if (responseObj[@"data"][@"list"]) {
                     self.dataArray = responseObj[@"data"][@"list"];
                 }
+                [self.tableView reloadData];
             }
         }
     } failBlock:^(NSError *error) {

@@ -10,6 +10,7 @@
 
 #import "LSWorkArticleAddController.h"
 
+#import "LSWorkArticleCell.h"
 @interface LSWorkArticleController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *navView;
@@ -61,7 +62,7 @@
     
     [self segmentBtnClick:self.manageBtn];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:[LSWorkArticleCell class] forCellReuseIdentifier:@"cell"];
 }
 
 - (void)rightItemClick
@@ -138,14 +139,27 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    return 1;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.content.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
+    LSWorkArticleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.data = self.content[indexPath.section];
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSMutableDictionary *data = self.content[indexPath.section];
+    if ([data[@"type"] integerValue] == 4) {
+        return 150;
+    }else{
+        return self.view.frame.size.width/3 + 150;
+    }
 }
 
 #pragma mark - getter & setter
