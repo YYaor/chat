@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSDate *date;
 
+@property (nonatomic, strong) NSDictionary *infoDic;
+
 @end

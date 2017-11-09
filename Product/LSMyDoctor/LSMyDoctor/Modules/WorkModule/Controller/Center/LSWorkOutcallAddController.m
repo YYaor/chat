@@ -10,6 +10,7 @@
 #import "MDChooseSickerModel.h"
 #import "MDChooseSickerVC.h"
 @interface LSWorkOutcallAddController ()<ZHPickViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UIButton *choosePatientButton;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -17,18 +18,20 @@
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLab;
+@property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 
 //患者
 @property (weak, nonatomic) IBOutlet UIView *view1;
+@property (weak, nonatomic) IBOutlet UITextField *nameTF;
 
 
 //性别
 @property (weak, nonatomic) IBOutlet UIView *view2;
-
+@property (weak, nonatomic) IBOutlet UIButton *sexTF;
 
 //年龄
 @property (weak, nonatomic) IBOutlet UIView *view3;
-
+@property (weak, nonatomic) IBOutlet UIButton *ageTF;
 
 //主诉
 @property (weak, nonatomic) IBOutlet UIView *view4;
@@ -43,9 +46,6 @@
 //诊断
 @property (weak, nonatomic) IBOutlet UIView *view6;
 @property (weak, nonatomic) IBOutlet YYPlaceholderTextView *textView6;
-@property (weak, nonatomic) IBOutlet UITextField *nameTF;
-@property (weak, nonatomic) IBOutlet UIButton *sexTF;
-@property (weak, nonatomic) IBOutlet UIButton *ageTF;
 
 
 @end
@@ -54,6 +54,91 @@
 {
     MDChooseSickerModel *patientModel;
 }
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self initForView];
+}
+
+- (void)initForView
+{
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.navigationItem.title = @"新增记录";
+    
+    patientModel = [MDChooseSickerModel new];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    self.dateLab.text = [formatter stringFromDate:self.date];
+    
+    self.textView4.placeholder = @"请填写主诉内容";
+    self.textView5.placeholder = @"请填写现病史";
+    self.textView6.placeholder = @"请填写诊断内容";
+    
+    self.contentView.frame = CGRectMake(20, 40, LSSCREENWIDTH-40, 611);
+    [self.scrollView addSubview:self.contentView];
+    
+    self.scrollView.contentSize = CGSizeMake(LSSCREENWIDTH, LSHEIGHT(self.contentView)+80);
+    
+    if (self.infoDic)
+    {
+        [self requestData];
+        
+        if ([self.infoDic[@"canModify"] longValue] == 1)
+        {
+            self.choosePatientButton.enabled = NO;
+            self.nameTF.enabled = NO;
+            self.sexTF.enabled = NO;
+            self.ageTF.enabled = NO;
+            self.textView4.userInteractionEnabled = NO;
+            self.textView5.userInteractionEnabled = NO;
+            self.textView6.userInteractionEnabled = NO;
+            
+            self.saveBtn.hidden = YES;
+        }
+    }
+   
+}
+
+- (void)requestData
+{
+    LSWEAKSELF;
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:self.infoDic[@"id"] forKey:@"id"];
+    
+    NSString *url = PATH(@"%@/visitInfo");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            NSDictionary *dic = responseObj[@"data"];
+            
+            weakSelf.nameTF.text = dic[@"user_name"];
+            [weakSelf.sexTF setTitle:dic[@"sex"] forState:UIControlStateNormal];
+            [weakSelf.ageTF setTitle:[NSString stringWithFormat:@"%@", dic[@"age"]] forState:UIControlStateNormal];
+            weakSelf.textView4.text = dic[@"chief_complaint"];
+            weakSelf.textView5.text = dic[@"disease_history"];
+            weakSelf.textView6.text = dic[@"diagnosis"];
+            
+            patientModel.username = dic[@"user_name"];
+            patientModel.user_id = [NSString stringWithFormat:@"%@", dic[@"user_id"]];
+        }
+        else
+        {
+            [XHToast showCenterWithText:responseObj[@"message"]];
+        }
+    } failBlock:^(NSError *error) {
+        
+    }];
+}
+
 - (IBAction)chooseSexClick:(id)sender {
     
     ZHPickView *picker = [[ZHPickView alloc]initPickviewWithArray:@[@[@"男",@"女"]] isHaveNavControler:NO];
@@ -87,6 +172,7 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
+    
     [param setObject:[formatter stringFromDate:self.date] forKey:@"visitdate"];
     [param setObject:[NSNumber numberWithInteger:[self.ageTF.titleLabel.text integerValue]] forKey:@"age"];
     [param setObject:self.textView4.text forKey:@"chief_complaint"];
@@ -100,7 +186,18 @@
     [param setObject:patientModel.username forKey:@"username"];
     [param setObject:patientModel.user_id forKey:@"userid"];
     
-    NSString *url = PATH(@"%@/addVisit");
+    
+    NSString *url = @"";
+    
+    if (self.infoDic)
+    {
+        url = PATH(@"%@/updateVisit");
+    }
+    else
+    {
+        url = PATH(@"%@/addVisit");
+    }
+    
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
         if ([responseObj isKindOfClass:[NSDictionary class]])
         {
@@ -128,12 +225,7 @@
     }
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self initForView];
-}
+
 - (IBAction)chooseButtonClick:(id)sender {
     
     MDChooseSickerVC *vc = [[MDChooseSickerVC alloc]init];
@@ -146,27 +238,6 @@
         [self.ageTF setTitle:[NSString getAgeFromBirthday:model.birthday] forState:UIControlStateNormal];
         [self.sexTF setTitle:model.sex forState:UIControlStateNormal];
     };
-}
-
-- (void)initForView
-{
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    self.navigationItem.title = @"新增记录";
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    
-    self.dateLab.text = [formatter stringFromDate:self.date];
-    
-    self.textView4.placeholder = @"请填写主诉内容";
-    self.textView5.placeholder = @"请填写现病史";
-    self.textView6.placeholder = @"请填写诊断内容";
-    
-    self.contentView.frame = CGRectMake(20, 40, LSSCREENWIDTH-40, 611);
-    [self.scrollView addSubview:self.contentView];
-    
-    self.scrollView.contentSize = CGSizeMake(LSSCREENWIDTH, LSHEIGHT(self.contentView)+80);
 }
 
 

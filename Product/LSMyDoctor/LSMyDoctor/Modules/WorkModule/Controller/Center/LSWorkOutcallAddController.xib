@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16B2659" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,6 +16,7 @@
                 <outlet property="contentView" destination="zos-si-LDN" id="j93-cM-D8J"/>
                 <outlet property="dateLab" destination="X3H-Tt-x72" id="tNX-Yi-1Cc"/>
                 <outlet property="nameTF" destination="tMx-xn-6RF" id="Ifo-0a-Fay"/>
+                <outlet property="saveBtn" destination="sDo-fh-g0a" id="n3h-Af-KdP"/>
                 <outlet property="scrollView" destination="1PI-mO-eoD" id="jDW-j3-mWg"/>
                 <outlet property="sexTF" destination="t8R-rZ-jI1" id="tyU-OP-TsP"/>
                 <outlet property="textView4" destination="jOS-Pe-9nl" id="kBC-Ek-9EJ"/>

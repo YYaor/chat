@@ -295,9 +295,12 @@
 
 -(void)loginButtonClick{
 
-//    self.phoneTextFiled.text = @"15502810729";//id 42
+#ifdef DEBUG
+    self.phoneTextFiled.text = @"15502810729";//id 42
 //    self.phoneTextFiled.text = @"18180847173";//id 43
-//    self.pswTextFiled.text = @"111111";
+    self.pswTextFiled.text = @"111111";
+    
+#endif
 
     
     if (self.phoneTextFiled.text == nil || self.phoneTextFiled.text.length == 0) {

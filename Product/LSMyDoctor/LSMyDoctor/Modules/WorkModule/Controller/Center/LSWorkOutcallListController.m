@@ -89,6 +89,11 @@ static NSString *cellId = @"LSWorkOutcallListCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    LSWorkOutcallAddController *vc = [[LSWorkOutcallAddController alloc] initWithNibName:@"LSWorkOutcallAddController" bundle:nil];
+    vc.date = self.date;
+    vc.infoDic = self.dataArray[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
