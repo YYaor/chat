@@ -150,6 +150,34 @@
 {
     LSWorkArticleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.data = self.content[indexPath.section];
+    
+    cell.deleteBlock = ^(NSDictionary *dataDic) {
+        if ([dataDic[@"isDraft"] integerValue] == 1) {
+            //是草稿是就本地删除
+
+        }else{
+            //不是草稿就是取消收藏
+            NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+            
+            [param setObject:[NSNumber numberWithInteger:[dataDic[@"id"] integerValue]] forKey:@"id"];
+            NSString * url = PATH(@"%@/cancelCollectArticle");
+            [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+                
+                if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+                {
+                    [self.content removeObject:dataDic];
+                    [self.tableView reloadData];
+                    
+                }else
+                {
+                    [XHToast showCenterWithText:responseObj[@"message"]];
+                }
+            } failBlock:^(NSError *error) {
+                //[XHToast showCenterWithText:@"fail"];
+            }];
+
+        }
+    };
     return cell;
 }
 

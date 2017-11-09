@@ -224,6 +224,9 @@
 }
 
 -(void)deleteButtonClick{
+    if (self.deleteBlock) {
+        self.deleteBlock(self.data);
+    }
     //删除按钮
 }
 
@@ -255,8 +258,11 @@
             self.imageViewOne.hidden = NO;
             self.imageViewTwo.hidden = YES;
             self.imageViewTree.hidden = YES;
-            [self.imageViewOne sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST,urlArray[0]]] placeholderImage:nil];
-
+            if ([data[@"type"] integerValue] == 3) {
+                self.imageViewOne.image = [self thumbnailImageForVideo:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST,urlArray[0]]]];
+            }else{
+               [self.imageViewOne sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST,urlArray[0]]] placeholderImage:nil];
+            }
         }else if (urlArray.count == 2){
             self.imageViewOne.hidden = NO;
             self.imageViewTwo.hidden = NO;
