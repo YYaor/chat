@@ -139,6 +139,7 @@
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     
     NSString *tokenUrl = [NSString stringWithFormat:@"%@/home/getAccessTokenEx",UGAPI_HOST];
+//    NSString *tokenUrl = PATH(@"%@/home/getAccessTokenEx");
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/html", nil];

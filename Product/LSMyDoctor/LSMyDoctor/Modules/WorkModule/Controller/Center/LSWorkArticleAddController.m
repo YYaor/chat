@@ -8,6 +8,8 @@
 
 #import "LSWorkArticleAddController.h"
 
+#import "LSWorkArticleSubController.h"
+
 @interface LSWorkArticleAddController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, ZHPickViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextF;
@@ -80,38 +82,41 @@
         return;
     }
     
-    //分类
-    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-    [param setObject:self.keyTextF.text forKey:@"addArticle"];
-    [param setObject:self.titleTextF.text forKey:@"title"];
-    [param setObject:self.contentTextV.text forKey:@"content"];
-    [param setObject:self.typeBtn.titleLabel.text forKey:@"classify"];
-    if (self.imgUrl) {
-        [param setObject:self.imgUrl forKey:@"img_url"];
-    }
+//    //分类
+//    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+//    [param setObject:self.keyTextF.text forKey:@"addArticle"];
+//    [param setObject:self.titleTextF.text forKey:@"title"];
+//    [param setObject:self.contentTextV.text forKey:@"content"];
+//    [param setObject:self.typeBtn.titleLabel.text forKey:@"classify"];
+//    if (self.imgUrl) {
+//        [param setObject:self.imgUrl forKey:@"img_url"];
+//    }
+//    
+//    NSString* url = PATH(@"%@/addArticle");
+//    
+//    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+//        
+//        if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+//        {
+//            if ([responseObj[@"data"] isKindOfClass:[NSDictionary class]]) {
+//                
+//                [XHToast showCenterWithText:@"发布成功"];
+//                [self.navigationController popViewControllerAnimated:YES];
+//                
+//            }else{
+//                NSLog(@"返回数据有误");
+//            }
+//        }else
+//        {
+//            [XHToast showCenterWithText:@"获取分类列表失败"];
+//        }
+//        
+//    } failBlock:^(NSError *error) {
+//        //[XHToast showCenterWithText:@"fail"];
+//    }];
     
-    NSString* url = PATH(@"%@/addArticle");
-    
-    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-        
-        if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
-        {
-            if ([responseObj[@"data"] isKindOfClass:[NSDictionary class]]) {
-                
-                [XHToast showCenterWithText:@"发布成功"];
-                [self.navigationController popViewControllerAnimated:YES];
-                
-            }else{
-                NSLog(@"返回数据有误");
-            }
-        }else
-        {
-            [XHToast showCenterWithText:@"获取分类列表失败"];
-        }
-        
-    } failBlock:^(NSError *error) {
-        //[XHToast showCenterWithText:@"fail"];
-    }];
+    LSWorkArticleSubController *vc = [[LSWorkArticleSubController alloc] initWithNibName:@"LSWorkArticleSubController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)scanBtnClick:(UIButton *)btn

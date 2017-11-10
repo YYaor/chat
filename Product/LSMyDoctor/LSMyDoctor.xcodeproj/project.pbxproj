@@ -420,6 +420,8 @@
 		DF93F6881F9B3BF00025D40D /* MDCheckInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF93F6861F9B3BF00025D40D /* MDCheckInfoCell.xib */; };
 		DF93F68D1F9C8B3E0025D40D /* LSMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93F68B1F9C8B3E0025D40D /* LSMessageCell.m */; };
 		DF93F68E1F9C8B3E0025D40D /* LSMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF93F68C1F9C8B3E0025D40D /* LSMessageCell.xib */; };
+		DFB2A0C31FB54B290057F44C /* LSWorkArticleSubController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB2A0C11FB54B290057F44C /* LSWorkArticleSubController.m */; };
+		DFB2A0C41FB54B290057F44C /* LSWorkArticleSubController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB2A0C21FB54B290057F44C /* LSWorkArticleSubController.xib */; };
 		DFBFCEE11FA237DB006A7A21 /* LSManageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBFCEE01FA237DB006A7A21 /* LSManageModel.m */; };
 		DFBFCEE81FA23EBE006A7A21 /* LSManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBFCEE61FA23EBE006A7A21 /* LSManageCell.m */; };
 		DFBFCEE91FA23EBE006A7A21 /* LSManageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFBFCEE71FA23EBE006A7A21 /* LSManageCell.xib */; };
@@ -1370,6 +1372,9 @@
 		DF93F68A1F9C8B3E0025D40D /* LSMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMessageCell.h; sourceTree = "<group>"; };
 		DF93F68B1F9C8B3E0025D40D /* LSMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMessageCell.m; sourceTree = "<group>"; };
 		DF93F68C1F9C8B3E0025D40D /* LSMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMessageCell.xib; sourceTree = "<group>"; };
+		DFB2A0C01FB54B290057F44C /* LSWorkArticleSubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkArticleSubController.h; sourceTree = "<group>"; };
+		DFB2A0C11FB54B290057F44C /* LSWorkArticleSubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkArticleSubController.m; sourceTree = "<group>"; };
+		DFB2A0C21FB54B290057F44C /* LSWorkArticleSubController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkArticleSubController.xib; sourceTree = "<group>"; };
 		DFBFCEDF1FA237DB006A7A21 /* LSManageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSManageModel.h; sourceTree = "<group>"; };
 		DFBFCEE01FA237DB006A7A21 /* LSManageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSManageModel.m; sourceTree = "<group>"; };
 		DFBFCEE51FA23EBE006A7A21 /* LSManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSManageCell.h; sourceTree = "<group>"; };
@@ -3995,6 +4000,9 @@
 				DF2738181F8FCF1100154B6A /* LSWorkArticleAddController.h */,
 				DF2738191F8FCF1100154B6A /* LSWorkArticleAddController.m */,
 				DF27381A1F8FCF1100154B6A /* LSWorkArticleAddController.xib */,
+				DFB2A0C01FB54B290057F44C /* LSWorkArticleSubController.h */,
+				DFB2A0C11FB54B290057F44C /* LSWorkArticleSubController.m */,
+				DFB2A0C21FB54B290057F44C /* LSWorkArticleSubController.xib */,
 				DF2738301F9139FA00154B6A /* LSWorkUsefulController.h */,
 				DF2738311F9139FA00154B6A /* LSWorkUsefulController.m */,
 				DF2738321F9139FA00154B6A /* LSWorkUsefulController.xib */,
@@ -4224,6 +4232,7 @@
 				4A0CE6F31F975BC900F7C187 /* MDSickerRequestCell.xib in Resources */,
 				4AA2FE3E1FA73454009009D8 /* MDSickerClassCell.xib in Resources */,
 				DF93F68E1F9C8B3E0025D40D /* LSMessageCell.xib in Resources */,
+				DFB2A0C41FB54B290057F44C /* LSWorkArticleSubController.xib in Resources */,
 				4A43C1151FAB1C9C00EAC5AA /* DietReportCell.xib in Resources */,
 				DF27381C1F8FCF1100154B6A /* LSWorkArticleAddController.xib in Resources */,
 				4A0CE6C61F945BDF00F7C187 /* MDPeerinstructCell.xib in Resources */,
@@ -4283,6 +4292,7 @@
 				DFF015331F7AC15700527CFA /* EMCDDeviceManager+Remind.m in Sources */,
 				4A0CE6A81F9094F500F7C187 /* UIButton+WebCache.m in Sources */,
 				0FB200BE1F78CEFC005BC289 /* YYShopMainTypeView.m in Sources */,
+				DFB2A0C31FB54B290057F44C /* LSWorkArticleSubController.m in Sources */,
 				DFFD8EDB1F7C25AD00FF0ECD /* LSWorkAppointCell.m in Sources */,
 				DFF015A21F7AC15700527CFA /* EaseConversationCell.m in Sources */,
 				4AA2FE3D1FA73454009009D8 /* MDSickerClassCell.m in Sources */,
