@@ -10,4 +10,6 @@
 
 @interface LSWorkArticleSubController : UIViewController
 
+@property (nonatomic, strong) NSDictionary *infoDic;
+
 @end

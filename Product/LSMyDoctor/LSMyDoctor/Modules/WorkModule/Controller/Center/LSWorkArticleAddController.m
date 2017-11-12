@@ -53,69 +53,37 @@
 
 - (void)rightItemClick
 {
-//    /dr/addArticle
-//    请求参数列表
-//    变量名	含义	类型	备注
-//    classify	文章分类	string
-//    content	文章内容	string
-//    cookie	医生cookie	string
-//    disease_group	患者疾病分类	string	单个常用标签
-//    img_url	文章图像地址	string
-//    keyword	文章关键字	string
-//    title	文章标题	string
-//    if (self.titleTextF.text.length == 0) {
-//        [XHToast showCenterWithText:@"请填写标题"];
-//        return;
-//    }
-//    
-//    if (self.keyTextF.text.length == 0) {
-//        [XHToast showCenterWithText:@"请填写关键词"];
-//        return;
-//    }
-//    if (self.contentTextV.text.length == 0) {
-//        [XHToast showCenterWithText:@"请填写内容"];
-//        return;
-//    }
-//    
-//    if (self.typeBtn.titleLabel.text.length == 0) {
-//        [XHToast showCenterWithText:@"请选择类型"];
-//        return;
-//    }
+    if ([self.titleTextF.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
+        [XHToast showCenterWithText:@"请填写标题"];
+        return;
+    }
     
-//    //分类
-//    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-//    [param setObject:self.keyTextF.text forKey:@"addArticle"];
-//    [param setObject:self.titleTextF.text forKey:@"title"];
-//    [param setObject:self.contentTextV.text forKey:@"content"];
-//    [param setObject:self.typeBtn.titleLabel.text forKey:@"classify"];
-//    if (self.imgUrl) {
-//        [param setObject:self.imgUrl forKey:@"img_url"];
-//    }
-//    
-//    NSString* url = PATH(@"%@/addArticle");
-//    
-//    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-//        
-//        if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
-//        {
-//            if ([responseObj[@"data"] isKindOfClass:[NSDictionary class]]) {
-//                
-//                [XHToast showCenterWithText:@"发布成功"];
-//                [self.navigationController popViewControllerAnimated:YES];
-//                
-//            }else{
-//                NSLog(@"返回数据有误");
-//            }
-//        }else
-//        {
-//            [XHToast showCenterWithText:@"获取分类列表失败"];
-//        }
-//        
-//    } failBlock:^(NSError *error) {
-//        //[XHToast showCenterWithText:@"fail"];
-//    }];
+    if ([self.keyTextF.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
+        [XHToast showCenterWithText:@"请填写关键词"];
+        return;
+    }
+    if ([self.contentTextV.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
+        [XHToast showCenterWithText:@"请填写内容"];
+        return;
+    }
+    
+    if (self.typeBtn.titleLabel.text.length == 0) {
+        [XHToast showCenterWithText:@"请选择类型"];
+        return;
+    }
+    
+    NSMutableDictionary *infoDic = [NSMutableDictionary dictionary];
+    [infoDic setValue:self.titleTextF.text forKey:@"title"];//文章标题	string
+    [infoDic setValue:self.keyTextF.text forKey:@"keyword"];//文章关键字	string
+    [infoDic setValue:self.typeBtn.titleLabel.text forKey:@"classify"];//文章分类	string
+    [infoDic setValue:self.contentTextV.text forKey:@"content"];//文章内容	string
+    if (self.imgUrl)
+    {
+        [infoDic setValue:self.imgUrl forKey:@"img_url"];//文章图像地址	string
+    }
     
     LSWorkArticleSubController *vc = [[LSWorkArticleSubController alloc] initWithNibName:@"LSWorkArticleSubController" bundle:nil];
+    vc.infoDic = [infoDic copy];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -169,6 +137,7 @@
     btn.hidden = YES;
     self.imgUrl = nil;
     [self.imgBtn setBackgroundImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
+    self.imgBtn.enabled = YES;
 }
 
 - (IBAction)imgBtnClick:(UIButton *)btn
