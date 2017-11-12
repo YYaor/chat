@@ -8,6 +8,8 @@
 
 #import "YGScanVC.h"
 
+#import "MDPeerDetailVC.h"
+
 #import <AVFoundation/AVFoundation.h>
 #import "FireflyQRCodeScan.h"
 
@@ -189,7 +191,9 @@
     NSLog(@"扫描成功:扫描数据：%@",aString);
     //请求数据
     
-    
+    MDPeerDetailVC *vc = [[MDPeerDetailVC alloc] init];
+    vc.doctorIdStr = aString;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

@@ -173,6 +173,7 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
+        [XHToast showCenterWithText:@"服务器连接不上"];
         [SVProgressHUD dismiss];
         
     }];

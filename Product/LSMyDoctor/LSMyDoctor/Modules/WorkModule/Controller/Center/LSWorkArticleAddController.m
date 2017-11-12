@@ -63,24 +63,24 @@
 //    img_url	文章图像地址	string
 //    keyword	文章关键字	string
 //    title	文章标题	string
-    if (self.titleTextF.text.length == 0) {
-        [XHToast showCenterWithText:@"请填写标题"];
-        return;
-    }
-    
-    if (self.keyTextF.text.length == 0) {
-        [XHToast showCenterWithText:@"请填写关键词"];
-        return;
-    }
-    if (self.contentTextV.text.length == 0) {
-        [XHToast showCenterWithText:@"请填写内容"];
-        return;
-    }
-    
-    if (self.typeBtn.titleLabel.text.length == 0) {
-        [XHToast showCenterWithText:@"请选择类型"];
-        return;
-    }
+//    if (self.titleTextF.text.length == 0) {
+//        [XHToast showCenterWithText:@"请填写标题"];
+//        return;
+//    }
+//    
+//    if (self.keyTextF.text.length == 0) {
+//        [XHToast showCenterWithText:@"请填写关键词"];
+//        return;
+//    }
+//    if (self.contentTextV.text.length == 0) {
+//        [XHToast showCenterWithText:@"请填写内容"];
+//        return;
+//    }
+//    
+//    if (self.typeBtn.titleLabel.text.length == 0) {
+//        [XHToast showCenterWithText:@"请选择类型"];
+//        return;
+//    }
     
 //    //分类
 //    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];

@@ -265,7 +265,58 @@ static TLNetworkStatus     networkStatus;
                 successBlock ? successBlock(responseObject) : nil;
             }else{
 //                failBlock ? failBlock(responseObject) : nil;
-                [[DSToast toastWithText:responseObject[@"message"]] show];
+//                [[DSToast toastWithText:responseObject[@"message"]] show];
+                
+                
+                if ([responseObject[@"status"] isKindOfClass:[NSString class]] && [responseObject[@"status"] isEqualToString:@"-413"])
+                {
+                    //用户信息失效
+                    
+                    [Defaults removeObjectForKey:@"isLogin"];
+                    [Defaults removeObjectForKey:@"doctorid"];
+                    [Defaults removeObjectForKey:@"cookie"];
+                    [Defaults removeObjectForKey:@"accessToken"];
+                    
+                    [Defaults synchronize];
+                    
+                    [TLAsiNetworkHandler requestWithUrl:[NSString stringWithFormat:@"%@/home/getAccessTokenEx",UGAPI_HOST] params:nil showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj1)
+                     {
+                         if ([responseObj1[@"status"] integerValue] == 0)
+                         {
+                             [Defaults setValue:responseObj1[@"data"] forKey:@"accessToken"];
+                             NSLog(@"*******token:%@*****",responseObj1[@"data"]);
+                             [Defaults synchronize];
+                             
+                             [[EMClient sharedClient] logout:YES completion:^(EMError *aError) {
+                                 if (!aError) {
+                                     NSLog(@"退出登录成功");
+                                     
+                                     AppDelegate *app = LSAPPDELEGATE;
+                                     [app intoRootForLogin];
+                                 }
+                             }];
+                             
+//                             NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithDictionary:params];
+//                             [temp setValue:AccessToken forKey:@"accessToken"];
+                             
+//                             [self requestWithUrl:url params:temp showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:successBlock failBlock:failBlock];
+                         }
+                         else
+                         {
+                             [XHToast showCenterWithText:responseObj1[@"message"]];
+                         }
+                     }
+                                              failBlock:^(NSError *error)
+                     {
+                         
+                     }];
+                    
+                    
+                }
+                else
+                {
+                    [XHToast showCenterWithText:responseObject[@"message"]];
+                }
             }
             // 移除当前请求
             [[self allTasks] removeObject:task];

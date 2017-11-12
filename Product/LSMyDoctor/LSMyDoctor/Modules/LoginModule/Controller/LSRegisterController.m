@@ -370,7 +370,7 @@
                 authenticationController.pwdStr = weakSelf.pswTextField.text;
                 [weakSelf.navigationController pushViewController:authenticationController animated:YES];
             }else{
-                NSLog(@"返回格式输出错误");
+                [XHToast showCenterWithText:dict[@"message"]];
             }
         }
     } failBlock:^(NSError *error) {

@@ -89,7 +89,7 @@
     {
         [self requestData];
         
-        if ([self.infoDic[@"canModify"] longValue] == 1)
+        if ([self.infoDic[@"canModify"] longValue] == 0)
         {
             self.choosePatientButton.enabled = NO;
             self.nameTF.enabled = NO;
@@ -184,13 +184,14 @@
         [param setObject:[NSNumber numberWithInt:2] forKey:@"sex"];
     }
     [param setObject:patientModel.username forKey:@"username"];
-    [param setObject:patientModel.user_id forKey:@"userid"];
+    [param setObject:[NSNumber numberWithInt:[patientModel.user_id intValue]] forKey:@"userid"];
     
     
     NSString *url = @"";
     
     if (self.infoDic)
     {
+        [param setValue:self.infoDic[@"id"] forKey:@"visitid"];
         url = PATH(@"%@/updateVisit");
     }
     else
@@ -204,7 +205,15 @@
             if ([responseObj[@"status"] integerValue] == 0) {
                 
                 if (responseObj[@"data"]) {
-                    [XHToast showCenterWithText:@"新增成功"];
+                    if (self.infoDic)
+                    {
+                        [XHToast showCenterWithText:@"修改成功"];
+                    }
+                    else
+                    {
+                        [XHToast showCenterWithText:@"新增成功"];
+                    }
+                    
                     [self.navigationController popViewControllerAnimated:YES];
                 }
             }
