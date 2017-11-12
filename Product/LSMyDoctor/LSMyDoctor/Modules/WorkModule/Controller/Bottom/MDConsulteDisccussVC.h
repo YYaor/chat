@@ -10,4 +10,6 @@
 
 @interface MDConsulteDisccussVC : UIViewController
 
+@property (nonatomic , assign)BOOL isSkipPop;
+
 @end

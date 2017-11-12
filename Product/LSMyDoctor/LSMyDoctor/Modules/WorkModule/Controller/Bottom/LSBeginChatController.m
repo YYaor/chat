@@ -347,7 +347,7 @@
             {
                 
                 MDConsulteDisccussVC* consulteDisccussVC = [[MDConsulteDisccussVC alloc] init];
-                
+                consulteDisccussVC.isSkipPop = YES;
                 [self.navigationController pushViewController:consulteDisccussVC animated:YES];
                 //TO--DO创建房间成功 ，跳转群组会话页面
                 /*

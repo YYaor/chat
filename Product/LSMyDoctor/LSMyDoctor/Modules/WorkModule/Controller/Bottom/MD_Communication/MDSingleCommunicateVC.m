@@ -8,6 +8,7 @@
 
 #import "MDSingleCommunicateVC.h"
 #import "MDPeerDetailVC.h"//医生详情界面
+#import "MDComRequestCell.h"
 
 @interface MDSingleCommunicateVC ()
 
@@ -38,5 +39,49 @@
     detailVC.doctorIdStr = self.singleIdStr;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
+
+
+#pragma mark -- 自定义Cell
+- (UITableViewCell*)messageViewController:(UITableView *)tableView cellForMessageModel:(id<IMessageModel>)messageModel
+{
+    if (messageModel.message.ext) {
+        id message = messageModel.message.ext[@"content"];
+        if(message){
+            
+            NSString* cellId = [MDComRequestCell cellIdentifierWithModel:messageModel];
+            MDComRequestCell* cell = (MDComRequestCell*)[tableView dequeueReusableCellWithIdentifier:cellId];
+            
+            if (!cell) {
+                cell = [[MDComRequestCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId model:messageModel];
+            }
+            cell.model = messageModel;
+            return cell;
+        }
+        
+    }
+    
+    
+    return nil;
+    
+}
+//高度
+- (CGFloat)messageViewController:(EaseMessageViewController *)viewController
+           heightForMessageModel:(id<IMessageModel>)messageModel
+                   withCellWidth:(CGFloat)cellWidth
+{
+    if (messageModel.message.ext) {
+        id message = messageModel.message.ext[@"content"];
+        if(message){
+            return 120.0f;
+        }
+        
+    }
+    return 0.f;
+}
+
+
+
+
+
 
 @end

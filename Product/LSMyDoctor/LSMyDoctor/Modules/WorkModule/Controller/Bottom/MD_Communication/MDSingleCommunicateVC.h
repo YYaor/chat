@@ -8,7 +8,7 @@
 
 #import "EaseMessageViewController.h"
 
-@interface MDSingleCommunicateVC : EaseMessageViewController
+@interface MDSingleCommunicateVC : EaseMessageViewController<EaseChatBarMoreViewDelegate,EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource>
 
 @property (nonatomic ,strong) NSString* titleNameStr;
 @property (nonatomic ,strong) NSString* singleIdStr;

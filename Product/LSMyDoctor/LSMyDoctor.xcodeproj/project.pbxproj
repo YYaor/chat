@@ -95,6 +95,7 @@
 		4A0CE6F21F975BC900F7C187 /* MDSickerRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6F01F975BC900F7C187 /* MDSickerRequestCell.m */; };
 		4A0CE6F31F975BC900F7C187 /* MDSickerRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0CE6F11F975BC900F7C187 /* MDSickerRequestCell.xib */; };
 		4A0CE6FD1F989E9C00F7C187 /* MDRequestParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0CE6FC1F989E9C00F7C187 /* MDRequestParameters.m */; };
+		4A40CB821FB2EBD200F21091 /* MDComRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A40CB811FB2EBD200F21091 /* MDComRequestCell.m */; };
 		4A43C0EF1FAB1C9C00EAC5AA /* Function.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A43BFCF1FAB1C9B00EAC5AA /* Function.m */; };
 		4A43C0F01FAB1C9C00EAC5AA /* NSDate+MonthAndDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A43BFD11FAB1C9B00EAC5AA /* NSDate+MonthAndDay.m */; };
 		4A43C0F11FAB1C9C00EAC5AA /* WFLayoutHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A43BFD31FAB1C9B00EAC5AA /* WFLayoutHelper.m */; };
@@ -768,6 +769,8 @@
 		4A0CE6F11F975BC900F7C187 /* MDSickerRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDSickerRequestCell.xib; sourceTree = "<group>"; };
 		4A0CE6FB1F989E9C00F7C187 /* MDRequestParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRequestParameters.h; sourceTree = "<group>"; };
 		4A0CE6FC1F989E9C00F7C187 /* MDRequestParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRequestParameters.m; sourceTree = "<group>"; };
+		4A40CB801FB2EBD200F21091 /* MDComRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDComRequestCell.h; sourceTree = "<group>"; };
+		4A40CB811FB2EBD200F21091 /* MDComRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDComRequestCell.m; sourceTree = "<group>"; };
 		4A43BFCE1FAB1C9B00EAC5AA /* Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function.h; sourceTree = "<group>"; };
 		4A43BFCF1FAB1C9B00EAC5AA /* Function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Function.m; sourceTree = "<group>"; };
 		4A43BFD01FAB1C9B00EAC5AA /* NSDate+MonthAndDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MonthAndDay.h"; sourceTree = "<group>"; };
@@ -2028,6 +2031,7 @@
 		4A0CE6E41F97268A00F7C187 /* MD_Communication */ = {
 			isa = PBXGroup;
 			children = (
+				4A40CB7F1FB2EBB100F21091 /* View */,
 				4A0CE6E51F9726D900F7C187 /* MDSingleCommunicateVC.h */,
 				4A0CE6E61F9726D900F7C187 /* MDSingleCommunicateVC.m */,
 				4AFAD5241F99D7DD00B20CA2 /* MDGroupCommunicateVC.h */,
@@ -2062,6 +2066,15 @@
 				4A0CE6FC1F989E9C00F7C187 /* MDRequestParameters.m */,
 			);
 			path = Public;
+			sourceTree = "<group>";
+		};
+		4A40CB7F1FB2EBB100F21091 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A40CB801FB2EBD200F21091 /* MDComRequestCell.h */,
+				4A40CB811FB2EBD200F21091 /* MDComRequestCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4A43BFCC1FAB1C9B00EAC5AA /* MDSickerReport */ = {
@@ -4105,7 +4118,7 @@
 					DF87A1B61F781B7700EF0461 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 9F5M55YYN4;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -4455,6 +4468,7 @@
 				DF4B0A241FA7A63900D57AF9 /* LSMineUserNameController.m in Sources */,
 				DFF0156C1F7AC15700527CFA /* PSTCollectionViewData.m in Sources */,
 				4A0CE6A91F9094F500F7C187 /* UIImage+GIF.m in Sources */,
+				4A40CB821FB2EBD200F21091 /* MDComRequestCell.m in Sources */,
 				4A43C13F1FAB1C9C00EAC5AA /* YGStripCell.m in Sources */,
 				DFCE83701FA8824100A2BD60 /* TLUploadParam.m in Sources */,
 				4A43C1471FAB1C9C00EAC5AA /* YGT22Cell.m in Sources */,
@@ -4829,7 +4843,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9F5M55YYN4;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4862,8 +4876,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pengge.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "87d0ae3f-05bd-4acc-b2c9-b1b92604a675";
-				PROVISIONING_PROFILE_SPECIFIER = MyDoctor_Dev_Wqj;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -4874,7 +4888,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9F5M55YYN4;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4902,8 +4916,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pengge.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "87d0ae3f-05bd-4acc-b2c9-b1b92604a675";
-				PROVISIONING_PROFILE_SPECIFIER = MyDoctor_Dev_Wqj;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

@@ -33,8 +33,23 @@
     
     self.title = @"会诊讨论";
     
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick)];
+    
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
     [self setUpUi];
     
+}
+#pragma mark -- 返回按钮点击
+- (void)backBtnClick
+{
+    //返回
+    if (self.isSkipPop) {
+        
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 3] animated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -55,7 +70,10 @@
     //注册Cell
     [listTab registerNib:[UINib nibWithNibName:@"MDConsultDiscussCell" bundle:nil] forCellReuseIdentifier:@"mDConsultDiscussCell"];
     
+    
 }
+
+
 
 
 #pragma mark -- UITableViewDelegate/UITableViewDataSource
