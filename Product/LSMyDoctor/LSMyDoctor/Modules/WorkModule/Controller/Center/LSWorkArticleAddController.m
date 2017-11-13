@@ -10,6 +10,8 @@
 
 #import "LSWorkArticleSubController.h"
 
+#import "LSWorkScanController.h"
+
 @interface LSWorkArticleAddController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, ZHPickViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextF;
@@ -89,7 +91,15 @@
 
 - (IBAction)scanBtnClick:(UIButton *)btn
 {
-    
+    if (!self.imgUrl && self.contentTextV.text.length == 0) {
+        return;
+    }
+    LSWorkScanController *vc = [[LSWorkScanController alloc]init];
+    if (self.imgUrl) {
+        vc.imageURL = self.imgUrl;
+    }
+    vc.content = self.contentTextV.text;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)typeBtnClick:(UIButton *)sender

@@ -471,6 +471,7 @@
         _pswTextFiled.keyboardType = UIKeyboardTypeNumberPad;
         _pswTextFiled.placeholder =@"请输入密码";
         _pswTextFiled.delegate = self;
+        _pswTextFiled.secureTextEntry = YES;
         _pswTextFiled.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         _pswTextFiled.font = [UIFont systemFontOfSize:14];
         [_pswTextFiled addTarget:self action:@selector(pswTextFiledChangged:) forControlEvents:UIControlEventEditingChanged];

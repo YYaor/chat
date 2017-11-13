@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F0B7CE31FB9E26A0058139D /* LSWorkScanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0B7CE21FB9E26A0058139D /* LSWorkScanController.m */; };
 		0F35D0191FA6BB0B00F090DE /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F35D0161FA6BB0B00F090DE /* FMDatabase.m */; };
 		0F35D01A1FA6BB0B00F090DE /* FMDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F35D0181FA6BB0B00F090DE /* FMDBTool.m */; };
 		0F35D0241FA6BBB200F090DE /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F35D01C1FA6BBB200F090DE /* FMDatabaseAdditions.m */; };
@@ -613,6 +614,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F0B7CE11FB9E26A0058139D /* LSWorkScanController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSWorkScanController.h; sourceTree = "<group>"; };
+		0F0B7CE21FB9E26A0058139D /* LSWorkScanController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSWorkScanController.m; sourceTree = "<group>"; };
 		0F35D0151FA6BB0B00F090DE /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		0F35D0161FA6BB0B00F090DE /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		0F35D0171FA6BB0B00F090DE /* FMDBTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBTool.h; sourceTree = "<group>"; };
@@ -4022,6 +4025,8 @@
 				DF2738351F913A5500154B6A /* LSWorkUsefulAddController.h */,
 				DF2738361F913A5500154B6A /* LSWorkUsefulAddController.m */,
 				DF2738371F913A5500154B6A /* LSWorkUsefulAddController.xib */,
+				0F0B7CE11FB9E26A0058139D /* LSWorkScanController.h */,
+				0F0B7CE21FB9E26A0058139D /* LSWorkScanController.m */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -4118,7 +4123,7 @@
 					DF87A1B61F781B7700EF0461 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 9F5M55YYN4;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -4406,6 +4411,7 @@
 				4A43C1791FAB1C9C00EAC5AA /* UIColor+Zirkfied.m in Sources */,
 				DF4EC8B01FA654B4007D9A96 /* SGQRCodeScanManager.m in Sources */,
 				DF87A7C71F782F7C00EF0461 /* LSTabBarController.m in Sources */,
+				0F0B7CE31FB9E26A0058139D /* LSWorkScanController.m in Sources */,
 				DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */,
 				4A43C15B1FAB1C9C00EAC5AA /* YYMGroup.m in Sources */,
 				4AA2FE611FA8202F009009D8 /* MDSickerRemarkVC.m in Sources */,
