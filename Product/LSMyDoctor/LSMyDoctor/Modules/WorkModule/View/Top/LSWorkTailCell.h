@@ -10,4 +10,6 @@
 
 @interface LSWorkTailCell : UITableViewCell
 
+- (void)setDataWithDictionary:(NSDictionary *)dic;
+
 @end
