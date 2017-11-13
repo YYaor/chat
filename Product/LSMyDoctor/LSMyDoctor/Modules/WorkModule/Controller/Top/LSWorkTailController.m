@@ -86,6 +86,7 @@ static NSString *cellId = @"LSWorkTailCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     LSWorkTailDetailController *vc = [[LSWorkTailDetailController alloc] initWithNibName:@"LSWorkTailDetailController" bundle:nil];
+    vc.infoDic = self.content[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
