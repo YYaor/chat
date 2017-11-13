@@ -32,7 +32,7 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="0.0"/>
+                                        <real key="value" value="30"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
@@ -119,7 +119,14 @@
                     <constraint firstAttribute="bottom" secondItem="rO2-bi-Sqv" secondAttribute="bottom" id="vtl-ea-zi9"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="34" y="54"/>
+            <connections>
+                <outlet property="end_date" destination="T89-Lv-RgK" id="LJw-eW-dz1"/>
+                <outlet property="img_url" destination="DTV-sA-8vD" id="Dj7-Bd-mGt"/>
+                <outlet property="info" destination="Guf-8J-sGd" id="JMb-Ep-AZb"/>
+                <outlet property="status" destination="gUv-Qo-Ez8" id="sqz-Vv-IO8"/>
+                <outlet property="username" destination="mdh-zG-KNm" id="qBv-UD-Yi1"/>
+            </connections>
+            <point key="canvasLocation" x="-140" y="60"/>
         </tableViewCell>
     </objects>
     <resources>

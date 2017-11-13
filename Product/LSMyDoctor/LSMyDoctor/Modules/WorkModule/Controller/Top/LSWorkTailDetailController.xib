@@ -38,6 +38,9 @@
                             <real key="value" value="15"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="chatBtnClick" destination="-1" eventType="touchUpInside" id="Cvd-Xb-W0V"/>
+                    </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RxH-4w-4l7">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>

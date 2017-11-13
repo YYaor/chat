@@ -10,4 +10,6 @@
 
 @interface LSWorkTailDetailController : UIViewController
 
+@property (nonatomic, strong) NSDictionary *infoDic;
+
 @end

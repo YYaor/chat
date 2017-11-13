@@ -36,7 +36,7 @@
                                 <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="0.0"/>
+                                <real key="value" value="30"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
@@ -85,6 +85,13 @@
                     <constraint firstItem="LcX-bm-4lP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="ueX-VN-TES"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="img_url" destination="djM-Jb-279" id="wnZ-Rb-a1w"/>
+                <outlet property="info" destination="fAF-6y-eTC" id="1Ls-vK-5ps"/>
+                <outlet property="status" destination="85Z-On-fCz" id="fsj-gK-SpR"/>
+                <outlet property="username" destination="sUA-17-ZH5" id="OTd-Gb-GcP"/>
+            </connections>
+            <point key="canvasLocation" x="-429" y="-83"/>
         </tableViewCell>
     </objects>
     <resources>
