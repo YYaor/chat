@@ -125,7 +125,7 @@
         
         if (indexPath.item == 0) {
             //我的头像
-            NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/..%@",API_HOST,@"imgurl"]];
+            NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/..%@",API_HOST,self.groupDetailModel.img_url]];
             [cell.userImgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"headImg_public"]];
             cell.userNameLab.text = @"我";
         }else{
@@ -151,8 +151,26 @@
         
         MDGroupNameCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"mDGroupNameCell" forIndexPath:indexPath];
         
+        for (UIView* v in cell.baseView.subviews) {
+            [v removeFromSuperview];
+        }
+        UILabel* cellNameLab = [[UILabel alloc] init];
+        cellNameLab.textColor = Style_Color_Content_Black;
+        [cell.baseView addSubview:cellNameLab];
+        [cellNameLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(cell.baseView.mas_centerY);
+            make.left.equalTo(@15);
+        }];
+        UILabel * lineLab = [[UILabel alloc] init];
+        lineLab.backgroundColor = Style_Color_Content_BGColor;
+        [cell.baseView addSubview:lineLab];
+        [lineLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(cell.baseView);
+            make.height.equalTo(@1);
+        }];
+        
         if (indexPath.section == 1) {
-            cell.cellNameLab.text = @"重命名";
+            cellNameLab.text = @"重命名";
             UIImageView* rightImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_white_Public"]];
             rightImgView.contentMode = UIViewContentModeScaleAspectFit;
             [cell.baseView addSubview:rightImgView];
@@ -171,15 +189,15 @@
             }];
             
         }else{
-            cell.cellNameLab.text = @"置顶群";
+            cellNameLab.text = @"置顶群";
             UISwitch* isImportantSwitch = [[UISwitch alloc] init];
             isImportantSwitch.on = [self.groupDetailModel.is_stick boolValue];
             isImportantSwitch.onTintColor = BaseColor;
             [isImportantSwitch addTarget:self action:@selector(switchBtnClick:) forControlEvents:UIControlEventValueChanged];
-            [cell addSubview:isImportantSwitch];
+            [cell.baseView addSubview:isImportantSwitch];
             [isImportantSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerY.equalTo(cell.mas_centerY);
-                make.right.equalTo(cell.mas_right).offset(-15);
+                make.centerY.equalTo(cell.baseView.mas_centerY);
+                make.right.equalTo(cell.baseView.mas_right).offset(-15);
             }];
         }
         
@@ -219,7 +237,7 @@
         //点击群组名称
         NSLog(@"点击群组名称");
         
-        
+        [self changeGroupName];
         
         
     }
@@ -330,6 +348,7 @@
         [XHToast showCenterWithText:@"请输入群组名"];
         return;
     }
+    [_getView removeFromSuperview];
     //修改群组名称
     [self changeGroupNameRequestData];
     

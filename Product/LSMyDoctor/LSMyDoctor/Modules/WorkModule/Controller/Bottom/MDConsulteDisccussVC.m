@@ -106,7 +106,7 @@
     MDDiscussListModel* listModel = self.groupArr[indexPath.section];
     
     cell.imgUrlStr = listModel.img_url;
-    cell.groupNameStr = [NSString stringWithFormat:@"%@患者的讨论组",listModel.name];
+    cell.groupNameStr = listModel.name;
     
     return cell;
 }

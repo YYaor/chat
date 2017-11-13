@@ -368,6 +368,17 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MDChooseSickerModel* sickerModel = [[self.letterResultArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    NSMutableArray* userModelIdArr = [NSMutableArray array];
+    [userModelIdArr removeAllObjects];
+    for (MDSickerGroupUserModel* userModel in self.groupDetailModel.users) {
+        [userModelIdArr addObject:userModel.user_id];
+    }
+    if ([userModelIdArr containsObject:sickerModel.user_id]) {
+        [XHToast showCenterWithText:@"已存在"];
+        return;
+    }
+    
+    
     
     sickerModel.is_Selected = !sickerModel.is_Selected;
     
@@ -517,14 +528,7 @@
         [self cancelBtnClick];
         if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
         {
-            if (responseObj[@"data"] && responseObj[@"data"][@"im_groupid"]) {
-                //创建成功
-                
-                [self.navigationController popViewControllerAnimated:YES];
-                
-            }else{
-                [XHToast showCenterWithText:@"创建失败"];
-            }
+           [self.navigationController popViewControllerAnimated:YES];
             
         }else
         {

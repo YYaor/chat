@@ -13,6 +13,7 @@
 @property (nonatomic ,copy) NSString* groupId;
 @property (nonatomic ,copy) NSString* name;
 @property (nonatomic ,copy) NSString* doctor_id;
+@property (nonatomic ,copy) NSString* img_url;
 @property (nonatomic ,copy) NSString* im_groupid;
 @property (nonatomic ,copy) NSString* is_stick;
 @property (nonatomic ,copy) NSArray* users;

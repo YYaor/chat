@@ -46,6 +46,7 @@
     }
     self.sexAndAgeLab.text = [NSString stringWithFormat:@"%@   %@",sexStr,[NSString getAgeFromBirthday:infoModel.birthday]];
     
+    [self.userImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",UGAPI_HOST,infoModel.img_url]] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
     
     
     NSArray* labelsArr = [infoModel.userLabels allValues];

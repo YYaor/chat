@@ -24,6 +24,7 @@
 @property (nonatomic ,copy) NSString* doctor_id;
 @property (nonatomic ,copy) NSString* doctor_name;
 @property (nonatomic ,copy) NSString* doctor_title;
+@property (nonatomic ,copy) NSString* doctor_image;
 @property (nonatomic ,copy) NSString* doctor_phone;
 @property (nonatomic ,copy) NSString* department_name;
 @property (nonatomic ,copy) NSString* hospital_name;

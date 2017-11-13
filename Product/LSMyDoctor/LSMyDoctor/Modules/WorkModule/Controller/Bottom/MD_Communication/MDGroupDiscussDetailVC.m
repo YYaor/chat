@@ -27,12 +27,18 @@
     self.title = @"群信息";
     self.view.backgroundColor = [UIColor whiteColor];
     
+    
     [self setUpUi];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [self getGroupDetailRequest];
 }
+- (void)popView
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark -- 创建界面
 - (void)setUpUi
 {
@@ -68,6 +74,12 @@
 {
     NSLog(@"解散此群");
     
+    NSString* myIdStr = [Defaults valueForKey:@"doctorid"];
+    if (![self.groupDetailModel.doctor_id isEqualToString:myIdStr]) {
+        [XHToast showCenterWithText:@"对不起，您没有权限解散"];
+        return;
+    }
+    
     [self deleteGroupData];
     
 }
@@ -78,7 +90,7 @@
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.groupDetailModel.users.count + 2 ;
+    return self.groupDetailModel.users.count + 1 ;
 }
 - (UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
@@ -86,7 +98,8 @@
 }
 //item大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((LSSCREENWIDTH - 35)/4, ((LSSCREENWIDTH - 35)*6)/(4*5));
+//    return CGSizeMake((LSSCREENWIDTH - 35)/4, ((LSSCREENWIDTH - 35)*6)/(4*5));
+    return CGSizeMake((LSSCREENWIDTH - 35)/4, ((LSSCREENWIDTH - 35)*1.2)/4);
     
 }
 
@@ -104,25 +117,15 @@
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MDNewDiscussCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"mDNewDiscussCell" forIndexPath:indexPath];
-    if (indexPath.item == 0) {
-        //我的头像
-        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/..%@",API_HOST,@"imgurl"]];
-        [cell.userImgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"headImg_public"]];
-        cell.userNameLab.text = @"我";
+    //加过来的好友
+    if (indexPath.item == self.groupDetailModel.users.count) {
+        cell.userImgView.image = [UIImage imageNamed:@"more"];
+        cell.userNameLab.text = @"";
     }else{
-        //加过来的好友
-        if (indexPath.item == self.groupDetailModel.users.count + 1) {
-            cell.userImgView.image = [UIImage imageNamed:@"more"];
-            cell.userNameLab.text = @"";
-        }else{
-            MDGroupUserModel* userModel = self.groupDetailModel.users[indexPath.item - 1];
-            NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/..%@",API_HOST,@"imgurl"]];
-            [cell.userImgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"headImg_public"]];
-            cell.userNameLab.text = userModel.doctor_name;
-            
-        }
-        
-        
+        MDGroupUserModel* userModel = self.groupDetailModel.users[indexPath.item ];
+        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/..%@",API_HOST,userModel.doctor_image]];
+        [cell.userImgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+        cell.userNameLab.text = userModel.doctor_name;
         
     }
     
@@ -133,7 +136,7 @@
 {
     
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    if (indexPath.item == self.groupDetailModel.users.count + 1) {
+    if (indexPath.item == self.groupDetailModel.users.count) {
         //点击最后一个加号
         NSLog(@"点击添加好友");
         
@@ -149,7 +152,7 @@
         //点击添加的用户个人资料
         
     }
-
+    
     
 }
 
