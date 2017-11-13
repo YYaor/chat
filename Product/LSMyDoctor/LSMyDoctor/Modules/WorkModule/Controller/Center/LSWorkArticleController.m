@@ -33,6 +33,8 @@
     [super viewDidAppear:animated];
     
     self.navView.hidden = NO;
+    [self segmentBtnClick:self.manageBtn];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -59,8 +61,6 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     
     [self.navigationController.navigationBar addSubview:self.navView];
-    
-    [self segmentBtnClick:self.manageBtn];
     
     [self.tableView registerClass:[LSWorkArticleCell class] forCellReuseIdentifier:@"cell"];
 }

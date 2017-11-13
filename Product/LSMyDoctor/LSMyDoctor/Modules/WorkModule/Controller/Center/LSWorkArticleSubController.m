@@ -215,25 +215,27 @@
         {
             if (i==0)
             {
-                for (NSDictionary *dic in self.dataList)
-                {
-                    if ([dic[@"label_text"] isEqualToString:btn.titleLabel.text])
-                    {
-                        disease_group = [disease_group stringByAppendingString:[NSString stringWithFormat:@"%ld", [dic[@"label_code"] longValue]]];
-                        break;
-                    }
-                }
+//                for (NSDictionary *dic in self.dataList)
+//                {
+//                    if ([dic[@"label_text"] isEqualToString:btn.titleLabel.text])
+//                    {
+//                        disease_group = [disease_group stringByAppendingString:btn.titleLabel.text];
+//                        break;
+//                    }
+//                }
+                disease_group = [disease_group stringByAppendingString:btn.titleLabel.text];
             }
             else
             {
-                for (NSDictionary *dic in self.dataList)
-                {
-                    if ([dic[@"label_text"] isEqualToString:btn.titleLabel.text])
-                    {
-                        disease_group = [disease_group stringByAppendingString:[NSString stringWithFormat:@",%ld", [dic[@"label_code"] longValue]]];
-                        break;
-                    }
-                }
+//                for (NSDictionary *dic in self.dataList)
+//                {
+//                    if ([dic[@"label_text"] isEqualToString:btn.titleLabel.text])
+//                    {
+//                        disease_group = [disease_group stringByAppendingString:[NSString stringWithFormat:@"、%@", btn.titleLabel.text]];
+//                        break;
+//                    }
+//                }
+                disease_group = [disease_group stringByAppendingString:[NSString stringWithFormat:@"、%@", btn.titleLabel.text]];
             }
         }
     }
@@ -252,7 +254,10 @@
             if ([responseObj[@"data"] isKindOfClass:[NSDictionary class]]) {
 
                 [XHToast showCenterWithText:@"发布成功"];
-                [self.navigationController popViewControllerAnimated:YES];
+                
+                NSArray *vcs = self.navigationController.viewControllers;
+                
+                [self.navigationController popToViewController:vcs[vcs.count-2] animated:YES];
 
             }else{
                 NSLog(@"返回数据有误");
