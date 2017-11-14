@@ -445,6 +445,8 @@
 		DFCE83811FA9061000A2BD60 /* LSMineUserGoodatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFCE837F1FA9061000A2BD60 /* LSMineUserGoodatController.xib */; };
 		DFCE83851FA9078900A2BD60 /* LSMineUserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFCE83831FA9078900A2BD60 /* LSMineUserInfoController.m */; };
 		DFCE83861FA9078900A2BD60 /* LSMineUserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFCE83841FA9078900A2BD60 /* LSMineUserInfoController.xib */; };
+		DFD0CA711FBA99D9005A4E1A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFD0CA6D1FBA99D9005A4E1A /* InfoPlist.strings */; };
+		DFD0CA721FBA99D9005A4E1A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFD0CA6F1FBA99D9005A4E1A /* Localizable.strings */; };
 		DFD5C7091F8167A300045E39 /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C6E81F8167A300045E39 /* FSCalendar+Deprecated.m */; };
 		DFD5C70A1F8167A300045E39 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C6EA1F8167A300045E39 /* FSCalendar.m */; };
 		DFD5C70B1F8167A300045E39 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C6EC1F8167A300045E39 /* FSCalendarAppearance.m */; };
@@ -1416,6 +1418,8 @@
 		DFCE83821FA9078900A2BD60 /* LSMineUserInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineUserInfoController.h; sourceTree = "<group>"; };
 		DFCE83831FA9078900A2BD60 /* LSMineUserInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineUserInfoController.m; sourceTree = "<group>"; };
 		DFCE83841FA9078900A2BD60 /* LSMineUserInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMineUserInfoController.xib; sourceTree = "<group>"; };
+		DFD0CA6E1FBA99D9005A4E1A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
+		DFD0CA701FBA99D9005A4E1A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		DFD5C6E81F8167A300045E39 /* FSCalendar+Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSCalendar+Deprecated.m"; sourceTree = "<group>"; };
 		DFD5C6E91F8167A300045E39 /* FSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
 		DFD5C6EA1F8167A300045E39 /* FSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
@@ -3346,6 +3350,15 @@
 			path = SRDownloadManager;
 			sourceTree = "<group>";
 		};
+		DFD0CA6C1FBA99D9005A4E1A /* zh-Hans.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				DFD0CA6D1FBA99D9005A4E1A /* InfoPlist.strings */,
+				DFD0CA6F1FBA99D9005A4E1A /* Localizable.strings */,
+			);
+			path = "zh-Hans.lproj";
+			sourceTree = "<group>";
+		};
 		DFD5C6E71F8167A300045E39 /* FSCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -3398,6 +3411,7 @@
 		DFF014041F7AC15700527CFA /* EaseUI */ = {
 			isa = PBXGroup;
 			children = (
+				DFD0CA6C1FBA99D9005A4E1A /* zh-Hans.lproj */,
 				DFF014051F7AC15700527CFA /* EaseUI-Prefix.pch */,
 				DFF014061F7AC15700527CFA /* EaseUI.h */,
 				DFF014071F7AC15700527CFA /* EaseUI.m */,
@@ -4134,6 +4148,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = DF87A1AE1F781B7700EF0461;
 			productRefGroup = DF87A1B81F781B7700EF0461 /* Products */;
@@ -4163,6 +4178,7 @@
 				DF2738341F9139FA00154B6A /* LSWorkUsefulController.xib in Resources */,
 				DFCE83741FA8CE8100A2BD60 /* agreement.html in Resources */,
 				4A43C1261FAB1C9C00EAC5AA /* T15Cell.xib in Resources */,
+				DFD0CA711FBA99D9005A4E1A /* InfoPlist.strings in Resources */,
 				4AA2FE501FA812DD009009D8 /* MDSickerMarkVC.xib in Resources */,
 				DF87A6421F7820A700EF0461 /* Info.plist in Resources */,
 				DF5A093F1F7D48A800CF5410 /* LSWorkTailCell.xib in Resources */,
@@ -4171,6 +4187,7 @@
 				DF5A093A1F7D473D00CF5410 /* LSWorkTailController.xib in Resources */,
 				4AA2FE5A1FA81374009009D8 /* MDUsefulMarkCell.xib in Resources */,
 				DF81C2471F84C43700D4D851 /* LSWorkOutcallListCell.xib in Resources */,
+				DFD0CA721FBA99D9005A4E1A /* Localizable.strings in Resources */,
 				DFF015EB1F7AC25F00527CFA /* MJRefresh.bundle in Resources */,
 				4A43C1521FAB1C9C00EAC5AA /* YGT33Cell.xib in Resources */,
 				4A43C1011FAB1C9C00EAC5AA /* DietReportVC.xib in Resources */,
@@ -4747,6 +4764,22 @@
 				DFCE82F01FA84EC500A2BD60 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		DFD0CA6D1FBA99D9005A4E1A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DFD0CA6E1FBA99D9005A4E1A /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DFD0CA6F1FBA99D9005A4E1A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DFD0CA701FBA99D9005A4E1A /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
