@@ -49,7 +49,7 @@ typedef enum : NSUInteger {
 }
 @end
 
-@interface EaseMessageViewController ()<EaseMessageCellDelegate>
+@interface EaseMessageViewController ()<EaseMessageCellDelegate, ZHPickViewDelegate>
 {
     UIMenuItem *_copyMenuItem;
     UIMenuItem *_deleteMenuItem;
@@ -64,6 +64,9 @@ typedef enum : NSUInteger {
 @property (nonatomic) BOOL isKicked;
 @property (nonatomic) BOOL isPlayingAudio;
 @property (nonatomic, strong) NSMutableArray *atTargets;
+
+//选择器
+@property (nonatomic, strong) ZHPickView *pickview;
 
 @end
 
@@ -1501,6 +1504,35 @@ typedef enum : NSUInteger {
     // Hide the keyboard
     [self.chatToolbar endEditing:YES];
     
+    __weak typeof(self) weakSelf = self;
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    NSString *url = PATH(@"%@/chatCommon");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if ([responseObj[@"status"] longValue] == 0)
+        {
+            NSMutableArray *array = [NSMutableArray array];
+            
+            for (NSDictionary *dic in responseObj[@"data"])
+            {
+                [array addObject:dic[@"content"]];
+            }
+            
+            self.pickview = [[ZHPickView alloc] initPickviewWithArray:@[array] isHaveNavControler:NO];
+            self.pickview.tag = 1;
+            self.pickview.delegate=self;
+            [self.pickview show];
+        }
+        
+    } failBlock:^(NSError *error) {
+        NSLog(@"");
+    }];
+    
+    
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
 }
 
@@ -1545,6 +1577,15 @@ typedef enum : NSUInteger {
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
 }
 
+
+#pragma mark - ZHPickerViewDelegate
+
+-(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString
+{
+    NSLog(@"%@",resultString);
+    
+    [self sendTextMessage:resultString];
+}
 
 #pragma mark - EMLocationViewDelegate
 
