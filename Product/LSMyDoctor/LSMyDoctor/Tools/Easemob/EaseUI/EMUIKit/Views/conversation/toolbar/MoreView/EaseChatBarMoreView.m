@@ -38,12 +38,12 @@
 @property (nonatomic, strong) UIScrollView *scrollview;
 @property (nonatomic, strong) UIPageControl *pageControl;
 
-@property (nonatomic, strong) UIButton *photoButton;
-@property (nonatomic, strong) UIButton *takePicButton;
-@property (nonatomic, strong) UIButton *locationButton;
-@property (nonatomic, strong) UIButton *videoButton;
-@property (nonatomic, strong) UIButton *audioCallButton;
-@property (nonatomic, strong) UIButton *videoCallButton;
+@property (nonatomic, strong) UIButton *commonlanguageCallButton;//常用语
+@property (nonatomic, strong) UIButton *photoCallButton;//照片
+@property (nonatomic, strong) UIButton *issueadviceCallButton;//下达医嘱
+@property (nonatomic, strong) UIButton *articlerecommendCallButton;//文章推荐
+@property (nonatomic, strong) UIButton *questionnaireCallButton;//调查表
+
 
 @end
 
@@ -86,54 +86,54 @@
     
     CGFloat insets = (self.frame.size.width - 4 * CHAT_BUTTON_SIZE.width) / 5;
     
-    _locationButton = [self btnWithImage:[UIImage imageNamed:@"add_commonlanguage"]
+    _commonlanguageCallButton = [self btnWithImage:[UIImage imageNamed:@"add_commonlanguage"]
                         highlightedImage:[UIImage imageNamed:@"add_commonlanguage"]
                                    title:@"常用语"];
-    _locationButton.accessibilityIdentifier = @"location";
-    [_locationButton setFrame:CGRectMake(insets, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
-    [_locationButton addTarget:self action:@selector(locationAction) forControlEvents:UIControlEventTouchUpInside];
-    _locationButton.tag = MOREVIEW_BUTTON_TAG;
-    [_scrollview addSubview:_locationButton];
+    _commonlanguageCallButton.accessibilityIdentifier = @"commonlanguageCallButton";
+    [_commonlanguageCallButton setFrame:CGRectMake(insets, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
+    [_commonlanguageCallButton addTarget:self action:@selector(commonlanguageCallButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    _commonlanguageCallButton.tag = MOREVIEW_BUTTON_TAG;
+    [_scrollview addSubview:_commonlanguageCallButton];
     
-    _photoButton = [self btnWithImage:[UIImage imageNamed:@"add_photo"]
+    _photoCallButton = [self btnWithImage:[UIImage imageNamed:@"add_photo"]
                      highlightedImage:[UIImage imageNamed:@"add_photo"]
-                                title:@"相册"];
+                                title:@"照片"];
 
-    _photoButton.accessibilityIdentifier = @"image";
-    [_photoButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE.width, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
-    [_photoButton addTarget:self action:@selector(photoAction) forControlEvents:UIControlEventTouchUpInside];
-    _photoButton.tag = MOREVIEW_BUTTON_TAG + 1;
-    [_scrollview addSubview:_photoButton];
+    _photoCallButton.accessibilityIdentifier = @"photoCallButton";
+    [_photoCallButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE.width, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
+    [_photoCallButton addTarget:self action:@selector(photoCallButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    _photoCallButton.tag = MOREVIEW_BUTTON_TAG + 1;
+    [_scrollview addSubview:_photoCallButton];
     
     
-    _takePicButton = [self btnWithImage:[UIImage imageNamed:@"add_issueadvice"]
+    _issueadviceCallButton = [self btnWithImage:[UIImage imageNamed:@"add_issueadvice"]
                        highlightedImage:[UIImage imageNamed:@"add_issueadvice"]
                                   title:@"下达医嘱"];
-    [_takePicButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE.width * 2, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
-    [_takePicButton addTarget:self action:@selector(takePicAction) forControlEvents:UIControlEventTouchUpInside];
-    _takePicButton.tag = MOREVIEW_BUTTON_TAG + 2;
+    [_issueadviceCallButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE.width * 2, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
+    [_issueadviceCallButton addTarget:self action:@selector(issueadviceCallButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    _issueadviceCallButton.tag = MOREVIEW_BUTTON_TAG + 2;
     _maxIndex = 2;
-    [_scrollview addSubview:_takePicButton];
+    [_scrollview addSubview:_issueadviceCallButton];
 
     CGRect frame = self.frame;
     if (type == EMChatToolbarTypeChat) {
         frame.size.height = 150;
-        _audioCallButton = [self btnWithImage:[UIImage imageNamed:@"add_articlerecommend"]
+        _articlerecommendCallButton = [self btnWithImage:[UIImage imageNamed:@"add_articlerecommend"]
                              highlightedImage:[UIImage imageNamed:@"add_articlerecommend"]
                                         title:@"文章推荐"];
-        [_audioCallButton setFrame:CGRectMake(insets * 4 + CHAT_BUTTON_SIZE.width * 3, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
-        [_audioCallButton addTarget:self action:@selector(takeAudioCallAction) forControlEvents:UIControlEventTouchUpInside];
-        _audioCallButton.tag = MOREVIEW_BUTTON_TAG + 3;
-        [_scrollview addSubview:_audioCallButton];
+        [_articlerecommendCallButton setFrame:CGRectMake(insets * 4 + CHAT_BUTTON_SIZE.width * 3, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
+        [_articlerecommendCallButton addTarget:self action:@selector(articlerecommendCallButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        _articlerecommendCallButton.tag = MOREVIEW_BUTTON_TAG + 3;
+        [_scrollview addSubview:_articlerecommendCallButton];
         
-        _videoCallButton = [self btnWithImage:[UIImage imageNamed:@"add_questionnaire"]
+        _questionnaireCallButton = [self btnWithImage:[UIImage imageNamed:@"add_questionnaire"]
                              highlightedImage:[UIImage imageNamed:@"add_questionnaire"]
                                         title:@"调查表"];
-        [_videoCallButton setFrame:CGRectMake(insets, 10 * 2 + CHAT_BUTTON_SIZE.height + 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
-        [_videoCallButton addTarget:self action:@selector(takeVideoCallAction) forControlEvents:UIControlEventTouchUpInside];
-        _videoCallButton.tag =MOREVIEW_BUTTON_TAG + 4;
+        [_questionnaireCallButton setFrame:CGRectMake(insets, 10 * 2 + CHAT_BUTTON_SIZE.height + 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
+        [_questionnaireCallButton addTarget:self action:@selector(questionnaireCallButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        _questionnaireCallButton.tag =MOREVIEW_BUTTON_TAG + 4;
         _maxIndex = 4;
-        [_scrollview addSubview:_videoCallButton];
+        [_scrollview addSubview:_questionnaireCallButton];
     }
     else if (type == EMChatToolbarTypeGroup)
     {
@@ -308,45 +308,37 @@
 
 #pragma mark - action
 
-- (void)takePicAction{
-    if(_delegate && [_delegate respondsToSelector:@selector(moreViewTakePicAction:)]){
-        [_delegate moreViewTakePicAction:self];
+- (void)commonlanguageCallButtonAction{
+    if(_delegate && [_delegate respondsToSelector:@selector(moreCommonlanguageCallButtonAction:)]){
+        [_delegate moreCommonlanguageCallButtonAction:self];
     }
 }
 
-- (void)photoAction
+- (void)photoCallButtonAction
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(moreViewPhotoAction:)]) {
-        [_delegate moreViewPhotoAction:self];
+    if (_delegate && [_delegate respondsToSelector:@selector(morePhotoCallButtonAction:)]) {
+        [_delegate morePhotoCallButtonAction:self];
     }
 }
 
-- (void)locationAction
+- (void)issueadviceCallButtonAction
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(moreViewLocationAction:)]) {
-        [_delegate moreViewLocationAction:self];
+    if (_delegate && [_delegate respondsToSelector:@selector(moreIssueadviceCallButtonAction:)]) {
+        [_delegate moreIssueadviceCallButtonAction:self];
     }
 }
 
-- (void)takeAudioCallAction
+- (void)articlerecommendCallButtonAction
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(moreViewAudioCallAction:)]) {
-        [_delegate moreViewAudioCallAction:self];
+    if (_delegate && [_delegate respondsToSelector:@selector(moreArticlerecommendCallButtonAction:)]) {
+        [_delegate moreArticlerecommendCallButtonAction:self];
     }
 }
 
-- (void)takeVideoCallAction
+- (void)questionnaireCallButtonAction
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(moreViewVideoCallAction:)]) {
-        [_delegate moreViewVideoCallAction:self];
-    }
-}
-
-- (void)moreAction:(id)sender
-{
-    UIButton *button = (UIButton*)sender;
-    if (button && _delegate && [_delegate respondsToSelector:@selector(moreView:didItemInMoreViewAtIndex:)]) {
-        [_delegate moreView:self didItemInMoreViewAtIndex:button.tag-MOREVIEW_BUTTON_TAG];
+    if (_delegate && [_delegate respondsToSelector:@selector(moreQuestionnaireCallButtonAction:)]) {
+        [_delegate moreQuestionnaireCallButtonAction:self];
     }
 }
 

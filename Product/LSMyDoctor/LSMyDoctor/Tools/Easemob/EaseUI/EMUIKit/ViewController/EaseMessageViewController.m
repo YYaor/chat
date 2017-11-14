@@ -1496,21 +1496,15 @@ typedef enum : NSUInteger {
     }
 }
 
-- (void)moreViewPhotoAction:(EaseChatBarMoreView *)moreView
+- (void)moreCommonlanguageCallButtonAction:(EaseChatBarMoreView *)moreView
 {
     // Hide the keyboard
     [self.chatToolbar endEditing:YES];
     
-    // Pop image picker
-    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
-    [self presentViewController:self.imagePicker animated:YES completion:NULL];
-    
-    self.isViewDidAppear = NO;
-    [[EaseSDKHelper shareHelper] setIsShowingimagePicker:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
 }
 
-- (void)moreViewTakePicAction:(EaseChatBarMoreView *)moreView
+- (void)morePhotoCallButtonAction:(EaseChatBarMoreView *)moreView
 {
     // Hide the keyboard
     [self.chatToolbar endEditing:YES];
@@ -1527,17 +1521,7 @@ typedef enum : NSUInteger {
 #endif
 }
 
-- (void)moreViewLocationAction:(EaseChatBarMoreView *)moreView
-{
-    // Hide the keyboard
-    [self.chatToolbar endEditing:YES];
-    
-    EaseLocationViewController *locationController = [[EaseLocationViewController alloc] init];
-    locationController.delegate = self;
-    [self.navigationController pushViewController:locationController animated:YES];
-}
-
-- (void)moreViewAudioCallAction:(EaseChatBarMoreView *)moreView
+- (void)moreIssueadviceCallButtonAction:(EaseChatBarMoreView *)moreView
 {
     // Hide the keyboard
     [self.chatToolbar endEditing:YES];
@@ -1545,13 +1529,22 @@ typedef enum : NSUInteger {
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
 }
 
-- (void)moreViewVideoCallAction:(EaseChatBarMoreView *)moreView
+- (void)moreArticlerecommendCallButtonAction:(EaseChatBarMoreView *)moreView
 {
     // Hide the keyboard
     [self.chatToolbar endEditing:YES];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:1]}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
 }
+
+- (void)moreQuestionnaireCallButtonAction:(EaseChatBarMoreView *)moreView
+{
+    // Hide the keyboard
+    [self.chatToolbar endEditing:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
+}
+
 
 #pragma mark - EMLocationViewDelegate
 

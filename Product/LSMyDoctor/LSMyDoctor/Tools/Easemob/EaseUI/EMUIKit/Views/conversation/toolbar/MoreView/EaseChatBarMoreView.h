@@ -73,51 +73,6 @@ typedef enum{
 @optional
 
 /*!
-  @method
-  @brief 拍照
-  @discussion
-  @param moreView 功能view
-  @result
-  */
-- (void)moreViewTakePicAction:(EaseChatBarMoreView *)moreView;
-
-/*!
- @method
- @brief 相册
- @discussion
- @param moreView 功能view
- @result
- */
-- (void)moreViewPhotoAction:(EaseChatBarMoreView *)moreView;
-
-/*!
- @method
- @brief 发送位置
- @discussion
- @param moreView 功能view
- @result
- */
-- (void)moreViewLocationAction:(EaseChatBarMoreView *)moreView;
-
-/*!
- @method
- @brief 拨打实时语音
- @discussion
- @param moreView 功能view
- @result
- */
-- (void)moreViewAudioCallAction:(EaseChatBarMoreView *)moreView;
-
-/*!
- @method
- @brief 拨打实时通话
- @discussion
- @param moreView 功能view
- @result
- */
-- (void)moreViewVideoCallAction:(EaseChatBarMoreView *)moreView;
-
-/*!
  @method
  @brief 自定义功能
  @discussion
@@ -126,5 +81,11 @@ typedef enum{
  @result
  */
 - (void)moreView:(EaseChatBarMoreView *)moreView didItemInMoreViewAtIndex:(NSInteger)index;
+
+- (void)moreCommonlanguageCallButtonAction:(EaseChatBarMoreView *)moreView;
+- (void)morePhotoCallButtonAction:(EaseChatBarMoreView *)moreView;
+- (void)moreIssueadviceCallButtonAction:(EaseChatBarMoreView *)moreView;
+- (void)moreArticlerecommendCallButtonAction:(EaseChatBarMoreView *)moreView;
+- (void)moreQuestionnaireCallButtonAction:(EaseChatBarMoreView *)moreView;
 
 @end
