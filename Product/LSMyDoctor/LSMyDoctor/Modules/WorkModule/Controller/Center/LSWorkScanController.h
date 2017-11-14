@@ -2,7 +2,7 @@
 //  LSWorkScanController.h
 //  LSMyDoctor
 //
-//  Created by 刘博宇 on 2017/11/13.
+//  Created by 赵炯丞 on 2017/11/13.
 //  Copyright © 2017年 赵炯丞. All rights reserved.
 //
 
