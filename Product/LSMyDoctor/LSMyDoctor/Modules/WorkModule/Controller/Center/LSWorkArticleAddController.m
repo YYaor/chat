@@ -11,6 +11,7 @@
 #import "LSWorkArticleSubController.h"
 
 #import "LSWorkScanController.h"
+#import "LSCacheManager.h"
 
 @interface LSWorkArticleAddController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, ZHPickViewDelegate>
 
@@ -39,6 +40,41 @@
     [super viewDidLoad];
     
     [self initForView];
+}
+
+-(void)dealloc{
+    
+    NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
+    
+    for (NSDictionary *dic in saveArr) {
+        if ([self.data[@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
+            [saveArr removeObject:dic];
+        }
+    }
+    
+    NSMutableDictionary *infoDic = [NSMutableDictionary dictionary];
+//    if(self.titleTextF.text.length>0){
+        [infoDic setValue:self.titleTextF.text forKey:@"title"];//文章标题    string
+//    }
+//    if (self.keyTextF.text.length>0) {
+        [infoDic setValue:self.keyTextF.text forKey:@"keyword"];//文章关键字    string
+//    }
+//    if (self.typeBtn.titleLabel.text.length>0) {
+        [infoDic setValue:self.typeBtn.titleLabel.text forKey:@"classify"];//文章分类    string
+//    }
+//    if (self.contentTextV.text.length>0) {
+        [infoDic setValue:self.contentTextV.text forKey:@"content"];//文章内容    string
+//    }
+//    if (self.imgUrl)
+//    {
+        [infoDic setValue:self.imgUrl forKey:@"img_url"];//文章图像地址    string
+//    }
+    
+    [infoDic setObject:[NSNumber numberWithInt:0] forKey:@"type"];
+    [infoDic setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"savetime"];
+    [saveArr addObject:infoDic];
+    
+    [[LSCacheManager sharedInstance] archiverObject:saveArr ByKey:@"savearticle" WithPath:@"article"];
 }
 
 - (void)initForView
