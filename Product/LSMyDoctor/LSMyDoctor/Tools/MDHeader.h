@@ -45,6 +45,9 @@
 #define Defaults [NSUserDefaults standardUserDefaults]
 #define Cookie [Defaults valueForKey:@"cookie"]
 #define AccessToken [Defaults valueForKey:@"accessToken"]
+#define UserImage [Defaults valueForKey:@"userimage"]
+#define DoctorId [Defaults valueForKey:@"doctorid"]
+#define UserName [Defaults valueForKey:@"username"]
 
 #define LSWEAKSELF __weak typeof(self) weakSelf = self
 #define LSAPPDELEGATE (AppDelegate *)[[UIApplication  sharedApplication] delegate];

@@ -1802,11 +1802,10 @@ typedef enum : NSUInteger {
             model.failImageName = @"imageDownloadFail";
             
             if (message.ext!=nil) {
-                if (message.ext[@"avatar"] != nil) {
-                    model.avatarURLPath = message.ext[@"avatar"];
+                if (message.ext[@"userimage"] != nil) {
+                    model.avatarURLPath = [NSString stringWithFormat:@"%@%@", UGAPI_HOST, message.ext[@"userimage"]];
                 }
-//                model.nickname =message.ext[@"username"];
-                model.nickname =message.ext[@"nickname"];
+                model.nickname =message.ext[@"username"];
             }
             model.failImageName = @"imageDownloadFail";
         }
@@ -1940,33 +1939,33 @@ typedef enum : NSUInteger {
 
 - (void)sendTextMessage:(NSString *)text withExt:(NSDictionary*)ext
 {
-//    NSMutableDictionary *dic = [[NSMutableDictionary alloc]initWithDictionary:ext];
-//    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
-//    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
-//    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]initWithDictionary:ext];
+    [dic setObject:UserName forKey:@"username"];
+    [dic setObject:DoctorId forKey:@"doctorid"];
+    [dic setObject:UserImage forKey:@"userimage"];
     EMMessage *message = [EaseSDKHelper sendTextMessage:text
                                                      to:self.conversation.conversationId
                                             messageType:[self _messageTypeFromConversationType]
-                                             messageExt:nil];
+                                             messageExt:dic];
     [self _sendMessage:message];
 }
 
-- (void)sendLocationMessageLatitude:(double)latitude
-                          longitude:(double)longitude
-                         andAddress:(NSString *)address
-{
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
-//    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
-//    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
-    EMMessage *message = [EaseSDKHelper sendLocationMessageWithLatitude:latitude
-                                                              longitude:longitude
-                                                                address:address
-                                                                     to:self.conversation.conversationId
-                                                            messageType:[self _messageTypeFromConversationType]
-                                                             messageExt:nil];
-    [self _sendMessage:message];
-}
+//- (void)sendLocationMessageLatitude:(double)latitude
+//                          longitude:(double)longitude
+//                         andAddress:(NSString *)address
+//{
+////    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+////    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
+////    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
+////    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
+//    EMMessage *message = [EaseSDKHelper sendLocationMessageWithLatitude:latitude
+//                                                              longitude:longitude
+//                                                                address:address
+//                                                                     to:self.conversation.conversationId
+//                                                            messageType:[self _messageTypeFromConversationType]
+//                                                             messageExt:nil];
+//    [self _sendMessage:message];
+//}
 
 - (void)sendImageMessageWithData:(NSData *)imageData
 {
@@ -1997,14 +1996,14 @@ typedef enum : NSUInteger {
     else{
         progress = self;
     }
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
-//    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
-//    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:UserName forKey:@"username"];
+    [dic setObject:DoctorId forKey:@"doctorid"];
+    [dic setObject:UserImage forKey:@"userimage"];
     EMMessage *message = [EaseSDKHelper sendImageMessageWithImage:image
                                                                to:self.conversation.conversationId
                                                       messageType:[self _messageTypeFromConversationType]
-                                                       messageExt:nil];
+                                                       messageExt:dic];
     [self _sendMessage:message];
 }
 
@@ -2018,10 +2017,10 @@ typedef enum : NSUInteger {
     else{
         progress = self;
     }
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
-//    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
-//    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:UserName forKey:@"username"];
+    [dic setObject:DoctorId forKey:@"doctorid"];
+    [dic setObject:UserImage forKey:@"userimage"];
     EMMessage *message = [EaseSDKHelper sendVoiceMessageWithLocalPath:localPath
                                                              duration:duration
                                                                    to:self.conversation.conversationId
@@ -2030,29 +2029,29 @@ typedef enum : NSUInteger {
     [self _sendMessage:message];
 }
 
-- (void)sendVideoMessageWithURL:(NSURL *)url
-{
-    id progress = nil;
-    if (_dataSource && [_dataSource respondsToSelector:@selector(messageViewController:progressDelegateForMessageBodyType:)]) {
-        progress = [_dataSource messageViewController:self progressDelegateForMessageBodyType:EMMessageBodyTypeVideo];
-    }
-    else{
-        progress = self;
-    }
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
-//    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
-//    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
-    EMMessage *message = [EaseSDKHelper sendVideoMessageWithURL:url
-                                                             to:self.conversation.conversationId
-                                                    messageType:[self _messageTypeFromConversationType]
-                                                     messageExt:nil];
-    [self _sendMessage:message];
-}
+//- (void)sendVideoMessageWithURL:(NSURL *)url
+//{
+//    id progress = nil;
+//    if (_dataSource && [_dataSource respondsToSelector:@selector(messageViewController:progressDelegateForMessageBodyType:)]) {
+//        progress = [_dataSource messageViewController:self progressDelegateForMessageBodyType:EMMessageBodyTypeVideo];
+//    }
+//    else{
+//        progress = self;
+//    }
+////    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+////    [dic setObject:[Defaults valueForKey:@"username"] forKey:@"nickname"];
+////    [dic setObject:[Defaults valueForKey:@"doctorid"] forKey:@"doctorid"];
+////    [dic setObject:@"headURLdoctor" forKey:@"avatar"];
+//    EMMessage *message = [EaseSDKHelper sendVideoMessageWithURL:url
+//                                                             to:self.conversation.conversationId
+//                                                    messageType:[self _messageTypeFromConversationType]
+//                                                     messageExt:nil];
+//    [self _sendMessage:message];
+//}
 
-- (void)sendFileMessageWith:(EMMessage *)message {
-    [self _sendMessage:message];
-}
+//- (void)sendFileMessageWith:(EMMessage *)message {
+//    [self _sendMessage:message];
+//}
 
 #pragma mark - notifycation
 - (void)didBecomeActive

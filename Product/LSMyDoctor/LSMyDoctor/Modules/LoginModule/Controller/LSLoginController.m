@@ -347,7 +347,8 @@
                 [Defaults setValue:dict[@"cookie"] forKey:@"cookie"];
                 [Defaults setValue:self.phoneTextFiled.text forKey:@"phoneNum"];
                 [Defaults setValue:dict[@"doctorid"] forKey:@"doctorid"];
-                [Defaults setValue:dict[@"username"] forKey:@"username"];
+                [Defaults setValue:dict[@"name"] forKey:@"username"];
+                [Defaults setValue:dict[@"image"] forKey:@"userimage"];
 
                 if (self.typeView.selectIndex != 1) {
                     //密码登录
