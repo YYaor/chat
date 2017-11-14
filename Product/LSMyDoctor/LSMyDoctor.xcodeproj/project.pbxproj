@@ -448,6 +448,13 @@
 		DFCE83861FA9078900A2BD60 /* LSMineUserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFCE83841FA9078900A2BD60 /* LSMineUserInfoController.xib */; };
 		DFD0CA711FBA99D9005A4E1A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFD0CA6D1FBA99D9005A4E1A /* InfoPlist.strings */; };
 		DFD0CA721FBA99D9005A4E1A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFD0CA6F1FBA99D9005A4E1A /* Localizable.strings */; };
+		DFD0CA761FBB6288005A4E1A /* LSRecommendArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD0CA741FBB6288005A4E1A /* LSRecommendArticleController.m */; };
+		DFD0CA771FBB6288005A4E1A /* LSRecommendArticleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFD0CA751FBB6288005A4E1A /* LSRecommendArticleController.xib */; };
+		DFD0CA7B1FBB63C7005A4E1A /* LSDoctorAdviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD0CA791FBB63C7005A4E1A /* LSDoctorAdviceController.m */; };
+		DFD0CA7C1FBB63C7005A4E1A /* LSDoctorAdviceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFD0CA7A1FBB63C7005A4E1A /* LSDoctorAdviceController.xib */; };
+		DFD0CA801FBB74F8005A4E1A /* LSRecommendArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD0CA7E1FBB74F8005A4E1A /* LSRecommendArticleCell.m */; };
+		DFD0CA811FBB74F8005A4E1A /* LSRecommendArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFD0CA7F1FBB74F8005A4E1A /* LSRecommendArticleCell.xib */; };
+		DFD0CA841FBB7838005A4E1A /* LSRecommendArticleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD0CA831FBB7838005A4E1A /* LSRecommendArticleModel.m */; };
 		DFD5C7091F8167A300045E39 /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C6E81F8167A300045E39 /* FSCalendar+Deprecated.m */; };
 		DFD5C70A1F8167A300045E39 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C6EA1F8167A300045E39 /* FSCalendar.m */; };
 		DFD5C70B1F8167A300045E39 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD5C6EC1F8167A300045E39 /* FSCalendarAppearance.m */; };
@@ -1423,6 +1430,17 @@
 		DFCE83841FA9078900A2BD60 /* LSMineUserInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMineUserInfoController.xib; sourceTree = "<group>"; };
 		DFD0CA6E1FBA99D9005A4E1A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
 		DFD0CA701FBA99D9005A4E1A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
+		DFD0CA731FBB6288005A4E1A /* LSRecommendArticleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSRecommendArticleController.h; sourceTree = "<group>"; };
+		DFD0CA741FBB6288005A4E1A /* LSRecommendArticleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSRecommendArticleController.m; sourceTree = "<group>"; };
+		DFD0CA751FBB6288005A4E1A /* LSRecommendArticleController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSRecommendArticleController.xib; sourceTree = "<group>"; };
+		DFD0CA781FBB63C7005A4E1A /* LSDoctorAdviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDoctorAdviceController.h; sourceTree = "<group>"; };
+		DFD0CA791FBB63C7005A4E1A /* LSDoctorAdviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDoctorAdviceController.m; sourceTree = "<group>"; };
+		DFD0CA7A1FBB63C7005A4E1A /* LSDoctorAdviceController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSDoctorAdviceController.xib; sourceTree = "<group>"; };
+		DFD0CA7D1FBB74F8005A4E1A /* LSRecommendArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSRecommendArticleCell.h; sourceTree = "<group>"; };
+		DFD0CA7E1FBB74F8005A4E1A /* LSRecommendArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSRecommendArticleCell.m; sourceTree = "<group>"; };
+		DFD0CA7F1FBB74F8005A4E1A /* LSRecommendArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSRecommendArticleCell.xib; sourceTree = "<group>"; };
+		DFD0CA821FBB7838005A4E1A /* LSRecommendArticleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSRecommendArticleModel.h; sourceTree = "<group>"; };
+		DFD0CA831FBB7838005A4E1A /* LSRecommendArticleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSRecommendArticleModel.m; sourceTree = "<group>"; };
 		DFD5C6E81F8167A300045E39 /* FSCalendar+Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSCalendar+Deprecated.m"; sourceTree = "<group>"; };
 		DFD5C6E91F8167A300045E39 /* FSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
 		DFD5C6EA1F8167A300045E39 /* FSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
@@ -2840,6 +2858,12 @@
 				DF93F6781F9B3AC20025D40D /* AlertHelper.m */,
 				DF87A7C41F782F7C00EF0461 /* LSTabBarController.h */,
 				DF87A7C51F782F7C00EF0461 /* LSTabBarController.m */,
+				DFD0CA781FBB63C7005A4E1A /* LSDoctorAdviceController.h */,
+				DFD0CA791FBB63C7005A4E1A /* LSDoctorAdviceController.m */,
+				DFD0CA7A1FBB63C7005A4E1A /* LSDoctorAdviceController.xib */,
+				DFD0CA731FBB6288005A4E1A /* LSRecommendArticleController.h */,
+				DFD0CA741FBB6288005A4E1A /* LSRecommendArticleController.m */,
+				DFD0CA751FBB6288005A4E1A /* LSRecommendArticleController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2849,6 +2873,8 @@
 			children = (
 				DF73EAFC1F9FA35A0088DBE8 /* GuidePageModel.h */,
 				DF73EAFD1F9FA35A0088DBE8 /* GuidePageModel.m */,
+				DFD0CA821FBB7838005A4E1A /* LSRecommendArticleModel.h */,
+				DFD0CA831FBB7838005A4E1A /* LSRecommendArticleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2860,6 +2886,9 @@
 				DFF015F21F7AC8F300527CFA /* UIView+LSLayer.m */,
 				DF73EAF91F9FA2D70088DBE8 /* YGPageControl.h */,
 				DF73EAFA1F9FA2D70088DBE8 /* YGPageControl.m */,
+				DFD0CA7D1FBB74F8005A4E1A /* LSRecommendArticleCell.h */,
+				DFD0CA7E1FBB74F8005A4E1A /* LSRecommendArticleCell.m */,
+				DFD0CA7F1FBB74F8005A4E1A /* LSRecommendArticleCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4204,6 +4233,7 @@
 				4A43C1301FAB1C9C00EAC5AA /* T19Cell.xib in Resources */,
 				DFD5C7191F8167A300045E39 /* Info.plist in Resources */,
 				4A43C1481FAB1C9C00EAC5AA /* YGT22Cell.xib in Resources */,
+				DFD0CA771FBB6288005A4E1A /* LSRecommendArticleController.xib in Resources */,
 				DF87A63F1F7820A700EF0461 /* Assets.xcassets in Resources */,
 				DFCE83681FA8824100A2BD60 /* LICENSE in Resources */,
 				4A43C0F81FAB1C9C00EAC5AA /* EnergyBalanceVC.xib in Resources */,
@@ -4234,6 +4264,7 @@
 				4AFAD53F1F99E27A00B20CA2 /* MDGroupNameCell.xib in Resources */,
 				4A43C11C1FAB1C9C00EAC5AA /* ReportTextParaCell.xib in Resources */,
 				DF5A094E1F7D526E00CF5410 /* LSWorkTailDetailCell.xib in Resources */,
+				DFD0CA7C1FBB63C7005A4E1A /* LSDoctorAdviceController.xib in Resources */,
 				4A43C10E1FAB1C9C00EAC5AA /* SelfCure.storyboard in Resources */,
 				4A43C1281FAB1C9C00EAC5AA /* T16Cell.xib in Resources */,
 				DF81C24C1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib in Resources */,
@@ -4264,6 +4295,7 @@
 				0F6E10871F7B799600C2477B /* LSMineNewPswController.xib in Resources */,
 				DF2738171F8FC6E300154B6A /* LSWorkArticleController.xib in Resources */,
 				4A43C13A1FAB1C9C00EAC5AA /* YGPictureCell.xib in Resources */,
+				DFD0CA811FBB74F8005A4E1A /* LSRecommendArticleCell.xib in Resources */,
 				DF4B0A251FA7A63900D57AF9 /* LSMineUserNameController.xib in Resources */,
 				4A43C1461FAB1C9C00EAC5AA /* YGT14Cell.xib in Resources */,
 				DFCE837C1FA8F32C00A2BD60 /* LSAgreementController.xib in Resources */,
@@ -4303,6 +4335,7 @@
 				4AA2FE421FA7367A009009D8 /* MDSickerDetailBottomCell.m in Sources */,
 				4A8928371F99C82A0051A868 /* LSAddDocCollectionCell.m in Sources */,
 				DFF015991F7AC15700527CFA /* EaseBubbleView.m in Sources */,
+				DFD0CA761FBB6288005A4E1A /* LSRecommendArticleController.m in Sources */,
 				4A43C1251FAB1C9C00EAC5AA /* T15Cell.m in Sources */,
 				DFF0154F1F7AC15700527CFA /* MWCaptionView.m in Sources */,
 				4A43C1731FAB1C9C00EAC5AA /* UUBarChart.m in Sources */,
@@ -4346,6 +4379,7 @@
 				DF87A7B21F782DE000EF0461 /* IQKeyboardManager.m in Sources */,
 				DF5A094D1F7D526E00CF5410 /* LSWorkTailDetailCell.m in Sources */,
 				4A43C10C1FAB1C9C00EAC5AA /* GYRRadarChart.m in Sources */,
+				DFD0CA7B1FBB63C7005A4E1A /* LSDoctorAdviceController.m in Sources */,
 				4AFAD5341F99DE2D00B20CA2 /* MDNewDiscussCell.m in Sources */,
 				DF87A6F31F782A8E00EF0461 /* UIProgressView+AFNetworking.m in Sources */,
 				0F35D0241FA6BBB200F090DE /* FMDatabaseAdditions.m in Sources */,
@@ -4519,6 +4553,7 @@
 				DF87A6EF1F782A8E00EF0461 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				DFD5C70C1F8167A300045E39 /* FSCalendarCalculator.m in Sources */,
 				DFF015951F7AC15700527CFA /* EaseBubbleView+Location.m in Sources */,
+				DFD0CA801FBB74F8005A4E1A /* LSRecommendArticleCell.m in Sources */,
 				0FB200E51F79E771005BC289 /* LSAuthenticationController.m in Sources */,
 				DFF0156E1F7AC15700527CFA /* PSTCollectionViewItemKey.m in Sources */,
 				DF87A6B21F7827E200EF0461 /* Colours.m in Sources */,
@@ -4691,6 +4726,7 @@
 				DFF015E01F7AC25F00527CFA /* MJRefreshFooter.m in Sources */,
 				4A43C17F1FAB1C9C00EAC5AA /* ZFGenericChart.m in Sources */,
 				4A43C1571FAB1C9C00EAC5AA /* AppLayoutModel.m in Sources */,
+				DFD0CA841FBB7838005A4E1A /* LSRecommendArticleModel.m in Sources */,
 				DF87A6AC1F7827E200EF0461 /* AFHTTPSessionManager.m in Sources */,
 				DFF0155D1F7AC15700527CFA /* EMSDWebImageManager.m in Sources */,
 				DFF0159A1F7AC15700527CFA /* EaseChatToolbar.m in Sources */,

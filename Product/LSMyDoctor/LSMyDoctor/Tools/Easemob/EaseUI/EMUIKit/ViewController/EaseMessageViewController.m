@@ -27,6 +27,9 @@
 #import "EaseLocalDefine.h"
 #import "EaseSDKHelper.h"
 
+#import "LSDoctorAdviceController.h"
+#import "LSRecommendArticleController.h"
+
 #define KHintAdjustY    50
 
 #define IOS_VERSION [[UIDevice currentDevice] systemVersion]>=9.0
@@ -146,6 +149,10 @@ typedef enum : NSUInteger {
     
     [[EaseBaseMessageCell appearance] setSendMessageVoiceAnimationImages:@[[UIImage imageNamed:@"EaseUIResource.bundle/chat_sender_audio_playing_full"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_sender_audio_playing_000"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_sender_audio_playing_001"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_sender_audio_playing_002"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_sender_audio_playing_003"]]];
     [[EaseBaseMessageCell appearance] setRecvMessageVoiceAnimationImages:@[[UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing_full"],[UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing000"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing001"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing002"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing003"]]];
+    
+    
+    // 设置自定义cell
+    
     
     [[EaseBaseMessageCell appearance] setAvatarSize:40.f];
     [[EaseBaseMessageCell appearance] setAvatarCornerRadius:20.f];
@@ -1558,6 +1565,9 @@ typedef enum : NSUInteger {
     // Hide the keyboard
     [self.chatToolbar endEditing:YES];
     
+    LSDoctorAdviceController *vc = [[LSDoctorAdviceController alloc] initWithNibName:@"LSDoctorAdviceController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
 }
 
@@ -1565,6 +1575,9 @@ typedef enum : NSUInteger {
 {
     // Hide the keyboard
     [self.chatToolbar endEditing:YES];
+    
+    LSRecommendArticleController *vc = [[LSRecommendArticleController alloc] initWithNibName:@"LSRecommendArticleController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
 }
