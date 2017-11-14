@@ -107,12 +107,12 @@
     if (self.lastBtn == self.manageBtn)
     {
         //getArticleList 文章管理
-        url = PATH(@"%@/getArticleList");
+        url = PATH(@"%@/collectArticleList");
     }
     else if (self.lastBtn == self.libraryBtn)
     {
         //collectArticleList 文章库
-        url = PATH(@"%@/collectArticleList");
+        url = PATH(@"%@/getArticleList");
     }
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {

@@ -10,4 +10,6 @@
 
 @interface LSWorkArticleAddController : UIViewController
 
+@property(nonatomic,strong)NSMutableDictionary *data;
+
 @end
