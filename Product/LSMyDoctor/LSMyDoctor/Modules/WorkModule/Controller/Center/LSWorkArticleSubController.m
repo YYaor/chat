@@ -257,7 +257,7 @@
                 
                 NSArray *vcs = self.navigationController.viewControllers;
                 
-                [self.navigationController popToViewController:vcs[vcs.count-2] animated:YES];
+                [self.navigationController popToViewController:vcs[vcs.count-3] animated:YES];
 
             }else{
                 NSLog(@"返回数据有误");

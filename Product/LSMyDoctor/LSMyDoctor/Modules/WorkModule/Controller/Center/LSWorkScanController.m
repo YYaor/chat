@@ -18,16 +18,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    UILabel *titleLab = [UILabel new];
+    [self.view addSubview:titleLab];
+    titleLab.text = self.titleStr;
+    
     
     UIImageView *imageView = [[UIImageView alloc]init];
     [self.view addSubview:imageView];
     
     UITextView *contentTextView = [[UITextView alloc]init];
     [self.view addSubview:contentTextView];
+    
+    [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.equalTo(self.view).offset(20);
+        make.right.equalTo(self.view).offset(-20);
+        make.height.mas_equalTo(20);
+    }];
 
     
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(self.view).offset(20);
+        make.top.equalTo(self.view).offset(60);
+        make.left.equalTo(self.view).offset(20);
         make.right.equalTo(self.view).offset(-20);
         make.height.mas_equalTo([UIApplication sharedApplication].keyWindow.bounds.size.width-40);
     }];
@@ -45,7 +56,7 @@
         
         [contentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view).offset(20);
-            make.top.equalTo(self.view).offset(20);
+            make.top.equalTo(self.view).offset(60);
             make.right.equalTo(self.view).offset(-20);
             make.height.mas_equalTo(300);
         }];

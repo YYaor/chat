@@ -71,7 +71,7 @@
 -(UIImageView *)imageViewOne{
     if (!_imageViewOne) {
         _imageViewOne = [[UIImageView alloc]init];
-        _imageViewOne.backgroundColor = [UIColor redColor];
+//        _imageViewOne.backgroundColor = [UIColor redColor];
     }
     return _imageViewOne;
 }
@@ -79,7 +79,7 @@
 -(UIImageView *)imageViewTwo{
     if (!_imageViewTwo) {
         _imageViewTwo = [[UIImageView alloc]init];
-        _imageViewTwo.backgroundColor = [UIColor redColor];
+//        _imageViewTwo.backgroundColor = [UIColor redColor];
     }
     return _imageViewTwo;
 }
@@ -87,7 +87,7 @@
 -(UIImageView *)imageViewTree{
     if (!_imageViewTree) {
         _imageViewTree = [[UIImageView alloc]init];
-        _imageViewTree.backgroundColor = [UIColor redColor];
+//        _imageViewTree.backgroundColor = [UIColor redColor];
     }
     return _imageViewTree;
 }

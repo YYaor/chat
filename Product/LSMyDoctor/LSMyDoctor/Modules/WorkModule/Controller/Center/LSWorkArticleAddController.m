@@ -171,6 +171,7 @@
         vc.imageURL = self.imgUrl;
     }
     vc.content = self.contentTextV.text;
+    vc.titleStr = self.titleTextF.text;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
