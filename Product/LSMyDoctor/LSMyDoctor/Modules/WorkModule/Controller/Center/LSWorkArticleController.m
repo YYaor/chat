@@ -11,6 +11,7 @@
 #import "LSWorkArticleAddController.h"
 
 #import "LSWorkArticleCell.h"
+#import "LSCacheManager.h"
 @interface LSWorkArticleController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *navView;
@@ -121,7 +122,15 @@
         {
             [weakSelf.content removeAllObjects];
             
-            [weakSelf.content addObjectsFromArray:responseObj[@"data"][@"content"]];
+            if (self.lastBtn == self.manageBtn) {
+                NSArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
+                if (saveArr) {
+                    [weakSelf.content addObjectsFromArray:saveArr];
+                    [weakSelf.content addObjectsFromArray:responseObj[@"data"][@"content"]];
+                }
+            }else{
+                [weakSelf.content addObjectsFromArray:responseObj[@"data"][@"content"]];
+            }
             
             [weakSelf.tableView reloadData];
         }else
@@ -136,6 +145,17 @@
 #pragma mark - UITableViewDelegate
 
 #pragma mark - UITableViewDataSource
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableDictionary *data =self.content[indexPath.section];
+    if ([data[@"savetime"] doubleValue] > 0) {
+        LSWorkArticleAddController *vc = [[LSWorkArticleAddController alloc] initWithNibName:@"LSWorkArticleAddController" bundle:nil];
+        vc.data = data;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

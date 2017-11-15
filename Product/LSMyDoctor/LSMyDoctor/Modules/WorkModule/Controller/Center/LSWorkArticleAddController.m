@@ -69,7 +69,7 @@
 //    {
         [infoDic setValue:self.imgUrl forKey:@"img_url"];//文章图像地址    string
 //    }
-    
+    [infoDic setObject:[NSNumber numberWithInt:1] forKey:@"isMine"];
     [infoDic setObject:[NSNumber numberWithInt:0] forKey:@"type"];
     [infoDic setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"savetime"];
     [saveArr addObject:infoDic];
@@ -87,6 +87,16 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     
     self.contentTextV.placeholder = @"请输入内容";
+    
+    if (self.data) {
+        self.titleTextF.text = self.data[@"title"];
+        self.keyTextF.text = self.data[@"keyword"];
+        [self.typeBtn setTitle:self.data[@"classify"] forState:UIControlStateNormal];
+        self.contentTextV.text = self.data[@"content"];
+        if (self.data[@"img_url"]) {
+            [self.imgBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, self.data[@"img_url"]]]];
+        }
+    }
 }
 
 - (void)rightItemClick
@@ -123,6 +133,14 @@
     LSWorkArticleSubController *vc = [[LSWorkArticleSubController alloc] initWithNibName:@"LSWorkArticleSubController" bundle:nil];
     vc.infoDic = [infoDic copy];
     [self.navigationController pushViewController:vc animated:YES];
+    
+    NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
+    
+    for (NSDictionary *dic in saveArr) {
+        if ([self.data[@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
+            [saveArr removeObject:dic];
+        }
+    }
 }
 
 - (IBAction)scanBtnClick:(UIButton *)btn
