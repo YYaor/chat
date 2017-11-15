@@ -174,6 +174,19 @@
     cell.deleteBlock = ^(NSDictionary *dataDic) {
         if ([dataDic[@"isDraft"] integerValue] == 1) {
             //是草稿是就本地删除
+            NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
+            
+            for (NSDictionary *dic in saveArr) {
+                if ([self.content[indexPath.section][@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
+                    [saveArr removeObject:dic];
+                }
+            }
+            
+            [[LSCacheManager sharedInstance] removeObjectWithFilePath:@"article"];
+            [[LSCacheManager sharedInstance] archiverObject:saveArr ByKey:@"savearticle" WithPath:@"article"];
+            
+            [self.content removeObject:dataDic];
+            [self.tableView reloadData];
 
         }else{
             //不是草稿就是取消收藏
