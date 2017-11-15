@@ -40,41 +40,59 @@
     [super viewDidLoad];
     
     [self initForView];
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    backBtn.frame = CGRectMake(0, 0, 60, 40);
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = item;
+}
+
+-(void)backBtnClicked{
+    [AlertHelper InitMyAlertWithTitle:@"温馨提示" AndMessage:@"是否保存草稿" And:self CanCleBtnName:@"取消" SureBtnName:@"保存" AndCancleBtnCallback:^(id data) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } AndSureBtnCallback:^(id data) {
+        NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
+        
+        for (NSDictionary *dic in saveArr) {
+            if ([self.data[@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
+                [saveArr removeObject:dic];
+            }
+        }
+        
+        NSMutableDictionary *infoDic = [NSMutableDictionary dictionary];
+        //    if(self.titleTextF.text.length>0){
+        [infoDic setValue:self.titleTextF.text forKey:@"title"];//文章标题    string
+        //    }
+        //    if (self.keyTextF.text.length>0) {
+        [infoDic setValue:self.keyTextF.text forKey:@"keyword"];//文章关键字    string
+        //    }
+        //    if (self.typeBtn.titleLabel.text.length>0) {
+        [infoDic setValue:self.typeBtn.titleLabel.text forKey:@"classify"];//文章分类    string
+        //    }
+        //    if (self.contentTextV.text.length>0) {
+        [infoDic setValue:self.contentTextV.text forKey:@"content"];//文章内容    string
+        //    }
+        //    if (self.imgUrl)
+        //    {
+        [infoDic setValue:self.imgUrl forKey:@"img_url"];//文章图像地址    string
+        //    }
+        [infoDic setObject:[NSNumber numberWithInt:1] forKey:@"isMine"];
+        [infoDic setObject:[NSNumber numberWithInt:0] forKey:@"type"];
+        [infoDic setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"savetime"];
+        [saveArr addObject:infoDic];
+        
+        [[LSCacheManager sharedInstance] archiverObject:saveArr ByKey:@"savearticle" WithPath:@"article"];
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }];
 }
 
 -(void)dealloc{
     
-    NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
-    
-    for (NSDictionary *dic in saveArr) {
-        if ([self.data[@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
-            [saveArr removeObject:dic];
-        }
-    }
-    
-    NSMutableDictionary *infoDic = [NSMutableDictionary dictionary];
-//    if(self.titleTextF.text.length>0){
-        [infoDic setValue:self.titleTextF.text forKey:@"title"];//文章标题    string
-//    }
-//    if (self.keyTextF.text.length>0) {
-        [infoDic setValue:self.keyTextF.text forKey:@"keyword"];//文章关键字    string
-//    }
-//    if (self.typeBtn.titleLabel.text.length>0) {
-        [infoDic setValue:self.typeBtn.titleLabel.text forKey:@"classify"];//文章分类    string
-//    }
-//    if (self.contentTextV.text.length>0) {
-        [infoDic setValue:self.contentTextV.text forKey:@"content"];//文章内容    string
-//    }
-//    if (self.imgUrl)
-//    {
-        [infoDic setValue:self.imgUrl forKey:@"img_url"];//文章图像地址    string
-//    }
-    [infoDic setObject:[NSNumber numberWithInt:1] forKey:@"isMine"];
-    [infoDic setObject:[NSNumber numberWithInt:0] forKey:@"type"];
-    [infoDic setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"savetime"];
-    [saveArr addObject:infoDic];
-    
-    [[LSCacheManager sharedInstance] archiverObject:saveArr ByKey:@"savearticle" WithPath:@"article"];
+
 }
 
 - (void)initForView
