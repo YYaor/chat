@@ -14,4 +14,6 @@
 
 @property (nonatomic,strong)NSString *imageURL;
 
+@property (nonatomic,strong)NSString *title;
+
 @end

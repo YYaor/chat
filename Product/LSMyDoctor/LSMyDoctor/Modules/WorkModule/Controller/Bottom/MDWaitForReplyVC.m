@@ -104,6 +104,8 @@ static NSString *cellId = @"LSMessageCell";
 //            }
         });
     }
+    [self.tableView reloadData];
+
 }
 
 -(void)checkDoctor:(NSString *)conversationId{

@@ -17,13 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     
     UIImageView *imageView = [[UIImageView alloc]init];
     [self.view addSubview:imageView];
     
     UITextView *contentTextView = [[UITextView alloc]init];
     [self.view addSubview:contentTextView];
+
     
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self.view).offset(20);
