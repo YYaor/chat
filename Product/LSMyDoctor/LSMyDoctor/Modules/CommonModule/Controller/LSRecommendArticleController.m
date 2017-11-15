@@ -53,25 +53,39 @@ static NSString *cellId = @"LSRecommendArticleCell";
 
 - (void)requestData
 {
-//    __weak typeof(self) weakSelf = self;
-//    
-//    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-//    
-//    NSString *url = PATH(@"%@/chatCommon");
-//    
-//    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-////        [weakSelf.dataArr removeAllObjects];
-////        [weakSelf.dataArr addObjectsFromArray:responseObj[@"data"]];
-////        [weakSelf.tagsView setDataArr:weakSelf.dataArr];
-//    } failBlock:^(NSError *error) {
-//        NSLog(@"");
-//    }];
+    __weak typeof(self) weakSelf = self;
     
-    for (NSInteger i=0; i<10; i++)
-    {
-        LSRecommendArticleModel *model = [LSRecommendArticleModel new];
-        [self.dataList addObject:model];
-    }
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:@1 forKey:@"pagenum"];
+    [param setValue:@100 forKey:@"pagesize"];
+    
+    NSString *url = PATH(@"%@/collectArticleList");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            NSArray *array = responseObj[@"data"][@"content"];
+            
+            for (NSDictionary *dic in array)
+            {
+                LSRecommendArticleModel *model = [LSRecommendArticleModel new];
+                model.title = dic[@"title"];
+                model.content = dic[@"content"];
+                model.isSel = NO;
+                model.m_id = [dic[@"id"] longValue];
+                [self.dataList addObject:model];
+            }
+            
+            [weakSelf.tableView reloadData];
+        }else
+        {
+            [XHToast showCenterWithText:responseObj[@"message"]];
+        }
+    } failBlock:^(NSError *error) {
+        NSLog(@"");
+    }];
+    
 }
 
 #pragma mark - UITableViewDelegate

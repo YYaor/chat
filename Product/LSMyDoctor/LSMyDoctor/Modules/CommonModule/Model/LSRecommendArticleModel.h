@@ -10,9 +10,12 @@
 
 @interface LSRecommendArticleModel : NSObject
 
+
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *content;
 
 @property (nonatomic, assign) BOOL isSel;
+
+@property (nonatomic, assign) long m_id;
 
 @end
