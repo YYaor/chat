@@ -11,6 +11,7 @@
 #import "LSWorkArticleAddController.h"
 
 #import "LSWorkArticleCell.h"
+#import "LSCacheManager.h"
 @interface LSWorkArticleController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *navView;
@@ -121,7 +122,15 @@
         {
             [weakSelf.content removeAllObjects];
             
-            [weakSelf.content addObjectsFromArray:responseObj[@"data"][@"content"]];
+            if (self.lastBtn == self.manageBtn) {
+                NSArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
+                if (saveArr) {
+                    [weakSelf.content addObjectsFromArray:saveArr];
+                    [weakSelf.content addObjectsFromArray:responseObj[@"data"][@"content"]];
+                }
+            }else{
+                [weakSelf.content addObjectsFromArray:responseObj[@"data"][@"content"]];
+            }
             
             [weakSelf.tableView reloadData];
         }else
@@ -136,6 +145,17 @@
 #pragma mark - UITableViewDelegate
 
 #pragma mark - UITableViewDataSource
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableDictionary *data =self.content[indexPath.section];
+    if ([data[@"savetime"] doubleValue] > 0) {
+        LSWorkArticleAddController *vc = [[LSWorkArticleAddController alloc] initWithNibName:@"LSWorkArticleAddController" bundle:nil];
+        vc.data = data;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -154,6 +174,19 @@
     cell.deleteBlock = ^(NSDictionary *dataDic) {
         if ([dataDic[@"isDraft"] integerValue] == 1) {
             //是草稿是就本地删除
+            NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
+            
+            for (NSDictionary *dic in saveArr) {
+                if ([self.content[indexPath.section][@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
+                    [saveArr removeObject:dic];
+                }
+            }
+            
+            [[LSCacheManager sharedInstance] removeObjectWithFilePath:@"article"];
+            [[LSCacheManager sharedInstance] archiverObject:saveArr ByKey:@"savearticle" WithPath:@"article"];
+            
+            [self.content removeObject:dataDic];
+            [self.tableView reloadData];
 
         }else{
             //不是草稿就是取消收藏

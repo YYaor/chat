@@ -245,9 +245,15 @@
 //    source	来源	number	1医生 2后台
 //    title	文章标题	string
 //    type	文章类型	number	1单图 2多图 3视频 4无图
+//    isMine
     self.timeLabel.text = data[@"create_time"];
     self.titleLabel.text = data[@"title"];
     self.infoLabel.text = data[@"content"];
+    if ([data[@"isMine"] integerValue] == 1) {
+        self.statusLabel.text = @"草稿";
+    }else{
+        self.statusLabel.text = @"收藏";
+    }
     if (data[@"files"]) {
         NSArray *urlArray = [data[@"files"] componentsSeparatedByString:@","];
         if (urlArray.count == 0) {
