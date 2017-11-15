@@ -267,6 +267,11 @@ static TLNetworkStatus     networkStatus;
 //                failBlock ? failBlock(responseObject) : nil;
 //                [[DSToast toastWithText:responseObject[@"message"]] show];
                 
+                NSLog(@"%@", responseObject[@"data"]);
+                if (responseObject[@"data"] == nil)
+                {
+                    
+                }
                 
                 if ([responseObject[@"status"] isKindOfClass:[NSString class]] && [responseObject[@"status"] isEqualToString:@"-413"])
                 {

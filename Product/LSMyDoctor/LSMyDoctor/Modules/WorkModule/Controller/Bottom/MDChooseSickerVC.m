@@ -185,6 +185,7 @@
     cell.isSelected = sickerModel.is_Selected;
     cell.userNameStr = sickerModel.username;
     cell.sexAndAgeStr = [NSString stringWithFormat:@"%@   %@",sickerModel.sex,[NSString getAgeFromBirthday:sickerModel.birthday]];
+    cell.imgUrl = sickerModel.img_url;
  
     return cell;
     

@@ -9,7 +9,7 @@
 #import "LSWorkOutcallAddController.h"
 #import "MDChooseSickerModel.h"
 #import "MDChooseSickerVC.h"
-@interface LSWorkOutcallAddController ()<ZHPickViewDelegate>
+@interface LSWorkOutcallAddController ()<ZHPickViewDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *choosePatientButton;
 
@@ -80,6 +80,10 @@
     self.textView5.placeholder = @"请填写现病史";
     self.textView6.placeholder = @"请填写诊断内容";
     
+    self.textView4.delegate = self;
+    self.textView5.delegate = self;
+    self.textView6.delegate = self;
+
     self.contentView.frame = CGRectMake(20, 40, LSSCREENWIDTH-40, 611);
     [self.scrollView addSubview:self.contentView];
     
@@ -247,6 +251,16 @@
         [self.ageTF setTitle:[NSString getAgeFromBirthday:model.birthday] forState:UIControlStateNormal];
         [self.sexTF setTitle:model.sex forState:UIControlStateNormal];
     };
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextField *)textView
+{
+    if (textView.text.length > 50)
+    {
+        textView.text = [textView.text substringToIndex:50];
+    }
 }
 
 
