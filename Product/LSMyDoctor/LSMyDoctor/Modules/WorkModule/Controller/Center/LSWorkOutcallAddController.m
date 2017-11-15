@@ -131,7 +131,7 @@
             weakSelf.textView5.text = dic[@"disease_history"];
             weakSelf.textView6.text = dic[@"diagnosis"];
             
-            patientModel.username = dic[@"user_name"];
+//            patientModel.username = dic[@"user_name"];
             patientModel.user_id = [NSString stringWithFormat:@"%@", dic[@"user_id"]];
         }
         else
@@ -172,6 +172,7 @@
 //    userid	患者ID	number
 //    username	患者姓名	string
 //    visitdate
+    
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -187,9 +188,8 @@
     }else{
         [param setObject:[NSNumber numberWithInt:2] forKey:@"sex"];
     }
-    [param setObject:patientModel.username forKey:@"username"];
+    [param setObject:self.nameTF.text forKey:@"username"];
     [param setObject:[NSNumber numberWithInt:[patientModel.user_id intValue]] forKey:@"userid"];
-    
     
     NSString *url = @"";
     

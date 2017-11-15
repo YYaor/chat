@@ -268,9 +268,32 @@ static TLNetworkStatus     networkStatus;
 //                [[DSToast toastWithText:responseObject[@"message"]] show];
                 
                 NSLog(@"%@", responseObject[@"data"]);
-                if (responseObject[@"data"] == nil)
+                if ([responseObject[@"status"] intValue] == -202)
                 {
-                    
+                    //token过期，重新获得token
+                    [TLAsiNetworkHandler requestWithUrl:[NSString stringWithFormat:@"%@/home/getAccessTokenEx",UGAPI_HOST] params:nil showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj1)
+                     {
+                         if ([responseObj1[@"status"] integerValue] == 0)
+                         {
+                             [Defaults setValue:responseObj1[@"data"] forKey:@"accessToken"];
+                             NSLog(@"*******token:%@*****",responseObj1[@"data"]);
+                             [Defaults synchronize];
+                             
+                             
+                             NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithDictionary:params];
+                             [temp setValue:AccessToken forKey:@"accessToken"];
+
+                             [self requestWithUrl:url params:temp showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:successBlock failBlock:failBlock];
+                         }
+                         else
+                         {
+                             [XHToast showCenterWithText:responseObj1[@"message"]];
+                         }
+                     }
+                                              failBlock:^(NSError *error)
+                     {
+                         
+                     }];
                 }
                 
                 if ([responseObject[@"status"] isKindOfClass:[NSString class]] && [responseObject[@"status"] isEqualToString:@"-413"])
@@ -315,13 +338,11 @@ static TLNetworkStatus     networkStatus;
                      {
                          
                      }];
-                    
-                    
                 }
-                else
-                {
-                    [XHToast showCenterWithText:responseObject[@"message"]];
-                }
+//                else
+//                {
+//                    [XHToast showCenterWithText:responseObject[@"message"]];
+//                }
             }
             // 移除当前请求
             [[self allTasks] removeObject:task];
