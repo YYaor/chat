@@ -2038,7 +2038,7 @@ typedef enum : NSUInteger {
                                                              duration:duration
                                                                    to:self.conversation.conversationId
                                                           messageType:[self _messageTypeFromConversationType]
-                                                           messageExt:nil];
+                                                           messageExt:dic];
     [self _sendMessage:message];
 }
 

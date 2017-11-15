@@ -11,6 +11,7 @@
 #import "LSMessageCell.h"
 
 #import "FMDBTool.h"
+
 static NSString *cellId = @"LSMessageCell";
 
 @interface MDWaitForReplyVC () <UITableViewDelegate, UITableViewDataSource>
@@ -24,14 +25,17 @@ static NSString *cellId = @"LSMessageCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self initForView];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+}
+- (void)viewWillAppear:(BOOL)animated{
+    
     [self requestData];
 }
-
 - (void)initForView
 {
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -194,7 +198,7 @@ static NSString *cellId = @"LSMessageCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    EaseConversationModel *converSation = self.dataArray[indexPath.row];
+    EaseConversationModel *converSation = self.dataList[indexPath.row];
     EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
                                                  initWithConversationChatter:converSation.conversation.conversationId conversationType:converSation.conversation.type];
     chatController.hidesBottomBarWhenPushed = YES;

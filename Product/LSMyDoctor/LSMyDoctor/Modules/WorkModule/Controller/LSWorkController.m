@@ -20,6 +20,7 @@
 #import "LSWorkOutcallController.h"
 #import "LSWorkArticleController.h"
 #import "LSWorkUsefulController.h"
+#import "MDDataStatistics.h"
 
 //bottom
 #import "MDWaitForReplyVC.h"
@@ -168,6 +169,10 @@
     else if (btn.tag == 20004)
     {
         //数据统计
+        MDDataStatistics* dataStatistics = [[MDDataStatistics alloc] init];
+        dataStatistics.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:dataStatistics animated:YES];
+        
     }
 }
 

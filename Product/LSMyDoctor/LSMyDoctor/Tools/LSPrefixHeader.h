@@ -23,6 +23,7 @@
 #import "BMChineseSort.h"
 #import "AlertHelper.h"
 #import "WFHelperButton.h"
+#import "WFSegTitleView.h"
 //报告
 #import "ReportHeader.h"
 

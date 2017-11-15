@@ -289,6 +289,10 @@
 		4AA2FE721FA88B88009009D8 /* MDSickerGroupDetialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2FE711FA88B88009009D8 /* MDSickerGroupDetialVC.m */; };
 		4AB7A2A11FB0420200AFBFDA /* MDDoctorDetailEvaluateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB7A2A01FB0420200AFBFDA /* MDDoctorDetailEvaluateModel.m */; };
 		4ACCD7391FA2C25E003F1BBD /* MDGroupDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCD7381FA2C25E003F1BBD /* MDGroupDetailModel.m */; };
+		4AED377C1FBC325100D81200 /* MDDataStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED377B1FBC325100D81200 /* MDDataStatistics.m */; };
+		4AED377F1FBC329800D81200 /* MDDataStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED377E1FBC329800D81200 /* MDDataStatisticsModel.m */; };
+		4AED37831FBC32D500D81200 /* MDDataStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37811FBC32D500D81200 /* MDDataStatisticsCell.m */; };
+		4AED37841FBC32D500D81200 /* MDDataStatisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AED37821FBC32D500D81200 /* MDDataStatisticsCell.xib */; };
 		4AFAD5261F99D7DD00B20CA2 /* MDGroupCommunicateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD5251F99D7DD00B20CA2 /* MDGroupCommunicateVC.m */; };
 		4AFAD52F1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD52D1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.m */; };
 		4AFAD5341F99DE2D00B20CA2 /* MDNewDiscussCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD5321F99DE2D00B20CA2 /* MDNewDiscussCell.m */; };
@@ -1122,6 +1126,13 @@
 		4AB7A2A01FB0420200AFBFDA /* MDDoctorDetailEvaluateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDoctorDetailEvaluateModel.m; sourceTree = "<group>"; };
 		4ACCD7371FA2C25E003F1BBD /* MDGroupDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupDetailModel.h; sourceTree = "<group>"; };
 		4ACCD7381FA2C25E003F1BBD /* MDGroupDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDGroupDetailModel.m; sourceTree = "<group>"; };
+		4AED377A1FBC325100D81200 /* MDDataStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDataStatistics.h; sourceTree = "<group>"; };
+		4AED377B1FBC325100D81200 /* MDDataStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDataStatistics.m; sourceTree = "<group>"; };
+		4AED377D1FBC329800D81200 /* MDDataStatisticsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDataStatisticsModel.h; sourceTree = "<group>"; };
+		4AED377E1FBC329800D81200 /* MDDataStatisticsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDataStatisticsModel.m; sourceTree = "<group>"; };
+		4AED37801FBC32D500D81200 /* MDDataStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDataStatisticsCell.h; sourceTree = "<group>"; };
+		4AED37811FBC32D500D81200 /* MDDataStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDataStatisticsCell.m; sourceTree = "<group>"; };
+		4AED37821FBC32D500D81200 /* MDDataStatisticsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDDataStatisticsCell.xib; sourceTree = "<group>"; };
 		4AFAD5241F99D7DD00B20CA2 /* MDGroupCommunicateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupCommunicateVC.h; sourceTree = "<group>"; };
 		4AFAD5251F99D7DD00B20CA2 /* MDGroupCommunicateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDGroupCommunicateVC.m; sourceTree = "<group>"; };
 		4AFAD52C1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupDiscussDetailVC.h; sourceTree = "<group>"; };
@@ -2602,6 +2613,8 @@
 		4A8928251F98A1630051A868 /* Center */ = {
 			isa = PBXGroup;
 			children = (
+				4AED377D1FBC329800D81200 /* MDDataStatisticsModel.h */,
+				4AED377E1FBC329800D81200 /* MDDataStatisticsModel.m */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -4049,6 +4062,8 @@
 		DFFD8EC41F7C235800FF0ECD /* Center */ = {
 			isa = PBXGroup;
 			children = (
+				4AED377A1FBC325100D81200 /* MDDataStatistics.h */,
+				4AED377B1FBC325100D81200 /* MDDataStatistics.m */,
 				DF5A09821F7D604C00CF5410 /* LSWorkOutcallController.h */,
 				DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */,
 				DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */,
@@ -4106,6 +4121,9 @@
 		DFFD8ECC1F7C236100FF0ECD /* Center */ = {
 			isa = PBXGroup;
 			children = (
+				4AED37801FBC32D500D81200 /* MDDataStatisticsCell.h */,
+				4AED37811FBC32D500D81200 /* MDDataStatisticsCell.m */,
+				4AED37821FBC32D500D81200 /* MDDataStatisticsCell.xib */,
 				DF81C2431F84C43700D4D851 /* LSWorkOutcallListCell.h */,
 				DF81C2441F84C43700D4D851 /* LSWorkOutcallListCell.m */,
 				DF81C2451F84C43700D4D851 /* LSWorkOutcallListCell.xib */,
@@ -4312,6 +4330,7 @@
 				0FF0B8091F987A96003B4C7E /* SVProgressHUD.bundle in Resources */,
 				DF5A09351F7D413500CF5410 /* LSWorkAdviceDetailController.xib in Resources */,
 				DF4EC8AC1FA654B4007D9A96 /* SGQRCode.bundle in Resources */,
+				4AED37841FBC32D500D81200 /* MDDataStatisticsCell.xib in Resources */,
 				4A43C1401FAB1C9C00EAC5AA /* YGStripCell.xib in Resources */,
 				4A43C1541FAB1C9C00EAC5AA /* YGtrafficLightsCell.xib in Resources */,
 				4A43C1241FAB1C9C00EAC5AA /* T15AndT11Cell.xib in Resources */,
@@ -4354,6 +4373,7 @@
 				4A8928341F98ED700051A868 /* BMChineseSort.m in Sources */,
 				DFF015971F7AC15700527CFA /* EaseBubbleView+Video.m in Sources */,
 				4A43C1081FAB1C9C00EAC5AA /* DayDetailHeader.m in Sources */,
+				4AED377F1FBC329800D81200 /* MDDataStatisticsModel.m in Sources */,
 				DF335A1C1F954CB9009D026E /* PWTagsView.m in Sources */,
 				DFF015891F7AC15700527CFA /* EaseMessageViewController.m in Sources */,
 				DFF0156B1F7AC15700527CFA /* PSTCollectionViewController.m in Sources */,
@@ -4502,6 +4522,7 @@
 				4A43C14B1FAB1C9C00EAC5AA /* YGT30Cell.m in Sources */,
 				4A43C0F51FAB1C9C00EAC5AA /* BalanceModel.m in Sources */,
 				4AFAD5261F99D7DD00B20CA2 /* MDGroupCommunicateVC.m in Sources */,
+				4AED377C1FBC325100D81200 /* MDDataStatistics.m in Sources */,
 				DF4EC8781FA6514F007D9A96 /* bitstream.c in Sources */,
 				DFF015E61F7AC25F00527CFA /* MJRefreshBackNormalFooter.m in Sources */,
 				DF87A6B81F7827E200EF0461 /* MASViewAttribute.m in Sources */,
@@ -4530,6 +4551,7 @@
 				4A43C17D1FAB1C9C00EAC5AA /* ZFBarChart.m in Sources */,
 				DF4B0A241FA7A63900D57AF9 /* LSMineUserNameController.m in Sources */,
 				DFF0156C1F7AC15700527CFA /* PSTCollectionViewData.m in Sources */,
+				4AED37831FBC32D500D81200 /* MDDataStatisticsCell.m in Sources */,
 				4A0CE6A91F9094F500F7C187 /* UIImage+GIF.m in Sources */,
 				4A40CB821FB2EBD200F21091 /* MDComRequestCell.m in Sources */,
 				4A43C13F1FAB1C9C00EAC5AA /* YGStripCell.m in Sources */,
@@ -4868,7 +4890,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -4910,7 +4932,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -4957,8 +4979,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pengge.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "87d0ae3f-05bd-4acc-b2c9-b1b92604a675";
-				PROVISIONING_PROFILE_SPECIFIER = MyDoctor_Dev_Wqj;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -4969,7 +4991,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9F5M55YYN4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
