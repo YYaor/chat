@@ -315,8 +315,10 @@
 		DF335A1C1F954CB9009D026E /* PWTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF335A1B1F954CB9009D026E /* PWTagsView.m */; };
 		DF4B0A241FA7A63900D57AF9 /* LSMineUserNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B0A221FA7A63900D57AF9 /* LSMineUserNameController.m */; };
 		DF4B0A251FA7A63900D57AF9 /* LSMineUserNameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4B0A231FA7A63900D57AF9 /* LSMineUserNameController.xib */; };
-		DF4C37BA1FBDCBEE00E93796 /* LSDoctorAdviceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4C37B81FBDCBEE00E93796 /* LSDoctorAdviceMessageCell.m */; };
-		DF4C37BB1FBDCBEE00E93796 /* LSDoctorAdviceMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4C37B91FBDCBEE00E93796 /* LSDoctorAdviceMessageCell.xib */; };
+		DF4C37BA1FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4C37B81FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.m */; };
+		DF4C37BB1FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4C37B91FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.xib */; };
+		DF4C37BF1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4C37BD1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.m */; };
+		DF4C37C01FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4C37BE1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.xib */; };
 		DF4EC8601FA65030007D9A96 /* YGScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC85F1FA65030007D9A96 /* YGScanVC.m */; };
 		DF4EC8781FA6514F007D9A96 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC8631FA6514F007D9A96 /* bitstream.c */; };
 		DF4EC8791FA6514F007D9A96 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC8651FA6514F007D9A96 /* mask.c */; };
@@ -1171,9 +1173,12 @@
 		DF4B0A211FA7A63900D57AF9 /* LSMineUserNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineUserNameController.h; sourceTree = "<group>"; };
 		DF4B0A221FA7A63900D57AF9 /* LSMineUserNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineUserNameController.m; sourceTree = "<group>"; };
 		DF4B0A231FA7A63900D57AF9 /* LSMineUserNameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMineUserNameController.xib; sourceTree = "<group>"; };
-		DF4C37B71FBDCBEE00E93796 /* LSDoctorAdviceMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDoctorAdviceMessageCell.h; sourceTree = "<group>"; };
-		DF4C37B81FBDCBEE00E93796 /* LSDoctorAdviceMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDoctorAdviceMessageCell.m; sourceTree = "<group>"; };
-		DF4C37B91FBDCBEE00E93796 /* LSDoctorAdviceMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSDoctorAdviceMessageCell.xib; sourceTree = "<group>"; };
+		DF4C37B71FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDoctorAdviceMessage1Cell.h; sourceTree = "<group>"; };
+		DF4C37B81FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDoctorAdviceMessage1Cell.m; sourceTree = "<group>"; };
+		DF4C37B91FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSDoctorAdviceMessage1Cell.xib; sourceTree = "<group>"; };
+		DF4C37BC1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDoctorAdviceMessage2Cell.h; sourceTree = "<group>"; };
+		DF4C37BD1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDoctorAdviceMessage2Cell.m; sourceTree = "<group>"; };
+		DF4C37BE1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSDoctorAdviceMessage2Cell.xib; sourceTree = "<group>"; };
 		DF4EC85E1FA65030007D9A96 /* YGScanVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGScanVC.h; sourceTree = "<group>"; };
 		DF4EC85F1FA65030007D9A96 /* YGScanVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGScanVC.m; sourceTree = "<group>"; };
 		DF4EC8631FA6514F007D9A96 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
@@ -2907,9 +2912,12 @@
 				DFD0CA7D1FBB74F8005A4E1A /* LSRecommendArticleCell.h */,
 				DFD0CA7E1FBB74F8005A4E1A /* LSRecommendArticleCell.m */,
 				DFD0CA7F1FBB74F8005A4E1A /* LSRecommendArticleCell.xib */,
-				DF4C37B71FBDCBEE00E93796 /* LSDoctorAdviceMessageCell.h */,
-				DF4C37B81FBDCBEE00E93796 /* LSDoctorAdviceMessageCell.m */,
-				DF4C37B91FBDCBEE00E93796 /* LSDoctorAdviceMessageCell.xib */,
+				DF4C37B71FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.h */,
+				DF4C37B81FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.m */,
+				DF4C37B91FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.xib */,
+				DF4C37BC1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.h */,
+				DF4C37BD1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.m */,
+				DF4C37BE1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4274,7 +4282,7 @@
 				4A0CE6C21F945BDF00F7C187 /* MDPeerDiscussCell.xib in Resources */,
 				DF87A7E21F7835DD00EF0461 /* LSMineController.xib in Resources */,
 				DFCE82F11FA84EC500A2BD60 /* LaunchScreen.storyboard in Resources */,
-				DF4C37BB1FBDCBEE00E93796 /* LSDoctorAdviceMessageCell.xib in Resources */,
+				DF4C37BB1FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.xib in Resources */,
 				DFFD8EE61F7C37E500FF0ECD /* LSWorkAdviceCell.xib in Resources */,
 				4AA2FE581FA81374009009D8 /* MDHaveMarkCell.xib in Resources */,
 				4A43C13E1FAB1C9C00EAC5AA /* YGSportCell.xib in Resources */,
@@ -4324,6 +4332,7 @@
 				4A43C13A1FAB1C9C00EAC5AA /* YGPictureCell.xib in Resources */,
 				DFD0CA811FBB74F8005A4E1A /* LSRecommendArticleCell.xib in Resources */,
 				DF4B0A251FA7A63900D57AF9 /* LSMineUserNameController.xib in Resources */,
+				DF4C37C01FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.xib in Resources */,
 				4A43C1461FAB1C9C00EAC5AA /* YGT14Cell.xib in Resources */,
 				DFCE837C1FA8F32C00A2BD60 /* LSAgreementController.xib in Resources */,
 				DFFD8EE11F7C377B00FF0ECD /* LSWorkAdviceController.xib in Resources */,
@@ -4446,7 +4455,7 @@
 				DFF015A11F7AC15700527CFA /* EaseRecordView.m in Sources */,
 				4A0CE6A61F9094F500F7C187 /* SDWebImageManager.m in Sources */,
 				DFF0152C1F7AC15700527CFA /* EaseUI.m in Sources */,
-				DF4C37BA1FBDCBEE00E93796 /* LSDoctorAdviceMessageCell.m in Sources */,
+				DF4C37BA1FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.m in Sources */,
 				DFD5C70A1F8167A300045E39 /* FSCalendar.m in Sources */,
 				DFD5C7161F8167A300045E39 /* FSCalendarStickyHeader.m in Sources */,
 				DFF015A01F7AC15700527CFA /* EaseChatBarMoreView.m in Sources */,
@@ -4673,6 +4682,7 @@
 				DF87A7B81F782DE000EF0461 /* IQToolbar.m in Sources */,
 				0FB200CF1F78F087005BC289 /* LSUtil.m in Sources */,
 				DFF015711F7AC15700527CFA /* PSTGridLayoutInfo.m in Sources */,
+				DF4C37BF1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.m in Sources */,
 				DFF015311F7AC15700527CFA /* EMCDDeviceManager+Microphone.m in Sources */,
 				DFF015961F7AC15700527CFA /* EaseBubbleView+Text.m in Sources */,
 				DF87A7831F782D1300EF0461 /* RKDropdownAlert.m in Sources */,
