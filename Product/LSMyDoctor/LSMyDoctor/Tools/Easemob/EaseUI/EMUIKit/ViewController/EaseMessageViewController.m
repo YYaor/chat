@@ -1088,20 +1088,24 @@ typedef enum : NSUInteger {
         if (model.message.ext[@"messageType"]) {
             if ([model.message.ext[@"messageType"] isEqualToString:@"1"]) {
                 //下达医嘱
-                NSString *CellIdentifier = [EaseMessageCell cellIdentifierWithModel:model];
-
                 if (model.isSender) {
+                    NSString *CellIdentifier = @"LSDoctorAdviceMessage2Cell";
+
                     LSDoctorAdviceMessage2Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                     if (!cell) {
                         cell = [[LSDoctorAdviceMessage2Cell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
                         cell.data = model.message.ext;
                     }
+                    return cell;
                 }else{
+                    NSString *CellIdentifier = @"LSDoctorAdviceMessage1Cell";
+
                     LSDoctorAdviceMessage1Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                     if (!cell) {
                         cell = [[LSDoctorAdviceMessage1Cell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
                         cell.data = model.message.ext;
                     }
+                    return cell;
                 }
                 
             }
