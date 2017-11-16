@@ -20,6 +20,18 @@
     return instance ;
 }
 
+/**
+ 初始化方法，创建本地数据库表
+ @return return value
+ */
+-(instancetype)init
+{
+    if ([super init]) {
+        
+    }
+    return self ;
+}
+
 - (void)archiverObject:(id)object ByKey:(NSString *)key WithPath:(NSString *)path
 {
     //初始化存储对象信息的data

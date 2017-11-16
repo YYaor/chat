@@ -234,7 +234,8 @@
     self.deleteView.hidden = YES;
 }
 
--(void)setData:(NSMutableDictionary *)data{
+-(void)setData:(NSDictionary *)data{
+    _data = data;
 //    author_id	作者ID	number
 //    classify	文章分类	number
 //    content	文章概述	string

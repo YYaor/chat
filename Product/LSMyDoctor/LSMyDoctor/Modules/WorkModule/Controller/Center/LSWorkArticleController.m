@@ -121,7 +121,7 @@
         if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
         {
             [weakSelf.content removeAllObjects];
-            
+
             if (self.lastBtn == self.manageBtn) {
                 NSArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
                 if (saveArr) {
@@ -172,7 +172,7 @@
     cell.data = self.content[indexPath.section];
     
     cell.deleteBlock = ^(NSDictionary *dataDic) {
-        if ([dataDic[@"isDraft"] integerValue] == 1) {
+        if ([dataDic[@"isMine"] integerValue] == 1) {
             //是草稿是就本地删除
             NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
             

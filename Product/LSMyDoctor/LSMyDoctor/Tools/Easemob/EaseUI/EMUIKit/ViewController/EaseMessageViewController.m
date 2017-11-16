@@ -1955,7 +1955,7 @@ typedef enum : NSUInteger {
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]initWithDictionary:ext];
     [dic setObject:UserName forKey:@"username"];
     [dic setObject:DoctorId forKey:@"doctorid"];
-    [dic setObject:UserImage forKey:@"userimage"];
+    [dic setValue:UserImage forKey:@"userimage"];
     EMMessage *message = [EaseSDKHelper sendTextMessage:text
                                                      to:self.conversation.conversationId
                                             messageType:[self _messageTypeFromConversationType]

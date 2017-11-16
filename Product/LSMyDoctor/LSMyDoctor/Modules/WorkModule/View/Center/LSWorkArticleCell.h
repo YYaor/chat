@@ -10,7 +10,7 @@
 
 @interface LSWorkArticleCell : UITableViewCell
 
-@property (nonatomic,strong)NSMutableDictionary *data;
+@property (nonatomic,strong)NSDictionary *data;
 
 @property (nonatomic, copy) void (^deleteBlock)(NSDictionary *dataDic) ;
 
