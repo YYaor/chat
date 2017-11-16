@@ -12,4 +12,6 @@
 
 @property (nonatomic,strong)NSDictionary *data;
 
+@property (nonatomic, copy) void (^didSelected) (NSDictionary *dic);
+
 @end

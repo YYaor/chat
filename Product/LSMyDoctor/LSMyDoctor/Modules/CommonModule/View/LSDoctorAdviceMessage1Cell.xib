@@ -15,10 +15,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZaL-N9-rfO">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="ZaL-N9-rfO">
                         <rect key="frame" x="10" y="10" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="YlV-Fq-KUf"/>
@@ -42,7 +42,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CDc-Td-4A8">
                         <rect key="frame" x="55" y="10" width="250" height="63"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBY-6O-5pJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医嘱" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBY-6O-5pJ">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Ei1-19-epv"/>
@@ -78,6 +78,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="width" constant="250" id="4fz-GN-k5B"/>
                             <constraint firstItem="rBY-6O-5pJ" firstAttribute="leading" secondItem="CDc-Td-4A8" secondAttribute="leading" id="9PT-9a-9me"/>
@@ -94,6 +95,17 @@
                             <constraint firstItem="rBY-6O-5pJ" firstAttribute="top" secondItem="CDc-Td-4A8" secondAttribute="top" id="sHa-f8-7On"/>
                             <constraint firstItem="wWo-qc-p4u" firstAttribute="top" secondItem="rBY-6O-5pJ" secondAttribute="bottom" id="sZS-HF-Yly"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="M2l-9N-jfr" appends="YES" id="sc2-Zf-NfM"/>
+                        </connections>
                     </view>
                 </subviews>
                 <constraints>
@@ -105,7 +117,21 @@
                     <constraint firstItem="CDc-Td-4A8" firstAttribute="leading" secondItem="ZaL-N9-rfO" secondAttribute="trailing" constant="15" id="fx6-3m-WDF"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-145" y="2.5"/>
+            <connections>
+                <outlet property="header" destination="ZaL-N9-rfO" id="KvB-2r-YmO"/>
+                <outlet property="time" destination="uFM-5z-8Nt" id="wZM-wz-Lkf"/>
+                <outlet property="username" destination="16J-6h-Na1" id="bvW-wy-jzO"/>
+                <outlet property="zhenduan" destination="wWo-qc-p4u" id="F5O-oF-IvQ"/>
+            </connections>
+            <point key="canvasLocation" x="-349" y="-67"/>
         </tableViewCell>
+        <tapGestureRecognizer id="M2l-9N-jfr">
+            <connections>
+                <action selector="press:" destination="KGk-i7-Jjw" id="iDr-nY-wTR"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="user" width="50" height="50"/>
+    </resources>
 </document>

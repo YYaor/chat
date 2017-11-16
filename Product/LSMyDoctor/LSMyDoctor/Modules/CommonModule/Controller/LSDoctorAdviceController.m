@@ -35,8 +35,21 @@
 
     self.navigationItem.title = @"编辑医嘱";
     
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
-    self.navigationItem.rightBarButtonItem = rightItem;
+    if (!self.messageType)
+    {
+        //下达医嘱
+        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
+        self.navigationItem.rightBarButtonItem = rightItem;
+    }
+    
+    if ([self.messageType isEqualToString:@"1"])
+    {
+        //收到的下达医嘱
+        self.view.userInteractionEnabled = NO;
+        
+    }
+    
+    
     
 }
 

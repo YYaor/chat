@@ -1096,6 +1096,12 @@ typedef enum : NSUInteger {
                         cell = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:nil options:nil][0];
                     }
                     cell.data = model.message.ext;
+                    cell.didSelected = ^(NSDictionary *dic) {
+                        //发送的医嘱下达
+//                        LSDoctorAdviceController *vc = [[LSDoctorAdviceController alloc] initWithNibName:@"LSDoctorAdviceController" bundle:nil];
+//                        vc.messageType = dic[@"messageType"];
+//                        [self.navigationController pushViewController:vc animated:YES];
+                    };
                     return cell;
                 }else{
                     NSString *CellIdentifier = @"LSDoctorAdviceMessage1Cell";
@@ -1105,6 +1111,12 @@ typedef enum : NSUInteger {
                         cell = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:nil options:nil][0];
                     }
                     cell.data = model.message.ext;
+                    cell.didSelected = ^(NSDictionary *dic) {
+                        //收到的医嘱下达
+//                        LSDoctorAdviceController *vc = [[LSDoctorAdviceController alloc] initWithNibName:@"LSDoctorAdviceController" bundle:nil];
+//                        vc.messageType = dic[@"messageType"];
+//                        [self.navigationController pushViewController:vc animated:YES];
+                    };
                     return cell;
                 }
                 
