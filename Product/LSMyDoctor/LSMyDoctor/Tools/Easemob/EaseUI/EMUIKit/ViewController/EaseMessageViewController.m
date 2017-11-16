@@ -30,6 +30,8 @@
 #import "LSDoctorAdviceController.h"
 #import "LSRecommendArticleController.h"
 
+#import "LSDoctorAdviceMessageCell.h"
+
 #define KHintAdjustY    50
 
 #define IOS_VERSION [[UIDevice currentDevice] systemVersion]>=9.0
@@ -1082,6 +1084,18 @@ typedef enum : NSUInteger {
                 return sendCell;
             }
         }
+        if (model.message.ext[@"messageType"]) {
+            if ([model.message.ext[@"messageType"] isEqualToString:@"1"]) {
+                //下达医嘱
+                NSString *CellIdentifier = [EaseMessageCell cellIdentifierWithModel:model];
+
+                LSDoctorAdviceMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (!cell) {
+                    cell = [[LSDoctorAdviceMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                    cell.data = model.message.ext;
+                }
+            }
+        }
         
         NSString *CellIdentifier = [EaseMessageCell cellIdentifierWithModel:model];
         
@@ -1120,6 +1134,13 @@ typedef enum : NSUInteger {
             BOOL flag = [_dataSource isEmotionMessageFormessageViewController:self messageModel:model];
             if (flag) {
                 return [EaseCustomMessageCell cellHeightWithModel:model];
+            }
+        }
+        
+        if (model.message.ext[@"messageType"]) {
+            if ([model.message.ext[@"messageType"] isEqualToString:@"1"]) {
+                //下达医嘱
+                return 81;
             }
         }
         
