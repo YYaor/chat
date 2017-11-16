@@ -27,6 +27,12 @@
     
     self.nameLabel.text = conversation.title;
     self.messageLabel.text = messageModel.text;
+    if (messageModel.firstMessageBody.type == EMMessageBodyTypeImage) {
+        self.messageLabel.text = @"[图片]";
+    }
+    if (messageModel.firstMessageBody.type == EMMessageBodyTypeVoice) {
+        self.messageLabel.text = @"[语音]";
+    }
     self.timeLabel.text = [self getChatTime:[NSString stringWithFormat:@"%lld",messageModel.message.timestamp]];
 
 //    self.headImageView.image = messageModel.avatarImage;

@@ -47,7 +47,7 @@ static NSString *cellId = @"LSMessageCell";
 
 - (void)requestData
 {
-    if ([self.dataArray count] > 1) {
+    if ([self.dataArray count] > 0) {
         if ([[self.dataArray objectAtIndex:0] isKindOfClass:[EaseConversationModel class]]) {
             
             NSMutableArray *temp = [NSMutableArray array];
