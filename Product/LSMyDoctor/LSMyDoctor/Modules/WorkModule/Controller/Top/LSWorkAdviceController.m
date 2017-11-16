@@ -125,7 +125,7 @@ static NSString *cellId = @"LSWorkAdviceCell";
         action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath)
                   {
                       NSLog(@"___%s___", __func__);
-                      NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+                      NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
                       [param setValue:dataDic[@"id"] forKey:@"id"];
                       NSString *url = PATH(@"%@/removeRequest");
                       

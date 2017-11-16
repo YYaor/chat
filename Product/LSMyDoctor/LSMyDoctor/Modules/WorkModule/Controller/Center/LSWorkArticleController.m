@@ -126,8 +126,8 @@
                 NSArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
                 if (saveArr) {
                     [weakSelf.content addObjectsFromArray:saveArr];
-                    [weakSelf.content addObjectsFromArray:responseObj[@"data"][@"content"]];
                 }
+                [weakSelf.content addObjectsFromArray:responseObj[@"data"][@"content"]];
             }else{
                 [weakSelf.content addObjectsFromArray:responseObj[@"data"][@"content"]];
             }
