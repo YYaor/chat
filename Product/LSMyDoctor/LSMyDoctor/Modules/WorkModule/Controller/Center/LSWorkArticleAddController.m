@@ -55,7 +55,9 @@
         [self.navigationController popViewControllerAnimated:YES];
     } AndSureBtnCallback:^(id data) {
         NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
-        
+        if (!saveArr) {
+            saveArr  = [NSMutableArray array];
+        }
         for (NSDictionary *dic in saveArr) {
             if ([self.data[@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
                 [saveArr removeObject:dic];
