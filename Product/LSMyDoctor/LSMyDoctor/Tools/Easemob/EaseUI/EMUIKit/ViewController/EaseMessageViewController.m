@@ -1568,6 +1568,10 @@ typedef enum : NSUInteger {
     LSDoctorAdviceController *vc = [[LSDoctorAdviceController alloc] initWithNibName:@"LSDoctorAdviceController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
     
+    vc.sureBlock = ^(NSDictionary *dataDic) {
+        [self sendTextMessage:@"下达医嘱" withExt:datadic];
+    };
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
 }
 

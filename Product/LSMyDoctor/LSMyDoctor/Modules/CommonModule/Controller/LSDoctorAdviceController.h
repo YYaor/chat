@@ -10,4 +10,6 @@
 
 @interface LSDoctorAdviceController : UIViewController
 
+@property (nonatomic, copy) void (^sureBlock)(NSDictionary *dataDic) ;
+
 @end

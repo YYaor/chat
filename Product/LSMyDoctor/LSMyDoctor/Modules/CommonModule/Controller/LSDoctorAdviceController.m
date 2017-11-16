@@ -42,6 +42,16 @@
 
 - (void)rightItemClick
 {
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    [data setValue:self.textF1.text forKey:@"zhenduan"];
+    [data setValue:self.textF2.text forKey:@"yizhu"];
+    [data setValue:self.textF3.text forKey:@"chufang"];
+    [data setValue:self.textF4.text forKey:@"time"];
+    [data setValue:@"1" forKey:@"messageType"];
+
+    if (self.sureBlock) {
+        self.sureBlock(data);
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
