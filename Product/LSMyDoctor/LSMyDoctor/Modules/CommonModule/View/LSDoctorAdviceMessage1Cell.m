@@ -6,8 +6,8 @@
 //  Copyright © 2017年 赵炯丞. All rights reserved.
 //
 
-#import "LSDoctorAdviceMessageCell.h"
+#import "LSDoctorAdviceMessage1Cell.h"
 
-@implementation LSDoctorAdviceMessageCell
+@implementation LSDoctorAdviceMessage1Cell
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LSDoctorAdviceMessageCell : UITableViewCell
+@interface LSDoctorAdviceMessage1Cell : UITableViewCell
 
 @property (nonatomic,strong)NSDictionary *data;
 
