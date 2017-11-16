@@ -30,7 +30,8 @@
 #import "LSDoctorAdviceController.h"
 #import "LSRecommendArticleController.h"
 
-#import "LSDoctorAdviceMessageCell.h"
+#import "LSDoctorAdviceMessage2Cell.h"
+#import "LSDoctorAdviceMessage1Cell.h"
 
 #define KHintAdjustY    50
 
@@ -1089,11 +1090,20 @@ typedef enum : NSUInteger {
                 //下达医嘱
                 NSString *CellIdentifier = [EaseMessageCell cellIdentifierWithModel:model];
 
-                LSDoctorAdviceMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-                if (!cell) {
-                    cell = [[LSDoctorAdviceMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-                    cell.data = model.message.ext;
+                if (model.isSender) {
+                    LSDoctorAdviceMessage2Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                    if (!cell) {
+                        cell = [[LSDoctorAdviceMessage2Cell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                        cell.data = model.message.ext;
+                    }
+                }else{
+                    LSDoctorAdviceMessage1Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                    if (!cell) {
+                        cell = [[LSDoctorAdviceMessage1Cell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                        cell.data = model.message.ext;
+                    }
                 }
+                
             }
         }
         
