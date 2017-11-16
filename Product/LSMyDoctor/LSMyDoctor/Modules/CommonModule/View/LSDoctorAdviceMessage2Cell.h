@@ -10,4 +10,6 @@
 
 @interface LSDoctorAdviceMessage2Cell : UITableViewCell
 
+@property (nonatomic,strong)NSDictionary *data;
+
 @end
