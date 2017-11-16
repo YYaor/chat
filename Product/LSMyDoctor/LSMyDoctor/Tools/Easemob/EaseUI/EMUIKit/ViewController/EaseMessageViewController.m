@@ -1093,18 +1093,18 @@ typedef enum : NSUInteger {
 
                     LSDoctorAdviceMessage2Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                     if (!cell) {
-                        cell = [[LSDoctorAdviceMessage2Cell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-                        cell.data = model.message.ext;
+                        cell = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:nil options:nil][0];
                     }
+                    cell.data = model.message.ext;
                     return cell;
                 }else{
                     NSString *CellIdentifier = @"LSDoctorAdviceMessage1Cell";
 
                     LSDoctorAdviceMessage1Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                     if (!cell) {
-                        cell = [[LSDoctorAdviceMessage1Cell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-                        cell.data = model.message.ext;
+                        cell = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:nil options:nil][0];
                     }
+                    cell.data = model.message.ext;
                     return cell;
                 }
                 
