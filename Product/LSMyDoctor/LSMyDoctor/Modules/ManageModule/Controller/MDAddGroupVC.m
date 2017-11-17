@@ -127,7 +127,7 @@
         }
         
         for (MDChooseSickerModel *model in self.groupDataArr) {
-            if (![haveIdArr containsObject:model.user_id]) {
+            if (![haveIdArr containsObject:model.user_id] && model.is_Selected) {
                 [self.selectresultArr addObject:model.user_id];
             }
         }

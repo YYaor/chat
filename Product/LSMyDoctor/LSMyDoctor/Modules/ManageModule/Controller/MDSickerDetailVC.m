@@ -169,6 +169,7 @@
                 cell.cellTitleLab.text = @"备注";
                 cell.cellValueLab.text = self.detailModel.remark;
             }
+            cell.valueLabHeight.constant = [cell.cellValueLab.text heightWithFont:[UIFont systemFontOfSize:17.0f] constrainedToWidth:LSSCREENWIDTH - 140];
             
             return cell;
         }

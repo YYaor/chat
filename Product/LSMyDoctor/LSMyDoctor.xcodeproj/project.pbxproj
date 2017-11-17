@@ -293,6 +293,9 @@
 		4AED377F1FBC329800D81200 /* MDDataStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED377E1FBC329800D81200 /* MDDataStatisticsModel.m */; };
 		4AED37831FBC32D500D81200 /* MDDataStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37811FBC32D500D81200 /* MDDataStatisticsCell.m */; };
 		4AED37841FBC32D500D81200 /* MDDataStatisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AED37821FBC32D500D81200 /* MDDataStatisticsCell.xib */; };
+		4AED37A61FBE753A00D81200 /* YGComRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37A11FBE753A00D81200 /* YGComRequestCell.m */; };
+		4AED37A71FBE753A00D81200 /* YGIllnessomplaintCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37A31FBE753A00D81200 /* YGIllnessomplaintCell.m */; };
+		4AED37A81FBE753A00D81200 /* YGSelectMedicalRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37A51FBE753A00D81200 /* YGSelectMedicalRecordCell.m */; };
 		4AFAD5261F99D7DD00B20CA2 /* MDGroupCommunicateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD5251F99D7DD00B20CA2 /* MDGroupCommunicateVC.m */; };
 		4AFAD52F1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD52D1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.m */; };
 		4AFAD5341F99DE2D00B20CA2 /* MDNewDiscussCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD5321F99DE2D00B20CA2 /* MDNewDiscussCell.m */; };
@@ -1137,6 +1140,12 @@
 		4AED37801FBC32D500D81200 /* MDDataStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDataStatisticsCell.h; sourceTree = "<group>"; };
 		4AED37811FBC32D500D81200 /* MDDataStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDataStatisticsCell.m; sourceTree = "<group>"; };
 		4AED37821FBC32D500D81200 /* MDDataStatisticsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDDataStatisticsCell.xib; sourceTree = "<group>"; };
+		4AED37A01FBE753A00D81200 /* YGComRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGComRequestCell.h; sourceTree = "<group>"; };
+		4AED37A11FBE753A00D81200 /* YGComRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGComRequestCell.m; sourceTree = "<group>"; };
+		4AED37A21FBE753A00D81200 /* YGIllnessomplaintCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGIllnessomplaintCell.h; sourceTree = "<group>"; };
+		4AED37A31FBE753A00D81200 /* YGIllnessomplaintCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGIllnessomplaintCell.m; sourceTree = "<group>"; };
+		4AED37A41FBE753A00D81200 /* YGSelectMedicalRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGSelectMedicalRecordCell.h; sourceTree = "<group>"; };
+		4AED37A51FBE753A00D81200 /* YGSelectMedicalRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGSelectMedicalRecordCell.m; sourceTree = "<group>"; };
 		4AFAD5241F99D7DD00B20CA2 /* MDGroupCommunicateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupCommunicateVC.h; sourceTree = "<group>"; };
 		4AFAD5251F99D7DD00B20CA2 /* MDGroupCommunicateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDGroupCommunicateVC.m; sourceTree = "<group>"; };
 		4AFAD52C1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupDiscussDetailVC.h; sourceTree = "<group>"; };
@@ -2905,6 +2914,12 @@
 		DF87A62C1F7820A700EF0461 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4AED37A01FBE753A00D81200 /* YGComRequestCell.h */,
+				4AED37A11FBE753A00D81200 /* YGComRequestCell.m */,
+				4AED37A21FBE753A00D81200 /* YGIllnessomplaintCell.h */,
+				4AED37A31FBE753A00D81200 /* YGIllnessomplaintCell.m */,
+				4AED37A41FBE753A00D81200 /* YGSelectMedicalRecordCell.h */,
+				4AED37A51FBE753A00D81200 /* YGSelectMedicalRecordCell.m */,
 				DFF015F11F7AC8F300527CFA /* UIView+LSLayer.h */,
 				DFF015F21F7AC8F300527CFA /* UIView+LSLayer.m */,
 				DF73EAF91F9FA2D70088DBE8 /* YGPageControl.h */,
@@ -4409,6 +4424,7 @@
 				4AA2FE3D1FA73454009009D8 /* MDSickerClassCell.m in Sources */,
 				DFEC43EE1FA0EECC00DA8FAC /* LSMineModel.m in Sources */,
 				0FCC13081FB3429300588A78 /* LSWorkArticleCell.m in Sources */,
+				4AED37A61FBE753A00D81200 /* YGComRequestCell.m in Sources */,
 				DF87A7B71F782DE000EF0461 /* IQTitleBarButtonItem.m in Sources */,
 				0F8314721F7B3BE3008A9E22 /* LSMineUserSettingController.m in Sources */,
 				4A43C1711FAB1C9C00EAC5AA /* PieCharVIew.m in Sources */,
@@ -4429,6 +4445,7 @@
 				4A43C13D1FAB1C9C00EAC5AA /* YGSportCell.m in Sources */,
 				DF81C24B1F8A0D9E00D4D851 /* LSWorkOutcallAddController.m in Sources */,
 				DFF015341F7AC15700527CFA /* EMCDDeviceManagerBase.m in Sources */,
+				4AED37A71FBE753A00D81200 /* YGIllnessomplaintCell.m in Sources */,
 				DF93F6791F9B3AC20025D40D /* AlertHelper.m in Sources */,
 				DFF0157E1F7AC15700527CFA /* UIViewController+HUD.m in Sources */,
 				4A43C1021FAB1C9C00EAC5AA /* ThreeDimV.m in Sources */,
@@ -4564,6 +4581,7 @@
 				4A43C0FC1FAB1C9C00EAC5AA /* YCBGetRGB.m in Sources */,
 				DF27381B1F8FCF1100154B6A /* LSWorkArticleAddController.m in Sources */,
 				DFF015361F7AC15700527CFA /* wav.mm in Sources */,
+				4AED37A81FBE753A00D81200 /* YGSelectMedicalRecordCell.m in Sources */,
 				4A43C11F1FAB1C9C00EAC5AA /* T09Cell.m in Sources */,
 				0FF0B8081F987A96003B4C7E /* SVProgressAnimatedView.m in Sources */,
 				4AA2FE261FA6F343009009D8 /* MDAddGroupVC.m in Sources */,

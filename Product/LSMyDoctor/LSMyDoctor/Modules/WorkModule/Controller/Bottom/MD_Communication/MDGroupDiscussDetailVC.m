@@ -74,8 +74,8 @@
 {
     NSLog(@"解散此群");
     
-    NSString* myIdStr = [Defaults valueForKey:@"doctorid"];
-    if (![self.groupDetailModel.doctor_id isEqualToString:myIdStr]) {
+    NSString* myIdStr = [NSString stringWithFormat:@"%@",[Defaults valueForKey:@"doctorid"]];
+    if (![[NSString stringWithFormat:@"%@",self.groupDetailModel.doctor_id] isEqualToString:myIdStr]) {
         [XHToast showCenterWithText:@"对不起，您没有权限解散"];
         return;
     }

@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *cellValueLab;//分块儿值Value；
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *valueLabHeight;//高度
+
 
 
 @end
