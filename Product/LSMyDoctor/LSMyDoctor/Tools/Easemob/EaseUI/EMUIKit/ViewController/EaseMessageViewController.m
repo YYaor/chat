@@ -1127,55 +1127,6 @@ typedef enum : NSUInteger {
             
         }
         
-        if (model.message.ext) {
-            if(model.message.ext[@"bookRequest"]){
-                //预约请求
-                NSString* cellId = [YGComRequestCell cellIdentifierWithModel:model];
-                YGComRequestCell* cell = (YGComRequestCell*)[tableView dequeueReusableCellWithIdentifier:cellId];
-                
-                if (!cell) {
-                    cell = [[YGComRequestCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId model:model];
-                }
-                
-                cell.model = model;
-                
-                cell.sureBlock = ^(NSString *status, NSString *requestId) {
-                    NSString* statusStr = [status isEqualToString:@"1"] ? @"1" : @"2";
-                    [self agreeOrRefuseRequestDataWithStatus:statusStr requestId:requestId];
-                    
-                };
-                
-                return cell;
-            }
-            
-            if(model.message.ext[@"chiefComplaint"]){
-                //问诊 病情主诉
-                NSString* cellId = [YGIllnessomplaintCell cellIdentifierWithModel:model];
-                YGIllnessomplaintCell* cell = (YGIllnessomplaintCell*)[tableView dequeueReusableCellWithIdentifier:cellId];
-                
-                if (!cell) {
-                    cell = [[YGIllnessomplaintCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId model:model];
-                }
-                cell.delegate = self;
-                cell.model = model;
-                return cell;
-            }
-            
-            if(model.message.ext[@"medicalRecord"]){
-                //问诊 病情主诉
-                NSString* cellId = [YGSelectMedicalRecordCell cellIdentifierWithModel:model];
-                YGSelectMedicalRecordCell* cell = (YGSelectMedicalRecordCell*)[tableView dequeueReusableCellWithIdentifier:cellId];
-                
-                if (!cell) {
-                    cell = [[YGSelectMedicalRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId model:model];
-                }
-                cell.model = model;
-                return cell;
-            }
-            
-            
-            
-        }
         
         NSString *CellIdentifier = [EaseMessageCell cellIdentifierWithModel:model];
         
@@ -1223,31 +1174,7 @@ typedef enum : NSUInteger {
                 return 81;
             }
         }
-        if (model.message.ext) {
-            if(model.message.ext[@"bookRequest"]){
-                //预约
-                //            CGFloat contentHeight = [Function contentHeightWithSize:18.0 with:kScreenWidth * 0.5  string:message] ;
-                //            return contentHeight > 30 ? contentHeight + 50 :  80;
-                
-                return 160.0f;
-            }
-            if(model.message.ext[@"chiefComplaint"]){
-                //病情主诉 问诊
-                //            CGFloat contentHeight = [Function contentHeightWithSize:18.0 with:kScreenWidth * 0.5  string:message] ;
-                //            return contentHeight > 30 ? contentHeight + 50 :  80;
-                
-                return 120.0f;
-            }
-            
-            if(model.message.ext[@"medicalRecord"]){
-                //我的病历
-                //            CGFloat contentHeight = [Function contentHeightWithSize:18.0 with:kScreenWidth * 0.5  string:message] ;
-                //            return contentHeight > 30 ? contentHeight + 50 :  80;
-                
-                return 110.0f;
-            }
-            
-        }
+        
         
         return [EaseBaseMessageCell cellHeightWithModel:model];
     }
@@ -2330,37 +2257,5 @@ typedef enum : NSUInteger {
     return targets;
 }
 
-#pragma mark -- 同意预约请求
-- (void)agreeOrRefuseRequestDataWithStatus:(NSString*)statusStr requestId:(NSString*)requestIdStr
-{
-    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-    
-    [param setValue:statusStr forKey:@"status"];
-    [param setValue:requestIdStr forKey:@"id"];
-    
-    NSString* url = PATH(@"%@/updateOrderStatus");
-    
-    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-        if ([responseObj isKindOfClass:[NSDictionary class]]) {
-            
-            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
-            {
-                [XHToast showCenterWithText:@"已处理该请求"];
-                
-            }else
-            {
-                [XHToast showCenterWithText:@"获取数据失败"];
-            }
-            
-        }else{
-            [XHToast showCenterWithText:@"数据格式错误"];
-        }
-        
-        
-        
-    } failBlock:^(NSError *error) {
-        [XHToast showCenterWithText:@"fail"];
-    }];
-}
 
 @end

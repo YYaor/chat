@@ -84,6 +84,7 @@
     agreeBtn.detail = model.message.ext[@"bookRequestId"];
     agreeBtn.layer.masksToBounds = YES;
     agreeBtn.layer.cornerRadius = 15.0f;
+    [agreeBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [btnView addSubview:agreeBtn];
     [agreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(btnView.mas_top).offset(5);
@@ -101,6 +102,7 @@
     refuseBtn.index = 0;
     refuseBtn.detail = model.message.ext[@"bookRequestId"];
     refuseBtn.layer.cornerRadius = 15.0f;
+    [refuseBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [btnView addSubview:refuseBtn];
     [refuseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(agreeBtn);

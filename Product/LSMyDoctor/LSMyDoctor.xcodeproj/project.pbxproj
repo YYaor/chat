@@ -296,6 +296,13 @@
 		4AED37A61FBE753A00D81200 /* YGComRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37A11FBE753A00D81200 /* YGComRequestCell.m */; };
 		4AED37A71FBE753A00D81200 /* YGIllnessomplaintCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37A31FBE753A00D81200 /* YGIllnessomplaintCell.m */; };
 		4AED37A81FBE753A00D81200 /* YGSelectMedicalRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37A51FBE753A00D81200 /* YGSelectMedicalRecordCell.m */; };
+		4AED37AC1FBE867300D81200 /* MDSingleCommunicationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37AA1FBE867300D81200 /* MDSingleCommunicationVC.m */; };
+		4AED37B01FBE964D00D81200 /* YGMedicalRecordDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37AF1FBE964D00D81200 /* YGMedicalRecordDetailVC.m */; };
+		4AED37B71FBE96C600D81200 /* YGMedicalInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37B21FBE96C600D81200 /* YGMedicalInfoCell.m */; };
+		4AED37B81FBE96C600D81200 /* YGMedicalInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AED37B31FBE96C600D81200 /* YGMedicalInfoCell.xib */; };
+		4AED37B91FBE96C600D81200 /* YGMedicalPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37B51FBE96C600D81200 /* YGMedicalPrescriptionCell.m */; };
+		4AED37BA1FBE96C600D81200 /* YGMedicalPrescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AED37B61FBE96C600D81200 /* YGMedicalPrescriptionCell.xib */; };
+		4AED37BD1FBE96EA00D81200 /* YGMedicalRecordDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED37BC1FBE96EA00D81200 /* YGMedicalRecordDetailModel.m */; };
 		4AFAD5261F99D7DD00B20CA2 /* MDGroupCommunicateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD5251F99D7DD00B20CA2 /* MDGroupCommunicateVC.m */; };
 		4AFAD52F1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD52D1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.m */; };
 		4AFAD5341F99DE2D00B20CA2 /* MDNewDiscussCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD5321F99DE2D00B20CA2 /* MDNewDiscussCell.m */; };
@@ -1146,6 +1153,18 @@
 		4AED37A31FBE753A00D81200 /* YGIllnessomplaintCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGIllnessomplaintCell.m; sourceTree = "<group>"; };
 		4AED37A41FBE753A00D81200 /* YGSelectMedicalRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGSelectMedicalRecordCell.h; sourceTree = "<group>"; };
 		4AED37A51FBE753A00D81200 /* YGSelectMedicalRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGSelectMedicalRecordCell.m; sourceTree = "<group>"; };
+		4AED37A91FBE867300D81200 /* MDSingleCommunicationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSingleCommunicationVC.h; sourceTree = "<group>"; };
+		4AED37AA1FBE867300D81200 /* MDSingleCommunicationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSingleCommunicationVC.m; sourceTree = "<group>"; };
+		4AED37AE1FBE964D00D81200 /* YGMedicalRecordDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGMedicalRecordDetailVC.h; sourceTree = "<group>"; };
+		4AED37AF1FBE964D00D81200 /* YGMedicalRecordDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGMedicalRecordDetailVC.m; sourceTree = "<group>"; };
+		4AED37B11FBE96C600D81200 /* YGMedicalInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGMedicalInfoCell.h; sourceTree = "<group>"; };
+		4AED37B21FBE96C600D81200 /* YGMedicalInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGMedicalInfoCell.m; sourceTree = "<group>"; };
+		4AED37B31FBE96C600D81200 /* YGMedicalInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YGMedicalInfoCell.xib; sourceTree = "<group>"; };
+		4AED37B41FBE96C600D81200 /* YGMedicalPrescriptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGMedicalPrescriptionCell.h; sourceTree = "<group>"; };
+		4AED37B51FBE96C600D81200 /* YGMedicalPrescriptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGMedicalPrescriptionCell.m; sourceTree = "<group>"; };
+		4AED37B61FBE96C600D81200 /* YGMedicalPrescriptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YGMedicalPrescriptionCell.xib; sourceTree = "<group>"; };
+		4AED37BB1FBE96EA00D81200 /* YGMedicalRecordDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGMedicalRecordDetailModel.h; sourceTree = "<group>"; };
+		4AED37BC1FBE96EA00D81200 /* YGMedicalRecordDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGMedicalRecordDetailModel.m; sourceTree = "<group>"; };
 		4AFAD5241F99D7DD00B20CA2 /* MDGroupCommunicateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupCommunicateVC.h; sourceTree = "<group>"; };
 		4AFAD5251F99D7DD00B20CA2 /* MDGroupCommunicateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDGroupCommunicateVC.m; sourceTree = "<group>"; };
 		4AFAD52C1F99D9BB00B20CA2 /* MDGroupDiscussDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDGroupDiscussDetailVC.h; sourceTree = "<group>"; };
@@ -2782,6 +2801,8 @@
 		DF73EB031FA0DD9C0088DBE8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4AED37BB1FBE96EA00D81200 /* YGMedicalRecordDetailModel.h */,
+				4AED37BC1FBE96EA00D81200 /* YGMedicalRecordDetailModel.m */,
 				DF73EB041FA0DD9C0088DBE8 /* LSPatientModel.h */,
 				DF73EB051FA0DD9C0088DBE8 /* LSPatientModel.m */,
 				DFBFCEDF1FA237DB006A7A21 /* LSManageModel.h */,
@@ -2799,6 +2820,12 @@
 		DF73EB061FA0DD9C0088DBE8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4AED37B11FBE96C600D81200 /* YGMedicalInfoCell.h */,
+				4AED37B21FBE96C600D81200 /* YGMedicalInfoCell.m */,
+				4AED37B31FBE96C600D81200 /* YGMedicalInfoCell.xib */,
+				4AED37B41FBE96C600D81200 /* YGMedicalPrescriptionCell.h */,
+				4AED37B51FBE96C600D81200 /* YGMedicalPrescriptionCell.m */,
+				4AED37B61FBE96C600D81200 /* YGMedicalPrescriptionCell.xib */,
 				DF73EB071FA0DD9C0088DBE8 /* LSPatientListCell.h */,
 				DF73EB081FA0DD9C0088DBE8 /* LSPatientListCell.m */,
 				DFBFCEE51FA23EBE006A7A21 /* LSManageCell.h */,
@@ -3241,6 +3268,8 @@
 				4AA2FE5F1FA8202F009009D8 /* MDSickerRemarkVC.m */,
 				4AA2FE631FA821EE009009D8 /* MDEditGroupVC.h */,
 				4AA2FE641FA821EE009009D8 /* MDEditGroupVC.m */,
+				4AED37AE1FBE964D00D81200 /* YGMedicalRecordDetailVC.h */,
+				4AED37AF1FBE964D00D81200 /* YGMedicalRecordDetailVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3260,6 +3289,8 @@
 				DF87A7E31F7835FE00EF0461 /* LSMessageController.h */,
 				DF87A7E41F7835FE00EF0461 /* LSMessageController.m */,
 				DF87A7E51F7835FE00EF0461 /* LSMessageController.xib */,
+				4AED37A91FBE867300D81200 /* MDSingleCommunicationVC.h */,
+				4AED37AA1FBE867300D81200 /* MDSingleCommunicationVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4289,6 +4320,7 @@
 				DF5A09491F7D50E300CF5410 /* LSWorkTailDetailUserCell.xib in Resources */,
 				4A43C14A1FAB1C9C00EAC5AA /* YGT28Cell.xib in Resources */,
 				4A43C0FE1FAB1C9C00EAC5AA /* DietReportHeadCell.xib in Resources */,
+				4AED37B81FBE96C600D81200 /* YGMedicalInfoCell.xib in Resources */,
 				DF87A6B31F7827E200EF0461 /* Info.plist in Resources */,
 				4AFAD53A1F99E0A500B20CA2 /* MDAllMemberReusableView.xib in Resources */,
 				4A43C12C1FAB1C9C00EAC5AA /* T17Cell.xib in Resources */,
@@ -4360,6 +4392,7 @@
 				DF27381C1F8FCF1100154B6A /* LSWorkArticleAddController.xib in Resources */,
 				4A0CE6C61F945BDF00F7C187 /* MDPeerinstructCell.xib in Resources */,
 				DFFD8ED71F7C23C300FF0ECD /* LSWorkAppointController.xib in Resources */,
+				4AED37BA1FBE96C600D81200 /* YGMedicalPrescriptionCell.xib in Resources */,
 				0FF0B8091F987A96003B4C7E /* SVProgressHUD.bundle in Resources */,
 				DF5A09351F7D413500CF5410 /* LSWorkAdviceDetailController.xib in Resources */,
 				DF4EC8AC1FA654B4007D9A96 /* SGQRCode.bundle in Resources */,
@@ -4388,6 +4421,7 @@
 				4A8928371F99C82A0051A868 /* LSAddDocCollectionCell.m in Sources */,
 				DFF015991F7AC15700527CFA /* EaseBubbleView.m in Sources */,
 				DFD0CA761FBB6288005A4E1A /* LSRecommendArticleController.m in Sources */,
+				4AED37BD1FBE96EA00D81200 /* YGMedicalRecordDetailModel.m in Sources */,
 				4A43C1251FAB1C9C00EAC5AA /* T15Cell.m in Sources */,
 				DFF0154F1F7AC15700527CFA /* MWCaptionView.m in Sources */,
 				4A43C1731FAB1C9C00EAC5AA /* UUBarChart.m in Sources */,
@@ -4463,6 +4497,7 @@
 				DF73EB091FA0DD9C0088DBE8 /* LSPatientModel.m in Sources */,
 				DF4EC8801FA6514F007D9A96 /* FireflyQRCodeGenerator.m in Sources */,
 				DF87A6BC1F7827E200EF0461 /* View+MASAdditions.m in Sources */,
+				4AED37B91FBE96C600D81200 /* YGMedicalPrescriptionCell.m in Sources */,
 				DF87A6B11F7827E200EF0461 /* AFURLSessionManager.m in Sources */,
 				DFF015E91F7AC25F00527CFA /* MJRefreshNormalHeader.m in Sources */,
 				DF87A7B51F782DE000EF0461 /* IQBarButtonItem.m in Sources */,
@@ -4574,6 +4609,7 @@
 				4A43C1581FAB1C9C00EAC5AA /* DietModel.m in Sources */,
 				DF87A7EB1F78361D00EF0461 /* LSManageController.m in Sources */,
 				DFF015781F7AC15700527CFA /* EaseMessageModel.m in Sources */,
+				4AED37B71FBE96C600D81200 /* YGMedicalInfoCell.m in Sources */,
 				DFF015E31F7AC25F00527CFA /* MJRefreshAutoNormalFooter.m in Sources */,
 				4A0CE6CE1F960B8F00F7C187 /* MDConsulteDisccussVC.m in Sources */,
 				DF87ABF71F83EBD60080AACA /* LSWorkOutcallListController.m in Sources */,
@@ -4630,9 +4666,11 @@
 				DFF0155F1F7AC15700527CFA /* MKAnnotationView+EMWebCache.m in Sources */,
 				DF87A6AE1F7827E200EF0461 /* AFSecurityPolicy.m in Sources */,
 				DF87A7E61F7835FE00EF0461 /* LSMessageController.m in Sources */,
+				4AED37B01FBE964D00D81200 /* YGMedicalRecordDetailVC.m in Sources */,
 				DF87A6B61F7827E200EF0461 /* MASConstraintMaker.m in Sources */,
 				4A43C1821FAB1C9C00EAC5AA /* ZFLine.m in Sources */,
 				DFF015E41F7AC25F00527CFA /* MJRefreshAutoStateFooter.m in Sources */,
+				4AED37AC1FBE867300D81200 /* MDSingleCommunicationVC.m in Sources */,
 				4AA2FE721FA88B88009009D8 /* MDSickerGroupDetialVC.m in Sources */,
 				0F35D0261FA6BBB200F090DE /* FMDatabaseQueue.m in Sources */,
 				DF87A6B51F7827E200EF0461 /* MASConstraint.m in Sources */,

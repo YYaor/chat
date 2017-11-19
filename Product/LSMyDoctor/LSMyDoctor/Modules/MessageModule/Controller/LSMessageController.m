@@ -12,6 +12,9 @@
 
 #import "FMDBTool.h"
 
+#import "MDSingleCommunicationVC.h"
+#import "MDSingleCommunicateVC.h"
+
 static NSString *cellId = @"LSMessageCell";
 
 @interface LSMessageController () <UITableViewDelegate, UITableViewDataSource>
@@ -211,10 +214,13 @@ static NSString *cellId = @"LSMessageCell";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     EaseConversationModel *converSation = self.dataArray[indexPath.row];
-    EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
-                                                 initWithConversationChatter:converSation.conversation.conversationId conversationType:converSation.conversation.type];
+    MDSingleCommunicationVC *chatController = [[MDSingleCommunicationVC alloc]
+                                                 initWithConversationChatter:converSation.conversation.conversationId conversationType:EMConversationTypeChat];
     chatController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatController animated:YES];
+    
+    
+    
 }
 
 #pragma mark - UITableViewDataSource
