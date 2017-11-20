@@ -9,6 +9,7 @@
 #import "LSWorkArticleController.h"
 
 #import "LSWorkArticleAddController.h"
+#import "LSWorkArticleDetailController.h"
 
 #import "LSWorkArticleCell.h"
 #import "LSCacheManager.h"
@@ -144,20 +145,27 @@
 
 #pragma mark - UITableViewDelegate
 
-#pragma mark - UITableViewDataSource
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSMutableDictionary *data =self.content[indexPath.section];
     if ([data[@"savetime"] doubleValue] > 0) {
+        //草稿进入
         LSWorkArticleAddController *vc = [[LSWorkArticleAddController alloc] initWithNibName:@"LSWorkArticleAddController" bundle:nil];
         vc.data = data;
         [self.navigationController pushViewController:vc animated:YES];
     }
+    else
+    {
+        LSWorkArticleDetailController *vc = [[LSWorkArticleDetailController alloc] initWithNibName:@"LSWorkArticleDetailController" bundle:nil];
+        vc.dic = data;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
 }
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -171,48 +179,56 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LSWorkArticleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.data = self.content[indexPath.section];
     
-    cell.deleteBlock = ^(NSDictionary *dataDic) {
-        if ([dataDic[@"isMine"] integerValue] == 1) {
-            //是草稿是就本地删除
-            NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
-            
-            for (NSDictionary *dic in saveArr) {
-                if ([self.content[indexPath.section][@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
-                    [saveArr removeObject:dic];
-                }
-            }
-            
-            [[LSCacheManager sharedInstance] removeObjectWithFilePath:@"article"];
-            [[LSCacheManager sharedInstance] archiverObject:saveArr ByKey:@"savearticle" WithPath:@"article"];
-            
-            [self.content removeObject:dataDic];
-            [self.tableView reloadData];
-
-        }else{
-            //不是草稿就是取消收藏
-            NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-            
-            [param setObject:[NSNumber numberWithInteger:[dataDic[@"id"] integerValue]] forKey:@"id"];
-            NSString * url = PATH(@"%@/cancelCollectArticle");
-            [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+    if (self.lastBtn == self.manageBtn)
+    {
+        [cell setDataWithDictionary:self.content[indexPath.section] type:@"1"];
+        
+        cell.deleteBlock = ^(NSDictionary *dataDic) {
+            if (dataDic[@"isMine"]) {
+                //不是草稿就是取消收藏
+                NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
                 
-                if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
-                {
-                    [self.content removeObject:dataDic];
-                    [self.tableView reloadData];
+                [param setObject:[NSNumber numberWithInteger:[dataDic[@"id"] integerValue]] forKey:@"id"];
+                NSString * url = PATH(@"%@/cancelCollectArticle");
+                [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
                     
-                }else
-                {
-                    [XHToast showCenterWithText:responseObj[@"message"]];
+                    if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+                    {
+//                        [self.content removeObject:dataDic];
+//                        [self.tableView reloadData];
+                        [self requestData];
+                        
+                    }else
+                    {
+                        [XHToast showCenterWithText:responseObj[@"message"]];
+                    }
+                } failBlock:^(NSError *error) {
+                    //[XHToast showCenterWithText:@"fail"];
+                }];
+            }else{
+                //是草稿是就本地删除
+                NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
+                
+                for (NSDictionary *dic in saveArr) {
+                    if ([self.content[indexPath.section][@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
+                        [saveArr removeObject:dic];
+                    }
                 }
-            } failBlock:^(NSError *error) {
-                //[XHToast showCenterWithText:@"fail"];
-            }];
-
-        }
-    };
+                
+                [[LSCacheManager sharedInstance] removeObjectWithFilePath:@"article"];
+                [[LSCacheManager sharedInstance] archiverObject:saveArr ByKey:@"savearticle" WithPath:@"article"];
+                
+                [self.content removeObject:dataDic];
+                [self.tableView reloadData];
+            }
+        };
+    }
+    else
+    {
+        [cell setDataWithDictionary:self.content[indexPath.section] type:@"2"];
+    }
+    
     return cell;
 }
 

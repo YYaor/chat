@@ -325,10 +325,6 @@
 		DF335A1C1F954CB9009D026E /* PWTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF335A1B1F954CB9009D026E /* PWTagsView.m */; };
 		DF4B0A241FA7A63900D57AF9 /* LSMineUserNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B0A221FA7A63900D57AF9 /* LSMineUserNameController.m */; };
 		DF4B0A251FA7A63900D57AF9 /* LSMineUserNameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4B0A231FA7A63900D57AF9 /* LSMineUserNameController.xib */; };
-		DF4C37BA1FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4C37B81FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.m */; };
-		DF4C37BB1FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4C37B91FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.xib */; };
-		DF4C37BF1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4C37BD1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.m */; };
-		DF4C37C01FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4C37BE1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.xib */; };
 		DF4EC8601FA65030007D9A96 /* YGScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC85F1FA65030007D9A96 /* YGScanVC.m */; };
 		DF4EC8781FA6514F007D9A96 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC8631FA6514F007D9A96 /* bitstream.c */; };
 		DF4EC8791FA6514F007D9A96 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC8651FA6514F007D9A96 /* mask.c */; };
@@ -363,6 +359,8 @@
 		DF5A09851F7D604C00CF5410 /* LSWorkOutcallController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A09831F7D604C00CF5410 /* LSWorkOutcallController.m */; };
 		DF5A09861F7D604C00CF5410 /* LSWorkOutcallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */; };
 		DF63DAEE1FA2D83C008F9110 /* LSWorkUnreplyListController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF63DAED1FA2D83C008F9110 /* LSWorkUnreplyListController.m */; };
+		DF6A57BD1FC177BE007907E9 /* LSWorkArticleDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6A57BB1FC177BE007907E9 /* LSWorkArticleDetailController.m */; };
+		DF6A57BE1FC177BE007907E9 /* LSWorkArticleDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF6A57BC1FC177BE007907E9 /* LSWorkArticleDetailController.xib */; };
 		DF73EAF71F9FA2490088DBE8 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF73EAF51F9FA2490088DBE8 /* SplashViewController.m */; };
 		DF73EAF81F9FA2490088DBE8 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF73EAF61F9FA2490088DBE8 /* SplashViewController.xib */; };
 		DF73EAFB1F9FA2D70088DBE8 /* YGPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DF73EAFA1F9FA2D70088DBE8 /* YGPageControl.m */; };
@@ -373,6 +371,7 @@
 		DF81C2471F84C43700D4D851 /* LSWorkOutcallListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF81C2451F84C43700D4D851 /* LSWorkOutcallListCell.xib */; };
 		DF81C24B1F8A0D9E00D4D851 /* LSWorkOutcallAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF81C2491F8A0D9E00D4D851 /* LSWorkOutcallAddController.m */; };
 		DF81C24C1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF81C24A1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib */; };
+		DF840F391FC1E4F900847A72 /* LSDoctorAdviceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840F381FC1E4F900847A72 /* LSDoctorAdviceMessageCell.m */; };
 		DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A6331F7820A700EF0461 /* AppDelegate.m */; };
 		DF87A63F1F7820A700EF0461 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF87A6341F7820A700EF0461 /* Assets.xcassets */; };
 		DF87A6421F7820A700EF0461 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF87A6391F7820A700EF0461 /* Info.plist */; };
@@ -1201,12 +1200,6 @@
 		DF4B0A211FA7A63900D57AF9 /* LSMineUserNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMineUserNameController.h; sourceTree = "<group>"; };
 		DF4B0A221FA7A63900D57AF9 /* LSMineUserNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMineUserNameController.m; sourceTree = "<group>"; };
 		DF4B0A231FA7A63900D57AF9 /* LSMineUserNameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSMineUserNameController.xib; sourceTree = "<group>"; };
-		DF4C37B71FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDoctorAdviceMessage1Cell.h; sourceTree = "<group>"; };
-		DF4C37B81FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDoctorAdviceMessage1Cell.m; sourceTree = "<group>"; };
-		DF4C37B91FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSDoctorAdviceMessage1Cell.xib; sourceTree = "<group>"; };
-		DF4C37BC1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDoctorAdviceMessage2Cell.h; sourceTree = "<group>"; };
-		DF4C37BD1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDoctorAdviceMessage2Cell.m; sourceTree = "<group>"; };
-		DF4C37BE1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSDoctorAdviceMessage2Cell.xib; sourceTree = "<group>"; };
 		DF4EC85E1FA65030007D9A96 /* YGScanVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGScanVC.h; sourceTree = "<group>"; };
 		DF4EC85F1FA65030007D9A96 /* YGScanVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGScanVC.m; sourceTree = "<group>"; };
 		DF4EC8631FA6514F007D9A96 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
@@ -1287,6 +1280,9 @@
 		DF5A09841F7D604C00CF5410 /* LSWorkOutcallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkOutcallController.xib; sourceTree = "<group>"; };
 		DF63DAEC1FA2D83C008F9110 /* LSWorkUnreplyListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkUnreplyListController.h; sourceTree = "<group>"; };
 		DF63DAED1FA2D83C008F9110 /* LSWorkUnreplyListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkUnreplyListController.m; sourceTree = "<group>"; };
+		DF6A57BA1FC177BE007907E9 /* LSWorkArticleDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkArticleDetailController.h; sourceTree = "<group>"; };
+		DF6A57BB1FC177BE007907E9 /* LSWorkArticleDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkArticleDetailController.m; sourceTree = "<group>"; };
+		DF6A57BC1FC177BE007907E9 /* LSWorkArticleDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkArticleDetailController.xib; sourceTree = "<group>"; };
 		DF73EAF41F9FA2490088DBE8 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		DF73EAF51F9FA2490088DBE8 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		DF73EAF61F9FA2490088DBE8 /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
@@ -1304,6 +1300,8 @@
 		DF81C2481F8A0D9E00D4D851 /* LSWorkOutcallAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkOutcallAddController.h; sourceTree = "<group>"; };
 		DF81C2491F8A0D9E00D4D851 /* LSWorkOutcallAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkOutcallAddController.m; sourceTree = "<group>"; };
 		DF81C24A1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkOutcallAddController.xib; sourceTree = "<group>"; };
+		DF840F371FC1E4F900847A72 /* LSDoctorAdviceMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDoctorAdviceMessageCell.h; sourceTree = "<group>"; };
+		DF840F381FC1E4F900847A72 /* LSDoctorAdviceMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDoctorAdviceMessageCell.m; sourceTree = "<group>"; };
 		DF87A1B71F781B7700EF0461 /* LSMyDoctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSMyDoctor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A6321F7820A700EF0461 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DF87A6331F7820A700EF0461 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -2954,12 +2952,8 @@
 				DFD0CA7D1FBB74F8005A4E1A /* LSRecommendArticleCell.h */,
 				DFD0CA7E1FBB74F8005A4E1A /* LSRecommendArticleCell.m */,
 				DFD0CA7F1FBB74F8005A4E1A /* LSRecommendArticleCell.xib */,
-				DF4C37B71FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.h */,
-				DF4C37B81FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.m */,
-				DF4C37B91FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.xib */,
-				DF4C37BC1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.h */,
-				DF4C37BD1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.m */,
-				DF4C37BE1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.xib */,
+				DF840F371FC1E4F900847A72 /* LSDoctorAdviceMessageCell.h */,
+				DF840F381FC1E4F900847A72 /* LSDoctorAdviceMessageCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4138,6 +4132,9 @@
 				DF2738131F8FC6E300154B6A /* LSWorkArticleController.h */,
 				DF2738141F8FC6E300154B6A /* LSWorkArticleController.m */,
 				DF2738151F8FC6E300154B6A /* LSWorkArticleController.xib */,
+				DF6A57BA1FC177BE007907E9 /* LSWorkArticleDetailController.h */,
+				DF6A57BB1FC177BE007907E9 /* LSWorkArticleDetailController.m */,
+				DF6A57BC1FC177BE007907E9 /* LSWorkArticleDetailController.xib */,
 				DF2738181F8FCF1100154B6A /* LSWorkArticleAddController.h */,
 				DF2738191F8FCF1100154B6A /* LSWorkArticleAddController.m */,
 				DF27381A1F8FCF1100154B6A /* LSWorkArticleAddController.xib */,
@@ -4318,6 +4315,7 @@
 				DFCE83681FA8824100A2BD60 /* LICENSE in Resources */,
 				4A43C0F81FAB1C9C00EAC5AA /* EnergyBalanceVC.xib in Resources */,
 				DF5A09491F7D50E300CF5410 /* LSWorkTailDetailUserCell.xib in Resources */,
+				DF6A57BE1FC177BE007907E9 /* LSWorkArticleDetailController.xib in Resources */,
 				4A43C14A1FAB1C9C00EAC5AA /* YGT28Cell.xib in Resources */,
 				4A43C0FE1FAB1C9C00EAC5AA /* DietReportHeadCell.xib in Resources */,
 				4AED37B81FBE96C600D81200 /* YGMedicalInfoCell.xib in Resources */,
@@ -4329,7 +4327,6 @@
 				4A0CE6C21F945BDF00F7C187 /* MDPeerDiscussCell.xib in Resources */,
 				DF87A7E21F7835DD00EF0461 /* LSMineController.xib in Resources */,
 				DFCE82F11FA84EC500A2BD60 /* LaunchScreen.storyboard in Resources */,
-				DF4C37BB1FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.xib in Resources */,
 				DFFD8EE61F7C37E500FF0ECD /* LSWorkAdviceCell.xib in Resources */,
 				4AA2FE581FA81374009009D8 /* MDHaveMarkCell.xib in Resources */,
 				4A43C13E1FAB1C9C00EAC5AA /* YGSportCell.xib in Resources */,
@@ -4379,7 +4376,6 @@
 				4A43C13A1FAB1C9C00EAC5AA /* YGPictureCell.xib in Resources */,
 				DFD0CA811FBB74F8005A4E1A /* LSRecommendArticleCell.xib in Resources */,
 				DF4B0A251FA7A63900D57AF9 /* LSMineUserNameController.xib in Resources */,
-				DF4C37C01FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.xib in Resources */,
 				4A43C1461FAB1C9C00EAC5AA /* YGT14Cell.xib in Resources */,
 				DFCE837C1FA8F32C00A2BD60 /* LSAgreementController.xib in Resources */,
 				DFFD8EE11F7C377B00FF0ECD /* LSWorkAdviceController.xib in Resources */,
@@ -4507,7 +4503,6 @@
 				DFF015A11F7AC15700527CFA /* EaseRecordView.m in Sources */,
 				4A0CE6A61F9094F500F7C187 /* SDWebImageManager.m in Sources */,
 				DFF0152C1F7AC15700527CFA /* EaseUI.m in Sources */,
-				DF4C37BA1FBDCBEE00E93796 /* LSDoctorAdviceMessage1Cell.m in Sources */,
 				DFD5C70A1F8167A300045E39 /* FSCalendar.m in Sources */,
 				DFD5C7161F8167A300045E39 /* FSCalendarStickyHeader.m in Sources */,
 				DFF015A01F7AC15700527CFA /* EaseChatBarMoreView.m in Sources */,
@@ -4559,6 +4554,7 @@
 				4A43C1791FAB1C9C00EAC5AA /* UIColor+Zirkfied.m in Sources */,
 				DF4EC8B01FA654B4007D9A96 /* SGQRCodeScanManager.m in Sources */,
 				DF87A7C71F782F7C00EF0461 /* LSTabBarController.m in Sources */,
+				DF840F391FC1E4F900847A72 /* LSDoctorAdviceMessageCell.m in Sources */,
 				0F0B7CE31FB9E26A0058139D /* LSWorkScanController.m in Sources */,
 				DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */,
 				4A43C15B1FAB1C9C00EAC5AA /* YYMGroup.m in Sources */,
@@ -4738,7 +4734,6 @@
 				DF87A7B81F782DE000EF0461 /* IQToolbar.m in Sources */,
 				0FB200CF1F78F087005BC289 /* LSUtil.m in Sources */,
 				DFF015711F7AC15700527CFA /* PSTGridLayoutInfo.m in Sources */,
-				DF4C37BF1FBDD73B00E93796 /* LSDoctorAdviceMessage2Cell.m in Sources */,
 				DFF015311F7AC15700527CFA /* EMCDDeviceManager+Microphone.m in Sources */,
 				DFF015961F7AC15700527CFA /* EaseBubbleView+Text.m in Sources */,
 				DF87A7831F782D1300EF0461 /* RKDropdownAlert.m in Sources */,
@@ -4787,6 +4782,7 @@
 				4A0CE6A41F9094F500F7C187 /* SDWebImageDownloader.m in Sources */,
 				4A0CE69F1F9094F500F7C187 /* MKAnnotationView+WebCache.m in Sources */,
 				4A43C1601FAB1C9C00EAC5AA /* FyCalendarView.m in Sources */,
+				DF6A57BD1FC177BE007907E9 /* LSWorkArticleDetailController.m in Sources */,
 				DF87A6B01F7827E200EF0461 /* AFURLResponseSerialization.m in Sources */,
 				4A43C12F1FAB1C9C00EAC5AA /* T19Cell.m in Sources */,
 				DF87A7B31F782DE000EF0461 /* IQKeyboardReturnKeyHandler.m in Sources */,

@@ -31,6 +31,9 @@
 //状态
 @property (nonatomic,strong)UILabel *statusLabel;
 
+@property (nonatomic, strong) NSDictionary *data;
+@property (nonatomic, copy) NSString *type;//1文章管理 其他文章库
+
 @end
 
 @implementation LSWorkArticleCell
@@ -71,7 +74,8 @@
 -(UIImageView *)imageViewOne{
     if (!_imageViewOne) {
         _imageViewOne = [[UIImageView alloc]init];
-//        _imageViewOne.backgroundColor = [UIColor redColor];
+        _imageViewOne.contentMode = UIViewContentModeScaleAspectFill;
+        _imageViewOne.clipsToBounds = YES;
     }
     return _imageViewOne;
 }
@@ -79,7 +83,8 @@
 -(UIImageView *)imageViewTwo{
     if (!_imageViewTwo) {
         _imageViewTwo = [[UIImageView alloc]init];
-//        _imageViewTwo.backgroundColor = [UIColor redColor];
+        _imageViewTwo.contentMode = UIViewContentModeScaleAspectFill;
+        _imageViewTwo.clipsToBounds = YES;
     }
     return _imageViewTwo;
 }
@@ -87,7 +92,8 @@
 -(UIImageView *)imageViewTree{
     if (!_imageViewTree) {
         _imageViewTree = [[UIImageView alloc]init];
-//        _imageViewTree.backgroundColor = [UIColor redColor];
+        _imageViewTree.contentMode = UIViewContentModeScaleAspectFill;
+        _imageViewTree.clipsToBounds = YES;
     }
     return _imageViewTree;
 }
@@ -145,6 +151,12 @@
 
 
 -(void)longGester:(UILongPressGestureRecognizer *)longGester{
+    
+    if (![self.type isEqualToString:@"1"])
+    {
+        return;
+    }
+    
     self.deleteView.hidden = NO;
 }
 
@@ -234,27 +246,45 @@
     self.deleteView.hidden = YES;
 }
 
--(void)setData:(NSDictionary *)data{
+- (void)setDataWithDictionary:(NSDictionary *)data type:(NSString *)type
+{
     _data = data;
-//    author_id	作者ID	number
-//    classify	文章分类	number
-//    content	文章概述	string
-//    create_time	发布时间	number	yyyy-MM-dd HH:mm:ss
-//    doctor_name	作者姓名	string	为空显示：来源：佑格健康
-//    files	文件路径	string	以“,”号分隔
-//    id	文章ID	number
-//    source	来源	number	1医生 2后台
-//    title	文章标题	string
-//    type	文章类型	number	1单图 2多图 3视频 4无图
-//    isMine
+    _type = type;
+    //    author_id	作者ID	number
+    //    classify	文章分类	number
+    //    content	文章概述	string
+    //    create_time	发布时间	number	yyyy-MM-dd HH:mm:ss
+    //    doctor_name	作者姓名	string	为空显示：来源：佑格健康
+    //    files	文件路径	string	以“,”号分隔
+    //    id	文章ID	number
+    //    source	来源	number	1医生 2后台
+    //    title	文章标题	string
+    //    type	文章类型	number	1单图 2多图 3视频 4无图
+    //    isMine
     self.timeLabel.text = data[@"create_time"];
     self.titleLabel.text = data[@"title"];
     self.infoLabel.text = data[@"content"];
-    if ([data[@"isMine"] integerValue] == 1) {
-        self.statusLabel.text = @"草稿";
-    }else{
-        self.statusLabel.text = @"收藏";
+    
+    if ([type isEqualToString:@"1"])
+    {
+        //文章管理
+        if (!data[@"isMine"]) {
+            self.statusLabel.text = @"草稿";
+        }else if ([data[@"isMine"] integerValue] == 1){
+            self.statusLabel.text = @"发布";
+        }else
+        {
+            self.statusLabel.text = @"收藏";
+        }
+        self.statusLabel.hidden = NO;
     }
+    else
+    {
+        //文章库
+        self.statusLabel.hidden = YES;
+    }
+    
+    
     if (data[@"files"]) {
         NSArray *urlArray = [data[@"files"] componentsSeparatedByString:@","];
         if (urlArray.count == 0) {
@@ -268,7 +298,7 @@
             if ([data[@"type"] integerValue] == 3) {
                 self.imageViewOne.image = [self thumbnailImageForVideo:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST,urlArray[0]]]];
             }else{
-               [self.imageViewOne sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST,urlArray[0]]] placeholderImage:nil];
+                [self.imageViewOne sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST,urlArray[0]]] placeholderImage:nil];
             }
         }else if (urlArray.count == 2){
             self.imageViewOne.hidden = NO;
@@ -344,10 +374,5 @@
     
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end

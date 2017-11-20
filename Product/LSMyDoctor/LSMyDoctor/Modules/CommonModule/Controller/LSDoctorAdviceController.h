@@ -10,7 +10,7 @@
 
 @interface LSDoctorAdviceController : UIViewController
 
-@property (nonatomic, copy) NSString *messageType;//1收到的医嘱下达 2发送的医嘱下达
+@property (nonatomic, strong) EMConversation *conversation;
 
 @property (nonatomic, copy) void (^sureBlock)(NSDictionary *dataDic);
 

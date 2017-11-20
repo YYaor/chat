@@ -30,11 +30,11 @@
 #import "LSDoctorAdviceController.h"
 #import "LSRecommendArticleController.h"
 
-#import "LSDoctorAdviceMessage2Cell.h"
-#import "LSDoctorAdviceMessage1Cell.h"
-#import "YGComRequestCell.h"
-#import "YGIllnessomplaintCell.h"
-#import "YGSelectMedicalRecordCell.h"
+//#import "LSDoctorAdviceMessage2Cell.h"
+//#import "LSDoctorAdviceMessage1Cell.h"
+//#import "YGComRequestCell.h"
+//#import "YGIllnessomplaintCell.h"
+//#import "YGSelectMedicalRecordCell.h"
 
 #define KHintAdjustY    50
 
@@ -1088,45 +1088,6 @@ typedef enum : NSUInteger {
                 return sendCell;
             }
         }
-        if (model.message.ext[@"messageType"]) {
-            if ([model.message.ext[@"messageType"] isEqualToString:@"1"]) {
-                //下达医嘱
-                if (model.isSender) {
-                    NSString *CellIdentifier = @"LSDoctorAdviceMessage2Cell";
-
-                    LSDoctorAdviceMessage2Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-                    if (!cell) {
-                        cell = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:nil options:nil][0];
-                    }
-                    cell.data = model.message.ext;
-                    cell.didSelected = ^(NSDictionary *dic) {
-                        //发送的医嘱下达
-//                        LSDoctorAdviceController *vc = [[LSDoctorAdviceController alloc] initWithNibName:@"LSDoctorAdviceController" bundle:nil];
-//                        vc.messageType = dic[@"messageType"];
-//                        [self.navigationController pushViewController:vc animated:YES];
-                    };
-                    return cell;
-                }else{
-                    NSString *CellIdentifier = @"LSDoctorAdviceMessage1Cell";
-
-                    LSDoctorAdviceMessage1Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-                    if (!cell) {
-                        cell = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:nil options:nil][0];
-                    }
-                    cell.data = model.message.ext;
-                    cell.didSelected = ^(NSDictionary *dic) {
-                        //收到的医嘱下达
-//                        LSDoctorAdviceController *vc = [[LSDoctorAdviceController alloc] initWithNibName:@"LSDoctorAdviceController" bundle:nil];
-//                        vc.messageType = dic[@"messageType"];
-//                        [self.navigationController pushViewController:vc animated:YES];
-                    };
-                    return cell;
-                }
-                
-            }
-            
-        }
-        
         
         NSString *CellIdentifier = [EaseMessageCell cellIdentifierWithModel:model];
         
@@ -1167,14 +1128,6 @@ typedef enum : NSUInteger {
                 return [EaseCustomMessageCell cellHeightWithModel:model];
             }
         }
-        
-        if (model.message.ext[@"messageType"]) {
-            if ([model.message.ext[@"messageType"] isEqualToString:@"1"]) {
-                //下达医嘱
-                return 81;
-            }
-        }
-        
         
         return [EaseBaseMessageCell cellHeightWithModel:model];
     }
@@ -1619,6 +1572,7 @@ typedef enum : NSUInteger {
     [self.chatToolbar endEditing:YES];
     
     LSDoctorAdviceController *vc = [[LSDoctorAdviceController alloc] initWithNibName:@"LSDoctorAdviceController" bundle:nil];
+    vc.conversation = self.conversation;
     [self.navigationController pushViewController:vc animated:YES];
     
     vc.sureBlock = ^(NSDictionary *dataDic) {

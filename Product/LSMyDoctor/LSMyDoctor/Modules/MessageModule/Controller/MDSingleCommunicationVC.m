@@ -7,10 +7,15 @@
 //
 
 #import "MDSingleCommunicationVC.h"
+
+#import "LSDoctorAdviceController.h"
+#import "LSRecommendArticleController.h"
+
 #import "YGComRequestCell.h"
 #import "YGIllnessomplaintCell.h"
 #import "YGSelectMedicalRecordCell.h"
 #import "YGMedicalRecordDetailVC.h"
+#import "LSDoctorAdviceMessageCell.h"
 
 @interface MDSingleCommunicationVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,YGSelectMedicalRecordCellDelegate>
 
@@ -24,6 +29,14 @@
     self.delegate = self;
     self.dataSource = self;
     [self tableViewDidTriggerHeaderRefresh];
+        
+    if (![self.conversation.conversationId hasPrefix:@"p"] && ![self.conversation.conversationId hasPrefix:@"P"])
+    {
+        //非医患聊天
+        
+        [self.chatBarMoreView removeItematIndex:2];
+        [self.chatBarMoreView removeItematIndex:2];
+    }
     
 }
 
@@ -34,6 +47,8 @@
 #pragma mark -- 自定义Cell
 - (UITableViewCell*)messageViewController:(UITableView *)tableView cellForMessageModel:(id<IMessageModel>)messageModel
 {
+    NSDictionary *dic = messageModel.message.ext;
+    NSLog(@"===%@===", dic);
     if (messageModel.message.ext) {
         if(messageModel.message.ext[@"bookRequest"]){
             //预约请求
@@ -81,7 +96,17 @@
             return cell;
         }
         
-        
+        if(messageModel.message.ext[@"messageType"]){
+            //医嘱
+            NSString* cellId = [LSDoctorAdviceMessageCell cellIdentifierWithModel:messageModel];
+            LSDoctorAdviceMessageCell* cell = (LSDoctorAdviceMessageCell*)[tableView dequeueReusableCellWithIdentifier:cellId];
+            
+            if (!cell) {
+                cell = [[LSDoctorAdviceMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId model:messageModel];
+            }
+            cell.model = messageModel;
+            return cell;
+        }
         
     }
     
@@ -117,10 +142,60 @@
             
             return 110.0f;
         }
+        if(messageModel.message.ext[@"messageType"]){
+            //医嘱
+            return 110.0f;
+        }
         
     }
     return 0.f;
 }
+
+
+- (BOOL)messageViewController:(EaseMessageViewController *)viewController didSelectMessageModel:(id<IMessageModel>)messageModel
+{
+    BOOL flag = NO;
+    
+    if (messageModel.message.ext[@"messageType"])
+    {
+        flag = YES;
+        
+        LSDoctorAdviceController *vc = [[LSDoctorAdviceController alloc] initWithNibName:@"LSDoctorAdviceController" bundle:nil];
+        vc.conversation = self.conversation;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    return flag;
+}
+
+//#pragma mark - EaseChatBarMoreViewDelegate
+//
+//- (void)moreIssueadviceCallButtonAction:(EaseChatBarMoreView *)moreView
+//{
+//    // Hide the keyboard
+//    [self.chatToolbar endEditing:YES];
+//    
+//    LSDoctorAdviceController *vc = [[LSDoctorAdviceController alloc] initWithNibName:@"LSDoctorAdviceController" bundle:nil];
+//    vc.conversation = self.conversation;
+//    [self.navigationController pushViewController:vc animated:YES];
+//    
+//    vc.sureBlock = ^(NSDictionary *dataDic) {
+//        [self sendTextMessage:@"下达医嘱" withExt:dataDic];
+//    };
+//    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
+//}
+//
+//- (void)moreArticlerecommendCallButtonAction:(EaseChatBarMoreView *)moreView
+//{
+//    // Hide the keyboard
+//    [self.chatToolbar endEditing:YES];
+//    
+//    LSRecommendArticleController *vc = [[LSRecommendArticleController alloc] initWithNibName:@"LSRecommendArticleController" bundle:nil];
+//    [self.navigationController pushViewController:vc animated:YES];
+//    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
+//}
 
 #pragma mark -- 同意预约请求
 - (void)agreeOrRefuseRequestDataWithStatus:(NSString*)statusStr requestId:(NSString*)requestIdStr
