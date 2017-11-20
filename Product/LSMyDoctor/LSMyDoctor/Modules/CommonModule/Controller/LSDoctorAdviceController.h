@@ -11,6 +11,7 @@
 @interface LSDoctorAdviceController : UIViewController
 
 @property (nonatomic, strong) EMConversation *conversation;
+@property (nonatomic, strong) EMMessage *message;
 
 @property (nonatomic, copy) void (^sureBlock)(NSDictionary *dataDic);
 

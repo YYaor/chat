@@ -39,12 +39,12 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    if (self.conversation.ext)
+    if (self.message.ext)
     {
-        self.textF1.text = self.conversation.ext[@"diagnosis"];
-        self.textF2.text = self.conversation.ext[@"advice"];
-        self.textF3.text = self.conversation.ext[@"pharmacy"];
-        self.textF4.text = self.conversation.ext[@"end_date"];
+        self.textF1.text = self.message.ext[@"diagnosis"];
+        self.textF2.text = self.message.ext[@"advice"];
+        self.textF3.text = self.message.ext[@"pharmacy"];
+        self.textF4.text = self.message.ext[@"end_date"];
     }
     
 }
@@ -116,11 +116,11 @@
 
     NSString *url = @"";
     
-    if (self.conversation.ext)
+    if (self.message)
     {
         //修改
         url = PATH(@"%@/updateCaseAdvice");
-        [param setValue:[NSNumber numberWithLong:[self.conversation.ext[@"id"] longValue]] forKey:@"id"];//医嘱ID	number
+        [param setValue:[NSNumber numberWithLong:[self.message.ext[@"id"] longValue]] forKey:@"id"];//医嘱ID	number
     }
     else
     {
@@ -133,7 +133,7 @@
         
         if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
         {
-            [param setValue:[NSNumber numberWithLong:[responseObj[@"id"] longValue]] forKey:@"id"];
+            [param setValue:[NSNumber numberWithLong:[responseObj[@"data"][@"id"] longValue]] forKey:@"id"];
             if (self.sureBlock) {
                 self.sureBlock(param);
             }

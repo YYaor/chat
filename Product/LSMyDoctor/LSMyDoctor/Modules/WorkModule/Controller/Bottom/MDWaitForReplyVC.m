@@ -8,6 +8,8 @@
 
 #import "MDWaitForReplyVC.h"
 
+#import "MDSingleCommunicationVC.h"
+
 #import "LSMessageCell.h"
 
 #import "FMDBTool.h"
@@ -201,7 +203,7 @@ static NSString *cellId = @"LSMessageCell";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     EaseConversationModel *converSation = self.dataList[indexPath.row];
-    EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
+    MDSingleCommunicationVC *chatController = [[MDSingleCommunicationVC alloc]
                                                  initWithConversationChatter:converSation.conversation.conversationId conversationType:converSation.conversation.type];
     chatController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatController animated:YES];

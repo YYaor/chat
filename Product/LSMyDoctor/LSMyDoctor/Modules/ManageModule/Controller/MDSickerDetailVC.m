@@ -17,6 +17,8 @@
 #import "MDEditGroupVC.h"
 #import "MDSikerWeekReportVC.h"
 
+#import "MDSingleCommunicationVC.h"
+
 @interface MDSickerDetailVC ()<UITableViewDelegate,UITableViewDataSource,MDSickerDetailBottomCellDelegate>
 {
     UITableView* detailTab;
@@ -82,7 +84,7 @@
 - (void)talkBtnClick
 {
     NSLog(@"点击对话");
-    EaseMessageViewController *chatController = [[EaseMessageViewController alloc] initWithConversationChatter:[NSString stringWithFormat:@"ug369P%@", self.sickerIdStr] conversationType:EMConversationTypeChat];
+    MDSingleCommunicationVC *chatController = [[MDSingleCommunicationVC alloc] initWithConversationChatter:[NSString stringWithFormat:@"ug369P%@", self.sickerIdStr] conversationType:EMConversationTypeChat];
     chatController.title = @"测试标题";
     [self.navigationController pushViewController:chatController animated:YES];
 }

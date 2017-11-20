@@ -8,6 +8,8 @@
 
 #import "LSWorkTailDetailController.h"
 
+#import "MDSingleCommunicationVC.h"
+
 #import "LSWorkTailDetailUserCell.h"
 #import "LSWorkTailDetailCell.h"
 
@@ -96,7 +98,7 @@ static NSString *cellId2 = @"LSWorkTailDetailCell";
 {
     if (self.dataDic[@"user_id"])
     {
-        EaseMessageViewController *chatController = [[EaseMessageViewController alloc]
+        MDSingleCommunicationVC *chatController = [[MDSingleCommunicationVC alloc]
                                                      initWithConversationChatter:[NSString stringWithFormat:@"ug369P%@", self.dataDic[@"user_id"]] conversationType:EMConversationTypeChat];
         [self.navigationController pushViewController:chatController animated:YES];
     }

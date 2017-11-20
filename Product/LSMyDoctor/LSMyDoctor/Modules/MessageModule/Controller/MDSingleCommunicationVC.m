@@ -30,7 +30,7 @@
     self.dataSource = self;
     [self tableViewDidTriggerHeaderRefresh];
         
-    if (![self.conversation.conversationId hasPrefix:@"p"] && ![self.conversation.conversationId hasPrefix:@"P"])
+    if (!([self.conversation.conversationId containsString:@"p"] || [self.conversation.conversationId containsString:@"P"]))
     {
         //非医患聊天
         
@@ -161,8 +161,14 @@
         flag = YES;
         
         LSDoctorAdviceController *vc = [[LSDoctorAdviceController alloc] initWithNibName:@"LSDoctorAdviceController" bundle:nil];
-        vc.conversation = self.conversation;
+        vc.message = messageModel.message;
         [self.navigationController pushViewController:vc animated:YES];
+        
+        vc.sureBlock = ^(NSDictionary *dataDic)
+        {
+            
+            [self.conversation updateMessageChange:messageModel.message error:nil];
+        };
     }
     
     return flag;
