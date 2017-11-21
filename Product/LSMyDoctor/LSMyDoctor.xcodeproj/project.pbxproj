@@ -372,6 +372,15 @@
 		DF81C24B1F8A0D9E00D4D851 /* LSWorkOutcallAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF81C2491F8A0D9E00D4D851 /* LSWorkOutcallAddController.m */; };
 		DF81C24C1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF81C24A1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib */; };
 		DF840F391FC1E4F900847A72 /* LSDoctorAdviceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840F381FC1E4F900847A72 /* LSDoctorAdviceMessageCell.m */; };
+		DF840F3D1FC2A53500847A72 /* LSWorkActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840F3B1FC2A53500847A72 /* LSWorkActivityController.m */; };
+		DF840F3E1FC2A53500847A72 /* LSWorkActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF840F3C1FC2A53500847A72 /* LSWorkActivityController.xib */; };
+		DF840F421FC2B4F600847A72 /* LSWorkActivityAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840F401FC2B4F600847A72 /* LSWorkActivityAddController.m */; };
+		DF840F431FC2B4F600847A72 /* LSWorkActivityAddController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF840F411FC2B4F600847A72 /* LSWorkActivityAddController.xib */; };
+		DF840F471FC35F3000847A72 /* LSWorkActivitySubController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840F451FC35F3000847A72 /* LSWorkActivitySubController.m */; };
+		DF840F481FC35F3000847A72 /* LSWorkActivitySubController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF840F461FC35F3000847A72 /* LSWorkActivitySubController.xib */; };
+		DF840F4C1FC3656B00847A72 /* LSWorkActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840F4A1FC3656B00847A72 /* LSWorkActivityCell.m */; };
+		DF840F4D1FC3656B00847A72 /* LSWorkActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF840F4B1FC3656B00847A72 /* LSWorkActivityCell.xib */; };
+		DF840F501FC36EE700847A72 /* LSRecommendArticleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840F4F1FC36EE700847A72 /* LSRecommendArticleMessageCell.m */; };
 		DF87A63E1F7820A700EF0461 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF87A6331F7820A700EF0461 /* AppDelegate.m */; };
 		DF87A63F1F7820A700EF0461 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF87A6341F7820A700EF0461 /* Assets.xcassets */; };
 		DF87A6421F7820A700EF0461 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF87A6391F7820A700EF0461 /* Info.plist */; };
@@ -1302,6 +1311,20 @@
 		DF81C24A1F8A0D9E00D4D851 /* LSWorkOutcallAddController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkOutcallAddController.xib; sourceTree = "<group>"; };
 		DF840F371FC1E4F900847A72 /* LSDoctorAdviceMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDoctorAdviceMessageCell.h; sourceTree = "<group>"; };
 		DF840F381FC1E4F900847A72 /* LSDoctorAdviceMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDoctorAdviceMessageCell.m; sourceTree = "<group>"; };
+		DF840F3A1FC2A53500847A72 /* LSWorkActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkActivityController.h; sourceTree = "<group>"; };
+		DF840F3B1FC2A53500847A72 /* LSWorkActivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkActivityController.m; sourceTree = "<group>"; };
+		DF840F3C1FC2A53500847A72 /* LSWorkActivityController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkActivityController.xib; sourceTree = "<group>"; };
+		DF840F3F1FC2B4F600847A72 /* LSWorkActivityAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkActivityAddController.h; sourceTree = "<group>"; };
+		DF840F401FC2B4F600847A72 /* LSWorkActivityAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkActivityAddController.m; sourceTree = "<group>"; };
+		DF840F411FC2B4F600847A72 /* LSWorkActivityAddController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkActivityAddController.xib; sourceTree = "<group>"; };
+		DF840F441FC35F3000847A72 /* LSWorkActivitySubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkActivitySubController.h; sourceTree = "<group>"; };
+		DF840F451FC35F3000847A72 /* LSWorkActivitySubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkActivitySubController.m; sourceTree = "<group>"; };
+		DF840F461FC35F3000847A72 /* LSWorkActivitySubController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkActivitySubController.xib; sourceTree = "<group>"; };
+		DF840F491FC3656B00847A72 /* LSWorkActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkActivityCell.h; sourceTree = "<group>"; };
+		DF840F4A1FC3656B00847A72 /* LSWorkActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkActivityCell.m; sourceTree = "<group>"; };
+		DF840F4B1FC3656B00847A72 /* LSWorkActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkActivityCell.xib; sourceTree = "<group>"; };
+		DF840F4E1FC36EE700847A72 /* LSRecommendArticleMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSRecommendArticleMessageCell.h; sourceTree = "<group>"; };
+		DF840F4F1FC36EE700847A72 /* LSRecommendArticleMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSRecommendArticleMessageCell.m; sourceTree = "<group>"; };
 		DF87A1B71F781B7700EF0461 /* LSMyDoctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSMyDoctor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87A6321F7820A700EF0461 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DF87A6331F7820A700EF0461 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -2954,6 +2977,8 @@
 				DFD0CA7F1FBB74F8005A4E1A /* LSRecommendArticleCell.xib */,
 				DF840F371FC1E4F900847A72 /* LSDoctorAdviceMessageCell.h */,
 				DF840F381FC1E4F900847A72 /* LSDoctorAdviceMessageCell.m */,
+				DF840F4E1FC36EE700847A72 /* LSRecommendArticleMessageCell.h */,
+				DF840F4F1FC36EE700847A72 /* LSRecommendArticleMessageCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4141,6 +4166,15 @@
 				DFB2A0C01FB54B290057F44C /* LSWorkArticleSubController.h */,
 				DFB2A0C11FB54B290057F44C /* LSWorkArticleSubController.m */,
 				DFB2A0C21FB54B290057F44C /* LSWorkArticleSubController.xib */,
+				DF840F3A1FC2A53500847A72 /* LSWorkActivityController.h */,
+				DF840F3B1FC2A53500847A72 /* LSWorkActivityController.m */,
+				DF840F3C1FC2A53500847A72 /* LSWorkActivityController.xib */,
+				DF840F3F1FC2B4F600847A72 /* LSWorkActivityAddController.h */,
+				DF840F401FC2B4F600847A72 /* LSWorkActivityAddController.m */,
+				DF840F411FC2B4F600847A72 /* LSWorkActivityAddController.xib */,
+				DF840F441FC35F3000847A72 /* LSWorkActivitySubController.h */,
+				DF840F451FC35F3000847A72 /* LSWorkActivitySubController.m */,
+				DF840F461FC35F3000847A72 /* LSWorkActivitySubController.xib */,
 				DF2738301F9139FA00154B6A /* LSWorkUsefulController.h */,
 				DF2738311F9139FA00154B6A /* LSWorkUsefulController.m */,
 				DF2738321F9139FA00154B6A /* LSWorkUsefulController.xib */,
@@ -4188,6 +4222,9 @@
 				DF81C2451F84C43700D4D851 /* LSWorkOutcallListCell.xib */,
 				0FCC13061FB3429300588A78 /* LSWorkArticleCell.h */,
 				0FCC13071FB3429300588A78 /* LSWorkArticleCell.m */,
+				DF840F491FC3656B00847A72 /* LSWorkActivityCell.h */,
+				DF840F4A1FC3656B00847A72 /* LSWorkActivityCell.m */,
+				DF840F4B1FC3656B00847A72 /* LSWorkActivityCell.xib */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -4276,6 +4313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF840F431FC2B4F600847A72 /* LSWorkActivityAddController.xib in Resources */,
 				0FF0B8051F987A96003B4C7E /* LICENSE.txt in Resources */,
 				4A43C1561FAB1C9C00EAC5AA /* YougeRemindCell.xib in Resources */,
 				4AA2FE271FA6F343009009D8 /* MDAddGroupVC.xib in Resources */,
@@ -4297,6 +4335,7 @@
 				4A43C11E1FAB1C9C00EAC5AA /* SubPicAttachCollectionCell.xib in Resources */,
 				DF5A093A1F7D473D00CF5410 /* LSWorkTailController.xib in Resources */,
 				4AA2FE5A1FA81374009009D8 /* MDUsefulMarkCell.xib in Resources */,
+				DF840F4D1FC3656B00847A72 /* LSWorkActivityCell.xib in Resources */,
 				DF81C2471F84C43700D4D851 /* LSWorkOutcallListCell.xib in Resources */,
 				DFD0CA721FBA99D9005A4E1A /* Localizable.strings in Resources */,
 				DFF015EB1F7AC25F00527CFA /* MJRefresh.bundle in Resources */,
@@ -4314,6 +4353,7 @@
 				DF87A63F1F7820A700EF0461 /* Assets.xcassets in Resources */,
 				DFCE83681FA8824100A2BD60 /* LICENSE in Resources */,
 				4A43C0F81FAB1C9C00EAC5AA /* EnergyBalanceVC.xib in Resources */,
+				DF840F3E1FC2A53500847A72 /* LSWorkActivityController.xib in Resources */,
 				DF5A09491F7D50E300CF5410 /* LSWorkTailDetailUserCell.xib in Resources */,
 				DF6A57BE1FC177BE007907E9 /* LSWorkArticleDetailController.xib in Resources */,
 				4A43C14A1FAB1C9C00EAC5AA /* YGT28Cell.xib in Resources */,
@@ -4362,6 +4402,7 @@
 				4A43C1441FAB1C9C00EAC5AA /* YGT06Cell.xib in Resources */,
 				4A43C1361FAB1C9C00EAC5AA /* YGCircleCell.xib in Resources */,
 				DFCE83861FA9078900A2BD60 /* LSMineUserInfoController.xib in Resources */,
+				DF840F481FC35F3000847A72 /* LSWorkActivitySubController.xib in Resources */,
 				DF93F6881F9B3BF00025D40D /* MDCheckInfoCell.xib in Resources */,
 				4A43C14E1FAB1C9C00EAC5AA /* YGT31Cell.xib in Resources */,
 				4AA2FE6C1FA8251C009009D8 /* MDEditSickerGroupCell.xib in Resources */,
@@ -4430,11 +4471,13 @@
 				DFD5C7121F8167A300045E39 /* FSCalendarDelegationProxy.m in Sources */,
 				4A43C1781FAB1C9C00EAC5AA /* NSString+Zirkfied.m in Sources */,
 				4A43C1101FAB1C9C00EAC5AA /* YGReportCaseVC.m in Sources */,
+				DF840F421FC2B4F600847A72 /* LSWorkActivityAddController.m in Sources */,
 				4A43C1681FAB1C9C00EAC5AA /* JHPieItemsView.m in Sources */,
 				DFF0157B1F7AC15700527CFA /* NSDateFormatter+Category.m in Sources */,
 				DFF015DA1F7AC25F00527CFA /* BlocMBProgressHUD.m in Sources */,
 				4A8928341F98ED700051A868 /* BMChineseSort.m in Sources */,
 				DFF015971F7AC15700527CFA /* EaseBubbleView+Video.m in Sources */,
+				DF840F471FC35F3000847A72 /* LSWorkActivitySubController.m in Sources */,
 				4A43C1081FAB1C9C00EAC5AA /* DayDetailHeader.m in Sources */,
 				4AED377F1FBC329800D81200 /* MDDataStatisticsModel.m in Sources */,
 				DF335A1C1F954CB9009D026E /* PWTagsView.m in Sources */,
@@ -4620,6 +4663,7 @@
 				4A43C17D1FAB1C9C00EAC5AA /* ZFBarChart.m in Sources */,
 				DF4B0A241FA7A63900D57AF9 /* LSMineUserNameController.m in Sources */,
 				DFF0156C1F7AC15700527CFA /* PSTCollectionViewData.m in Sources */,
+				DF840F3D1FC2A53500847A72 /* LSWorkActivityController.m in Sources */,
 				4AED37831FBC32D500D81200 /* MDDataStatisticsCell.m in Sources */,
 				4A0CE6A91F9094F500F7C187 /* UIImage+GIF.m in Sources */,
 				4A40CB821FB2EBD200F21091 /* MDComRequestCell.m in Sources */,
@@ -4693,6 +4737,7 @@
 				DFD5C7111F8167A300045E39 /* FSCalendarDelegationFactory.m in Sources */,
 				DFF015731F7AC15700527CFA /* PSTGridLayoutRow.m in Sources */,
 				4A43C1311FAB1C9C00EAC5AA /* T24Cell.m in Sources */,
+				DF840F501FC36EE700847A72 /* LSRecommendArticleMessageCell.m in Sources */,
 				4A43C1121FAB1C9C00EAC5AA /* CureSelCollectionViewCell.m in Sources */,
 				4A0CE6DD1F9724E300F7C187 /* MDWaitForReplyVC.m in Sources */,
 				4A43C1771FAB1C9C00EAC5AA /* UULineChart.m in Sources */,
@@ -4883,6 +4928,7 @@
 				0FF0B80A1F987A96003B4C7E /* SVProgressHUD.m in Sources */,
 				4A43C1191FAB1C9C00EAC5AA /* NeedCareReportCellTableViewCell.m in Sources */,
 				DFF015F31F7AC8F300527CFA /* UIView+LSLayer.m in Sources */,
+				DF840F4C1FC3656B00847A72 /* LSWorkActivityCell.m in Sources */,
 				DFCE83691FA8824100A2BD60 /* README.md in Sources */,
 				DF87A6B91F7827E200EF0461 /* MASViewConstraint.m in Sources */,
 				4A43C0F61FAB1C9C00EAC5AA /* CycleCell.m in Sources */,

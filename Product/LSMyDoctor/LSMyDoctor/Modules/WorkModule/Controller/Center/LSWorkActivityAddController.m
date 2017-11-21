@@ -1,39 +1,40 @@
 //
-//  LSWorkArticleAddController.m
+//  LSWorkActivityAddController.m
 //  LSMyDoctor
 //
-//  Created by 赵炯丞 on 2017/10/13.
+//  Created by 赵炯丞 on 2017/11/20.
 //  Copyright © 2017年 赵炯丞. All rights reserved.
 //
 
-#import "LSWorkArticleAddController.h"
+#import "LSWorkActivityAddController.h"
 
-#import "LSWorkArticleSubController.h"
+#import "LSWorkActivitySubController.h"
 
 #import "LSWorkScanController.h"
-#import "LSCacheManager.h"
 
-@interface LSWorkArticleAddController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, ZHPickViewDelegate>
+@interface LSWorkActivityAddController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, ZHPickViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *titleTextF;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (weak, nonatomic) IBOutlet UITextField *keyTextF;
+@property (strong, nonatomic) IBOutlet UIView *centView;
 
-@property (weak, nonatomic) IBOutlet UIButton *typeBtn;
-
-@property (weak, nonatomic) IBOutlet YYPlaceholderTextView *contentTextV;
-
-@property (weak, nonatomic) IBOutlet UIButton *delBtn;
+@property (weak, nonatomic) IBOutlet UITextField *name;
+@property (weak, nonatomic) IBOutlet UITextField *address;
+@property (weak, nonatomic) IBOutlet UITextField *cutoff_time;
+@property (weak, nonatomic) IBOutlet UITextField *activity_time;
+@property (weak, nonatomic) IBOutlet UITextField *total_number;
+@property (weak, nonatomic) IBOutlet YYPlaceholderTextView *content;
 
 @property (weak, nonatomic) IBOutlet UIButton *imgBtn;
+@property (weak, nonatomic) IBOutlet UIButton *delBtn;
 
-@property (nonatomic, strong) ZHPickView *pickview;
+@property (nonatomic, strong) ZHPickView *picker;
 
 @property (nonatomic, copy) NSString *imgUrl;
 
 @end
 
-@implementation LSWorkArticleAddController
+@implementation LSWorkActivityAddController
 
 - (void)viewDidLoad
 {
@@ -41,165 +42,124 @@
     
     [self initForView];
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
-    [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    backBtn.frame = CGRectMake(0, 0, 60, 40);
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:backBtn];
-    self.navigationItem.leftBarButtonItem = item;
-}
-
--(void)backBtnClicked{
-    [AlertHelper InitMyAlertWithTitle:@"温馨提示" AndMessage:@"是否保存草稿" And:self CanCleBtnName:@"取消" SureBtnName:@"保存" AndCancleBtnCallback:^(id data) {
-        [self.navigationController popViewControllerAnimated:YES];
-    } AndSureBtnCallback:^(id data) {
-        NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
-        if (!saveArr) {
-            saveArr  = [NSMutableArray array];
-        }
-        for (NSDictionary *dic in saveArr) {
-            if ([self.data[@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
-                [saveArr removeObject:dic];
-            }
-        }
-        
-        NSMutableDictionary *infoDic = [NSMutableDictionary dictionary];
-        [infoDic setValue:self.titleTextF.text forKey:@"title"];//文章标题    string
-        [infoDic setValue:self.keyTextF.text forKey:@"keyword"];//文章关键字    string
-        [infoDic setValue:self.typeBtn.titleLabel.text forKey:@"classify"];//文章分类    string
-        [infoDic setValue:self.contentTextV.text forKey:@"content"];//文章内容    string
-        [infoDic setValue:self.imgUrl forKey:@"img_url"];//文章图像地址    string
-
-        [infoDic setObject:[NSNumber numberWithInt:1] forKey:@"isMine"];
-        [infoDic setObject:[NSNumber numberWithInt:0] forKey:@"type"];
-        [infoDic setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"savetime"];
-        [saveArr addObject:infoDic];
-        
-        [[LSCacheManager sharedInstance] archiverObject:saveArr ByKey:@"savearticle" WithPath:@"article"];
-        [self.navigationController popViewControllerAnimated:YES];
-
-    }];
 }
 
 - (void)initForView
 {
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    self.navigationItem.title = @"创建文章";
+    self.navigationItem.title = @"创建活动";
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    self.contentTextV.placeholder = @"请输入内容";
+    self.content.placeholder = @"请输入内容";
     
-    if (self.data) {
-        self.titleTextF.text = self.data[@"title"];
-        self.keyTextF.text = self.data[@"keyword"];
-        [self.typeBtn setTitle:self.data[@"classify"] forState:UIControlStateNormal];
-        self.contentTextV.text = self.data[@"content"];
-        if (self.data[@"img_url"]) {
-            [self.imgBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, self.data[@"img_url"]]]];
-        }
-    }
+    [self.scrollView addSubview:self.centView];
+    
+    self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 500);
 }
 
 - (void)rightItemClick
 {
-    if ([self.titleTextF.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
-        [XHToast showCenterWithText:@"请填写标题"];
+//    接口名称 新增活动
+//    请求类型 post
+//    请求Url  /dr/addActivity
+//    请求参数列表
+//    变量名	含义	类型	备注
+//    activity_time	活动时间	string	yyyy-MM-dd HH:mm
+//    address	活动地址	string
+//    content	活动内容	string
+//    cookie	医生cookie	string
+//    cutoff_time	报名截止时间	string	yyyy-MM-dd HH:mm
+//    disease_group	患者疾病分类	string	常用标签，全部传空，多个以“、”分隔
+//    img_url	活动图片	string
+//    name	活动名称	string	
+//    total_number	总人数	number
+    
+    if ([self.name.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
+    {
+        [XHToast showCenterWithText:@"请输入活动名"];
         return;
     }
     
-    if ([self.keyTextF.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
-        [XHToast showCenterWithText:@"请填写关键词"];
-        return;
-    }
-    if ([self.contentTextV.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
-        [XHToast showCenterWithText:@"请填写内容"];
+    if ([self.address.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
+    {
+        [XHToast showCenterWithText:@"请输入活动地址"];
         return;
     }
     
-    if (self.typeBtn.titleLabel.text.length == 0) {
-        [XHToast showCenterWithText:@"请选择类型"];
+    if ([self.cutoff_time.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
+    {
+        [XHToast showCenterWithText:@"请选择活动日期"];
+        return;
+    }
+    
+    if ([self.activity_time.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
+    {
+        [XHToast showCenterWithText:@"请选择活动时间"];
+        return;
+    }
+    
+    if ([self.total_number.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
+    {
+        [XHToast showCenterWithText:@"请输入活动参与人数量"];
+        return;
+    }
+    
+    if ([self.content.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
+    {
+        [XHToast showCenterWithText:@"请输入活动内容"];
         return;
     }
     
     NSMutableDictionary *infoDic = [NSMutableDictionary dictionary];
-    [infoDic setValue:self.titleTextF.text forKey:@"title"];//文章标题	string
-    [infoDic setValue:self.keyTextF.text forKey:@"keyword"];//文章关键字	string
-    [infoDic setValue:self.typeBtn.titleLabel.text forKey:@"classify"];//文章分类	string
-    [infoDic setValue:self.contentTextV.text forKey:@"content"];//文章内容	string
+    
+    [infoDic setValue:self.name.text forKey:@"name"];
+    [infoDic setValue:self.address.text forKey:@"address"];
+    [infoDic setValue:self.cutoff_time.text forKey:@"cutoff_time"];
+    [infoDic setValue:self.activity_time.text forKey:@"activity_time"];
+    [infoDic setValue:self.total_number.text forKey:@"total_number"];
+    [infoDic setValue:self.content.text forKey:@"content"];
+    
     if (self.imgUrl)
     {
         [infoDic setValue:self.imgUrl forKey:@"img_url"];//文章图像地址	string
     }
     
-    LSWorkArticleSubController *vc = [[LSWorkArticleSubController alloc] initWithNibName:@"LSWorkArticleSubController" bundle:nil];
+    LSWorkActivitySubController *vc = [[LSWorkActivitySubController alloc] initWithNibName:@"LSWorkActivitySubController" bundle:nil];
     vc.infoDic = [infoDic copy];
     [self.navigationController pushViewController:vc animated:YES];
     
-    NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
-    
-    for (NSDictionary *dic in saveArr) {
-        if ([self.data[@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
-            [saveArr removeObject:dic];
-        }
-    }
+}
+- (IBAction)cutoff_timeTap:(UITapGestureRecognizer *)sender
+{
+    self.picker = [[ZHPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
+    self.picker.tag = 1;
+    self.picker.delegate = self;
+    [self.picker show];
+}
+
+- (IBAction)activity_timeTap:(UITapGestureRecognizer *)sender
+{
+    self.picker = [[ZHPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
+    self.picker.tag = 2;
+    self.picker.delegate = self;
+    [self.picker show];
 }
 
 - (IBAction)scanBtnClick:(UIButton *)btn
 {
-    if (!self.imgUrl && self.contentTextV.text.length == 0) {
+    if (!self.imgUrl && self.content.text.length == 0) {
         return;
     }
     LSWorkScanController *vc = [[LSWorkScanController alloc]init];
     if (self.imgUrl) {
         vc.imageURL = self.imgUrl;
     }
-    vc.content = self.contentTextV.text;
-    vc.titleStr = self.titleTextF.text;
+    vc.content = self.content.text;
+    vc.titleStr = self.name.text;
     [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (IBAction)typeBtnClick:(UIButton *)sender
-{
-    LSWEAKSELF;
-    
-    //分类
-    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-    
-    NSString* url = PATH(@"%@/getArticleClassify");
-    
-    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-        
-        if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
-        {
-            if ([responseObj[@"data"] isKindOfClass:[NSDictionary class]]) {
-                
-                NSArray *array = responseObj[@"data"][@"list"];
-                
-                if (array.count == 0)
-                {
-                    [XHToast showCenterWithText:@"无数据"];
-                    return ;
-                }
-                
-                weakSelf.pickview=[[ZHPickView alloc] initPickviewWithArray:@[array] isHaveNavControler:NO];
-                weakSelf.pickview.delegate=self;
-                [weakSelf.pickview show];
-                
-            }else{
-                NSLog(@"返回数据有误");
-            }
-        }else
-        {
-            [XHToast showCenterWithText:@"获取分类列表失败"];
-        }
-        
-    } failBlock:^(NSError *error) {
-        //[XHToast showCenterWithText:@"fail"];
-    }];
 }
 
 - (IBAction)delBtnClick:(UIButton *)btn
@@ -341,12 +301,18 @@
 }
 
 #pragma mark ZhpickVIewDelegate 点击确定方法的回调
--(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString
+
+- (void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString
 {
-    NSLog(@"%@",resultString);
+    if (pickView.tag == 1)
+    {
+        self.cutoff_time.text = [[resultString stringByReplacingOccurrencesOfString:@" +0000" withString:@""] substringToIndex:16];
+    }
     
-    [self.typeBtn setTitle:resultString forState:UIControlStateNormal];
-    [self.typeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    if (pickView.tag == 2)
+    {
+        self.activity_time.text = [[resultString stringByReplacingOccurrencesOfString:@" +0000" withString:@""] substringToIndex:16];
+    }
 }
 
 @end

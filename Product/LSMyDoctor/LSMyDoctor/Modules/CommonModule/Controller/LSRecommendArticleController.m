@@ -18,6 +18,8 @@ static NSString *cellId = @"LSRecommendArticleCell";
 
 @property (nonatomic, strong) NSMutableArray *dataList;
 
+@property (nonatomic, strong) LSRecommendArticleModel *selModel;
+
 @end
 
 @implementation LSRecommendArticleController
@@ -48,6 +50,15 @@ static NSString *cellId = @"LSRecommendArticleCell";
 
 - (void)rightItemClick
 {
+    if (self.sureBlock) {
+        self.sureBlock(@{
+                         @"title":self.selModel.title,
+                         @"content":self.selModel.content,
+                         @"id":[NSNumber numberWithLong:self.selModel.m_id],
+                         @"recommendArticle":@"1"
+                         });
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -103,9 +114,9 @@ static NSString *cellId = @"LSRecommendArticleCell";
         [self.dataList replaceObjectAtIndex:i withObject:reModel];
     }
     
-    LSRecommendArticleModel *model = self.dataList[indexPath.row];
-    model.isSel = YES;
-    [self.dataList replaceObjectAtIndex:indexPath.row withObject:model];
+    self.selModel = self.dataList[indexPath.row];
+    self.selModel.isSel = YES;
+    [self.dataList replaceObjectAtIndex:indexPath.row withObject:self.selModel];
     
     [tableView reloadData];
 }

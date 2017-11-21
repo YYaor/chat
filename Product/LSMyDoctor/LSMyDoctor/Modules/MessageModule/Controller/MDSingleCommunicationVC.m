@@ -10,14 +10,19 @@
 
 #import "LSDoctorAdviceController.h"
 #import "LSRecommendArticleController.h"
+#import "LSWorkArticleDetailController.h"
 
 #import "YGComRequestCell.h"
 #import "YGIllnessomplaintCell.h"
 #import "YGSelectMedicalRecordCell.h"
 #import "YGMedicalRecordDetailVC.h"
 #import "LSDoctorAdviceMessageCell.h"
+#import "LSRecommendArticleMessageCell.h"
 
 @interface MDSingleCommunicationVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,YGSelectMedicalRecordCellDelegate>
+
+
+@property(nonatomic,strong)EaseMessageViewController *easeMessage;
 
 @end
 
@@ -64,7 +69,7 @@
             
             cell.sureBlock = ^(NSString *status, NSString *requestId) {
                 NSString* statusStr = [status isEqualToString:@"1"] ? @"1" : @"2";
-                [self agreeOrRefuseRequestDataWithStatus:statusStr requestId:requestId];
+                [self agreeOrRefuseRequestDataWithStatus:statusStr requestId:requestId WithModel:messageModel];
                 
             };
             
@@ -108,6 +113,17 @@
             return cell;
         }
         
+        if(messageModel.message.ext[@"recommendArticle"]){
+            //文章推荐
+            NSString* cellId = [LSRecommendArticleMessageCell cellIdentifierWithModel:messageModel];
+            LSRecommendArticleMessageCell* cell = (LSRecommendArticleMessageCell*)[tableView dequeueReusableCellWithIdentifier:cellId];
+            
+            if (!cell) {
+                cell = [[LSRecommendArticleMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId model:messageModel];
+            }
+            cell.model = messageModel;
+            return cell;
+        }
     }
     
     
@@ -147,6 +163,11 @@
             return 110.0f;
         }
         
+        if(messageModel.message.ext[@"recommendArticle"]){
+            //文章推荐
+            return 110.0f;
+        }
+        
     }
     return 0.f;
 }
@@ -169,6 +190,15 @@
             
             [self.conversation updateMessageChange:messageModel.message error:nil];
         };
+    }
+    
+    if (messageModel.message.ext[@"recommendArticle"])
+    {
+        flag = YES;
+        
+        LSWorkArticleDetailController *vc = [[LSWorkArticleDetailController alloc] initWithNibName:@"LSWorkArticleDetailController" bundle:nil];
+        vc.dic = messageModel.message.ext;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     
     return flag;
@@ -204,7 +234,7 @@
 //}
 
 #pragma mark -- 同意预约请求
-- (void)agreeOrRefuseRequestDataWithStatus:(NSString*)statusStr requestId:(NSString*)requestIdStr
+- (void)agreeOrRefuseRequestDataWithStatus:(NSString*)statusStr requestId:(NSString*)requestIdStr WithModel:(id<IMessageModel>)messageModel
 {
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
@@ -219,7 +249,9 @@
             if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
             {
                 [XHToast showCenterWithText:@"已处理该请求"];
-                [self selectedRequestStatusWithRequestId:requestIdStr];
+                
+                
+                [self selectedRequestStatusWithRequestId:requestIdStr WithModel:messageModel];
             }else
             {
                 [XHToast showCenterWithText:@"获取数据失败"];
@@ -237,7 +269,7 @@
 }
 
 #pragma mark -- 查询预约请求状态
-- (void)selectedRequestStatusWithRequestId:(NSString*)requestid
+- (void)selectedRequestStatusWithRequestId:(NSString*)requestid WithModel:(id<IMessageModel>)messageModel
 {
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
@@ -250,6 +282,33 @@
             if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
             {
                 NSLog(@"获取预约请求的状态为：%@",responseObj[@"data"]);
+                
+                
+                EMMessage *chatMessage = messageModel.message;
+                if (chatMessage.ext) {
+                    NSMutableDictionary *dict = [chatMessage.ext mutableCopy];
+                    [dict setObject:responseObj[@"data"] forKey:@"isHaveStatus"];
+                    chatMessage.ext = dict;
+                    [[EMClient sharedClient].chatManager updateMessage:chatMessage completion:nil];
+                    
+                } else {
+                    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:chatMessage.ext];
+                    [dic setObject:responseObj[@"data"] forKey:@"isHaveStatus"];
+                    chatMessage.ext = dic;
+                    [[EMClient sharedClient].chatManager updateMessage:chatMessage completion:nil];
+                }
+                
+                
+                
+                NSMutableDictionary *data = [NSMutableDictionary dictionary];
+                [data setValue:requestid forKey:@"id"];
+                [data setValue:responseObj[@"data"] forKey:@"remindData"];
+                
+                
+                [self sendTextMessage:@" " withExt:data];
+                
+                [self.tableView reloadData];
+                
                 
             }else
             {
@@ -273,5 +332,10 @@
     recordDetailVC.recordIdStr = sender.detail;
     [self.navigationController pushViewController:recordDetailVC animated:YES];
 }
+
+
+
+
+
 
 @end

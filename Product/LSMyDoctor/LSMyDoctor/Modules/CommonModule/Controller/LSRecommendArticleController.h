@@ -10,4 +10,6 @@
 
 @interface LSRecommendArticleController : UIViewController
 
+@property (nonatomic, copy) void (^sureBlock)(NSDictionary *dataDic);
+
 @end

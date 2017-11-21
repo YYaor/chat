@@ -19,6 +19,7 @@
 //center
 #import "LSWorkOutcallController.h"
 #import "LSWorkArticleController.h"
+#import "LSWorkActivityController.h"
 #import "LSWorkUsefulController.h"
 #import "MDDataStatistics.h"
 
@@ -157,6 +158,9 @@
     else if (btn.tag == 20002)
     {
         //活动管理
+        LSWorkActivityController *vc = [[LSWorkActivityController alloc] initWithNibName:@"LSWorkActivityController" bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (btn.tag == 20003)
     {

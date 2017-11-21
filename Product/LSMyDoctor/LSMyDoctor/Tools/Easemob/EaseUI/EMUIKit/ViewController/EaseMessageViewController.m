@@ -1576,7 +1576,7 @@ typedef enum : NSUInteger {
     [self.navigationController pushViewController:vc animated:YES];
     
     vc.sureBlock = ^(NSDictionary *dataDic) {
-        [self sendTextMessage:@"下达医嘱" withExt:dataDic];
+        [self sendTextMessage:@"[下达医嘱]" withExt:dataDic];
     };
     
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
@@ -1589,6 +1589,10 @@ typedef enum : NSUInteger {
     
     LSRecommendArticleController *vc = [[LSRecommendArticleController alloc] initWithNibName:@"LSRecommendArticleController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
+    
+    vc.sureBlock = ^(NSDictionary *dataDic) {
+        [self sendTextMessage:@"[文章推荐]" withExt:dataDic];
+    };
     
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
 }

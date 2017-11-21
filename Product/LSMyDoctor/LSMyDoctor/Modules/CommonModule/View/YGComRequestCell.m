@@ -69,46 +69,66 @@
         make.bottom.equalTo(self.bubbleView).offset(-5);
         make.height.equalTo(@40);
     }];
-    
-    UILabel* midelLab = [[UILabel alloc] init];
-    [btnView addSubview:midelLab];
-    [midelLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.centerY.equalTo(btnView);
-        make.width.height.equalTo(@1);
-    }];
-    WFHelperButton* agreeBtn = [[WFHelperButton alloc] init];
-    [agreeBtn setTitle:@"同意" forState:UIControlStateNormal];
-    [agreeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [agreeBtn setBackgroundColor:BaseColor];
-    agreeBtn.index = 1;
-    agreeBtn.detail = model.message.ext[@"bookRequestId"];
-    agreeBtn.layer.masksToBounds = YES;
-    agreeBtn.layer.cornerRadius = 15.0f;
-    [agreeBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [btnView addSubview:agreeBtn];
-    [agreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(btnView.mas_top).offset(5);
-        make.bottom.equalTo(btnView.mas_bottom).offset(-5);
-        make.left.equalTo(@10);
-        make.right.equalTo(midelLab.mas_left).offset(-10);
-    }];
-    
-    
-    WFHelperButton* refuseBtn = [[WFHelperButton alloc] init];
-    [refuseBtn setTitle:@"拒绝" forState:UIControlStateNormal];
-    [refuseBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [refuseBtn setBackgroundColor:[UIColor redColor]];
-    refuseBtn.layer.masksToBounds = YES;
-    refuseBtn.index = 0;
-    refuseBtn.detail = model.message.ext[@"bookRequestId"];
-    refuseBtn.layer.cornerRadius = 15.0f;
-    [refuseBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [btnView addSubview:refuseBtn];
-    [refuseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(agreeBtn);
-        make.left.equalTo(midelLab.mas_right).offset(10);
-        make.right.equalTo(btnView.mas_right).offset(-10);
-    }];
+    if ([[NSString stringWithFormat:@"%@",model.message.ext[@"isHaveStatus"]] isEqualToString:@"1"] || [[NSString stringWithFormat:@"%@",model.message.ext[@"isHaveStatus"]] isEqualToString:@"2"]) {
+        //已处理的
+        for (UIView* v in btnView.subviews) {
+            [v removeFromSuperview];
+        }
+        UILabel* statusLab = [[UILabel alloc] init];
+        statusLab.textColor = [UIColor darkGrayColor];
+        statusLab.text = [[NSString stringWithFormat:@"%@",model.message.ext[@"isHaveStatus"]] isEqualToString:@"1"] ? @"已同意" : @"已拒绝" ;
+        [btnView addSubview:statusLab];
+        [statusLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(btnView.mas_centerX);
+            make.centerY.equalTo(btnView.mas_centerY);
+        }];
+    }else{
+        
+        //未处理的
+        for (UIView* v in btnView.subviews) {
+            [v removeFromSuperview];
+        }
+        UILabel* midelLab = [[UILabel alloc] init];
+        [btnView addSubview:midelLab];
+        [midelLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.centerY.equalTo(btnView);
+            make.width.height.equalTo(@1);
+        }];
+        WFHelperButton* agreeBtn = [[WFHelperButton alloc] init];
+        [agreeBtn setTitle:@"同意" forState:UIControlStateNormal];
+        [agreeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [agreeBtn setBackgroundColor:BaseColor];
+        agreeBtn.index = 1;
+        agreeBtn.detail = model.message.ext[@"bookRequestId"];
+        agreeBtn.layer.masksToBounds = YES;
+        agreeBtn.layer.cornerRadius = 15.0f;
+        [agreeBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [btnView addSubview:agreeBtn];
+        [agreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(btnView.mas_top).offset(5);
+            make.bottom.equalTo(btnView.mas_bottom).offset(-5);
+            make.left.equalTo(@10);
+            make.right.equalTo(midelLab.mas_left).offset(-10);
+        }];
+        
+        
+        WFHelperButton* refuseBtn = [[WFHelperButton alloc] init];
+        [refuseBtn setTitle:@"拒绝" forState:UIControlStateNormal];
+        [refuseBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [refuseBtn setBackgroundColor:[UIColor redColor]];
+        refuseBtn.layer.masksToBounds = YES;
+        refuseBtn.index = 0;
+        refuseBtn.detail = model.message.ext[@"bookRequestId"];
+        refuseBtn.layer.cornerRadius = 15.0f;
+        [refuseBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [btnView addSubview:refuseBtn];
+        [refuseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.equalTo(agreeBtn);
+            make.left.equalTo(midelLab.mas_right).offset(10);
+            make.right.equalTo(btnView.mas_right).offset(-10);
+        }];
+        
+    }
     
     
     //预约时间

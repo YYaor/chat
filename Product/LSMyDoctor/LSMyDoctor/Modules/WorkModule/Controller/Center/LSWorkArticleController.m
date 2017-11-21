@@ -13,6 +13,7 @@
 
 #import "LSWorkArticleCell.h"
 #import "LSCacheManager.h"
+
 @interface LSWorkArticleController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *navView;
