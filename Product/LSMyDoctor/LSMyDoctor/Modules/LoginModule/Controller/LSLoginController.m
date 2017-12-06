@@ -163,6 +163,23 @@
 
 #pragma mark - TextDelegate
 
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField == self.phoneTextFiled) {
+        if ([string isEqualToString:@""]) {
+            return YES;
+        }
+        if (textField.text.length>=11) {
+            [LSUtil showAlter:self.view withText:@"请输入11位手机号码" withOffset:-20];
+            return NO;
+        }else{
+            return YES;
+        }
+    }else{
+        return YES;
+    }
+    
+}
+
 - (void)textFieldDidChange:(UITextField *)textField
 {
     if (textField == self.pswTextFiled) {
@@ -273,7 +290,9 @@
     
     if (![NSString isMobile:self.phoneTextFiled.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
-        self.phoneNoticeLabel.text = @"手机号码有误";
+        self.phoneNoticeLabel.text = @"您输入的手机号码不正确";
+        [LSUtil showAlter:self.view withText:@"您输入的手机号码不正确" withOffset:-20];
+
         return;
     }
     
@@ -323,6 +342,8 @@
     if (![NSString isMobile:self.phoneTextFiled.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
         self.phoneNoticeLabel.text = @"您输入的手机号码不正确";
+        [LSUtil showAlter:self.view withText:@"您输入的手机号码不正确" withOffset:-20];
+
         return;
     }
     

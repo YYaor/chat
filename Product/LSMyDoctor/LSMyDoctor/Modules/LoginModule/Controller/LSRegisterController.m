@@ -13,7 +13,7 @@
 
 #import "NSString+Mark.h"
 
-@interface LSRegisterController ()
+@interface LSRegisterController ()<UITextFieldDelegate>
 
 @property (nonatomic,strong) UITextField *phoneTextField;
 
@@ -240,6 +240,7 @@
     if (![NSString isMobile:self.phoneTextField.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
         self.phoneNoticeLabel.text = @"您输入的手机号码不正确";
+        [LSUtil showAlter:self.view withText:@"您输入的手机号码不正确" withOffset:-20];
         return;
     }
     
@@ -391,6 +392,31 @@
 }
 
 #pragma mark -- 限制输入字数
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField == self.phoneTextField) {
+        if ([string isEqualToString:@""]) {
+            return YES;
+        }
+        if (textField.text.length>=11) {
+            [LSUtil showAlter:self.view withText:@"请输入11位手机号码" withOffset:-20];
+            return NO;
+        }else{
+            return YES;
+        }
+    }else if (textField == self.pswTextField || textField == self.confPswTextField){
+        if ([string isEqualToString:@""]) {
+            return YES;
+        }
+        if (textField.text.length>=6) {
+            [LSUtil showAlter:self.view withText:@"最多设置6位密码" withOffset:-20];
+            return NO;
+        }else{
+            return YES;
+        }
+    }else{
+        return YES;
+    }
+}
 - (void) textFieldDidChange:(UITextField *)textField
 {
     //最大长度
@@ -449,6 +475,7 @@
         _phoneTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         [_phoneTextField addTarget:self action:@selector(phoneTextChangged:) forControlEvents:UIControlEventEditingChanged];
         [_phoneTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventValueChanged];
+        _phoneTextField.delegate = self;
     }
     return _phoneTextField;
 }
@@ -464,6 +491,7 @@
         [_pswTextField addTarget:self action:@selector(pswTextChangged:) forControlEvents:UIControlEventEditingChanged];
         [_pswTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventValueChanged];
         _pswTextField.secureTextEntry = YES;
+        _pswTextField.delegate = self;
     }
     return _pswTextField;
 }
@@ -491,6 +519,7 @@
         [_confPswTextField addTarget:self action:@selector(confPswTextChangged:) forControlEvents:UIControlEventEditingChanged];
         [_confPswTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventValueChanged];
         _confPswTextField.secureTextEntry = YES;
+        _confPswTextField.delegate = self;
     }
     return _confPswTextField;
 }

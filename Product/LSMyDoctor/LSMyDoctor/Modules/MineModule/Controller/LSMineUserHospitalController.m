@@ -385,6 +385,12 @@
             }
         }
     }
+    
+    if (self.hospitalButton.titleLabel.text.length == 0 || self.areaButton.titleLabel.text.length == 0 || self.cityButton.titleLabel.text.length == 0) {
+        self.commitButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+    }else{
+        self.commitButton.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+    }
 }
 
 #pragma mark - getter & setter 

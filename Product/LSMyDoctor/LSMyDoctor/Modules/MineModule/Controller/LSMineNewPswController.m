@@ -8,7 +8,7 @@
 
 #import "LSMineNewPswController.h"
 
-@interface LSMineNewPswController ()
+@interface LSMineNewPswController ()<UITextFieldDelegate>
 
 @property (nonatomic,strong)UITextField * oldPswTextField;
 
@@ -138,6 +138,18 @@
     }];
 }
 
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if ([string isEqualToString:@""]) {
+        return YES;
+    }
+    if (textField.text.length>=6) {
+        [LSUtil showAlter:self.view withText:@"最多设置6位密码" withOffset:-20];
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
 -(void)oldTextChangged:(UITextField *)sender{
     if (sender.text.length > 0 && self.secPswTextField.text.length > 0 && self.nPswTextField.text.length>0) {
         self.sureButton.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
@@ -176,8 +188,8 @@
         _oldPswTextField.placeholder = @"请输入原密码";
         _oldPswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         [_oldPswTextField addTarget:self action:@selector(oldTextChangged:) forControlEvents:UIControlEventEditingChanged];
-
-
+        _oldPswTextField.secureTextEntry = YES;
+        _oldPswTextField.delegate = self;
     }
     return _oldPswTextField;
 }
@@ -189,6 +201,9 @@
         _secPswTextField.placeholder = @"请再次输入新密码";
         _secPswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         [_secPswTextField addTarget:self action:@selector(secTextChangged:) forControlEvents:UIControlEventEditingChanged];
+        _secPswTextField.secureTextEntry = YES;
+        _secPswTextField.delegate = self;
+
 
 
     }
@@ -202,6 +217,9 @@
         _nPswTextField.placeholder = @"请输入新密码";
         _nPswTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         [_secPswTextField addTarget:self action:@selector(nPswTextChangged:) forControlEvents:UIControlEventEditingChanged];
+        _nPswTextField.secureTextEntry = YES;
+        _nPswTextField.delegate = self;
+
 
     }
     return _nPswTextField;

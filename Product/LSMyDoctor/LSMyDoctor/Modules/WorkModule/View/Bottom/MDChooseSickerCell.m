@@ -24,7 +24,7 @@
     
     self.importLab.layer.masksToBounds = YES;
     self.importLab.layer.cornerRadius = 14.0f;
-    
+    self.boxBtn.userInteractionEnabled = NO;
     // Initialization code
 }
 

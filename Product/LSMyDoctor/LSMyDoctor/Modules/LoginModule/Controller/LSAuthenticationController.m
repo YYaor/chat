@@ -739,6 +739,11 @@
         [self.careerButton setTitle:resultString forState:UIControlStateNormal];
         [self.careerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
+    if (self.careerButton.titleLabel.text.length == 0 || self.hospitalButton.titleLabel.text.length ==0 || self.roomButton.titleLabel.text.length == 0 || self.areaButton.titleLabel.text.length == 0 || self.cityButton.titleLabel.text.length == 0) {
+        self.commitButton.backgroundColor = [UIColor colorFromHexString:@"e0e0e0"];
+    }else{
+        self.commitButton.backgroundColor = [UIColor colorFromHexString:LSGREENCOLOR];
+    }
 }
 
 #pragma mark - pickerView

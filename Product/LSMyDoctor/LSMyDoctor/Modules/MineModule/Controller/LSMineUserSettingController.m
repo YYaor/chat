@@ -281,7 +281,7 @@
     
     if (indexPath.row == 0) {
         [cell hideHeadImageView:NO];
-        [cell updateHead:self.model.myImage];
+        [cell updateHead:self.model.myBaseInfo[0][@"value"]];
     }else{
         [cell hideHeadImageView:YES];
         if (indexPath.row == 1) {
@@ -364,6 +364,7 @@
             weakSelf.model.myBaseInfo = arr;
             
             [weakSelf updateMainInfoData];
+            [weakSelf.dataTableView reloadData];
         }
         else
         {

@@ -9,7 +9,7 @@
 #import "LSWorkOutcallAddController.h"
 #import "MDChooseSickerModel.h"
 #import "MDChooseSickerVC.h"
-@interface LSWorkOutcallAddController ()<ZHPickViewDelegate, UITextViewDelegate>
+@interface LSWorkOutcallAddController ()<ZHPickViewDelegate, UITextViewDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *choosePatientButton;
 
@@ -58,6 +58,11 @@
     [super viewDidLoad];
     
     [self initForView];
+    self.nameTF.delegate = self;
+    self.textView4.delegate = self;
+    self.textView5.delegate = self;
+    self.textView6.delegate = self;
+
 }
 
 - (void)initForView
@@ -167,6 +172,10 @@
 //    userid	患者ID	number
 //    username	患者姓名	string
 //    visitdate
+    if (self.nameTF.text.length == 0) {
+        [LSUtil showAlter:self.view withText:@"请填写患者姓名" withOffset:-20];
+        return;
+    }
     
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
@@ -254,6 +263,29 @@
 }
 
 #pragma mark - UITextViewDelegate
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@""]) {
+        return YES;
+    }
+    if (textView.text.length>=100) {
+        [LSUtil showAlter:self.view withText:@"最多输入100个字" withOffset:-20];
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if ([string isEqualToString:@""]) {
+        return YES;
+    }
+    if (textField.text.length>=10) {
+        [LSUtil showAlter:self.view withText:@"名字最多输入10个字" withOffset:-20];
+        return NO;
+    }else{
+        return YES;
+    }
+}
 
 - (void)textViewDidChange:(UITextField *)textView
 {

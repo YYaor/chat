@@ -82,7 +82,11 @@
 
 -(void)updateHead:(NSString *)headURL{
     
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, headURL]] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+    if ([headURL containsString:@"http"]) {
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:headURL] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+    }else{
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, headURL]] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
+    }
 }
 
 -(void)updateName:(NSString *)name{
