@@ -10,14 +10,12 @@
 
 #import "LSMessageCell.h"
 
-#import "FMDBTool.h"
-
 #import "MDSingleCommunicationVC.h"
 #import "MDSingleCommunicateVC.h"
 
 static NSString *cellId = @"LSMessageCell";
 
-@interface LSMessageController () <UITableViewDelegate, UITableViewDataSource>
+@interface LSMessageController () <UITableViewDelegate, UITableViewDataSource, EMChatManagerDelegate, EMGroupManagerDelegate, EMChatroomManagerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataList;//筛选好的聊天列表
 
@@ -34,6 +32,7 @@ static NSString *cellId = @"LSMessageCell";
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self requestData];
+    [self registerNotifications];
 }
 
 - (void)initForView
@@ -46,20 +45,30 @@ static NSString *cellId = @"LSMessageCell";
     [self.tableView registerNib:[UINib nibWithNibName:cellId bundle:nil] forCellReuseIdentifier:cellId];
     
     self.tableView.rowHeight = 100;
+    
+    self.showRefreshHeader = YES;
+    
+    [self tableViewDidTriggerHeaderRefresh];
+
 }
 
 - (void)requestData
 {
-    if ([self.dataArray count] > 0) {
+    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    
+//    //调用:
+//    EMError *error = nil;
+//    EMPageResult *list = [[EMClient sharedClient].roomManager getChatroomsFromServerWithPage:0 pageSize:50 error:&error];
+//    
+//    for (EMChatroom *room in list.list)
+//    {
+//        
+//    }
+    
+    if ([self.dataArray count] > 1) {
         if ([[self.dataArray objectAtIndex:0] isKindOfClass:[EaseConversationModel class]]) {
             
-            NSMutableArray *temp = [NSMutableArray array];
-            
-            for (EaseConversationModel *model in self.dataArray) {
-                [temp addObject:model];
-            }
-            
-            NSArray* sorted = [temp sortedArrayUsingComparator:
+            NSArray* sorted = [self.dataArray sortedArrayUsingComparator:
                                ^(EaseConversationModel *obj1, EaseConversationModel* obj2){
                                    EMMessage *message1 = [obj1.conversation latestMessage];
                                    EMMessage *message2 = [obj2.conversation latestMessage];
@@ -74,153 +83,136 @@ static NSString *cellId = @"LSMessageCell";
             [self.dataList addObjectsFromArray:sorted];
         }
     }
-    
-//    NSArray* sorted = [self.dataArray sortedArrayUsingComparator:
-//                       ^(EMConversation *obj1, EMConversation* obj2){
-//                           EMMessage *message1 = [obj1 latestMessage];
-//                           EMMessage *message2 = [obj2 latestMessage];
-//                           if(message1.timestamp > message2.timestamp) {
-//                               return(NSComparisonResult)NSOrderedAscending;
-//                           }else {
-//                               return(NSComparisonResult)NSOrderedDescending;
-//                           }
-//                       }];
-//    
-//    
-//    [self.dataArray removeAllObjects];
-//    [self.dataArray addObjectsFromArray:sorted];
-    
-    
-    for (EaseConversationModel *cModel in self.dataArray) {
-        EaseConversationModel *model = nil;
-        if (self.dataSource && [self.dataSource respondsToSelector:@selector(conversationListViewController:modelForConversation:)]) {
-            model = [self.dataSource conversationListViewController:self
-                                               modelForConversation:cModel.conversation];
-        }
-        else{
-            model = [[EaseConversationModel alloc] initWithConversation:cModel.conversation];
-        }
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            // 耗时的操作
-            
-//            NSDictionary *dicDB = [FMDBTool selectUserLoginViewInfoSqlTableWithTypeListName:CHATUSERTABLE
-//                                                                                     search:@[[NSString stringWithFormat:@"uid = '%@'",converstion.conversationId]] dataTyep:CHATUSERKEYS];
-//            if (model) {
-//                if (dicDB) {
-//                    model.title = dicDB[@"nickName"];
-//                    model.avatarURLPath = dicDB[@"headerUrl"];
-//                }else{
-                    [self requestPdata:cModel.conversation.conversationId];
-//                }
-//                [self.dataArray addObject:model];
-//            }
-        });
+    else
+    {
+        [self.dataList removeAllObjects];
+        [self.dataList addObjectsFromArray:self.dataArray];
     }
     
-//    [self.tableView reloadData];
-}
-
--(void)checkDoctor:(NSString *)conversationId{
-    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-    
-    [param setObject:@[conversationId] forKey:@"im_username"];
-    
-    NSString *url = PATH(@"%@/getDoctorByIM");
-//    self.dataArray = [[NSMutableArray alloc]init];
-    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-        if ([responseObj isKindOfClass:[NSDictionary class]])
-        {
-            if ([responseObj[@"status"] integerValue] == 0) {
-                
-                if (responseObj[@"data"]) {
-                    
-                    for (NSDictionary *dic in responseObj[@"data"]) {
-//                        [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
-//                                                                      data:@{@"uid" : dic[@"im_username"],
-//                                                                             @"nickName" : dic[@"doctor_name"] ? dic[@"doctor_name"] : @"",
-//                                                                             @"headerUrl" : dic[@"doctor_image"] ? dic[@"doctor_image"] : @""}];
-                        for (EaseConversationModel *conversation in self.dataList) {
-                            if ([conversation.conversation.conversationId isEqualToString:conversationId]) {
-                                conversation.title = dic[@"doctor_name"];
-                                conversation.avatarURLPath = dic[@"doctor_image"];
-                            }
-                        }
-                    }
-                    [self.tableView reloadData];
-                    
-                }
-            }
-        }
-    } failBlock:^(NSError *error) {
-
-    }];
-}
-
--(void)checkPatient:(NSString *)conversationId{
-    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-    
-    [param setObject:@[conversationId] forKey:@"im_username"];
-    
-    NSString *url = PATH(@"%@/getPatientByIM");
-//    self.dataArray = [[NSMutableArray alloc]init];
-    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
-        if ([responseObj isKindOfClass:[NSDictionary class]])
-        {
-            if ([responseObj[@"status"] integerValue] == 0) {
-                
-                if (responseObj[@"data"]) {
-                    
-                    for (NSDictionary *dic in responseObj[@"data"]) {
-//                        [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
-//                                                                      data:@{@"uid" : dic[@"im_username"],
-//                                                                             @"nickName" : dic[@"username"] ? dic[@"username"] : @"",
-//                                                                             @"headerUrl" : dic[@"img_url"] ? dic[@"img_url"] : @""}];
-                        for (EaseConversationModel *conversation in self.dataList) {
-                            if ([conversation.conversation.conversationId isEqualToString:conversationId]) {
-                                conversation.title = dic[@"username"];
-                                conversation.avatarURLPath = dic[@"img_url"];
-                            }
-                        }
-                    }
-                    [self.tableView reloadData];
-                    
-                }
-            }
-        }
+    for (EaseConversationModel *model in self.dataList)
+    {
+        NSLog(@"=== %@ ===", model.conversation.lastReceivedMessage.ext);
         
-    } failBlock:^(NSError *error) {
-        
-    }];
+        if (model.conversation.lastReceivedMessage.ext)
+        {
+            model.title = model.conversation.lastReceivedMessage.ext[@"username"];
+            model.avatarURLPath = model.conversation.lastReceivedMessage.ext[@"userimage"];
+        }
+        else if (!model.avatarURLPath)
+        {
+            [self requestNicknameAndUserimageWithModel:model];
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 
--(void)requestPdata:(NSString *)conversationId
+- (void)requestNicknameAndUserimageWithModel:(EaseConversationModel *)model
 {
-
-    if ([conversationId containsString:@"P"] || [conversationId containsString:@"p"]) {
-        //病人查询
-        [self checkPatient:conversationId];
-    }else{
-        //医生查询
-        [self checkDoctor:conversationId];
+    if ([model.conversation.conversationId containsString:@"p"] || [model.conversation.conversationId containsString:@"P"])
+    {
+        NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+        
+        [param setObject:@[model.conversation.conversationId] forKey:@"im_username"];
+        
+        NSString *url = PATH(@"%@/getPatientByIM");
+        
+        [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+            if ([responseObj isKindOfClass:[NSDictionary class]])
+            {
+                if ([responseObj[@"status"] integerValue] == 0) {
+                    if (responseObj[@"data"]) {
+                        for (NSDictionary *dic in responseObj[@"data"]) {
+                            for (EaseConversationModel *conversation in self.dataList) {
+                                if ([conversation.conversation.conversationId isEqualToString:model.conversation.conversationId]) {
+                                    conversation.title = dic[@"username"];
+                                    conversation.avatarURLPath = dic[@"img_url"];
+                                }
+                            }
+                        }
+                        [self.tableView reloadData];
+                    }
+                }
+            }
+        } failBlock:^(NSError *error) {
+            
+        }];
     }
-    
+    else
+    {
+        NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+        
+        [param setObject:@[model.conversation.conversationId] forKey:@"im_username"];
+        
+        NSString *url = PATH(@"%@/getDoctorByIM");
+        
+        [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+            if ([responseObj isKindOfClass:[NSDictionary class]])
+            {
+                if ([responseObj[@"status"] integerValue] == 0) {
+                    if (responseObj[@"data"]) {
+                        for (NSDictionary *dic in responseObj[@"data"]) {
+                            for (EaseConversationModel *conversation in self.dataList) {
+                                if ([conversation.conversation.conversationId isEqualToString:model.conversation.conversationId]) {
+                                    conversation.title = dic[@"doctor_name"];
+                                    conversation.avatarURLPath = dic[@"doctor_image"];
+                                }
+                            }
+                        }
+                        [self.tableView reloadData];
+                    }
+                }
+            }
+        } failBlock:^(NSError *error) {
+            
+        }];
+    }
 }
-
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    EaseConversationModel *converSation = self.dataArray[indexPath.row];
+    
+    EaseConversationModel *converSation = self.dataList[indexPath.row];
+    
+    if ([converSation.conversation.conversationId containsString:@"p"] || [converSation.conversation.conversationId containsString:@"P"])
+    {
+        NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+        
+        [param setValue:[converSation.conversation.conversationId substringFromIndex:6] forKey:@"userid"];
+        
+        NSString *url = PATH(@"%@/addChatLog");
+
+        [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+            
+        } failBlock:^(NSError *error) {
+            
+        }];
+    }
+    
     MDSingleCommunicationVC *chatController = [[MDSingleCommunicationVC alloc]
-                                                 initWithConversationChatter:converSation.conversation.conversationId conversationType:EMConversationTypeChat];
+                                               initWithConversationChatter:converSation.conversation.conversationId conversationType:EMConversationTypeChat];
+    
+    chatController.titleStr = converSation.conversation.lastReceivedMessage.ext[@"username"]?converSation.conversation.lastReceivedMessage.ext[@"username"]:converSation.title;
+    chatController.user_idStr = [converSation.conversation.conversationId substringFromIndex:6];
     chatController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatController animated:YES];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        EaseConversationModel *model = [self.dataList objectAtIndex:indexPath.row];
+        [[EMClient sharedClient].chatManager deleteConversation:model.conversation.conversationId isDeleteMessages:YES completion:nil];
+        [self.dataList removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -235,6 +227,32 @@ static NSString *cellId = @"LSMessageCell";
     LSMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
     cell.conversation = self.dataList[indexPath.row];
     return cell;
+}
+
+#pragma mark - EMChatManagerDelegate
+
+- (void)messagesDidReceive:(NSArray *)aMessages
+{
+    [self tableViewDidTriggerHeaderRefresh];
+    [self requestData];
+}
+
+#pragma mark - registerNotifications
+-(void)registerNotifications{
+    [self unregisterNotifications];
+    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+    [[EMClient sharedClient].groupManager addDelegate:self delegateQueue:nil];
+    [[EMClient sharedClient].roomManager addDelegate:self delegateQueue:nil];
+}
+
+-(void)unregisterNotifications{
+    [[EMClient sharedClient].chatManager removeDelegate:self];
+    [[EMClient sharedClient].groupManager removeDelegate:self];
+    [[EMClient sharedClient].roomManager removeDelegate:self];
+}
+
+- (void)dealloc{
+    [self unregisterNotifications];
 }
 
 @end

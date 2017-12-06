@@ -18,6 +18,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     //添加子空间
+ //   self.bubbleMaxWidth = 350.0f;
     
     return self;
     
@@ -32,7 +33,7 @@
     [super setModel:model];
     
     
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.bubbleView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:0.5 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.bubbleView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:0.6 constant:0]];
     
     UILabel* titleLab = [[UILabel alloc] init];
     titleLab.text = @"我的病历";

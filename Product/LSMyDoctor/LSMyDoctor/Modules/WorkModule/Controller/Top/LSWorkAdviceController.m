@@ -61,12 +61,10 @@ static NSString *cellId = @"LSWorkAdviceCell";
             [self.dataArray addObjectsFromArray:dict[@"data"][@"content"]];
             [self.tableView reloadData];
             
-//            for (NSDictionary *dic in self.dataArray) {
-//                [FMDBTool insertTypeListToSqlTableWithTypeListName:CHATUSERTABLE
-//                                                              data:@{@"uid" : dic[@"id"],
-//                                                                     @"nickName" : dic[@"username"] ? dic[@"username"] : @"",
-//                                                                     @"headerUrl" : dic[@"img_url"] ? dic[@"img_url"] : @""}];
-//            }
+            if (self.dataArray.count == 0)
+            {
+                [XHToast showCenterWithText:@"您没有待处理的患者请求"];
+            }
         }
     } failBlock:^(NSError *error) {
         //[XHToast showCenterWithText:@"fail"];
@@ -134,6 +132,8 @@ static NSString *cellId = @"LSWorkAdviceCell";
 //                              [self.dataArray removeObjectAtIndex:indexPath.row];
 //                              [self.tableView reloadData];
                               [weakSelf requestData];
+                              
+                              [XHToast showCenterWithText:@"删除成功"];
                           }
                       } failBlock:^(NSError *error) {
                           //[XHToast showCenterWithText:@"fail"];

@@ -254,6 +254,11 @@ static NSString *cellId = @"LSManageCell";
             [weakSelf.groupDataArr removeAllObjects];
             [weakSelf.groupDataArr addObjectsFromArray:dataList];
             
+            if (dataList.count == 0)
+            {
+                [XHToast showCenterWithText:@"您还没有添加患者"];
+            }
+            
             weakSelf.indexArray = [BMChineseSort IndexWithArray:weakSelf.groupDataArr Key:@"username"];
             weakSelf.letterResultArr = [BMChineseSort sortObjectArray:weakSelf.groupDataArr Key:@"username"];
             

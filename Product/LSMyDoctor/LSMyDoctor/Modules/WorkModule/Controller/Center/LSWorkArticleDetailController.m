@@ -34,6 +34,9 @@
     
     self.navigationItem.title = @"文章详情";
     
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
     self.titleLab.text = self.dataDic[@"title"];
     
     self.infoLab.text = [NSString stringWithFormat:@"%@ %@", self.dataDic[@"doctor_name"], self.dataDic[@"create_time"]];
@@ -47,7 +50,7 @@
         [self.collectBtn setTitle:@"收藏" forState:UIControlStateNormal];
     }
     
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, self.dataDic[@"url"]]]];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.dataDic[@"url"]]];
     
     [self.webView loadRequest:request];
 }
@@ -70,6 +73,34 @@
             [self initForView];
         }
         else
+        {
+            [XHToast showCenterWithText:responseObj[@"message"]];
+        }
+    } failBlock:^(NSError *error) {
+        //[XHToast showCenterWithText:@"fail"];
+    }];
+}
+
+- (void)rightItemClick
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:@"1" forKey:@"type"];//1文章分享 2活动分享 3名片分享
+    
+    NSString *url = PATH(@"%@/share");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            NSMutableDictionary *paramInfo = [NSMutableDictionary dictionary];
+            [paramInfo setValue:self.dataDic[@"title"] forKey:@"title"];
+            [paramInfo setValue:self.dataDic[@"summary"] forKey:@"content"];
+            [paramInfo setValue:self.dataDic[@"share_url"] forKey:@"url"];
+            
+            [LSShareTool showShareToolParams:paramInfo type:param[@"type"]];
+            
+        }else
         {
             [XHToast showCenterWithText:responseObj[@"message"]];
         }

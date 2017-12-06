@@ -515,5 +515,6 @@ shouldSendHasReadAckForMessage:(EMMessage *)message
  */
 - (BOOL)shouldSendHasReadAckForMessage:(EMMessage *)message
                                  read:(BOOL)read;
-
+//发送自定义消息
+- (void)_refreshAfterSentMessage:(EMMessage*)aMessage;
 @end

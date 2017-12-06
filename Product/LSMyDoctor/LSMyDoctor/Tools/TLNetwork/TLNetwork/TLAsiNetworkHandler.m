@@ -267,7 +267,13 @@ static TLNetworkStatus     networkStatus;
 //                failBlock ? failBlock(responseObject) : nil;
 //                [[DSToast toastWithText:responseObject[@"message"]] show];
                 
-                NSLog(@"%@", responseObject[@"data"]);
+                NSLog(@"===%@===", responseObject[@"status"]);
+                
+                if ([responseObject[@"status"] isKindOfClass:[NSString class]] && ![responseObject[@"status"] isEqualToString:@"-413"])
+                {
+                    [XHToast showCenterWithText:responseObject[@"message"]];
+                }
+                
                 if ([responseObject[@"status"] intValue] == -202)
                 {
                     //token过期，重新获得token
@@ -323,11 +329,6 @@ static TLNetworkStatus     networkStatus;
                                      [app intoRootForLogin];
                                  }
                              }];
-                             
-//                             NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithDictionary:params];
-//                             [temp setValue:AccessToken forKey:@"accessToken"];
-                             
-//                             [self requestWithUrl:url params:temp showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:successBlock failBlock:failBlock];
                          }
                          else
                          {
@@ -339,10 +340,6 @@ static TLNetworkStatus     networkStatus;
                          
                      }];
                 }
-//                else
-//                {
-//                    [XHToast showCenterWithText:responseObject[@"message"]];
-//                }
             }
             // 移除当前请求
             [[self allTasks] removeObject:task];

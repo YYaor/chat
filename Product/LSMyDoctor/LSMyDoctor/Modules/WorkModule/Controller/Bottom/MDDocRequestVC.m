@@ -145,6 +145,11 @@
             {
                 self.requestModel = [MDPeerReuqestModel yy_modelWithDictionary:responseObj[@"data"]];
                 
+                if (self.requestModel.content.count == 0)
+                {
+                    [XHToast showCenterWithText:@"您没有待处理的同行请求"];
+                }
+                
                 [requestTab reloadData];
                 
             }else

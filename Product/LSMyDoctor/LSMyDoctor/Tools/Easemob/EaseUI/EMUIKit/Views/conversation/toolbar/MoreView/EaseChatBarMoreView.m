@@ -97,34 +97,34 @@
     
     _photoCallButton = [self btnWithImage:[UIImage imageNamed:@"add_photo"]
                      highlightedImage:[UIImage imageNamed:@"add_photo"]
-                                title:@"照片"];
-
+                                title:@"图片"];
     _photoCallButton.accessibilityIdentifier = @"photoCallButton";
     [_photoCallButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE.width, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
     [_photoCallButton addTarget:self action:@selector(photoCallButtonAction) forControlEvents:UIControlEventTouchUpInside];
     _photoCallButton.tag = MOREVIEW_BUTTON_TAG + 1;
     [_scrollview addSubview:_photoCallButton];
     
+    _articlerecommendCallButton = [self btnWithImage:[UIImage imageNamed:@"add_articlerecommend"]
+                                    highlightedImage:[UIImage imageNamed:@"add_articlerecommend"]
+                                               title:@"文章推荐"];
+    [_articlerecommendCallButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE.width * 2, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
+    [_articlerecommendCallButton addTarget:self action:@selector(articlerecommendCallButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    _articlerecommendCallButton.tag = MOREVIEW_BUTTON_TAG + 2;
+    [_scrollview addSubview:_articlerecommendCallButton];
     
-    _issueadviceCallButton = [self btnWithImage:[UIImage imageNamed:@"add_issueadvice"]
-                       highlightedImage:[UIImage imageNamed:@"add_issueadvice"]
-                                  title:@"下达医嘱"];
-    [_issueadviceCallButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE.width * 2, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
-    [_issueadviceCallButton addTarget:self action:@selector(issueadviceCallButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    _issueadviceCallButton.tag = MOREVIEW_BUTTON_TAG + 2;
-    _maxIndex = 2;
-    [_scrollview addSubview:_issueadviceCallButton];
 
     CGRect frame = self.frame;
     if (type == EMChatToolbarTypeChat) {
-        frame.size.height = 150;
-        _articlerecommendCallButton = [self btnWithImage:[UIImage imageNamed:@"add_articlerecommend"]
-                             highlightedImage:[UIImage imageNamed:@"add_articlerecommend"]
-                                        title:@"文章推荐"];
-        [_articlerecommendCallButton setFrame:CGRectMake(insets * 4 + CHAT_BUTTON_SIZE.width * 3, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
-        [_articlerecommendCallButton addTarget:self action:@selector(articlerecommendCallButtonAction) forControlEvents:UIControlEventTouchUpInside];
-        _articlerecommendCallButton.tag = MOREVIEW_BUTTON_TAG + 3;
-        [_scrollview addSubview:_articlerecommendCallButton];
+//        frame.size.height = 150;
+        
+        _issueadviceCallButton = [self btnWithImage:[UIImage imageNamed:@"add_issueadvice"]
+                                   highlightedImage:[UIImage imageNamed:@"add_issueadvice"]
+                                              title:@"下达医嘱"];
+        [_issueadviceCallButton setFrame:CGRectMake(insets * 4 + CHAT_BUTTON_SIZE.width * 3, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
+        [_issueadviceCallButton addTarget:self action:@selector(issueadviceCallButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        _issueadviceCallButton.tag = MOREVIEW_BUTTON_TAG + 3;
+        _maxIndex = 2;
+        [_scrollview addSubview:_issueadviceCallButton];
         
         _questionnaireCallButton = [self btnWithImage:[UIImage imageNamed:@"add_questionnaire"]
                              highlightedImage:[UIImage imageNamed:@"add_questionnaire"]
@@ -143,6 +143,8 @@
     _scrollview.frame = CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame));
     _pageControl.frame = CGRectMake(0, CGRectGetHeight(frame) - 20, CGRectGetWidth(frame), 20);
     _pageControl.hidden = _pageControl.numberOfPages<=1;
+    
+    _questionnaireCallButton.hidden = YES;
 }
 
 

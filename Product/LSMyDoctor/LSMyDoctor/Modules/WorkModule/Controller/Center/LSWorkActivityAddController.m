@@ -12,7 +12,7 @@
 
 #import "LSWorkScanController.h"
 
-@interface LSWorkActivityAddController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, ZHPickViewDelegate>
+@interface LSWorkActivityAddController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, PGDatePickerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -28,9 +28,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *imgBtn;
 @property (weak, nonatomic) IBOutlet UIButton *delBtn;
 
-@property (nonatomic, strong) ZHPickView *picker;
+@property (nonatomic, strong) PGDatePicker *picker;
 
-@property (nonatomic, copy) NSString *imgUrl;
+@property (nonatomic, copy) NSString *files;
 
 @end
 
@@ -44,6 +44,13 @@
     
 }
 
+- (void)viewDidLayoutSubviews
+{
+    self.centView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 500);
+    
+    self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 500);
+}
+
 - (void)initForView
 {
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -53,11 +60,81 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    backBtn.frame = CGRectMake(0, 0, 60, 40);
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = item;
+    
     self.content.placeholder = @"请输入内容";
     
     [self.scrollView addSubview:self.centView];
     
-    self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 500);
+    if (self.data) {
+        self.name.text = self.data[@"name"];
+        self.address.text = self.data[@"address"];
+        self.cutoff_time.text = self.data[@"cutoff_time"];
+        self.activity_time.text = self.data[@"activity_time"];
+        self.total_number.text = self.data[@"total_number"];
+        self.content.text = self.data[@"content"];
+        if (self.data[@"files"]) {
+            [self.imgBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, self.data[@"files"]]]];
+            self.imgBtn.enabled = NO;
+            self.delBtn.hidden = NO;
+            self.files = self.data[@"files"];
+        }
+        else
+        {
+            self.imgBtn.enabled = YES;
+            self.delBtn.hidden = YES;
+        }
+    }
+
+}
+
+-(void)backBtnClicked{
+    [AlertHelper InitMyAlertWithTitle:@"温馨提示" AndMessage:@"是否保存此活动" And:self CanCleBtnName:@"取消" SureBtnName:@"保存" AndCancleBtnCallback:^(id data) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } AndSureBtnCallback:^(id data) {
+        NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"saveactivity" WithPath:@"activity"];
+        if (!saveArr) {
+            saveArr  = [NSMutableArray array];
+        }
+        for (NSDictionary *dic in saveArr) {
+            if ([self.data[@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
+                [saveArr removeObject:dic];
+            }
+        }
+        
+        NSMutableDictionary *infoDic = [NSMutableDictionary dictionary];
+        [infoDic setValue:self.name.text forKey:@"name"];
+        [infoDic setValue:self.address.text forKey:@"address"];
+        [infoDic setValue:self.cutoff_time.text forKey:@"cutoff_time"];
+        [infoDic setValue:self.activity_time.text forKey:@"activity_time"];
+        [infoDic setValue:self.total_number.text forKey:@"total_number"];
+        [infoDic setValue:self.content.text forKey:@"content"];
+        [infoDic setValue:self.files forKey:@"files"];//文章图像地址    string
+        
+        //        [infoDic setObject:[NSNumber numberWithInt:1] forKey:@"isMine"];
+        if (self.delBtn.hidden)
+        {
+            //无图
+            [infoDic setObject:[NSNumber numberWithInt:4] forKey:@"type"];
+        }
+        else
+        {
+            //有图
+            [infoDic setObject:[NSNumber numberWithInt:1] forKey:@"type"];
+        }
+        
+        [infoDic setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"savetime"];
+        [saveArr addObject:infoDic];
+        
+        [[LSCacheManager sharedInstance] archiverObject:saveArr ByKey:@"saveactivity" WithPath:@"activity"];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }];
 }
 
 - (void)rightItemClick
@@ -85,31 +162,31 @@
     
     if ([self.address.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
     {
-        [XHToast showCenterWithText:@"请输入活动地址"];
+        [XHToast showCenterWithText:@"请完善发布内容"];
         return;
     }
     
     if ([self.cutoff_time.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
     {
-        [XHToast showCenterWithText:@"请选择活动日期"];
+        [XHToast showCenterWithText:@"请完善发布内容"];
         return;
     }
     
     if ([self.activity_time.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
     {
-        [XHToast showCenterWithText:@"请选择活动时间"];
+        [XHToast showCenterWithText:@"请完善发布内容"];
         return;
     }
     
     if ([self.total_number.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
     {
-        [XHToast showCenterWithText:@"请输入活动参与人数量"];
+        [XHToast showCenterWithText:@"请完善发布内容"];
         return;
     }
     
     if ([self.content.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
     {
-        [XHToast showCenterWithText:@"请输入活动内容"];
+        [XHToast showCenterWithText:@"请完善发布内容"];
         return;
     }
     
@@ -122,9 +199,9 @@
     [infoDic setValue:self.total_number.text forKey:@"total_number"];
     [infoDic setValue:self.content.text forKey:@"content"];
     
-    if (self.imgUrl)
+    if (self.files)
     {
-        [infoDic setValue:self.imgUrl forKey:@"img_url"];//文章图像地址	string
+        [infoDic setValue:self.files forKey:@"files"];//文章图像地址	string
     }
     
     LSWorkActivitySubController *vc = [[LSWorkActivitySubController alloc] initWithNibName:@"LSWorkActivitySubController" bundle:nil];
@@ -134,28 +211,38 @@
 }
 - (IBAction)cutoff_timeTap:(UITapGestureRecognizer *)sender
 {
-    self.picker = [[ZHPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
-    self.picker.tag = 1;
+//    self.picker = [[ZHPickView alloc] initDatePickWithDefaultDate:[NSDate getNowDateFromatAnDate:[NSDate date]] selectDate:[NSDate getNowDateFromatAnDate:[NSDate date]] minDate:[NSDate getNowDateFromatAnDate:[NSDate date]] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
+    self.picker = [[PGDatePicker alloc] init];
     self.picker.delegate = self;
+    self.picker.datePickerMode = PGDatePickerModeDateHourMinute;
+    self.picker.minimumDate = [NSDate date];
     [self.picker show];
+    self.picker.tag = 1;
 }
 
 - (IBAction)activity_timeTap:(UITapGestureRecognizer *)sender
 {
-    self.picker = [[ZHPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
-    self.picker.tag = 2;
+//    self.picker = [[ZHPickView alloc] initDatePickWithDefaultDate:[NSDate getNowDateFromatAnDate:[NSDate date]] selectDate:[NSDate getNowDateFromatAnDate:[NSDate date]] minDate:[NSDate getNowDateFromatAnDate:[NSDate date]] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
+//    self.picker.tag = 2;
+//    self.picker.delegate = self;
+//    [self.picker show];
+    
+    self.picker = [[PGDatePicker alloc] init];
     self.picker.delegate = self;
+    self.picker.datePickerMode = PGDatePickerModeDateHourMinute;
+    self.picker.minimumDate = [NSDate date];
     [self.picker show];
+    self.picker.tag = 2;
 }
 
 - (IBAction)scanBtnClick:(UIButton *)btn
 {
-    if (!self.imgUrl && self.content.text.length == 0) {
+    if (!self.files && self.content.text.length == 0) {
         return;
     }
     LSWorkScanController *vc = [[LSWorkScanController alloc]init];
-    if (self.imgUrl) {
-        vc.imageURL = self.imgUrl;
+    if (self.files) {
+        vc.imageURL = self.files;
     }
     vc.content = self.content.text;
     vc.titleStr = self.name.text;
@@ -165,10 +252,12 @@
 - (IBAction)delBtnClick:(UIButton *)btn
 {
     btn.hidden = YES;
-    self.imgUrl = nil;
+    self.files = nil;
     [self.imgBtn setBackgroundImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
     self.imgBtn.enabled = YES;
 }
+
+
 
 - (IBAction)imgBtnClick:(UIButton *)btn
 {
@@ -273,11 +362,11 @@
     } successBlock:^(id responseObj) {
         if ([responseObj[@"status"] longValue] == 0)
         {
-            weakSelf.imgUrl = responseObj[@"data"][@"urls"][0];
+            weakSelf.files = responseObj[@"data"][@"urls"][0];
             weakSelf.imgBtn.enabled = NO;
             weakSelf.delBtn.hidden = NO;
             
-            [weakSelf.imgBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, weakSelf.imgUrl]]];
+            [weakSelf.imgBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, weakSelf.files]]];
         }
         else
         {
@@ -299,6 +388,51 @@
         NSLog(@"存储失败：%@", error);
     }
 }
+
+#pragma mark - PGDatePickerDelegate
+
+- (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    
+    NSString *year = [NSString stringWithFormat:@"%ld", dateComponents.year];
+    NSString *month = [NSString stringWithFormat:@"%ld", dateComponents.month];
+    NSString *day = [NSString stringWithFormat:@"%ld", dateComponents.day];
+    NSString *hour = [NSString stringWithFormat:@"%ld", dateComponents.hour];
+    NSString *minute = [NSString stringWithFormat:@"%ld", dateComponents.minute];
+    
+    if (dateComponents.month<10)
+    {
+        month = [NSString stringWithFormat:@"0%@", month];
+    }
+    
+    if (dateComponents.day<10)
+    {
+        day = [NSString stringWithFormat:@"0%@", day];
+    }
+    
+    if (dateComponents.hour<10)
+    {
+        hour = [NSString stringWithFormat:@"0%@", hour];
+    }
+    
+    if (dateComponents.minute<10)
+    {
+        minute = [NSString stringWithFormat:@"0%@", minute];
+    }
+    
+    if (datePicker.tag == 1)
+    {
+        self.cutoff_time.text = [NSString stringWithFormat:@"%@-%@-%@ %@:%@", year, month, day, hour, minute];
+    }
+    
+    if (datePicker.tag == 2)
+    {
+        self.activity_time.text = [NSString stringWithFormat:@"%@-%@-%@ %@:%@", year, month, day, hour, minute];
+    }
+}
+
 
 #pragma mark ZhpickVIewDelegate 点击确定方法的回调
 

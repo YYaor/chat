@@ -18,6 +18,8 @@
 
 + (NSInteger)getCurrentDate;//获取当前日期(20161029)
 
++ (NSString *)getCurrentDateString;//获取当前日期(2016-10-29)
+
 //获取本日前一周的周几字符串
 + (NSArray*)weekdayStringFromDateNday:(NSInteger) nDay;
 //获取日期的日
@@ -34,5 +36,7 @@
 + (NSArray*)weekdayDayFromTodayDateNday:(NSInteger) nDay;
 //根据YYMMdd获取年月日
 + (NSString *)getYearAndMonthAndDayWithYYMMddDate:(NSString *)date;
+
++ (NSDate *)getNowDateFromatAnDate:(NSDate *)anyDate;
 
 @end

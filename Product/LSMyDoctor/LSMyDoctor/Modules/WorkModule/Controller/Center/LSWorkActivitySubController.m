@@ -203,7 +203,7 @@
     [param setValue:self.infoDic[@"address"] forKey:@"address"];
     [param setValue:self.infoDic[@"cutoff_time"] forKey:@"cutoff_time"];
     [param setValue:self.infoDic[@"activity_time"] forKey:@"activity_time"];
-    [param setValue:self.infoDic[@"total_number"] forKey:@"total_number"];
+    [param setValue:[NSNumber numberWithInteger:[self.infoDic[@"total_number"] integerValue]] forKey:@"total_number"];
     [param setValue:self.infoDic[@"content"] forKey:@"content"];
     
     if (self.infoDic[@"img_url"])

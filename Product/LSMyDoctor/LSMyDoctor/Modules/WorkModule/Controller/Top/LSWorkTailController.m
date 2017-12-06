@@ -71,6 +71,11 @@ static NSString *cellId = @"LSWorkTailCell";
                     [self.content addObjectsFromArray:responseObj[@"data"][@"content"]];
                     [self.tableView reloadData];
                     
+                    if (self.content.count == 0)
+                    {
+                        [XHToast showCenterWithText:@"您没有需要跟踪的医嘱"];
+                    }
+                    
                 }
             }
         }

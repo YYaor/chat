@@ -37,7 +37,7 @@
                                     <constraint firstAttribute="width" constant="10" id="seF-LF-5fD"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="高血压、慢阻肺" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yos-2I-ayU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="高血压、慢阻肺" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yos-2I-ayU">
                                 <rect key="frame" x="106" y="10" width="185" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="12X-MP-7Wf"/>

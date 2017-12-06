@@ -98,6 +98,18 @@ static NSString *cellId2 = @"LSWorkTailDetailCell";
 {
     if (self.dataDic[@"user_id"])
     {
+        NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+        
+        [param setValue:self.dataDic[@"user_id"] forKey:@"userid"];
+        
+        NSString *url = PATH(@"%@/addChatLog");
+        
+        [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+            
+        } failBlock:^(NSError *error) {
+            
+        }];
+        
         MDSingleCommunicationVC *chatController = [[MDSingleCommunicationVC alloc]
                                                      initWithConversationChatter:[NSString stringWithFormat:@"ug369P%@", self.dataDic[@"user_id"]] conversationType:EMConversationTypeChat];
         [self.navigationController pushViewController:chatController animated:YES];

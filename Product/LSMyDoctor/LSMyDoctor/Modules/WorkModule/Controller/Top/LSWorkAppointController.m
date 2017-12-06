@@ -44,9 +44,9 @@ static NSString *cellId = @"LSWorkAppointCell";
     self.tableView.tableFooterView = footer;
 }
 
--(void)loadData{
+-(void)loadData
+{
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
-    
     
     NSString *url = PATH(@"%@/getOrderList");
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
@@ -59,6 +59,11 @@ static NSString *cellId = @"LSWorkAppointCell";
                     [self.dataArray removeAllObjects];
                     [self.dataArray addObjectsFromArray:responseObj[@"data"]];
                     [self.tableView reloadData];
+                    
+                    if (self.dataArray.count == 0)
+                    {
+                        [XHToast showCenterWithText:@"您没预约事项"];
+                    }
                     
                 }
             }

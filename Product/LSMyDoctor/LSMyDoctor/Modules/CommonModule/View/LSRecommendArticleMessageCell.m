@@ -67,7 +67,6 @@
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-15);
         make.height.mas_greaterThanOrEqualTo(30);
-        make.bottom.mas_equalTo(self.bubbleView.backgroundImageView.mas_bottom);
     }];
     
 }

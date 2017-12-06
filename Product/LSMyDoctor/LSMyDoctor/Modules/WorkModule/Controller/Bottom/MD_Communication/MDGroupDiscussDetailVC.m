@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"群信息";
+    self.title = @"讨论组信息";
     self.view.backgroundColor = [UIColor whiteColor];
     
     
@@ -203,6 +203,7 @@
             if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
             {
                 //解散成功
+                [XHToast showCenterWithText:@"解散成功"];
                 UIViewController* vc = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 3];
                 
                 [self.navigationController popToViewController:vc animated:YES];

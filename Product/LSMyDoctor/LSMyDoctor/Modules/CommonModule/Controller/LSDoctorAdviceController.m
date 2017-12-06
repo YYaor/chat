@@ -8,9 +8,9 @@
 
 #import "LSDoctorAdviceController.h"
 
-@interface LSDoctorAdviceController () <ZHPickViewDelegate>
+@interface LSDoctorAdviceController () <PGDatePickerDelegate>
 
-@property (nonatomic, strong) ZHPickView *picker;
+@property (nonatomic, strong) PGDatePicker *picker;
 
 @property (weak, nonatomic) IBOutlet UITextField *textF1;
 @property (weak, nonatomic) IBOutlet UITextField *textF2;
@@ -155,19 +155,32 @@
     
     if (!self.picker)
     {
-        self.picker = [[ZHPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDate isHaveNavControler:NO];
+//        self.picker = [[ZHPickView alloc] initDatePickWithDefaultDate:[NSDate date] selectDate:[NSDate date] minDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
+//        self.picker = [[ZHPickView alloc] initDatePickWithDefaultDate:[NSDate getNowDateFromatAnDate:[NSDate date]] selectDate:[NSDate getNowDateFromatAnDate:[NSDate date]] minDate:[NSDate getNowDateFromatAnDate:[NSDate date]] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
+
+        self.picker = [[PGDatePicker alloc] init];
         self.picker.delegate = self;
+        self.picker.datePickerMode = PGDatePickerModeDateHourMinute;
+        self.picker.minimumDate = [NSDate date];
+        [self.picker show];
     }
     
     [self.picker show];
 }
 
-#pragma mark - ZHPickViewDelegate
+#pragma mark - PGDatePickerDelegate
 
-- (void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString
+- (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents
 {
-    NSArray *array = [resultString componentsSeparatedByString:@" "];
-    self.textF4.text = array[0];
+    self.textF4.text = [NSString stringWithFormat:@"%ld-%ld-%ld %ld:%ld", dateComponents.year, dateComponents.month, dateComponents.day, dateComponents.hour, dateComponents.minute];
 }
+
+//#pragma mark - ZHPickViewDelegate
+//
+//- (void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString
+//{
+//    NSArray *array = [resultString componentsSeparatedByString:@" "];
+//    self.textF4.text = array[0];
+//}
 
 @end

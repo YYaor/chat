@@ -8,6 +8,7 @@
 
 #import "LSMineController.h"
 #import "LSMineSettingController.h"
+#import "LSMineFoundController.h"
 #import "LSMineFeedbackController.h"
 #import "LSMineCardController.h"
 
@@ -134,6 +135,10 @@
             cardController.userModel = self.mineModel;
             cardController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:cardController animated:YES];
+        }
+        if (indexPath.row == 1) {
+            LSMineFoundController *vc = [[LSMineFoundController alloc] initWithNibName:@"LSMineFoundController" bundle:nil];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
     if (indexPath.section == 1) {

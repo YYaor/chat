@@ -47,14 +47,11 @@
 @property (weak, nonatomic) IBOutlet UIView *view6;
 @property (weak, nonatomic) IBOutlet YYPlaceholderTextView *textView6;
 
+@property (nonatomic, strong) MDChooseSickerModel *patientModel;
 
 @end
 
 @implementation LSWorkOutcallAddController
-{
-    MDChooseSickerModel *patientModel;
-}
-
 
 - (void)viewDidLoad
 {
@@ -68,8 +65,6 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.navigationItem.title = @"新增记录";
-    
-    patientModel = [MDChooseSickerModel new];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
@@ -132,7 +127,7 @@
             weakSelf.textView6.text = dic[@"diagnosis"];
             
 //            patientModel.username = dic[@"user_name"];
-            patientModel.user_id = [NSString stringWithFormat:@"%@", dic[@"user_id"]];
+            self.patientModel.user_id = [NSString stringWithFormat:@"%@", dic[@"user_id"]];
         }
         else
         {
@@ -189,7 +184,11 @@
         [param setObject:[NSNumber numberWithInt:2] forKey:@"sex"];
     }
     [param setObject:self.nameTF.text forKey:@"username"];
-    [param setObject:[NSNumber numberWithInt:[patientModel.user_id intValue]] forKey:@"userid"];
+    
+    if (self.patientModel)
+    {
+        [param setObject:[NSNumber numberWithInt:[self.patientModel.user_id intValue]] forKey:@"userid"];
+    }
     
     NSString *url = @"";
     
@@ -246,10 +245,11 @@
     
     vc.chooseBlock = ^(NSArray *modelArray) {
         MDChooseSickerModel *model = modelArray[0];
-        patientModel = model;
+        self.patientModel = model;
         self.nameTF.text = model.username;
         [self.ageTF setTitle:[NSString getAgeFromBirthday:model.birthday] forState:UIControlStateNormal];
         [self.sexTF setTitle:model.sex forState:UIControlStateNormal];
+        self.nameTF.userInteractionEnabled = NO;
     };
 }
 

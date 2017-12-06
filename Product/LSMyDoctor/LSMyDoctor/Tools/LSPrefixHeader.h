@@ -66,7 +66,24 @@
 #import "PWTagsView.h"
 //picker
 #import "ZHPickView.h"
+#import "PGDatePicker.h"
+#import "PGPickerView.h"
+//segment
+#import "WFSegTitleView.h"
+//cache manager
+#import "LSCacheManager.h"
 
+//share sdk
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+//腾讯开放平台（对应QQ和QQ空间）SDK头文件
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+//微信SDK头文件
+#import "WXApi.h"
+
+#import "LSShareTool.h"
 
 #endif
 

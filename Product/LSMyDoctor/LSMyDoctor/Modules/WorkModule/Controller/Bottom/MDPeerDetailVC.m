@@ -11,6 +11,7 @@
 #import "MDPeerinstructCell.h"
 #import "MDPeerDiscussCell.h"
 #import "MDSingleCommunicateVC.h"//单人聊天室
+#import "MDSingleCommunicationVC.h"
 #import "MDDoctorDetailModel.h"
 #import "MDDoctorDetailEvaluateModel.h"//评价的Model
 
@@ -91,11 +92,10 @@
     if (self.isFriend) {
         //已经是好友
         NSLog(@"对话");
-        MDSingleCommunicateVC* singleCoummunicateVC = [[MDSingleCommunicateVC alloc] initWithConversationChatter:[NSString stringWithFormat:@"ug369D%@",self.doctorIdStr] conversationType:EMConversationTypeChat];
-        singleCoummunicateVC.titleNameStr = self.detailModel.doctor_name;
-        singleCoummunicateVC.singleIdStr = self.doctorIdStr;
-        [self.navigationController pushViewController:singleCoummunicateVC animated:YES];
-        
+        MDSingleCommunicationVC *chatController = [[MDSingleCommunicationVC alloc] initWithConversationChatter:[NSString stringWithFormat:@"ug369d%@",self.doctorIdStr] conversationType:EMConversationTypeChat];
+        chatController.titleStr = self.detailModel.doctor_name;
+        chatController.user_idStr = self.doctorIdStr;
+        [self.navigationController pushViewController:chatController animated:YES];
     }else{
         //不是好友
         NSLog(@"添加好友");

@@ -13,7 +13,7 @@
 
 -(void)setDataDic:(NSMutableDictionary *)dataDic
 {
-    if (self.dataDic[@"img_url"]) {
+    if (dataDic[@"img_url"]) {
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST,dataDic[@"img_url"]]] placeholderImage:[UIImage imageNamed:@"headImg_public"]];
     }
     

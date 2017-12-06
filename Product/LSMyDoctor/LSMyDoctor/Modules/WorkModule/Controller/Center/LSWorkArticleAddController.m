@@ -11,7 +11,6 @@
 #import "LSWorkArticleSubController.h"
 
 #import "LSWorkScanController.h"
-#import "LSCacheManager.h"
 
 @interface LSWorkArticleAddController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, ZHPickViewDelegate>
 
@@ -29,7 +28,7 @@
 
 @property (nonatomic, strong) ZHPickView *pickview;
 
-@property (nonatomic, copy) NSString *imgUrl;
+@property (nonatomic, copy) NSString *files;
 
 @end
 
@@ -42,7 +41,6 @@
     [self initForView];
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
     [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     backBtn.frame = CGRectMake(0, 0, 60, 40);
@@ -69,10 +67,20 @@
         [infoDic setValue:self.keyTextF.text forKey:@"keyword"];//文章关键字    string
         [infoDic setValue:self.typeBtn.titleLabel.text forKey:@"classify"];//文章分类    string
         [infoDic setValue:self.contentTextV.text forKey:@"content"];//文章内容    string
-        [infoDic setValue:self.imgUrl forKey:@"img_url"];//文章图像地址    string
+        [infoDic setValue:self.files forKey:@"files"];//文章图像地址    string
 
-        [infoDic setObject:[NSNumber numberWithInt:1] forKey:@"isMine"];
-        [infoDic setObject:[NSNumber numberWithInt:0] forKey:@"type"];
+//        [infoDic setObject:[NSNumber numberWithInt:1] forKey:@"isMine"];
+        if (self.delBtn.hidden)
+        {
+            //无图
+            [infoDic setObject:[NSNumber numberWithInt:4] forKey:@"type"];
+        }
+        else
+        {
+            //有图
+            [infoDic setObject:[NSNumber numberWithInt:1] forKey:@"type"];
+        }
+        
         [infoDic setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"savetime"];
         [saveArr addObject:infoDic];
         
@@ -91,15 +99,23 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    self.contentTextV.placeholder = @"请输入内容";
+    self.contentTextV.placeholder = @"请输入文章正文";
     
     if (self.data) {
         self.titleTextF.text = self.data[@"title"];
         self.keyTextF.text = self.data[@"keyword"];
         [self.typeBtn setTitle:self.data[@"classify"] forState:UIControlStateNormal];
         self.contentTextV.text = self.data[@"content"];
-        if (self.data[@"img_url"]) {
-            [self.imgBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, self.data[@"img_url"]]]];
+        if (self.data[@"files"]) {
+            [self.imgBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, self.data[@"files"]]]];
+            self.imgBtn.enabled = NO;
+            self.delBtn.hidden = NO;
+            self.files = self.data[@"files"];
+        }
+        else
+        {
+            self.imgBtn.enabled = YES;
+            self.delBtn.hidden = YES;
         }
     }
 }
@@ -107,21 +123,21 @@
 - (void)rightItemClick
 {
     if ([self.titleTextF.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
-        [XHToast showCenterWithText:@"请填写标题"];
+        [XHToast showCenterWithText:@"请完善发布内容"];
         return;
     }
     
     if ([self.keyTextF.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
-        [XHToast showCenterWithText:@"请填写关键词"];
+        [XHToast showCenterWithText:@"请完善发布内容"];
         return;
     }
     if ([self.contentTextV.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
-        [XHToast showCenterWithText:@"请填写内容"];
+        [XHToast showCenterWithText:@"请完善发布内容"];
         return;
     }
     
     if (self.typeBtn.titleLabel.text.length == 0) {
-        [XHToast showCenterWithText:@"请选择类型"];
+        [XHToast showCenterWithText:@"请完善发布内容"];
         return;
     }
     
@@ -130,9 +146,9 @@
     [infoDic setValue:self.keyTextF.text forKey:@"keyword"];//文章关键字	string
     [infoDic setValue:self.typeBtn.titleLabel.text forKey:@"classify"];//文章分类	string
     [infoDic setValue:self.contentTextV.text forKey:@"content"];//文章内容	string
-    if (self.imgUrl)
+    if (self.files)
     {
-        [infoDic setValue:self.imgUrl forKey:@"img_url"];//文章图像地址	string
+        [infoDic setValue:self.files forKey:@"files"];//文章图像地址	string
     }
     
     LSWorkArticleSubController *vc = [[LSWorkArticleSubController alloc] initWithNibName:@"LSWorkArticleSubController" bundle:nil];
@@ -150,12 +166,12 @@
 
 - (IBAction)scanBtnClick:(UIButton *)btn
 {
-    if (!self.imgUrl && self.contentTextV.text.length == 0) {
+    if (!self.files && self.contentTextV.text.length == 0) {
         return;
     }
     LSWorkScanController *vc = [[LSWorkScanController alloc]init];
-    if (self.imgUrl) {
-        vc.imageURL = self.imgUrl;
+    if (self.files) {
+        vc.imageURL = self.files;
     }
     vc.content = self.contentTextV.text;
     vc.titleStr = self.titleTextF.text;
@@ -205,7 +221,7 @@
 - (IBAction)delBtnClick:(UIButton *)btn
 {
     btn.hidden = YES;
-    self.imgUrl = nil;
+    self.files = nil;
     [self.imgBtn setBackgroundImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
     self.imgBtn.enabled = YES;
 }
@@ -313,11 +329,11 @@
     } successBlock:^(id responseObj) {
         if ([responseObj[@"status"] longValue] == 0)
         {
-            weakSelf.imgUrl = responseObj[@"data"][@"urls"][0];
+            weakSelf.files = responseObj[@"data"][@"urls"][0];
             weakSelf.imgBtn.enabled = NO;
             weakSelf.delBtn.hidden = NO;
             
-            [weakSelf.imgBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, weakSelf.imgUrl]]];
+            [weakSelf.imgBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", UGAPI_HOST, weakSelf.files]]];
         }
         else
         {

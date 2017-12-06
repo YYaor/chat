@@ -239,7 +239,7 @@
     
     if (![NSString isMobile:self.phoneTextField.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
-        self.phoneNoticeLabel.text = @"手机号码格式不正确";
+        self.phoneNoticeLabel.text = @"您输入的手机号码不正确";
         return;
     }
     
@@ -340,13 +340,13 @@
     
     if (![self.pswTextField.text isEqualToString:self.confPswTextField.text])
     {
-        [XHToast showCenterWithText:@"密码不相同"];
+        [XHToast showCenterWithText:@"两次密码不一致，请重新输入"];
         return;
     }
     
     if (!self.agreementButton.isSelected)
     {
-        [XHToast showCenterWithText:@"请先同意佑格医生用户协议"];
+        [XHToast showCenterWithText:@"请查看并同意服务协议"];
         return;
     }
     

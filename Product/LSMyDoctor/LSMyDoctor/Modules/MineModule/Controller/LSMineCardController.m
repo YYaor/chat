@@ -158,6 +158,30 @@
 
 -(void)shareButtonClick{
     
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:@"3" forKey:@"type"];//1文章分享 2活动分享 3名片分享
+    
+    NSString *url = PATH(@"%@/share");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            NSMutableDictionary *paramInfo = [NSMutableDictionary dictionary];
+            [paramInfo setValue:self.userModel.myName forKey:@"title"];
+            [paramInfo setValue:self.userModel.myRemark forKey:@"content"];
+            [paramInfo setValue:self.userModel.share_url forKey:@"url"];
+            
+            [LSShareTool showShareToolParams:paramInfo type:param[@"type"]];
+
+        }else
+        {
+            [XHToast showCenterWithText:responseObj[@"message"]];
+        }
+    } failBlock:^(NSError *error) {
+        //[XHToast showCenterWithText:@"fail"];
+    }];
 }
 
 

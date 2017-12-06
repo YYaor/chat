@@ -9,22 +9,20 @@
 #import "MDDataStatistics.h"
 #import "WFSegTitleView.h"
 #import "MDDataStatisticsCell.h"
-
+#import "MDDataTotalCell.h"
+#import "MDHealthEducationCell.h"
 #import "MDDataStatisticsModel.h"
+#import "MDHealthEducationDetailVC.h"
 
 @interface MDDataStatistics ()<UITableViewDelegate,UITableViewDataSource>
 {
-    
-    
     UITableView* statisticsTab;
+    NSInteger selectIndex;//选项卡选择项
 }
 
 @property (nonatomic,strong) NSMutableArray *titleArray;//头部菜单栏标题
 @property (nonatomic,strong) WFSegTitleView *titleView;
-
-@property (nonatomic,strong)MDDataStatisticsModel* totalModel;
-@property (nonatomic,strong)MDDataStatisticsModel* yearModel;
-@property (nonatomic,strong)MDDataStatisticsModel* monthModel;
+@property (nonatomic,strong) NSMutableArray *listDataArr;//数据
 
 @end
 
@@ -41,6 +39,13 @@
     }
     return _titleArray;
 }
+- (NSMutableArray *)listDataArr{
+    
+    if (_listDataArr == nil) {
+        _listDataArr = [NSMutableArray array];
+    }
+    return _listDataArr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,16 +58,16 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSString* nowTime = [NSString stringWithFormat:@"%ld",(long)[NSDate getCurrentDate]];
-    NSString* year = [nowTime substringToIndex:4];
-    NSString* yearAndMonth = [nowTime substringToIndex:6];
-    
-    //获取总数
-    [self getDataStatisticsRequestWithBeginDate:@"19000101" withStatues:@"0"];
-    //获取年数
-    [self getDataStatisticsRequestWithBeginDate:[NSString stringWithFormat:@"%@0101",year] withStatues:@"1"];
-    //获取月数
-    [self getDataStatisticsRequestWithBeginDate:[NSString stringWithFormat:@"%@01",yearAndMonth] withStatues:@"2"];
+    /*
+    if (selectIndex == 0) {
+        //获取综合统计
+        [self getTotalDataStatisticsRequest];
+    }else{
+        
+        //获取健康教育统计数据
+        [self getHealthEducationRequest];
+    }
+     */
     
 }
 
@@ -78,6 +83,8 @@
     [_titleView addTarget:self action:@selector(titleBtnclick:)];
     [self.view addSubview:_titleView];
     
+    selectIndex = 0;
+    [self getTotalDataStatisticsRequest];
     
     statisticsTab = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight - 104) style:UITableViewStyleGrouped];
     statisticsTab.delegate = self;
@@ -85,7 +92,9 @@
     [self.view addSubview:statisticsTab];
     
     //注册Cell
+    [statisticsTab registerNib:[UINib nibWithNibName:@"MDDataTotalCell" bundle:nil] forCellReuseIdentifier:@"mDDataTotalCell"];
     [statisticsTab registerNib:[UINib nibWithNibName:@"MDDataStatisticsCell" bundle:nil] forCellReuseIdentifier:@"mDDataStatisticsCell"];
+    [statisticsTab registerNib:[UINib nibWithNibName:@"MDHealthEducationCell" bundle:nil] forCellReuseIdentifier:@"mDHealthEducationCell"];
     
 }
 
@@ -96,19 +105,14 @@
     NSLog(@"%@",self.titleArray[index]);
     
     if (index == 0) {
-        //综合数据
-        NSString* nowTime = [NSString stringWithFormat:@"%ld",(long)[NSDate getCurrentDate]];
-        NSString* year = [nowTime substringToIndex:4];
-        NSString* yearAndMonth = [nowTime substringToIndex:6];
-        
         //获取总数
-        [self getDataStatisticsRequestWithBeginDate:@"19000101" withStatues:@"0"];
-        //获取年数
-        [self getDataStatisticsRequestWithBeginDate:[NSString stringWithFormat:@"%@0101",year] withStatues:@"1"];
-        //获取月数
-        [self getDataStatisticsRequestWithBeginDate:[NSString stringWithFormat:@"%@01",yearAndMonth] withStatues:@"2"];
+        selectIndex = 0;
+        [self getTotalDataStatisticsRequest];
     }else{
         //健康教育
+        selectIndex = 1;
+        //获取健康教育统计数据
+        [self getHealthEducationRequest];
         
     }
     
@@ -119,7 +123,10 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     //个数
-    return 3;
+    if (selectIndex == 1) {
+        return 3;
+    }
+    return self.listDataArr.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -128,7 +135,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40.0f;
+    if (selectIndex == 0) {
+        MDDataStatisticsModel* model = self.listDataArr[section];
+        if ([model.type isEqualToString:@"1"]) {
+            return 0.00001f;
+        }
+        return 40.0f;
+    }else{
+        if (section == 2) {
+            //阅读统计
+            return 40.0f;
+        }
+        return 0.00001f;
+    }
+   
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -150,21 +170,35 @@
     //标题
     UILabel* titleLab = [[UILabel alloc] init];
     titleLab.textColor = Style_Color_Content_Black;
+    titleLab.textAlignment = NSTextAlignmentCenter;
     [headerBtn addSubview:titleLab];
     [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(headerBtn.mas_centerY);
-        make.left.equalTo(headerBtn.mas_left).offset(15);
+//        make.centerY.equalTo(headerBtn.mas_centerY);
+        make.left.right.top.bottom.equalTo(headerBtn);
     }];
-    
-    if (section == 0) {
-        titleLab.text = @"综合统计";
-    }else if (section == 1){
-        titleLab.text = @"随访统计";
-    }else if (section == 2){
-        titleLab.text = @"出诊记录";
+    if (selectIndex != 1) {
+        //综合数据
+        MDDataStatisticsModel* model = self.listDataArr[section];
+        if (![model.type isEqualToString:@"1"]) {
+            //非总访问量
+            if ([model.type isEqualToString:@"2"]) {
+                titleLab.text = @"综合统计";
+            }else if ([model.type isEqualToString:@"3"]){
+                titleLab.text = @"随访统计";
+            }else if ([model.type isEqualToString:@"4"]){
+                titleLab.text = @"出诊记录";
+            }else{
+                titleLab.text = @"测试标题";
+            }
+            
+        }
+        
     }else{
-        titleLab.text = @"测试标题";
+        if (section == 2) {
+            titleLab.text = @"阅读统计";
+        }
     }
+    
     
     return headerBtn;
 }
@@ -172,98 +206,147 @@
 - (void)headerBtnClick:(WFHelperButton*)sender
 {
     NSLog(@"头部按钮点击");
+    
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //备注信息
-    MDDataStatisticsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDDataStatisticsCell" forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (indexPath.section == 0) {
-        cell.lefTitleLab.text = @"总患者人数";
-        if (self.totalModel.signCount) {
-            cell.leftValueLab.text = self.totalModel.signCount;
-        }else{
-            cell.leftValueLab.text = @"0";
-        }
-        cell.midTitleLab.text = @"年新增人数";
-        if (self.yearModel.signCount) {
-            cell.midValueLab.text = self.yearModel.signCount;
-        }else{
-            cell.midValueLab.text = @"0";
-        }
-        cell.rightTitleLab.text = @"月新增人数";
-        if (self.monthModel.signCount) {
-            cell.rightValueLab.text = self.monthModel.signCount;
-        }else{
-            cell.rightValueLab.text = @"0";
-        }
+    if (selectIndex == 0) {
+        //综合数据
         
-    }else if (indexPath.section == 1){
-        cell.lefTitleLab.text = @"总随访次数";
-        if (self.totalModel.followUp) {
-            cell.leftValueLab.text = self.totalModel.followUp;
+        MDDataStatisticsModel* model = self.listDataArr[indexPath.section];
+        if ([model.type isEqualToString:@"1"]) {
+            MDDataTotalCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDDataTotalCell" forIndexPath:indexPath];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.totalNum.text = model.total;
+            if ([model.year_sum isEqualToString:@"0"] || model.year_sum == nil) {
+                cell.addNum.text = @"0";
+            }else{
+                
+                cell.addNum.text = [NSString stringWithFormat:@"+%@",model.year_sum];
+            }
+            
+            return cell;
         }else{
-            cell.leftValueLab.text = @"0";
-        }
-        cell.midTitleLab.text = @"年随访次数";
-        if (self.yearModel.followUp) {
+            //备注信息
+            MDDataStatisticsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDDataStatisticsCell" forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            cell.midValueLab.text = self.yearModel.followUp;
-        }else{
+            if ([model.type isEqualToString:@"2"]) {
+                cell.leftValueLab.text = @"总患者人数";
+                cell.midValueLab.text = @"年新增人数";
+                cell.rightValueLab.text = @"月新增人数";
+                
+                
+            }else if ([model.type isEqualToString:@"3"]){
+                cell.leftValueLab.text = @"总随访次数";
+                cell.midValueLab.text = @"年随访次数";
+                cell.rightValueLab.text = @"月随访次数";
+                
+                
+            }else if ([model.type isEqualToString:@"4"]){
+                cell.leftValueLab.text = @"总出诊次数";
+                cell.midValueLab.text = @"年出诊次数";
+                cell.rightValueLab.text = @"月出诊次数";
+                
+            }
             
-            cell.midValueLab.text = @"0";
-        }
-        cell.rightTitleLab.text = @"月随访次数";
-        if (self.monthModel.followUp) {
+            if (model.total) {
+                cell.lefTitleLab.text = model.total;
+            }else{
+                cell.lefTitleLab.text = @"0";
+            }
+            if (model.year_sum) {
+                cell.midTitleLab.text = model.year_sum;
+            }else{
+                cell.midTitleLab.text = @"0";
+            }
             
-            cell.rightValueLab.text = self.monthModel.followUp;
-        }else{
-            
-            cell.rightValueLab.text = @"0";
-        }
-        
-    }else if (indexPath.section == 2){
-        cell.lefTitleLab.text = @"总出诊次数";
-        if (self.totalModel.visit) {
-            
-            cell.leftValueLab.text = self.totalModel.visit;
-        }else{
-            
-            cell.leftValueLab.text = @"0";
-        }
-        cell.midTitleLab.text = @"年出诊次数";
-        if (self.yearModel.visit) {
-            
-            cell.midValueLab.text = self.yearModel.visit;
-        }else{
-            
-            cell.midValueLab.text = @"0";
-        }
-        cell.rightTitleLab.text = @"月出诊次数";
-        if (self.monthModel.visit) {
-            
-            cell.rightValueLab.text = self.monthModel.visit;
-        }else{
-            
-            cell.rightValueLab.text = @"0";
+            if (model.month_sum) {
+                cell.rightTitleLab.text = model.month_sum;
+            }else{
+                cell.rightTitleLab.text = @"0";
+            }
+            return cell;
         }
     }else{
+        //健康教育
+        
+        if (indexPath.section == 2) {
+            
+            MDDataStatisticsModel* model = self.listDataArr[1];
+            MDDataStatisticsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDDataStatisticsCell" forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            cell.leftValueLab.text = @"总阅读次数";
+            cell.midValueLab.text = @"年阅读次数";
+            cell.rightValueLab.text = @"月阅读次数";
+            if (model.total) {
+                cell.lefTitleLab.text = model.total;
+            }else{
+                cell.lefTitleLab.text = @"0";
+            }
+            if (model.year_sum) {
+                cell.midTitleLab.text = model.year_sum;
+            }else{
+                cell.midTitleLab.text = @"0";
+            }
+            
+            if (model.month_sum) {
+                cell.rightTitleLab.text = model.month_sum;
+            }else{
+                cell.rightTitleLab.text = @"0";
+            }
+            return cell;
+        }else{
+            //活动
+            MDDataStatisticsModel* model = self.listDataArr[0];
+            MDHealthEducationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mDHealthEducationCell" forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.rightImgView.hidden = NO;
+            if (indexPath.section == 0) {
+                //本月
+                cell.titleStr = @"所有活动(本月)";
+                cell.signUpNumStr = model.month_sum;
+                cell.totalNumStr = model.month_total;
+            }else{
+                //本年
+                cell.titleStr = @"所有活动(本年)";
+                cell.signUpNumStr = model.year_sum;
+                cell.totalNumStr = model.year_total;
+            }
+            return cell;
+        }
         
     }
-    return cell;
+    
+    
+    
+    
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (selectIndex == 1 && indexPath.section != 2) {
+        
+        MDHealthEducationDetailVC* healthEducationDetailVC = [[MDHealthEducationDetailVC alloc] init];
+        
+        healthEducationDetailVC.typeNum = indexPath.section + 1;
+        
+        [self.navigationController pushViewController:healthEducationDetailVC animated:YES];
+    }
+    
+}
+
+
 #pragma mark -- 获取数据统计
-- (void)getDataStatisticsRequestWithBeginDate:(NSString*)beginDate withStatues:(NSString*)statues
+- (void)getTotalDataStatisticsRequest
 {
     NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
     
-    [param setValue:beginDate forKey:@"bdate"];
-    
-    [param setValue:[NSString stringWithFormat:@"%ld",(long)[NSDate getCurrentDate]] forKey:@"edate"];
-    
-    NSString* url = PATH(@"%@/statistics");
+    NSString* url = PATH(@"%@/summaryStatistics");
     
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
@@ -271,15 +354,46 @@
             
             if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
             {
-                if ([statues isEqualToString:@"0"]) {
-                    self.totalModel = [MDDataStatisticsModel yy_modelWithDictionary:responseObj[@"data"]];
-                }else if ([statues isEqualToString:@"1"]){
-                    self.yearModel = [MDDataStatisticsModel yy_modelWithDictionary:responseObj[@"data"]];
-                }else{
-                    self.monthModel = [MDDataStatisticsModel yy_modelWithDictionary:responseObj[@"data"]];
-                }
+                NSArray* list = [NSArray yy_modelArrayWithClass:[MDDataStatisticsModel class] json:responseObj[@"data"]];
+                [self.listDataArr removeAllObjects];
+                [self.listDataArr addObjectsFromArray:list];
+                
+                [statisticsTab reloadData];
                 
                 
+            }else
+            {
+                [XHToast showCenterWithText:@"请求错误"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+    
+    
+}
+#pragma mark -- 获取健康教育统计数据
+- (void)getHealthEducationRequest
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    NSString* url = PATH(@"%@/healthEduStatistics");
+    
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                NSArray* list = [NSArray yy_modelArrayWithClass:[MDDataStatisticsModel class] json:responseObj[@"data"]];
+                [self.listDataArr removeAllObjects];
+                [self.listDataArr addObjectsFromArray:list];
                 
                 [statisticsTab reloadData];
                 

@@ -18,6 +18,9 @@
 @property (nonatomic, copy) NSString *myBackgroud;
 @property (nonatomic, copy) NSString *myImage;
 
+
+@property (nonatomic, copy) NSString *share_url;//分享出去的url
+
 @property (nonatomic, copy) NSMutableArray *myServiceCount;
 @property (nonatomic, copy) NSMutableArray *myBaseInfo;
 @property (nonatomic, copy) NSMutableArray *myServices;

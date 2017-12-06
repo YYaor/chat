@@ -119,7 +119,7 @@
     NSLog(@"点击跳转对应群组对话");
     MDDiscussListModel* listModel = self.groupArr[indexPath.section];
     
-    MDGroupCommunicateVC* groupCommunicateVC = [[MDGroupCommunicateVC alloc] initWithConversationChatter:listModel.groupId conversationType:EMConversationTypeGroupChat];
+    MDGroupCommunicateVC* groupCommunicateVC = [[MDGroupCommunicateVC alloc] initWithConversationChatter:listModel.im_roomid conversationType:EMConversationTypeChatRoom];
     groupCommunicateVC.isPeer = YES;
     groupCommunicateVC.title = listModel.name;
     groupCommunicateVC.groupIdStr = listModel.groupId;

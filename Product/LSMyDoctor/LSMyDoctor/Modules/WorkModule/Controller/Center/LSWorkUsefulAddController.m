@@ -73,6 +73,7 @@
                 if (weakSelf.updateBlock) {
                     weakSelf.updateBlock(responseObj[@"data"]);
                 }
+                
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             }
         } failBlock:^(NSError *error) {
@@ -95,6 +96,9 @@
                 if (weakSelf.addBlock) {
                     weakSelf.addBlock(weakSelf.dataDic);
                 }
+                
+                [XHToast showCenterWithText:@"常用语添加成功"];
+                
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             }
             
@@ -119,6 +123,9 @@
             if (weakSelf.deleteBlock) {
                 weakSelf.deleteBlock(weakSelf.dataDic);
             }
+            
+            [XHToast showCenterWithText:@"常用语删除成功"];
+            
             [weakSelf.navigationController popViewControllerAnimated:YES];
 
         }

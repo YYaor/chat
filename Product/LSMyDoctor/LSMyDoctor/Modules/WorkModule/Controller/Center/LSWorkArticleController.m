@@ -70,6 +70,8 @@
 
 - (void)rightItemClick
 {
+    self.lastBtn = nil;
+    
     LSWorkArticleAddController *vc = [[LSWorkArticleAddController alloc] initWithNibName:@"LSWorkArticleAddController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -199,6 +201,7 @@
 //                        [self.content removeObject:dataDic];
 //                        [self.tableView reloadData];
                         [self requestData];
+                        [XHToast showCenterWithText:@"删除成功"];
                         
                     }else
                     {
@@ -209,11 +212,11 @@
                 }];
             }else{
                 //是草稿是就本地删除
-                NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
-                
-                for (NSDictionary *dic in saveArr) {
-                    if ([self.content[indexPath.section][@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
-                        [saveArr removeObject:dic];
+                NSMutableArray *tempArr = [LSCacheManager unarchiverObjectByKey:@"savearticle" WithPath:@"article"];
+                NSMutableArray *saveArr = [NSMutableArray array];
+                for (NSDictionary *dic in tempArr) {
+                    if ([self.content[indexPath.section][@"savetime"] doubleValue] != [dic[@"savetime"] doubleValue]) {
+                        [saveArr addObject:dic];
                     }
                 }
                 
@@ -222,6 +225,7 @@
                 
                 [self.content removeObject:dataDic];
                 [self.tableView reloadData];
+                [XHToast showCenterWithText:@"删除成功"];
             }
         };
     }

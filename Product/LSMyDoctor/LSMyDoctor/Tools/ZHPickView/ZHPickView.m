@@ -131,6 +131,7 @@
         _minDate = minDate;
         _defaulDate=defaulDate;
         _selectDate=selectDate;
+
         [self setUpDatePickerWithdatePickerMode:(UIDatePickerMode)datePickerMode];
         [self setFrameWith:isHaveNavControler];
     }
@@ -562,6 +563,7 @@
     
     //NSLog(@"销毁了");
 }
+
 @end
 
 // 版权属于原作者

@@ -10,4 +10,6 @@
 
 @interface LSWorkActivityAddController : UIViewController
 
+@property(nonatomic,strong)NSMutableDictionary *data;
+
 @end

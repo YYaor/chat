@@ -28,7 +28,7 @@
 #import "MDDocRequestVC.h"
 #import "LSManageMateController.h"
 
-@interface LSWorkController ()
+@interface LSWorkController () <EMChatManagerDelegate, EMChatroomManagerDelegate, EMGroupManagerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
@@ -46,6 +46,8 @@
 @property (nonatomic, strong) NSArray *bottomImageArr;
 @property (nonatomic, strong) NSArray *bottomColorArr;
 
+@property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 @implementation LSWorkController
@@ -55,6 +57,20 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.subviews[0].subviews[0].hidden = YES;
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:7 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        [self requestData];
+    }];
+    
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (void)viewDidLoad
@@ -62,6 +78,7 @@
     [super viewDidLoad];
     
     [self initForView];
+    [self registerNotifications];
 }
 
 - (void)initForView
@@ -94,6 +111,154 @@
     [self.scrollView addSubview:self.bottomView];
     
     self.scrollView.contentSize = CGSizeMake(LSSCREENWIDTH, CGRectGetMaxY(self.bottomView.frame)+20);
+}
+
+- (void)requestData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    NSString *url = PATH(@"%@/countWorkstation");
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:NO httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]])
+        {
+            if ([responseObj[@"status"] integerValue] == 0) {
+                
+                if (responseObj[@"data"]) {
+                    
+                    [self setNumberWithDictionary:responseObj[@"data"]];
+                }
+            }
+        }
+    } failBlock:^(NSError *error) {
+        
+    }];
+    
+    [self messagesDidReceive:nil];
+}
+
+- (void)setNumberWithDictionary:(NSDictionary *)dic
+{
+//    case_number	未完成医嘱数	number
+//    doctor_number	同行请求数	number
+//    order_number	预约数	number
+//    patient_number	患者请求数	number
+    UILabel *lab1 = [self.topView viewWithTag:1001];
+    
+    if ([dic[@"order_number"] longValue] > 0)
+    {
+        lab1.hidden = NO;
+        lab1.text = [NSString stringWithFormat:@"%ld", [dic[@"order_number"] longValue]];
+    }
+    else
+    {
+        lab1.hidden = YES;
+    }
+    
+    
+    UILabel *lab2 = [self.topView viewWithTag:1002];
+    
+    if ([dic[@"case_number"] longValue] > 0)
+    {
+        lab2.hidden = NO;
+        lab2.text = [NSString stringWithFormat:@"%ld", [dic[@"case_number"] longValue]];
+    }
+    else
+    {
+        lab2.hidden = YES;
+    }
+    
+    
+    UILabel *lab3 = [self.topView viewWithTag:1003];
+    
+    if ([dic[@"patient_number"] longValue] > 0)
+    {
+        lab3.hidden = NO;
+        lab3.text = [NSString stringWithFormat:@"%ld", [dic[@"patient_number"] longValue]];
+    }
+    else
+    {
+        lab3.hidden = YES;
+    }
+    
+    
+    UILabel *lab4 = [self.bottomView viewWithTag:3001];
+    
+    if ([dic[@"doctor_number"] longValue] > 0)
+    {
+        lab4.hidden = NO;
+        lab4.text = [NSString stringWithFormat:@"%ld", [dic[@"doctor_number"] longValue]];
+    }
+    else
+    {
+        lab4.hidden = YES;
+    }
+    
+}
+
+#pragma mark - EMChatManagerDelegate
+
+- (void)messagesDidReceive:(NSArray *)aMessages
+{
+    NSArray *array = [[EMClient sharedClient].chatManager getAllConversations];
+    
+    int pNum = 0;
+    int dNum = 0;
+    
+    for (NSInteger i=0; i<array.count; i++)
+    {
+        EMConversation *conversation = array[i];
+        
+        if ([conversation.conversationId containsString:@"p"] || [conversation.conversationId containsString:@"P"])
+        {
+            pNum += conversation.unreadMessagesCount;
+        }
+        else if ([conversation.conversationId containsString:@"d"] || [conversation.conversationId containsString:@"D"])
+        {
+            dNum += conversation.unreadMessagesCount;
+        }
+    }
+    
+    
+    UILabel *lab1 = [self.topView viewWithTag:1000];
+    
+    if (pNum > 0)
+    {
+        lab1.hidden = NO;
+        lab1.text = [NSString stringWithFormat:@"%d", pNum];
+    }
+    else
+    {
+        lab1.hidden = YES;
+    }
+    
+    
+    UILabel *lab2 = [self.bottomView viewWithTag:3000];
+    
+    if (dNum > 0)
+    {
+        lab2.hidden = NO;
+        lab2.text = [NSString stringWithFormat:@"%d", dNum];
+    }
+    else
+    {
+        lab2.hidden = YES;
+    }
+}
+
+#pragma mark - registerNotifications
+-(void)registerNotifications{
+    [self unregisterNotifications];
+    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+    [[EMClient sharedClient].groupManager addDelegate:self delegateQueue:nil];
+}
+
+-(void)unregisterNotifications{
+    [[EMClient sharedClient].chatManager removeDelegate:self];
+    [[EMClient sharedClient].groupManager removeDelegate:self];
+}
+
+- (void)dealloc{
+    [self unregisterNotifications];
 }
 
 #pragma mark -- 扫一扫按钮点击
@@ -246,6 +411,25 @@
             btn.tag = i+10000;
             [_topView addSubview:btn];
             
+            //添加未读数量
+            CGFloat countHeight = 30.0f;//未读数量显示的高度
+            UILabel* countLab = [[UILabel alloc] init];
+            countLab.text = @"2";
+            countLab.textAlignment = NSTextAlignmentCenter;
+            countLab.textColor = [UIColor whiteColor];
+            countLab.layer.masksToBounds = YES;
+            countLab.layer.cornerRadius = countHeight/2;
+            countLab.backgroundColor = [UIColor colorFromHexString:@"FC7E57"];
+            countLab.tag = i+1000;
+            countLab.hidden = YES;
+            [btn addSubview:countLab];
+            [countLab mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(btn.mas_right).offset(countHeight/3);
+                make.top.equalTo(btn.mas_top).offset(-countHeight/3);
+                make.height.mas_equalTo(countHeight);
+                make.width.equalTo(countLab.mas_height);
+            }];
+            
             UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(i*labWidth, 120, labWidth, 20)];
             lab.text = self.topTitleArr[i];
             lab.textAlignment = NSTextAlignmentCenter;
@@ -279,6 +463,24 @@
             [btn addTarget:self action:@selector(centerBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             btn.tag = i+20000;
             [_centerView addSubview:btn];
+            
+//            //添加未读数量
+//            CGFloat countHeight = 20.0f;//未读数量显示的高度
+//            UILabel* countLab = [[UILabel alloc] init];
+//            countLab.text = @"2";
+//            countLab.textAlignment = NSTextAlignmentCenter;
+//            countLab.textColor = [UIColor whiteColor];
+//            countLab.layer.masksToBounds = YES;
+//            countLab.layer.cornerRadius = countHeight/2;
+//            countLab.backgroundColor = [UIColor colorFromHexString:@"FC7E57"];
+//            countLab.tag = i+2000;
+//            [btn addSubview:countLab];
+//            [countLab mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.right.equalTo(btn.mas_right).offset(countHeight/3);
+//                make.top.equalTo(btn.mas_top).offset(-countHeight/3);
+//                make.height.mas_equalTo(countHeight);
+//                make.width.equalTo(countLab.mas_height);
+//            }];
             
             UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake((1+btnWidth)*(i%3), CGRectGetMaxY(btn.frame), btnWidth, 20)];
             lab.text = self.centerTitleArr[i];
@@ -330,9 +532,9 @@
             [_bottomView addSubview:btn];
             
             
-            /*
+            
             //添加未读数量
-            CGFloat countHeight = 20.0f;//未读数量显示的高度
+            CGFloat countHeight = 30.0f;//未读数量显示的高度
             UILabel* countLab = [[UILabel alloc] init];
             countLab.text = @"2";
             countLab.textAlignment = NSTextAlignmentCenter;
@@ -340,6 +542,8 @@
             countLab.layer.masksToBounds = YES;
             countLab.layer.cornerRadius = countHeight/2;
             countLab.backgroundColor = [UIColor colorFromHexString:@"FC7E57"];
+            countLab.tag = i+3000;
+            countLab.hidden = YES;
             [btn addSubview:countLab];
             [countLab mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(btn.mas_right).offset(countHeight/3);
@@ -347,7 +551,7 @@
                 make.height.mas_equalTo(countHeight);
                 make.width.equalTo(countLab.mas_height);
             }];
-            */
+            
             
             
             UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(i*labWidth, 120, labWidth, 20)];

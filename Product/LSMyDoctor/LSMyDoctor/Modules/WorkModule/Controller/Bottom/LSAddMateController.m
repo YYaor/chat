@@ -174,6 +174,11 @@
                 
                 NSArray* list = [NSArray yy_modelArrayWithClass:[MDDoctorListModel class] json:responseObj[@"data"]];
                 
+                if (list.count == 0)
+                {
+                    [XHToast showCenterWithText:@"您还没有同业好友"];
+                }
+                
                 [self.dataArray removeAllObjects];
                 [self.dataArray addObjectsFromArray:list];
                 

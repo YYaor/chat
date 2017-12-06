@@ -69,6 +69,7 @@
 }
 
 -(void)initForView{
+    
     [self.view addSubview:self.typeView];
     [self.view addSubview:self.phoneTextFiled];
     [self.view addSubview:self.pswTextFiled];
@@ -141,6 +142,8 @@
     {
         self.phoneTextFiled.text = [Defaults objectForKey:@"phoneNum"];
     }
+    
+    [self.pswTextFiled addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
 
 #pragma mark - YYShopMainTypeViewDelegate
@@ -159,6 +162,15 @@
 }
 
 #pragma mark - TextDelegate
+
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField == self.pswTextFiled) {
+        if (textField.text.length > 6) {
+            textField.text = [textField.text substringToIndex:6];
+        }
+    }
+}
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     if (textField == self.phoneTextFiled) {
@@ -310,7 +322,7 @@
     
     if (![NSString isMobile:self.phoneTextFiled.text]) {
         self.phoneLine.backgroundColor = [UIColor redColor];
-        self.phoneNoticeLabel.text = @"手机号码有误";
+        self.phoneNoticeLabel.text = @"您输入的手机号码不正确";
         return;
     }
     
@@ -337,6 +349,9 @@
     
     
     [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+        NSLog(@"%@",responseObj);
+        NSLog(@"123");
         if ([responseObj isKindOfClass:[NSDictionary class]])
         {
             NSDictionary * dict = responseObj;
@@ -348,7 +363,10 @@
                 [Defaults setValue:self.phoneTextFiled.text forKey:@"phoneNum"];
                 [Defaults setValue:dict[@"doctorid"] forKey:@"doctorid"];
                 [Defaults setValue:dict[@"name"] forKey:@"username"];
-                [Defaults setValue:dict[@"image"] forKey:@"userimage"];
+                if (![dict[@"image"] isEqual:[NSNull null]])
+                {
+                    [Defaults setValue:dict[@"image"] forKey:@"userimage"];
+                }
 
                 if (self.typeView.selectIndex != 1) {
                     //密码登录

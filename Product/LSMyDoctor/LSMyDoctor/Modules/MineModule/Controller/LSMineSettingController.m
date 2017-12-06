@@ -128,6 +128,7 @@
     [Defaults removeObjectForKey:@"doctorid"];
     [Defaults removeObjectForKey:@"cookie"];
     [Defaults removeObjectForKey:@"accessToken"];
+    [Defaults removeObjectForKey:@"userimage"];
     
     [Defaults synchronize];
     

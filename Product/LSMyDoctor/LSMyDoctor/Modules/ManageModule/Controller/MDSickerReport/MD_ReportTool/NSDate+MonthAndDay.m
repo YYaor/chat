@@ -63,6 +63,15 @@
     return [date integerValue];
 }
 
++ (NSString *)getCurrentDateString
+{
+    NSDateFormatter *formatterM = [[NSDateFormatter alloc] init];
+    formatterM.dateFormat = @"YYYY-MM-dd";
+    NSString *date = [formatterM stringFromDate:[NSDate date]];
+    
+    return date;
+}
+
 //获取本日前一周的周几字符串（不包含今天）
 + (NSArray*)weekdayStringFromDateNday:(NSInteger) nDay {
     
@@ -232,5 +241,14 @@
     
     return [NSString stringWithFormat:@"%@年%@月%@日",year,month,day];
 }
+
++ (NSDate *)getNowDateFromatAnDate:(NSDate *)anyDate
+{
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate:anyDate];
+    NSDate *localeDate = [anyDate dateByAddingTimeInterval:interval];
+    return localeDate;
+}
+
 
 @end

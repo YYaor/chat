@@ -320,7 +320,7 @@
 
     if ([self.cityButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
     {
-        [XHToast showTopWithText:@"请先获取所在城市"];
+        [XHToast showCenterWithText:@"请选择您所在的城市"];
         return;
     }
     
@@ -377,13 +377,13 @@
     
     if ([self.cityButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
     {
-        [XHToast showTopWithText:@"请先获取所在城市"];
+        [XHToast showCenterWithText:@"请选择您所在的城市"];
         return;
     }
     
     if ([self.areaButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
     {
-        [XHToast showTopWithText:@"请先获取所在区"];
+        [XHToast showCenterWithText:@"请选择您所在的地区"];
         return;
     }
     
@@ -541,31 +541,31 @@
     
     if (self.nameTextField.text.length <= 0)
     {
-        [XHToast showTopWithText:@"请填写您的真实姓名"];
+        [XHToast showCenterWithText:@"请填写您的真实姓名"];
         return;
     }
     
     if ([self.cityButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
     {
-        [XHToast showTopWithText:@"请先获取所在城市"];
+        [XHToast showCenterWithText:@"请选择您所在的城市"];
         return;
     }
     
     if ([self.areaButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
     {
-        [XHToast showTopWithText:@"请先获取所在区"];
+        [XHToast showCenterWithText:@"请选择您所在的地区"];
         return;
     }
     
     if ([self.hospitalButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
     {
-        [XHToast showTopWithText:@"请先获取所在医院"];
+        [XHToast showCenterWithText:@"请选择您所在的科室"];
         return;
     }
     
     if ([self.careerButton.currentTitleColor isEqual:[UIColor colorFromHexString:@"BFBFBF"]])
     {
-        [XHToast showTopWithText:@"请先获取职称"];
+        [XHToast showCenterWithText:@"请选择您的职称"];
         return;
     }
     
@@ -864,7 +864,7 @@
 -(UITextField *)nameTextField{
     if (!_nameTextField) {
         _nameTextField = [[UITextField alloc]init];
-        _nameTextField.placeholder = @"请输入昵称";
+        _nameTextField.placeholder = @"请填写您的真实姓名";
         _nameTextField.tintColor = [UIColor colorFromHexString:LSGREENCOLOR];
         _nameTextField.font = [UIFont systemFontOfSize:14];
         [_nameTextField addTarget:self action:@selector(nameTextChangged:) forControlEvents:UIControlEventEditingChanged];
@@ -888,7 +888,7 @@
         _cityButton = [[UIButton alloc]init];
         [_cityButton addTarget:self action:@selector(cityButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [_cityButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [_cityButton setTitle:@"请选择所在城市" forState:UIControlStateNormal];
+        [_cityButton setTitle:@"请选择您所在的城市" forState:UIControlStateNormal];
         _cityButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         _cityButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_cityButton setTitleColor:[UIColor colorFromHexString:@"bfbfbf"] forState:UIControlStateNormal];
@@ -901,7 +901,7 @@
         _areaButton = [[UIButton alloc]init];
         [_areaButton addTarget:self action:@selector(areaButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [_areaButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [_areaButton setTitle:@"请选择所在区" forState:UIControlStateNormal];
+        [_areaButton setTitle:@"请选择您所在的区" forState:UIControlStateNormal];
         _areaButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         _areaButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_areaButton setTitleColor:[UIColor colorFromHexString:@"bfbfbf"] forState:UIControlStateNormal];
@@ -915,7 +915,7 @@
         _hospitalButton = [[UIButton alloc]init];
         [_hospitalButton addTarget:self action:@selector(hospitalButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [_hospitalButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [_hospitalButton setTitle:@"请选择所在医院" forState:UIControlStateNormal];
+        [_hospitalButton setTitle:@"请选择您所在的医院" forState:UIControlStateNormal];
         _hospitalButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         _hospitalButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_hospitalButton setTitleColor:[UIColor colorFromHexString:@"bfbfbf"] forState:UIControlStateNormal];

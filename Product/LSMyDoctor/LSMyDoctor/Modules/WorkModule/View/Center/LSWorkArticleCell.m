@@ -238,6 +238,7 @@
 -(void)deleteButtonClick{
     if (self.deleteBlock) {
         self.deleteBlock(self.data);
+        self.deleteView.hidden = YES;
     }
     //删除按钮
 }
@@ -278,7 +279,7 @@
         }
         self.statusLabel.hidden = NO;
     }
-    else
+    else if ([type isEqualToString:@"2"])
     {
         //文章库
         self.statusLabel.hidden = YES;

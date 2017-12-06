@@ -50,6 +50,45 @@
                                          apnsCertName:@"MyDoctor_Dev_Apns"
                                           otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
     [self loginIM];
+    
+    //share sdk
+    [ShareSDK registerActivePlatforms:@[
+                                        @(SSDKPlatformTypeWechat),
+                                        @(SSDKPlatformTypeQQ),
+                                        ]
+                             onImport:^(SSDKPlatformType platformType)
+     {
+         switch (platformType)
+         {
+             case SSDKPlatformTypeWechat:
+                 [ShareSDKConnector connectWeChat:[WXApi class]];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                 break;
+             default:
+                 break;
+         }
+     }
+                      onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
+     {
+         
+         switch (platformType)
+         {
+             case SSDKPlatformTypeWechat:
+                 [appInfo SSDKSetupWeChatByAppId:@"wx013e19e4f33280b4"
+                                       appSecret:@"d48a26153a7ecf17aaca035ffee05157"];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [appInfo SSDKSetupQQByAppId:@"1106510280"
+                                      appKey:@"tqmNRv0i1jpZ4hyn"
+                                    authType:SSDKAuthTypeBoth];
+                 break;
+             default:
+                 break;
+         }
+     }];
+    
     //获取token
     [self initAccessToken];
     

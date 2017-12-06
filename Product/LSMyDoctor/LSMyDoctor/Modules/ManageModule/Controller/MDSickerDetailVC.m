@@ -16,8 +16,9 @@
 #import "MDSickerRemarkVC.h"
 #import "MDEditGroupVC.h"
 #import "MDSikerWeekReportVC.h"
-
+#import "MDMyAdviceVC.h"
 #import "MDSingleCommunicationVC.h"
+#import "MDSickerMedicalRecordListVC.h"
 
 @interface MDSickerDetailVC ()<UITableViewDelegate,UITableViewDataSource,MDSickerDetailBottomCellDelegate>
 {
@@ -84,8 +85,22 @@
 - (void)talkBtnClick
 {
     NSLog(@"点击对话");
-    MDSingleCommunicationVC *chatController = [[MDSingleCommunicationVC alloc] initWithConversationChatter:[NSString stringWithFormat:@"ug369P%@", self.sickerIdStr] conversationType:EMConversationTypeChat];
-    chatController.title = @"测试标题";
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:self.sickerIdStr forKey:@"userid"];
+    
+    NSString *url = PATH(@"%@/addChatLog");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        
+    } failBlock:^(NSError *error) {
+        
+    }];
+    
+    MDSingleCommunicationVC *chatController = [[MDSingleCommunicationVC alloc] initWithConversationChatter:[NSString stringWithFormat:@"ug369p%@", self.sickerIdStr] conversationType:EMConversationTypeChat];
+    chatController.titleStr = self.detailModel.username;
+    chatController.user_idStr = self.sickerIdStr;
     [self.navigationController pushViewController:chatController animated:YES];
 }
 
@@ -109,7 +124,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50.0f;
+    return 30.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -171,7 +186,7 @@
                 cell.cellTitleLab.text = @"备注";
                 cell.cellValueLab.text = self.detailModel.remark;
             }
-            cell.valueLabHeight.constant = [cell.cellValueLab.text heightWithFont:[UIFont systemFontOfSize:17.0f] constrainedToWidth:LSSCREENWIDTH - 140];
+            cell.valueLabHeight.constant = [cell.cellValueLab.text heightWithFont:[UIFont systemFontOfSize:17.0f] constrainedToWidth:LSSCREENWIDTH - 140] > 30 ? [cell.cellValueLab.text heightWithFont:[UIFont systemFontOfSize:17.0f] constrainedToWidth:LSSCREENWIDTH - 140] : 30;
             
             return cell;
         }
@@ -243,11 +258,18 @@
 - (void)mDSickerDetailBottomCellSickerMedicalRecordBtnClickWithBtn:(WFHelperButton *)sender
 {
     NSLog(@"患者病历按钮点击");
+    MDSickerMedicalRecordListVC* sickerMedicalRecordListVC = [[MDSickerMedicalRecordListVC alloc] init];
+    sickerMedicalRecordListVC.user_idStr = self.sickerIdStr;
+    [self.navigationController pushViewController:sickerMedicalRecordListVC animated:YES];
+    
 }
 #pragma mark -- 我的医嘱按钮点击
 - (void)mDSickerDetailBottomCellMyAdviceBtnClickWithBtn:(WFHelperButton *)sender
 {
     NSLog(@"我的医嘱按钮点击");
+    MDMyAdviceVC* myAdviceVC = [[MDMyAdviceVC alloc] init];
+    myAdviceVC.userId_Str = self.sickerIdStr;
+    [self.navigationController pushViewController:myAdviceVC animated:YES];
 }
 #pragma mark -- 获取患者详情
 - (void)getSickerDetailRequestData

@@ -10,9 +10,11 @@
 
 @interface MDDataStatisticsModel : NSObject<YYModel>
 
-@property (nonatomic,strong)NSString* followUp;
-@property (nonatomic,strong)NSString* fws;
-@property (nonatomic,strong)NSString* signCount;
-@property (nonatomic,strong)NSString* visit;
+@property (nonatomic,strong)NSString* type;
+@property (nonatomic,strong)NSString* total;
+@property (nonatomic,strong)NSString* year_sum;
+@property (nonatomic,strong)NSString* month_sum;
+@property (nonatomic,strong)NSString* year_total;
+@property (nonatomic,strong)NSString* month_total;
 
 @end

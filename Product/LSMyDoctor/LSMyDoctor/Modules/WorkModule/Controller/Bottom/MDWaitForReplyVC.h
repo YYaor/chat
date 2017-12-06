@@ -6,7 +6,7 @@
 //  Copyright © 2017年 赵炯丞. All rights reserved.
 //
 
-#import "EaseConversationListViewController.h"
+#import <UIKit/UIKit.h>
 
 @interface MDWaitForReplyVC : EaseConversationListViewController
 

@@ -122,22 +122,57 @@
         NSMutableArray* haveIdArr = [NSMutableArray array];
         [haveIdArr removeAllObjects];
         
+        NSMutableArray* removeArr = [NSMutableArray array];
+        [removeArr removeAllObjects];
+        
+        NSMutableArray* selectArr = [NSMutableArray array];
+        [selectArr removeAllObjects];
+        //已存在的成员组
         for (MDSickerGroupUserModel* userModel in self.groupDetailModel.users) {
             [haveIdArr addObject:userModel.user_id];
         }
-        
+        //当前已选择的
+        for (MDChooseSickerModel *model in self.groupDataArr) {
+            if (model.is_Selected) {
+                [selectArr addObject:model.user_id];
+            }
+        }
+        //添加的成员组
         for (MDChooseSickerModel *model in self.groupDataArr) {
             if (![haveIdArr containsObject:model.user_id] && model.is_Selected) {
                 [self.selectresultArr addObject:model.user_id];
             }
+            
         }
         
-        if (self.selectresultArr.count <= 0) {
-            [XHToast showCenterWithText:@"请选择新加的群成员"];
-            return;
+        //删除的成员组
+        for (NSString* user_id in haveIdArr) {
+            
+            if (![selectArr containsObject:user_id]) {
+                [removeArr addObject:user_id];
+            }
         }
-        //添加群
-        [self addUserToGroupRequest];
+        if(removeArr.count > 0){
+            //删除患者
+            if (removeArr.count < haveIdArr.count) {
+                //删除患者
+                [self removeUserToGroupRequestWithId:[removeArr componentsJoinedByString:@","]];
+            }else{
+                //删除所有人 -- 即：删除群组
+                
+                [self deleteGroupData];
+            }
+            
+        }
+        if (self.selectresultArr.count > 0) {
+            
+            //添加群
+            [self addUserToGroupRequest];
+        }
+        if (self.selectresultArr.count == 0 && removeArr.count == 0) {
+            //如果没有任何操作。
+            [self.navigationController popViewControllerAnimated:YES];
+        }
         
     }else{
         for (MDChooseSickerModel* sickerModel in self.groupDataArr) {
@@ -373,11 +408,6 @@
     for (MDSickerGroupUserModel* userModel in self.groupDetailModel.users) {
         [userModelIdArr addObject:userModel.user_id];
     }
-    if ([userModelIdArr containsObject:sickerModel.user_id]) {
-        [XHToast showCenterWithText:@"已存在"];
-        return;
-    }
-    
     
     
     sickerModel.is_Selected = !sickerModel.is_Selected;
@@ -540,8 +570,64 @@
     }];
 }
 
-
-
+#pragma mark -- 把患者从已存在的移除
+- (void)removeUserToGroupRequestWithId:(NSString*)removeIdStr
+{
+    
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    
+    [param setValue:self.groupIdStr forKey:@"groupid"];
+    [param setValue:removeIdStr forKey:@"userids"];
+    
+    NSString* url = PATH(@"%@/deleteGroupUser");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        [self cancelBtnClick];
+        if (responseObj[@"status"] && [[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else
+        {
+            [XHToast showCenterWithText:@"删除患者失败"];
+        }
+    } failBlock:^(NSError *error) {
+        [self cancelBtnClick];
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
+#pragma mark  -- 删除群
+- (void)deleteGroupData
+{
+    NSMutableDictionary *param = [MDRequestParameters shareRequestParameters];
+    [param setValue:self.groupIdStr forKey:@"groupid"];
+    NSString* url = PATH(@"%@/deleteDoctorGroup");
+    
+    [TLAsiNetworkHandler requestWithUrl:url params:param showHUD:YES httpMedthod:TLAsiNetWorkPOST successBlock:^(id responseObj) {
+        if ([responseObj isKindOfClass:[NSDictionary class]]) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObj[@"status"]] isEqualToString:@"0"])
+            {
+                //解散成功
+                UIViewController* vc = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 4];
+                
+                [self.navigationController popToViewController:vc animated:YES];
+                
+                
+            }else
+            {
+                [XHToast showCenterWithText:@"获取数据失败"];
+            }
+            
+        }else{
+            [XHToast showCenterWithText:@"数据格式错误"];
+        }
+        
+        
+        
+    } failBlock:^(NSError *error) {
+        [XHToast showCenterWithText:@"fail"];
+    }];
+}
 #pragma mark -- 限制输入字数
 - (void) textFieldDidChange:(UITextField *)textField
 

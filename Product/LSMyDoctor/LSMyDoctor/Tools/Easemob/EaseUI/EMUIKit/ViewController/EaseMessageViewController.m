@@ -27,8 +27,8 @@
 #import "EaseLocalDefine.h"
 #import "EaseSDKHelper.h"
 
-#import "LSDoctorAdviceController.h"
-#import "LSRecommendArticleController.h"
+//#import "LSDoctorAdviceController.h"
+//#import "LSRecommendArticleController.h"
 
 //#import "LSDoctorAdviceMessage2Cell.h"
 //#import "LSDoctorAdviceMessage1Cell.h"
@@ -1571,13 +1571,13 @@ typedef enum : NSUInteger {
     // Hide the keyboard
     [self.chatToolbar endEditing:YES];
     
-    LSDoctorAdviceController *vc = [[LSDoctorAdviceController alloc] initWithNibName:@"LSDoctorAdviceController" bundle:nil];
-    vc.conversation = self.conversation;
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    vc.sureBlock = ^(NSDictionary *dataDic) {
-        [self sendTextMessage:@"[下达医嘱]" withExt:dataDic];
-    };
+//    LSDoctorAdviceController *vc = [[LSDoctorAdviceController alloc] initWithNibName:@"LSDoctorAdviceController" bundle:nil];
+//    vc.conversation = self.conversation;
+//    [self.navigationController pushViewController:vc animated:YES];
+//    
+//    vc.sureBlock = ^(NSDictionary *dataDic) {
+//        [self sendTextMessage:@"[下达医嘱]" withExt:dataDic];
+//    };
     
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
 }
@@ -1587,12 +1587,12 @@ typedef enum : NSUInteger {
     // Hide the keyboard
     [self.chatToolbar endEditing:YES];
     
-    LSRecommendArticleController *vc = [[LSRecommendArticleController alloc] initWithNibName:@"LSRecommendArticleController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    vc.sureBlock = ^(NSDictionary *dataDic) {
-        [self sendTextMessage:@"[文章推荐]" withExt:dataDic];
-    };
+//    LSRecommendArticleController *vc = [[LSRecommendArticleController alloc] initWithNibName:@"LSRecommendArticleController" bundle:nil];
+//    [self.navigationController pushViewController:vc animated:YES];
+//    
+//    vc.sureBlock = ^(NSDictionary *dataDic) {
+//        [self sendTextMessage:@"[文章推荐]" withExt:dataDic];
+//    };
     
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_CALL object:@{@"chatter":self.conversation.conversationId, @"type":[NSNumber numberWithInt:0]}];
 }

@@ -10,6 +10,8 @@
 
 @interface LSWorkActivityCell : UITableViewCell
 
+@property (nonatomic, copy) void (^deleteBlock)(NSDictionary *dataDic);
+
 - (void)setDataWithDictionary:(NSDictionary *)dic;
 
 @end
