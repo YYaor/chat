@@ -10,7 +10,7 @@
 
 #import "LSWorkActivitySubController.h"
 
-#import "LSWorkScanController.h"
+#import "LSWorkActivityDetailController.h"
 
 @interface LSWorkActivityAddController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, PGDatePickerDelegate>
 
@@ -156,37 +156,37 @@
     
     if ([self.name.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
     {
-        [XHToast showCenterWithText:@"请输入活动名"];
+        [JKAlert alertText:@"请完善发布内容"];
         return;
     }
     
     if ([self.address.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
     {
-        [XHToast showCenterWithText:@"请完善发布内容"];
+        [JKAlert alertText:@"请完善发布内容"];
         return;
     }
     
     if ([self.cutoff_time.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
     {
-        [XHToast showCenterWithText:@"请完善发布内容"];
+        [JKAlert alertText:@"请完善发布内容"];
         return;
     }
     
     if ([self.activity_time.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
     {
-        [XHToast showCenterWithText:@"请完善发布内容"];
+        [JKAlert alertText:@"请完善发布内容"];
         return;
     }
     
     if ([self.total_number.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
     {
-        [XHToast showCenterWithText:@"请完善发布内容"];
+        [JKAlert alertText:@"请完善发布内容"];
         return;
     }
     
     if ([self.content.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
     {
-        [XHToast showCenterWithText:@"请完善发布内容"];
+        [JKAlert alertText:@"请完善发布内容"];
         return;
     }
     
@@ -202,6 +202,11 @@
     if (self.files)
     {
         [infoDic setValue:self.files forKey:@"files"];//文章图像地址	string
+    }
+    
+    if (self.data[@"savetime"])
+    {
+        [infoDic setValue:[NSNumber numberWithDouble:[self.data[@"savetime"] doubleValue]] forKey:@"savetime"];
     }
     
     LSWorkActivitySubController *vc = [[LSWorkActivitySubController alloc] initWithNibName:@"LSWorkActivitySubController" bundle:nil];
@@ -237,15 +242,59 @@
 
 - (IBAction)scanBtnClick:(UIButton *)btn
 {
-    if (!self.files && self.content.text.length == 0) {
+    if ([self.name.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
+    {
+        [JKAlert alertText:@"请完善发布内容"];
         return;
     }
-    LSWorkScanController *vc = [[LSWorkScanController alloc]init];
-    if (self.files) {
-        vc.imageURL = self.files;
+    
+    if ([self.address.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
+    {
+        [JKAlert alertText:@"请完善发布内容"];
+        return;
     }
-    vc.content = self.content.text;
-    vc.titleStr = self.name.text;
+    
+    if ([self.cutoff_time.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
+    {
+        [JKAlert alertText:@"请完善发布内容"];
+        return;
+    }
+    
+    if ([self.activity_time.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
+    {
+        [JKAlert alertText:@"请完善发布内容"];
+        return;
+    }
+    
+    if ([self.total_number.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
+    {
+        [JKAlert alertText:@"请完善发布内容"];
+        return;
+    }
+    
+    if ([self.content.text stringByReplacingOccurrencesOfString:@" " withString:@""].length <= 0)
+    {
+        [JKAlert alertText:@"请完善发布内容"];
+        return;
+    }
+    
+    NSMutableDictionary *infoDic = [NSMutableDictionary dictionary];
+    
+    [infoDic setValue:self.name.text forKey:@"name"];
+    [infoDic setValue:self.address.text forKey:@"address"];
+    [infoDic setValue:self.cutoff_time.text forKey:@"cutoff_time"];
+    [infoDic setValue:self.activity_time.text forKey:@"activity_time"];
+    [infoDic setValue:self.total_number.text forKey:@"total_number"];
+    [infoDic setValue:self.content.text forKey:@"content"];
+    
+    if (self.files)
+    {
+        [infoDic setValue:self.files forKey:@"files"];//文章图像地址	string
+    }
+    
+    LSWorkActivityDetailController *vc = [[LSWorkActivityDetailController alloc] initWithNibName:@"LSWorkActivityDetailController" bundle:nil];
+    vc.dic = infoDic;
+    vc.isDraft = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -33,6 +33,10 @@ static NSString *cell2Id = @"LSWorkActivityDetailCell2";
 {
     [super viewDidLoad];
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.navigationItem.title = @"活动详情";
+    
     [self.tableView registerNib:[UINib nibWithNibName:cell1Id bundle:nil] forCellReuseIdentifier:cell1Id];
     [self.tableView registerNib:[UINib nibWithNibName:cell2Id bundle:nil] forCellReuseIdentifier:cell2Id];
     self.tableView.estimatedRowHeight = 1000;
@@ -40,15 +44,22 @@ static NSString *cell2Id = @"LSWorkActivityDetailCell2";
     
     self.dataDic = [NSMutableDictionary dictionary];
     
-    [self requestData];
+    if (self.isDraft)
+    {
+        //草稿详情
+        self.titleLab.text = self.dic[@"name"];
+        self.infoLab.text = [NSString stringWithFormat:@"%@", UserName];
+        
+        self.footer.text = [NSString stringWithFormat:@""];
+    }
+    else
+    {
+        [self requestData];
+    }
 }
 
 - (void)initForView
 {
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    self.navigationItem.title = @"活动详情";
-    
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
@@ -121,35 +132,126 @@ static NSString *cell2Id = @"LSWorkActivityDetailCell2";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.dataDic[@"img_url"])
+    if (self.isDraft)
     {
-        return 4;
+        //草稿详情
+        if (self.dataDic[@"files"])
+        {
+            return 4;
+        }
+        else
+        {
+            return 3;
+        }
     }
     else
     {
-        return 3;
+        if (self.dataDic[@"img_url"])
+        {
+            return 4;
+        }
+        else
+        {
+            return 3;
+        }
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.dataDic[@"img_url"])
+    if (self.isDraft)
     {
-        if (indexPath.row == 0)
+        //草稿详情
+        if (self.dataDic[@"files"])
         {
-            LSWorkActivityDetailCell1 *cell = [tableView dequeueReusableCellWithIdentifier:cell1Id forIndexPath:indexPath];
-            [cell.imgView sd_setImageWithURL:[NSURL URLWithString:self.dataDic[@"img_url"]]];
-            return cell;
+            if (indexPath.row == 0)
+            {
+                LSWorkActivityDetailCell1 *cell = [tableView dequeueReusableCellWithIdentifier:cell1Id forIndexPath:indexPath];
+                [cell.imgView sd_setImageWithURL:[NSURL URLWithString:self.dic[@"files"]]];
+                return cell;
+            }
+            else
+            {
+                LSWorkActivityDetailCell2 *cell = [tableView dequeueReusableCellWithIdentifier:cell2Id forIndexPath:indexPath];
+                if (indexPath.row == 1)
+                {
+                    cell.titleLab.text = @"活动内容";
+                    cell.subTitleLab.text = self.dic[@"content"];
+                }
+                else if (indexPath.row == 2)
+                {
+                    cell.titleLab.text = @"活动地址";
+                    cell.subTitleLab.text = self.dic[@"address"];
+                }
+                else
+                {
+                    cell.titleLab.text = @"活动时间";
+                    cell.subTitleLab.text = self.dic[@"activity_time"];
+                }
+                return cell;
+            }
         }
         else
         {
             LSWorkActivityDetailCell2 *cell = [tableView dequeueReusableCellWithIdentifier:cell2Id forIndexPath:indexPath];
-            if (indexPath.row == 1)
+            if (indexPath.row == 0)
+            {
+                cell.titleLab.text = @"活动内容";
+                cell.subTitleLab.text = self.dic[@"content"];
+            }
+            else if (indexPath.row == 1)
+            {
+                cell.titleLab.text = @"活动地址";
+                cell.subTitleLab.text = self.dic[@"address"];
+            }
+            else
+            {
+                cell.titleLab.text = @"活动时间";
+                cell.subTitleLab.text = self.dic[@"activity_time"];
+            }
+            return cell;
+        }
+    }
+    else
+    {
+        if (self.dataDic[@"img_url"])
+        {
+            if (indexPath.row == 0)
+            {
+                LSWorkActivityDetailCell1 *cell = [tableView dequeueReusableCellWithIdentifier:cell1Id forIndexPath:indexPath];
+                [cell.imgView sd_setImageWithURL:[NSURL URLWithString:self.dataDic[@"img_url"]]];
+                return cell;
+            }
+            else
+            {
+                LSWorkActivityDetailCell2 *cell = [tableView dequeueReusableCellWithIdentifier:cell2Id forIndexPath:indexPath];
+                if (indexPath.row == 1)
+                {
+                    cell.titleLab.text = @"活动内容";
+                    cell.subTitleLab.text = self.dataDic[@"content"];
+                }
+                else if (indexPath.row == 2)
+                {
+                    cell.titleLab.text = @"活动地址";
+                    cell.subTitleLab.text = self.dataDic[@"address"];
+                }
+                else
+                {
+                    cell.titleLab.text = @"活动时间";
+                    cell.subTitleLab.text = self.dataDic[@"activity_time"];
+                }
+                return cell;
+            }
+        }
+        else
+        {
+            LSWorkActivityDetailCell2 *cell = [tableView dequeueReusableCellWithIdentifier:cell2Id forIndexPath:indexPath];
+            if (indexPath.row == 0)
             {
                 cell.titleLab.text = @"活动内容";
                 cell.subTitleLab.text = self.dataDic[@"content"];
             }
-            else if (indexPath.row == 2)
+            else if (indexPath.row == 1)
             {
                 cell.titleLab.text = @"活动地址";
                 cell.subTitleLab.text = self.dataDic[@"address"];
@@ -162,27 +264,6 @@ static NSString *cell2Id = @"LSWorkActivityDetailCell2";
             return cell;
         }
     }
-    else
-    {
-        LSWorkActivityDetailCell2 *cell = [tableView dequeueReusableCellWithIdentifier:cell2Id forIndexPath:indexPath];
-        if (indexPath.row == 0)
-        {
-            cell.titleLab.text = @"活动内容";
-            cell.subTitleLab.text = self.dataDic[@"content"];
-        }
-        else if (indexPath.row == 1)
-        {
-            cell.titleLab.text = @"活动地址";
-            cell.subTitleLab.text = self.dataDic[@"address"];
-        }
-        else
-        {
-            cell.titleLab.text = @"活动时间";
-            cell.subTitleLab.text = self.dataDic[@"activity_time"];
-        }
-        return cell;
-    }
-   
 }
 
 - (UILabel *)footer

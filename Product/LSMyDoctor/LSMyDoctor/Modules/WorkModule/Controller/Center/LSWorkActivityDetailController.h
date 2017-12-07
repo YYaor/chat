@@ -11,5 +11,6 @@
 @interface LSWorkActivityDetailController : UIViewController
 
 @property (nonatomic, strong) NSDictionary *dic;
+@property (nonatomic, assign) BOOL isDraft;
 
 @end

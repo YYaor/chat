@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LSWorkActivitySubController : UIViewController\
+@interface LSWorkActivitySubController : UIViewController
 
 @property (nonatomic, strong) NSDictionary *infoDic;
 

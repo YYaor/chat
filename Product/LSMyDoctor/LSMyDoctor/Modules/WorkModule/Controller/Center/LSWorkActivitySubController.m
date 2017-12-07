@@ -259,7 +259,21 @@
         {
             if ([responseObj[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
-                [XHToast showCenterWithText:@"发布成功"];
+                //是草稿是就本地删除
+                NSMutableArray *saveArr = [LSCacheManager unarchiverObjectByKey:@"saveactivity" WithPath:@"activity"];
+                if (!saveArr) {
+                    saveArr  = [NSMutableArray array];
+                }
+                for (NSDictionary *dic in saveArr) {
+                    if ([self.infoDic[@"savetime"] doubleValue] == [dic[@"savetime"] doubleValue]) {
+                        [saveArr removeObject:dic];
+                    }
+                }
+                
+                [[LSCacheManager sharedInstance] removeObjectWithFilePath:@"activity"];
+                [[LSCacheManager sharedInstance] archiverObject:saveArr ByKey:@"saveactivity" WithPath:@"activity"];
+                
+                [JKAlert alertText:@"发布成功"];
                 
                 NSArray *vcs = self.navigationController.viewControllers;
                 
