@@ -274,6 +274,11 @@ static TLNetworkStatus     networkStatus;
                     [XHToast showCenterWithText:responseObject[@"message"]];
                 }
                 
+                if (![responseObject[@"status"] isKindOfClass:[NSString class]] && [responseObject[@"status"] intValue]!=-202)
+                {
+                    [XHToast showCenterWithText:responseObject[@"message"]];
+                }
+                
                 if ([responseObject[@"status"] intValue] == -202)
                 {
                     //token过期，重新获得token
@@ -347,9 +352,10 @@ static TLNetworkStatus     networkStatus;
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             // 隐藏请求HUD
             [SVProgressHUD dismiss];
-            if (failBlock) {
-                failBlock(error);
-            }
+//            if (failBlock) {
+//                failBlock(error);
+//            }
+            [XHToast showCenterWithText:@"服务器连接失败"];
             // 移除当前请求
             [[self allTasks] removeObject:task];
         }];
