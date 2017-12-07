@@ -40,7 +40,7 @@
     
     self.content = [NSMutableArray array];
     
-    self.titleView = [[WFSegTitleView alloc] initWithItems:@[@"好友动态", @"咨询"]];
+    self.titleView = [[WFSegTitleView alloc] initWithItems:@[@"好友动态", @"资讯"]];
     self.titleView.numOfScreenW = 2;
     self.titleView.frame = CGRectMake(0, 0, LSSCREENWIDTH, 50);
     self.titleView.showLine = YES;

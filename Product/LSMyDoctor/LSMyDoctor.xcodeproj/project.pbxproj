@@ -682,6 +682,16 @@
 		DFF015F31F7AC8F300527CFA /* UIView+LSLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF015F21F7AC8F300527CFA /* UIView+LSLayer.m */; };
 		DFF015F91F7B41CD00527CFA /* HyphenateLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF015F81F7B41CD00527CFA /* HyphenateLite.framework */; };
 		DFF015FB1F7B456500527CFA /* HyphenateLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DFF015F81F7B41CD00527CFA /* HyphenateLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DFFA1C6C1FD8ED38004FE401 /* LSNonDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA1C6B1FD8ED38004FE401 /* LSNonDataView.m */; };
+		DFFA1C801FD93EA5004FE401 /* JKAdapterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA1C6F1FD93EA5004FE401 /* JKAdapterLabel.m */; };
+		DFFA1C811FD93EA5004FE401 /* JKAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA1C711FD93EA5004FE401 /* JKAlert.m */; };
+		DFFA1C821FD93EA5004FE401 /* JKAlertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA1C731FD93EA5004FE401 /* JKAlertManager.m */; };
+		DFFA1C831FD93EA5004FE401 /* JKBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA1C751FD93EA5004FE401 /* JKBaseView.m */; };
+		DFFA1C841FD93EA5004FE401 /* JKInformView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA1C771FD93EA5004FE401 /* JKInformView.m */; };
+		DFFA1C851FD93EA5004FE401 /* JKWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA1C791FD93EA5004FE401 /* JKWaitingView.m */; };
+		DFFA1C861FD93EA5004FE401 /* NSObject+JKAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA1C7B1FD93EA5004FE401 /* NSObject+JKAlert.m */; };
+		DFFA1C871FD93EA5004FE401 /* NSString+JKAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA1C7D1FD93EA5004FE401 /* NSString+JKAlert.m */; };
+		DFFA1C881FD93EA5004FE401 /* UIView+JKAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA1C7F1FD93EA5004FE401 /* UIView+JKAlert.m */; };
 		DFFD8ED61F7C23C300FF0ECD /* LSWorkAppointController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFD8ED41F7C23C300FF0ECD /* LSWorkAppointController.m */; };
 		DFFD8ED71F7C23C300FF0ECD /* LSWorkAppointController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFFD8ED51F7C23C300FF0ECD /* LSWorkAppointController.xib */; };
 		DFFD8EDB1F7C25AD00FF0ECD /* LSWorkAppointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFD8ED91F7C25AD00FF0ECD /* LSWorkAppointCell.m */; };
@@ -1956,6 +1966,26 @@
 		DFF015F11F7AC8F300527CFA /* UIView+LSLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LSLayer.h"; sourceTree = "<group>"; };
 		DFF015F21F7AC8F300527CFA /* UIView+LSLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LSLayer.m"; sourceTree = "<group>"; };
 		DFF015F81F7B41CD00527CFA /* HyphenateLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HyphenateLite.framework; sourceTree = "<group>"; };
+		DFFA1C6A1FD8ED38004FE401 /* LSNonDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNonDataView.h; sourceTree = "<group>"; };
+		DFFA1C6B1FD8ED38004FE401 /* LSNonDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSNonDataView.m; sourceTree = "<group>"; };
+		DFFA1C6E1FD93EA5004FE401 /* JKAdapterLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKAdapterLabel.h; sourceTree = "<group>"; };
+		DFFA1C6F1FD93EA5004FE401 /* JKAdapterLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKAdapterLabel.m; sourceTree = "<group>"; };
+		DFFA1C701FD93EA5004FE401 /* JKAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKAlert.h; sourceTree = "<group>"; };
+		DFFA1C711FD93EA5004FE401 /* JKAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKAlert.m; sourceTree = "<group>"; };
+		DFFA1C721FD93EA5004FE401 /* JKAlertManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKAlertManager.h; sourceTree = "<group>"; };
+		DFFA1C731FD93EA5004FE401 /* JKAlertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKAlertManager.m; sourceTree = "<group>"; };
+		DFFA1C741FD93EA5004FE401 /* JKBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKBaseView.h; sourceTree = "<group>"; };
+		DFFA1C751FD93EA5004FE401 /* JKBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKBaseView.m; sourceTree = "<group>"; };
+		DFFA1C761FD93EA5004FE401 /* JKInformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKInformView.h; sourceTree = "<group>"; };
+		DFFA1C771FD93EA5004FE401 /* JKInformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKInformView.m; sourceTree = "<group>"; };
+		DFFA1C781FD93EA5004FE401 /* JKWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKWaitingView.h; sourceTree = "<group>"; };
+		DFFA1C791FD93EA5004FE401 /* JKWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKWaitingView.m; sourceTree = "<group>"; };
+		DFFA1C7A1FD93EA5004FE401 /* NSObject+JKAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JKAlert.h"; sourceTree = "<group>"; };
+		DFFA1C7B1FD93EA5004FE401 /* NSObject+JKAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JKAlert.m"; sourceTree = "<group>"; };
+		DFFA1C7C1FD93EA5004FE401 /* NSString+JKAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JKAlert.h"; sourceTree = "<group>"; };
+		DFFA1C7D1FD93EA5004FE401 /* NSString+JKAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JKAlert.m"; sourceTree = "<group>"; };
+		DFFA1C7E1FD93EA5004FE401 /* UIView+JKAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JKAlert.h"; sourceTree = "<group>"; };
+		DFFA1C7F1FD93EA5004FE401 /* UIView+JKAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JKAlert.m"; sourceTree = "<group>"; };
 		DFFD8ED31F7C23C300FF0ECD /* LSWorkAppointController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWorkAppointController.h; sourceTree = "<group>"; };
 		DFFD8ED41F7C23C300FF0ECD /* LSWorkAppointController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWorkAppointController.m; sourceTree = "<group>"; };
 		DFFD8ED51F7C23C300FF0ECD /* LSWorkAppointController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSWorkAppointController.xib; sourceTree = "<group>"; };
@@ -3291,6 +3321,8 @@
 				DF840F381FC1E4F900847A72 /* LSDoctorAdviceMessageCell.m */,
 				DF840F4E1FC36EE700847A72 /* LSRecommendArticleMessageCell.h */,
 				DF840F4F1FC36EE700847A72 /* LSRecommendArticleMessageCell.m */,
+				DFFA1C6A1FD8ED38004FE401 /* LSNonDataView.h */,
+				DFFA1C6B1FD8ED38004FE401 /* LSNonDataView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3316,6 +3348,7 @@
 				DF87A6461F78217100EF0461 /* LSPrefixHeader.h */,
 				4A0CE6B21F90A13300F7C187 /* MDHeader.h */,
 				4A0CE6B31F90A17F00F7C187 /* MDHttpUrl.h */,
+				DFFA1C6D1FD93EA5004FE401 /* JKAlertAssemble */,
 				DF2AC5391FD69B6000A9BC30 /* PGPickerView */,
 				DF549D7E1FD6997C00C014E4 /* PGDatePicker */,
 				DF6C07F51FCE8C9E00CDDA05 /* SDK */,
@@ -4458,6 +4491,31 @@
 			path = HyphenateSDK;
 			sourceTree = "<group>";
 		};
+		DFFA1C6D1FD93EA5004FE401 /* JKAlertAssemble */ = {
+			isa = PBXGroup;
+			children = (
+				DFFA1C6E1FD93EA5004FE401 /* JKAdapterLabel.h */,
+				DFFA1C6F1FD93EA5004FE401 /* JKAdapterLabel.m */,
+				DFFA1C701FD93EA5004FE401 /* JKAlert.h */,
+				DFFA1C711FD93EA5004FE401 /* JKAlert.m */,
+				DFFA1C721FD93EA5004FE401 /* JKAlertManager.h */,
+				DFFA1C731FD93EA5004FE401 /* JKAlertManager.m */,
+				DFFA1C741FD93EA5004FE401 /* JKBaseView.h */,
+				DFFA1C751FD93EA5004FE401 /* JKBaseView.m */,
+				DFFA1C761FD93EA5004FE401 /* JKInformView.h */,
+				DFFA1C771FD93EA5004FE401 /* JKInformView.m */,
+				DFFA1C781FD93EA5004FE401 /* JKWaitingView.h */,
+				DFFA1C791FD93EA5004FE401 /* JKWaitingView.m */,
+				DFFA1C7A1FD93EA5004FE401 /* NSObject+JKAlert.h */,
+				DFFA1C7B1FD93EA5004FE401 /* NSObject+JKAlert.m */,
+				DFFA1C7C1FD93EA5004FE401 /* NSString+JKAlert.h */,
+				DFFA1C7D1FD93EA5004FE401 /* NSString+JKAlert.m */,
+				DFFA1C7E1FD93EA5004FE401 /* UIView+JKAlert.h */,
+				DFFA1C7F1FD93EA5004FE401 /* UIView+JKAlert.m */,
+			);
+			path = JKAlertAssemble;
+			sourceTree = "<group>";
+		};
 		DFFD8EC31F7C235800FF0ECD /* Bottom */ = {
 			isa = PBXGroup;
 			children = (
@@ -4862,8 +4920,10 @@
 				4AED37A61FBE753A00D81200 /* YGComRequestCell.m in Sources */,
 				DF87A7B71F782DE000EF0461 /* IQTitleBarButtonItem.m in Sources */,
 				0F8314721F7B3BE3008A9E22 /* LSMineUserSettingController.m in Sources */,
+				DFFA1C801FD93EA5004FE401 /* JKAdapterLabel.m in Sources */,
 				4A43C1711FAB1C9C00EAC5AA /* PieCharVIew.m in Sources */,
 				4A43C1391FAB1C9C00EAC5AA /* YGPictureCell.m in Sources */,
+				DFFA1C841FD93EA5004FE401 /* JKInformView.m in Sources */,
 				0F8314801F7B40BC008A9E22 /* NSObject+YYModel.m in Sources */,
 				DF87A7B21F782DE000EF0461 /* IQKeyboardManager.m in Sources */,
 				DF5A094D1F7D526E00CF5410 /* LSWorkTailDetailCell.m in Sources */,
@@ -4923,6 +4983,7 @@
 				DFCE83801FA9061000A2BD60 /* LSMineUserGoodatController.m in Sources */,
 				DF549D921FD6997C00C014E4 /* PGDatePickerView.m in Sources */,
 				4A43C12D1FAB1C9C00EAC5AA /* T18Cell.m in Sources */,
+				DFFA1C881FD93EA5004FE401 /* UIView+JKAlert.m in Sources */,
 				DFD5C7171F8167A300045E39 /* FSCalendarTransitionCoordinator.m in Sources */,
 				DF93F67D1F9B3AD40025D40D /* ZHPickView.m in Sources */,
 				DFF015371F7AC15700527CFA /* EMVoiceConverter.mm in Sources */,
@@ -4940,6 +5001,7 @@
 				DFCE836E1FA8824100A2BD60 /* TLAsiNetworkHandler.m in Sources */,
 				DFF015EF1F7AC25F00527CFA /* UIScrollView+MJRefresh.m in Sources */,
 				4A43C1751FAB1C9C00EAC5AA /* UUChartLabel.m in Sources */,
+				DFFA1C831FD93EA5004FE401 /* JKBaseView.m in Sources */,
 				DFF015351F7AC15700527CFA /* amrFileCodec.mm in Sources */,
 				DFF015DB1F7AC25F00527CFA /* UIView+BlocHUD.m in Sources */,
 				DFF0152F1F7AC15700527CFA /* EMAudioRecorderUtil.m in Sources */,
@@ -5002,6 +5064,7 @@
 				4A43C0F51FAB1C9C00EAC5AA /* BalanceModel.m in Sources */,
 				DF2AC5451FD69B6000A9BC30 /* PGPickerView.m in Sources */,
 				DF549D8D1FD6997C00C014E4 /* NSBundle+PGDatePicker.m in Sources */,
+				DFFA1C861FD93EA5004FE401 /* NSObject+JKAlert.m in Sources */,
 				4AFAD5261F99D7DD00B20CA2 /* MDGroupCommunicateVC.m in Sources */,
 				4AED377C1FBC325100D81200 /* MDDataStatistics.m in Sources */,
 				DF4EC8781FA6514F007D9A96 /* bitstream.c in Sources */,
@@ -5085,6 +5148,7 @@
 				DF87A7E61F7835FE00EF0461 /* LSMessageController.m in Sources */,
 				4AED37B01FBE964D00D81200 /* YGMedicalRecordDetailVC.m in Sources */,
 				DF87A6B61F7827E200EF0461 /* MASConstraintMaker.m in Sources */,
+				DFFA1C811FD93EA5004FE401 /* JKAlert.m in Sources */,
 				4A43C1821FAB1C9C00EAC5AA /* ZFLine.m in Sources */,
 				DFF015E41F7AC25F00527CFA /* MJRefreshAutoStateFooter.m in Sources */,
 				4AED37AC1FBE867300D81200 /* MDSingleCommunicationVC.m in Sources */,
@@ -5180,11 +5244,13 @@
 				4A43C0FD1FAB1C9C00EAC5AA /* DietReportHeadCell.m in Sources */,
 				DF81C2461F84C43700D4D851 /* LSWorkOutcallListCell.m in Sources */,
 				4A43C1171FAB1C9C00EAC5AA /* DoubleListCell.m in Sources */,
+				DFFA1C821FD93EA5004FE401 /* JKAlertManager.m in Sources */,
 				DF2738161F8FC6E300154B6A /* LSWorkArticleController.m in Sources */,
 				DF87A6F01F782A8E00EF0461 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				4A43C13B1FAB1C9C00EAC5AA /* YGSelfCureCell.m in Sources */,
 				4A43C1331FAB1C9C00EAC5AA /* YGBodayAgeCell.m in Sources */,
 				DFF010B11F7AB4FA00527CFA /* LSMineHeaderView.m in Sources */,
+				DFFA1C851FD93EA5004FE401 /* JKWaitingView.m in Sources */,
 				DF5A09341F7D413500CF5410 /* LSWorkAdviceDetailController.m in Sources */,
 				DF4EC8601FA65030007D9A96 /* YGScanVC.m in Sources */,
 				DFFD8EE01F7C377B00FF0ECD /* LSWorkAdviceController.m in Sources */,
@@ -5204,6 +5270,7 @@
 				DF4EC87B1FA6514F007D9A96 /* qrencode.c in Sources */,
 				DF87A7AC1F782DE000EF0461 /* IQNSArray+Sort.m in Sources */,
 				DF4EC87A1FA6514F007D9A96 /* QRCodeGenerator.m in Sources */,
+				DFFA1C6C1FD8ED38004FE401 /* LSNonDataView.m in Sources */,
 				DFF015651F7AC15700527CFA /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				4A43C1551FAB1C9C00EAC5AA /* YougeRemindCell.m in Sources */,
 				DFF0155E1F7AC15700527CFA /* EMSDWebImagePrefetcher.m in Sources */,
@@ -5224,6 +5291,7 @@
 				DF4EC87C1FA6514F007D9A96 /* qrinput.c in Sources */,
 				DF2738381F913A5500154B6A /* LSWorkUsefulAddController.m in Sources */,
 				4AA2FE591FA81374009009D8 /* MDUsefulMarkCell.m in Sources */,
+				DFFA1C871FD93EA5004FE401 /* NSString+JKAlert.m in Sources */,
 				DFF015861F7AC15700527CFA /* FixFopen.m in Sources */,
 				DFF0159E1F7AC15700527CFA /* EaseFaceView.m in Sources */,
 				0FB200EC1F7A5294005BC289 /* LSMineListCell.m in Sources */,

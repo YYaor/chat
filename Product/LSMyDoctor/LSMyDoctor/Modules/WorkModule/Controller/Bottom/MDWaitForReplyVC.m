@@ -20,6 +20,8 @@ static NSString *cellId = @"LSMessageCell";
 
 @property (nonatomic, strong) NSMutableArray *dataList;//筛选好的聊天列表
 
+@property (nonatomic, strong) LSNonDataView *nonDataView;
+
 @end
 
 @implementation MDWaitForReplyVC
@@ -114,7 +116,12 @@ static NSString *cellId = @"LSMessageCell";
     
     if (self.dataList.count == 0)
     {
-        [XHToast showCenterWithText:@"您没有需要回复的消息"];
+        [self.view addSubview:self.nonDataView];
+        self.nonDataView.hidden = NO;
+    }
+    else
+    {
+        self.nonDataView.hidden = YES;
     }
     
     [self.tableView reloadData];
@@ -230,6 +237,18 @@ static NSString *cellId = @"LSMessageCell";
 {
     [self tableViewDidTriggerHeaderRefresh];
     [self requestData];
+}
+
+#pragma mark - getter & setter
+
+- (LSNonDataView *)nonDataView
+{
+    if (!_nonDataView)
+    {
+        _nonDataView = [[LSNonDataView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
+        _nonDataView.titleStr = @"您没有需要回复的消息";
+    }
+    return _nonDataView;
 }
 
 #pragma mark - registerNotifications

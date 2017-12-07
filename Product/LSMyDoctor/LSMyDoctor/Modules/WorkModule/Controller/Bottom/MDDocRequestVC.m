@@ -18,6 +18,8 @@
 
 @property (nonatomic ,strong)MDPeerReuqestModel * requestModel;
 
+@property (nonatomic, strong) LSNonDataView *nonDataView;
+
 @end
 
 @implementation MDDocRequestVC
@@ -147,7 +149,12 @@
                 
                 if (self.requestModel.content.count == 0)
                 {
-                    [XHToast showCenterWithText:@"您没有待处理的同行请求"];
+                    [self.view addSubview:self.nonDataView];
+                    self.nonDataView.hidden = NO;
+                }
+                else
+                {
+                    self.nonDataView.hidden = YES;
                 }
                 
                 [requestTab reloadData];
@@ -240,7 +247,17 @@
     }];
 }
 
+#pragma mark - getter & setter
 
+- (LSNonDataView *)nonDataView
+{
+    if (!_nonDataView)
+    {
+        _nonDataView = [[LSNonDataView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
+        _nonDataView.titleStr = @"您还没有同业好友";
+    }
+    return _nonDataView;
+}
 
 
 @end

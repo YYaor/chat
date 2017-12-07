@@ -61,6 +61,11 @@
     
     self.tagsView.btnBlock = ^(NSInteger index)
     {
+        if ([self.dataArr[index][@"isDefault"] longValue] == 1)
+        {
+            //不能删除修改的
+            return ;
+        }
         LSWorkUsefulAddController *vc = [[LSWorkUsefulAddController alloc] initWithNibName:@"LSWorkUsefulAddController" bundle:nil];
         [weakSelf.navigationController pushViewController:vc animated:YES];
         vc.dataDic = weakSelf.dataArr[index];

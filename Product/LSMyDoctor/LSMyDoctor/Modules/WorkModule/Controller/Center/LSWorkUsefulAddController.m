@@ -8,7 +8,7 @@
 
 #import "LSWorkUsefulAddController.h"
 
-@interface LSWorkUsefulAddController ()
+@interface LSWorkUsefulAddController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet YYPlaceholderTextView *textView;
 @property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
@@ -97,7 +97,7 @@
                     weakSelf.addBlock(weakSelf.dataDic);
                 }
                 
-                [XHToast showCenterWithText:@"常用语添加成功"];
+                [XHToast showCenterWithText:responseObj[@"data"][@"message"]];
                 
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             }
@@ -124,7 +124,7 @@
                 weakSelf.deleteBlock(weakSelf.dataDic);
             }
             
-            [XHToast showCenterWithText:@"常用语删除成功"];
+            [JKAlert alertText:responseObj[@"data"][@"message"]];
             
             [weakSelf.navigationController popViewControllerAnimated:YES];
 
@@ -132,6 +132,16 @@
     } failBlock:^(NSError *error) {
         NSLog(@"");
     }];
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (textView.text.length > 50)
+    {
+        textView.text = [textView.text substringToIndex:50];
+    }
 }
 
 @end
